@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Öncü | Yönetim</title>
+    <link rel="icon" type="image/png" href="MyImages/Layout/oncu.ico" />
+
+
+    <base href="/" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <!--<link href="BlazorRCM.Client.styles.css" rel="stylesheet" />-->
+    <link href="manifest.json" rel="manifest" />
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
+
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="Content/plugins/AdminLte/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="Content/plugins/AdminLte/css/tempusdominus-bootstrap-4.min.css">
+    <link href="Content/plugins/AdminLte/css/select2.min.css" rel="stylesheet" />
+    <link href="Content/plugins/AdminLte/css/select2-bootstrap4.min.css" rel="stylesheet" />
+    <!-- Toastr -->
+    <link href="Content/plugins/AdminLte/css/toastr.min.css" rel="stylesheet" />
+    <!-- iCheck -->
+    <link rel="stylesheet" href="Content/plugins/AdminLte/css/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <!--@*
+    <link rel="stylesheet" href="Content/plugins/AdminLte/css/jqvmap.min.css">*@-->
+    <!-- Theme style -->
+    <link rel="stylesheet" href="Content/plugins/AdminLte/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="Content/plugins/AdminLte/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="Content/plugins/AdminLte/css/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="Content/plugins/AdminLte/css/summernote-bs4.min.css">
+
+    <link href="Content/plugins/sweetalert/sweetalert2.css" rel="stylesheet" />
+
+    <!--@RenderSection("styles", false)
+    @RenderSection("scripts", false)-->
+    <!--@*----------------------AdminLte data table--------------------*@-->
+    <link rel="stylesheet" href="Content/plugins/AdminLte/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="Content/plugins/AdminLte/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="Content/plugins/AdminLte/css/buttons.bootstrap4.min.css">
+    <link href="Content/plugins/AdminLte/css/datatables.min.css" rel="stylesheet" />
+    <!--@*------------------------------------------------------------*@-->
+    <!--<link href="MyCSS/LeftSideBar/SideBarText.css" rel="stylesheet" />-->
+
+    <script src="Content/plugins/AdminLte/js/jquery.min.js"></script>
+</head>
+
+<body class="hold-transition sidebar-collapse layout-fixed layout-fixed-top-navbar layout-navbar-fixed">
+    <div class="wrapper">
+
+
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background-color:coral">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <!--@*@Html.ActionLink("Hızlı Satış", "QuickSale", "SalesController")*@-->
+                    <a href="hizlisatis" id="nvbQuickSale" class="nav-link" style="color:white">Hızlııı</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="counter" class="nav-link" style="color:white">Paket Satışı</a>
+                </li>
+            </ul>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+
+                <!-- "Yemek Sepeti" Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#" title="Yemek Sepeti">
+                        <img src="MyImages/Layout/yemekSepeti.ico" class="brand-image img-circle elevation-3" style="opacity: .8; height:25px">
+                        <!--@*<i class="far fa-comments"></i>*@-->
+                        <span class="badge badge-danger navbar-badge">3</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        1 adet onay bekleyen siparişiniz var
+                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">Onay bekleyen sipariş...</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 dk önce</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">Siparişlerime Git</a>
+                    </div>
+                </li>
+                <li><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+                <!-- "Getir" Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <img src="MyImages/Layout/Getir_icon.ico" class="brand-image img-circle elevation-3" style="opacity: .8; height: 25px">
+                        <!--@*<i class="far fa-bell"></i>*@-->
+                        <span class="badge badge-warning navbar-badge">15</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-header">Teslim edilmeyen</span>
+                        <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> 4 adet teslim edilmemiş sipariş var
+                            <span class="float-right text-muted text-sm">30 dk</span>
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">Siparişlerime Git</a>
+                    </div>
+                </li>
+                <li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+                <!-- USER EDIT Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <button type="button" style="background:none;border:none" id="inputID" class="nav-link" title="Ayarlar">
+                        <i class="fas fa-user-edit"></i>
+                    </button>
+                    <div style="position:absolute; right:-75px; visibility:visible; width:280px">
+                        <ul class="dropdown-menu" id="userEditMenu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <div style="text-align:center">
+                                    <img src="MyImages/Layout/oncu.png" width="150" class="img-circle" alt="User Image">
+                                </div>
+                                <div style="text-align:center; margin-top:5px">
+                                    <p id="currentUserName" style="font-family: cursive; text-align: center">
+                                        <!--@*@activeUser.FirstName @activeUser.LastName*@-->Aktif Kullanıcı Adı Gir
+                                    </p>
+                                </div>
+                                <div style="text-align:center">
+                                    <p style="text-align:center">
+                                        <small id="smallEmail"><!--@*@activeUser.Email*@-->Kullanıcı Email Gir</small>
+                                    </p>
+                                </div>
+                            </li>
+                            <!-- Menu Body -->
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <nav class="navbar navbar-expand-xl navbar-light bg-light">
+                                    <table id="tblUserdrop">
+                                        <tr>
+                                            <td>
+                                                <button type="button" id="btnupdate" class="btn btn-block btn-info" style="height:75px">Bilgilerimi Güncelle</button>
+                                            </td>
+                                            <td id="ddm">
+                                                <div id="divBranchList" style="width:155px; padding-bottom:40px;height:40px">
+                                                    <select id="branchList" name="mySelection" class="form-control select2bs4"> <!--onchange="this.options[this.selectedIndex].getAttribute('authrtyid');"-->
+                                                        <option authrtyid="0" value="0">Şube Değiştir</option>
+                                                        <!--@*@foreach (string item in brchnms)
+                                                        {-->
+                                                        <!--<option authrtyid="@authryids[(brchnms.IndexOf(item))]" value="@ubids[(brchnms.IndexOf(item))]">@item</option>}*@-->
+                                                    </select>
+                                                </div>
+                                                <div id="choiseAccept" style="padding-top:2px">
+                                                    <button id="btnAcceptBranch" type="button" class="btn btn-block btn-info" style="width: 155px; height: 33px; color: lightslategrey; text-align: center; vertical-align: middle; background-color:white;">Seçimi Onayla</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </nav>
+                            </li>
+                        </ul>
+
+                    </div>
+                </li>
+                <li><span>&nbsp;&nbsp;</span></li>
+                <!--@*-------------------------Log Out---------------------------------*@-->
+                <li class="nav-item">
+                    <a class="nav-link" href="/Home/LogOut" title="çıkış yap">
+                        <i class="fas fa-sign-out-alt fa-lg"></i>
+                    </a>
+                </li>
+                <!--@*-------------------------Full Screen-----------------------------*@-->
+                <li class="nav-item">
+                    <button type="button" style="background:none;border:none" class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </button>
+                </li>
+                <!--@*-------------------------Right side bar--------------------------*@-->
+                <li class="nav-item">
+                    <button type="button" style="background:none;border:none" class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                </li>
+
+            </ul>
+        </nav>
+        
+        
+        <link href="MyCSS/LeftSideBar/SideBarText.css" rel="stylesheet" />
+
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color:coral">
+            <!-- Brand Logo -->
+            <a href="index" class="brand-link" style="align-items: center;">
+                <img src="MyImages/Layout/oncu.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"><span>ÖNCÜ DÖNER</span><br />
+                <div id="currentBrnchName" style="text-align: center; font-size: initial; word-wrap:break-word">
+                    <!--@*@activeUserBranchName*@-->Aktif Şube Adı
+                </div>
+
+
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div id="activeUserInfo" userid="Girilecek" userBrnchId="Girilecek" authrtyTypid="Girilecek" style="color:white; padding-top:20px">
+                        <small style="padding-top:5px">Hoş geldiniz: <!--@*@activeUser.FirstName @activeUser.LastName*@--> Kullanıcı Adı Soyadı Gir</small>
+                    </div>
+                </div>
+
+                <!-- SidebarSearch Form -->
+                <div class="form-inline">
+                    <div class="input-group" data-widget="sidebar-search">
+                        <input class="form-control form-control-sidebar" type="search" placeholder="Ara" aria-label="Search" style="background-color:cornsilk;color:black">
+                        <div class="input-group-append">
+                            <button class="btn btn-sidebar">
+                                <i class="fas fa-search fa-fw"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--@*Sidebar Menu*@-->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    SİSTEMM YÖNETİMİ
+                                    <i class="fas fa-angle-double-left right"></i>
+                                    <span class="badge badge-info right">9</span>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <!-- Kullanıcı Yönetimi -->
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Kullanıcı Yönetimi</p>
+                                        <i class="fas fa-angle-left right"></i>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li id="divUsers" class="nav-item">
+
+                                            <a href="/ManageUser/ShowUsers" id="btnUsers" class="nav-link">
+                                                
+                                                    <i class="fas fa-circle nav-icon"></i>
+                                                    <p>Kullanıcılar</p>
+                                            </a>
+                                            
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Yönetim Tipleri</p>
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Kullanıcı Yönetimleri</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </li>
+                                <!-- Şube Yönetimi -->
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Şube Yönetimi</p>
+                                        <i class="fas fa-angle-left right"></i>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Şubeler</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Kasa Tipleri</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Şube Kasa Tipleri</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Şube Kasa Tip Akışı</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Kredi Kartları</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Şube Kredi Kartları</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Şube Kredi Kart Akışı</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Şube Ciroları</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Şube Ciro Dağılımları</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Tüketim Tipleri</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p><small>Şube Tüketim Değerleri</small></p>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+
+                                </li>
+                                <!-- Personel Yönetimi -->
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Personel Yönetimi</p>
+                                        <i class="fas fa-angle-left right"></i>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Personeller</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Pozisyon Tipleri</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Çalışma Tipleri</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Maaş Tipleri</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Yoklama Tipleri</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Personel Yoklamaları</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Ödeme Tipleri</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p><small>Personel Cari Hareketler</small></p>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <!-- Ürün Yönetimi -->
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ürün Yönetimi</p>
+                                        <i class="fas fa-angle-left right"></i>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Kategoriler</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Ürünler</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Ürün Şube Fiyatları</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Ürün Fotoları</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Satış Notları</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Ürün Satış Notları</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Hammadde Türleri</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p><small>Ürün Hammadde Değerleri</small></p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Satış Yönetimi -->
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Satış Yönetimi</p>
+                                        <i class="fas fa-angle-left right"></i>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Satış Tipleri</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Yapılan Tüm Satışlar</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Satış Detayları</p>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <!-- Stok Yönetimi -->
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Stok Yönetimi</p>
+                                        <i class="fas fa-angle-left right"></i>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Şube Stokları</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Yapılan Stok Girişleri</p>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <!-- Masraf Yönetimi -->
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Masraf Yönetimi</p>
+                                        <i class="fas fa-angle-left right"></i>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Masraf Tipleri</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Masraf Cari Hareketler</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Tedarikçi Yönetimi -->
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tedarikçi Yönetimi</p>
+                                        <i class="fas fa-angle-left right"></i>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Tedarikçiler</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p><small>Sağladığı Hammeddeler</small></p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p><small>Tedarikçi Firma Tipleri</small></p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p><small>Tedarikçi Cari Hareketler</small></p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Müşteri Yönetimi -->
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Müşteri Yönetimi</p>
+                                        <i class="fas fa-angle-left right"></i>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p>Kayıtlı Müşteriler</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-circle nav-icon"></i>
+                                                <p><small>Müşteri Adresleri</small></p>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--@* }*@-->
+
+
+                        <!-- ---------------------------------------------------------------------------------->
+                        <!-- --------------------------///Sistem Yönetimi-------------------------------------->
+                        <!-- ---------------------------------Satışlar----------------------------------------->
+                        <!-- ---------------------------------------------------------------------------------->
+
+                        <li class="nav-item">
+                            <a href="#Sales" class="nav-link">
+                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <p>
+                                    SATIŞLAR
+                                    <i class="fas fa-angle-double-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <!-- Hızlı Satış-->
+                                <li class="nav-item">
+                                    <a href="#QuickSale" id="btnQuickSale" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p style="color:white">Hızlı Satış</p>
+                                    </a>
+                                </li>
+                                <!-- Paket Satışı -->
+                                <li class="nav-item">
+                                    <a href="pages/charts/flot.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p style="color:white">Paket Satışı</p>
+                                    </a>
+                                </li>
+                                <!-- Yemek Sepeti -->
+                                <li class="nav-item">
+                                    <a href="pages/charts/inline.html" class="nav-link" style="background-color: whitesmoke">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p style="color: #f15252">Yemek Sepeti</p>
+                                    </a>
+                                </li>
+                                <!-- Getir -->
+                                <li class="nav-item">
+                                    <a href="pages/charts/uplot.html" class="nav-link" style="background-color: whitesmoke">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p style="color: #ba69e3">Getir</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- ---------------------------------------------------------------------------------->
+                        <!-- --------------------------///Satışlar--------------------------------------------->
+                        <!--@*-------------------------Diğerleri-------------------------------*@-->
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-tree"></i>
+                                <p>
+                                    UI Elements
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="pages/UI/general.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>General</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/UI/icons.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Icons</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/UI/buttons.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Buttons</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/UI/sliders.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Sliders</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/UI/modals.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Modals & Alerts</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/UI/navbar.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Navbar & Tabs</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/UI/timeline.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Timeline</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/UI/ribbons.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ribbons</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-edit"></i>
+                                <p>
+                                    Forms
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="pages/forms/general.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>General Elements</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/forms/advanced.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Advanced Elements</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/forms/editors.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Editors</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/forms/validation.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Validation</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Tables
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="pages/tables/simple.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Simple Tables</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/tables/data.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>DataTables</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/tables/jsgrid.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>jsGrid</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-header">EXAMPLES</li>
+                        <li class="nav-item">
+                            <a href="pages/calendar.html" class="nav-link">
+                                <i class="nav-icon far fa-calendar-alt"></i>
+                                <p>
+                                    Calendar
+                                    <span class="badge badge-info right">2</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/gallery.html" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Gallery
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/kanban.html" class="nav-link">
+                                <i class="nav-icon fas fa-columns"></i>
+                                <p>
+                                    Kanban Board
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon far fa-envelope"></i>
+                                <p>
+                                    Mailbox
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="pages/mailbox/mailbox.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Inbox</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/mailbox/compose.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Compose</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/mailbox/read-mail.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Read</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>
+                                    Pages
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="pages/examples/invoice.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Invoice</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/examples/profile.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Profile</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/examples/e-commerce.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>E-commerce</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/examples/projects.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Projects</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/examples/project-add.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Project Add</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/examples/project-edit.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Project Edit</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/examples/project-detail.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Project Detail</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/examples/contacts.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Contacts</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/examples/faq.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>FAQ</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/examples/contact-us.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Contact us</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon far fa-plus-square"></i>
+                                <p>
+                                    Extras
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>
+                                            Login & Register v1
+                                            <i class="fas fa-angle-left right"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="pages/examples/login.html" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Login v1</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="pages/examples/register.html" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Register v1</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="pages/examples/forgot-password.html" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Forgot Password v1</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="pages/examples/recover-password.html" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Recover Password v1</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>
+                                            Login & Register v2
+                                            <i class="fas fa-angle-left right"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="pages/examples/login-v2.html" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Login v2</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="pages/examples/register-v2.html" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Register v2</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="pages/examples/forgot-password-v2.html" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Forgot Password v2</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="pages/examples/recover-password-v2.html" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Recover Password v2</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/examples/lockscreen.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Lockscreen</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/examples/legacy-user-menu.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Legacy User Menu</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/examples/language-menu.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Language Menu</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/examples/404.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Error 404</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/examples/500.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Error 500</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/examples/pace.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Pace</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/examples/blank.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Blank Page</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="starter.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Starter Page</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-search"></i>
+                                <p>
+                                    Search
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="pages/search/simple.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Simple Search</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/search/enhanced.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Enhanced</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </nav>
+                <!--@*/.sidebar-menu*@-->
+            </div>
+           <!-- @*/.sidebar*@-->
+        </aside>
+        
+        
+        
+        <div id="app" class="content-wrapper" style="background-color:cornsilk">Loading...</div>
+
+        <div id="blazor-error-ui">
+            An unhandled error has occurred.
+            <a href="" class="reload">Reload</a>
+            <a class="dismiss">🗙</a>
+        </div>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script>navigator.serviceWorker.register('service-worker.js');</script>
+
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery UI 1.11.4 -->
+    <script src="Content/plugins/AdminLte/js/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="Content/plugins/AdminLte/js/bootstrap.bundle.min.js"></script>
+    <script src="Content/plugins/AdminLte/js/select2.full.min.js"></script>
+    <script src="Content/plugins/AdminLte/js/jquery.bootstrap-duallistbox.min.js"></script>
+    <!-- Toastr -->
+    <script src="Content/plugins/AdminLte/js/toastr.min.js"></script>
+    <!-- InputMask -->
+    <script src="Content/plugins/AdminLte/js/moment.min.js"></script>
+    <script src="Content/plugins/AdminLte/js/jquery.inputmask.min.js"></script>
+    <!-- ChartJS -->
+    <script src="Content/plugins/AdminLte/js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="Content/plugins/AdminLte/js/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="Content/plugins/AdminLte/js/jquery.vmap.min.js"></script>
+    <script src="Content/plugins/AdminLte/js/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="Content/plugins/AdminLte/js/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="Content/plugins/AdminLte/js/daterangepicker.js"></script>
+    <!-- bootstrap color picker -->
+    <script src="Content/plugins/AdminLte/js/bootstrap-colorpicker.min.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="Content/plugins/AdminLte/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Bootstrap Switch -->
+    <script src="Content/plugins/AdminLte/js/bootstrap-switch.min.js"></script>
+    <!-- Summernote -->
+    <script src="Content/plugins/AdminLte/js/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="Content/plugins/AdminLte/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <!--<script src="Content/plugins/AdminLte/js/adminlte.min.js"></script>-->
+    <script src="Content/plugins/AdminLte/js/adminlte.js"></script>
+    <!-- Toastr -->
+    <script src="Content/plugins/AdminLte/js/toastr.min.js"></script>
+
+    <script src="Content/plugins/AdminLte/js/pdfmake.min.js"></script>
+    <!-- sw2 -->
+    <script src="Content/plugins/sweetalert/sweetalert2.js"></script>
+
+    <!-- Client side validation -->
+    <!--<script src="Scripts/jquery.validate.js"></script>
+    <script src="Scripts/jquery.validate.unobtrusive.js"></script>-->
+
+    <!--@*-----adminLte table-------My datatable version : 1.10.24--------*@-->
+    <!--@*DataTables  & Plugins*@-->
+    <script src="Content/plugins/AdminLte/js/datatables.min.js"></script>
+    <script src="Content/plugins/AdminLte/js/jquery.dataTables.min.js"></script>
+    <script src="Content/plugins/AdminLte/js/dataTables.bootstrap4.min.js"></script>
+    <script src="Content/plugins/AdminLte/js/dataTables.responsive.min.js"></script>
+    <script src="Content/plugins/AdminLte/js/responsive.bootstrap4.min.js"></script>
+    <script src="Content/plugins/AdminLte/js/dataTables.buttons.min.js"></script>
+    <script src="Content/plugins/AdminLte/js/buttons.bootstrap4.min.js"></script>
+    <script src="Content/plugins/AdminLte/js/jszip.min.js"></script>
+    <script src="Content/plugins/AdminLte/js/vfs_fonts.js"></script>
+    <script src="Content/plugins/AdminLte/js/buttons.html5.min.js"></script>
+    <script src="Content/plugins/AdminLte/js/buttons.print.min.js"></script>
+    <script src="Content/plugins/AdminLte/js/buttons.colVis.min.js"></script>
+
+    <!--@*--------------------MyScripts--------------------------*@-->
+    <script type="text/javascript" src="MyScripts/SystemManagement/1_User/CRUD_User.js"></script>
+    <script src="MyScripts/Layout/UserEditDropdown.js"></script>
+    <script src="MyScripts/Sales/ShowQuickSale.js"></script>
+    <script src="MyScripts/Helper/DataTable.js"></script>
+    <script src="MyScripts/Helper/SelectListSearchTheme.js"></script>
+
+    <!--@RenderSection("bottomscripts", false)-->
+</body>
+
+</html>
