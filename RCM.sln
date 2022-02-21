@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorRCM.Client", "BlazorR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorRCM.Shared", "BlazorRCM\Shared\BlazorRCM.Shared.csproj", "{12A60E5B-0296-468E-9801-10660A545548}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCMServerData", "RCMServerData\RCMServerData.csproj", "{E0FF552F-66E6-45CC-B45B-63184029E8CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCM.Model", "..\..\RestaurantChain\RestaurantChain\RCM.Model\RCM.Model.csproj", "{FD900BF5-713D-4717-B353-8D08BC0C1C61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{12A60E5B-0296-468E-9801-10660A545548}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12A60E5B-0296-468E-9801-10660A545548}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12A60E5B-0296-468E-9801-10660A545548}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0FF552F-66E6-45CC-B45B-63184029E8CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0FF552F-66E6-45CC-B45B-63184029E8CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0FF552F-66E6-45CC-B45B-63184029E8CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0FF552F-66E6-45CC-B45B-63184029E8CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD900BF5-713D-4717-B353-8D08BC0C1C61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD900BF5-713D-4717-B353-8D08BC0C1C61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD900BF5-713D-4717-B353-8D08BC0C1C61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD900BF5-713D-4717-B353-8D08BC0C1C61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
