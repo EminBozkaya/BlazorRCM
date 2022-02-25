@@ -29,7 +29,7 @@ namespace RCMServerData.Migrations
                         .HasColumnType("smallint")
                         .HasColumnName("ATId");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<short>("ATId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<short>("ATId"));
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -50,11 +50,13 @@ namespace RCMServerData.Migrations
                         .HasColumnType("smallint")
                         .HasColumnName("BId");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<short>("BId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<short>("BId"));
 
                     b.Property<DateTime?>("CreatedTime")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("date")
-                        .HasColumnName("CreatedTime");
+                        .HasColumnName("CreatedTime")
+                        .HasDefaultValueSql("current_date");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean")
@@ -83,7 +85,7 @@ namespace RCMServerData.Migrations
                         .HasColumnType("int")
                         .HasColumnName("SpId");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("SpId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<int>("SpId"));
 
                     b.Property<string>("Adress")
                         .IsRequired()
@@ -94,6 +96,9 @@ namespace RCMServerData.Migrations
                     b.Property<short>("BId")
                         .HasColumnType("smallint")
                         .HasColumnName("BId");
+
+                    b.Property<short>("BranchBId")
+                        .HasColumnType("smallint");
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
@@ -140,7 +145,14 @@ namespace RCMServerData.Migrations
                         .HasColumnType("varchar")
                         .HasColumnName("Phone");
 
+                    b.Property<int>("UserUId")
+                        .HasColumnType("int");
+
                     b.HasKey("SpId");
+
+                    b.HasIndex("BranchBId");
+
+                    b.HasIndex("UserUId");
 
                     b.ToTable("Supplier");
                 });
@@ -152,11 +164,13 @@ namespace RCMServerData.Migrations
                         .HasColumnType("int")
                         .HasColumnName("UId");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("UId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<int>("UId"));
 
                     b.Property<DateTime?>("CreatedTime")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("date")
-                        .HasColumnName("CreatedTime");
+                        .HasColumnName("CreatedTime")
+                        .HasDefaultValueSql("current_date");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -166,7 +180,7 @@ namespace RCMServerData.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(20)
+                        .HasMaxLength(25)
                         .HasColumnType("varchar")
                         .HasColumnName("FirstName");
 
@@ -176,7 +190,7 @@ namespace RCMServerData.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(20)
+                        .HasMaxLength(25)
                         .HasColumnType("varchar")
                         .HasColumnName("LastName");
 
@@ -217,7 +231,7 @@ namespace RCMServerData.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<int>("Id"));
 
                     b.Property<short>("ATId")
                         .HasColumnType("smallint")
@@ -256,6 +270,25 @@ namespace RCMServerData.Migrations
                     b.ToTable("UserBranchAuthority");
                 });
 
+            modelBuilder.Entity("RCMServerData.Models.Supplier", b =>
+                {
+                    b.HasOne("RCMServerData.Models.Branch", "Branch")
+                        .WithMany("Suppliers")
+                        .HasForeignKey("BranchBId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RCMServerData.Models.User", "User")
+                        .WithMany("Suppliers")
+                        .HasForeignKey("UserUId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Branch");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("RCMServerData.Models.UserBranchAuthority", b =>
                 {
                     b.HasOne("RCMServerData.Models.AuthorityType", "AuthorityType")
@@ -290,11 +323,15 @@ namespace RCMServerData.Migrations
 
             modelBuilder.Entity("RCMServerData.Models.Branch", b =>
                 {
+                    b.Navigation("Suppliers");
+
                     b.Navigation("UserBranchAuthorities");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.User", b =>
                 {
+                    b.Navigation("Suppliers");
+
                     b.Navigation("UserBranchAuthorities");
                 });
 #pragma warning restore 612, 618

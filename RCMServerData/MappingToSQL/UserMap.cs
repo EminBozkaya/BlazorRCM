@@ -14,18 +14,19 @@ namespace RCMServerData.MappingToSQL
             builder.Property(x => x.UId)
                 .HasColumnName("UId")
                 .HasColumnType("int")
-                .ValueGeneratedOnAdd();
+                .ValueGeneratedOnAdd()
+                .UseIdentityAlwaysColumn();
 
             builder.Property(x => x.FirstName)
                 .HasColumnName("FirstName")
                 .HasColumnType("varchar")
-                .HasMaxLength(20)
+                .HasMaxLength(25)
                 .IsRequired();
 
             builder.Property(x => x.LastName)
                 .HasColumnName("LastName")
                 .HasColumnType("varchar")
-                .HasMaxLength(20)
+                .HasMaxLength(25)
                 .IsRequired();
 
             builder.Property(x => x.UserName)
@@ -61,7 +62,8 @@ namespace RCMServerData.MappingToSQL
 
             builder.Property(x => x.CreatedTime)
                 .HasColumnName("CreatedTime")
-                .HasColumnType("date");
+                .HasColumnType("date")
+                .HasDefaultValueSql("current_date");
 
             builder.Property(x => x.ModifiedTime)
                 .HasColumnName("ModifiedTime")

@@ -1,5 +1,6 @@
 using System;
 using System.Configuration;
+using BlazorRCM.Server.Services.Extensions;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using RCMServerData.Context;
@@ -10,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-
+builder.Services.ConfigureMapping();
 
 builder.Services.AddDbContext<RCMBlazorContext>(config =>
 {

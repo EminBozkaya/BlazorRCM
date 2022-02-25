@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.2">
       <PrivateAssets>all</PrivateAssets>
@@ -19,6 +20,11 @@
     <ProjectReference Include="..\..\RCMServerData\RCMServerData.csproj" />
     <ProjectReference Include="..\Client\BlazorRCM.Client.csproj" />
     <ProjectReference Include="..\Shared\BlazorRCM.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\BusinessInfrastructure\" />
+    <Folder Include="Services\BusinessServices\" />
   </ItemGroup>
 
 

@@ -25,8 +25,8 @@ namespace RCMServerData.Models
         public Nullable<System.DateTime> ModifiedTime { get; set; }
         public bool IsActive { get; set; }
 
-        //public virtual Branch Branch { get; set; }
-        //public virtual User User { get; set; }
+        public virtual Branch Branch { get; set; }
+        public virtual User User { get; set; }
         //public virtual FirmType FirmType { get; set; }
         //public virtual ICollection<RawMaterialOfSupplier> RawMaterialOfSuppliers { get; set; }
         //public virtual ICollection<SupplierMoneyFlow> SupplierMoneyFlows { get; set; }

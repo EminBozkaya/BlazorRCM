@@ -18,7 +18,8 @@ namespace RCMServerData.MappingToSQL
             builder.Property(x => x.ATId)
                 .HasColumnName("ATId")
                 .HasColumnType("smallint")
-                .ValueGeneratedOnAdd();
+                .ValueGeneratedOnAdd()
+                .UseIdentityAlwaysColumn();
 
 
             builder.Property(x => x.Type)

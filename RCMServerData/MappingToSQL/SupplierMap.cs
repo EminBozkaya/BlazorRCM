@@ -13,7 +13,8 @@ namespace RCMServerData.MappingToSQL
             builder.Property(x => x.SpId)
                 .HasColumnName("SpId")
                 .HasColumnType("int")
-                .ValueGeneratedOnAdd();
+                .ValueGeneratedOnAdd()
+                .UseIdentityAlwaysColumn();
 
             builder.Property(x => x.BId)
                 .HasColumnName("BId")

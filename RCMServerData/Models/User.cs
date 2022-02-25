@@ -22,7 +22,7 @@ namespace RCMServerData.Models
             //this.ExpenseFlows1 = new HashSet<ExpenseFlow>();
             //this.Sales = new HashSet<Sale>();
             //this.SaleDetails = new HashSet<SaleDetail>();
-            //this.Suppliers = new HashSet<Supplier>();
+            this.Suppliers = new HashSet<Supplier>();
             //this.SupplierMoneyFlows = new HashSet<SupplierMoneyFlow>();
             this.UserBranchAuthorities = new HashSet<UserBranchAuthority>();
         }
@@ -53,7 +53,7 @@ namespace RCMServerData.Models
 
         //public virtual ICollection<Sale> Sales { get; set; }
         //public virtual ICollection<SaleDetail> SaleDetails { get; set; }
-        //public virtual ICollection<Supplier> Suppliers { get; set; }
+        public virtual ICollection<Supplier> Suppliers { get; set; }
         //public virtual ICollection<SupplierMoneyFlow> SupplierMoneyFlows { get; set; }
         public virtual ICollection<UserBranchAuthority> UserBranchAuthorities { get; set; }
     }

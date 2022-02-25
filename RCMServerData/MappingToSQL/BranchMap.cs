@@ -14,7 +14,8 @@ namespace RCMServerData.MappingToSQL
             builder.Property(x => x.BId)
                 .HasColumnName("BId")
                 .HasColumnType("smallint")
-                .ValueGeneratedOnAdd();
+                .ValueGeneratedOnAdd()
+                .UseIdentityAlwaysColumn();
 
             builder.Property(x => x.Name)
                 .HasColumnName("Name")
@@ -29,7 +30,8 @@ namespace RCMServerData.MappingToSQL
 
             builder.Property(x => x.CreatedTime)
                 .HasColumnName("CreatedTime")
-                .HasColumnType("date");
+                .HasColumnType("date")
+                .HasDefaultValueSql("current_date");
 
             builder.Property(x => x.ModifiedTime)
                 .HasColumnName("ModifiedTime")
