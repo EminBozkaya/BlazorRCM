@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RCMServerData.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RCMServerData.MappingToSQL
 {
@@ -9,13 +10,16 @@ namespace RCMServerData.MappingToSQL
        
         public void Configure(EntityTypeBuilder<AuthorityType> builder)
         {
-            
+
             builder.HasKey(x => x.ATId)
                 .HasName("pk_AuthorityType_id");
 
+
             builder.Property(x => x.ATId)
                 .HasColumnName("ATId")
-                .HasColumnType("smallint");
+                .HasColumnType("smallint")
+                .ValueGeneratedOnAdd();
+
 
             builder.Property(x => x.Type)
                 .HasColumnName("Type")
