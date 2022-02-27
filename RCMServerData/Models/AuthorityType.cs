@@ -12,7 +12,7 @@ namespace RCMServerData.Models
         }
 
         public short ATId { get; set; }
-        public string Type { get; set; }
+        public string? Type { get; set; }
         
 
         public virtual ICollection<UserBranchAuthority> UserBranchAuthorities { get; set; }

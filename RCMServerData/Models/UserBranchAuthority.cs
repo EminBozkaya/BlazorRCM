@@ -10,8 +10,8 @@ namespace RCMServerData.Models
         public short ATId { get; set; }
         public bool IsActive { get; set; }
 
-        public virtual AuthorityType AuthorityType { get; set; }
-        public virtual Branch Branch { get; set; }
-        public virtual User User { get; set; }
+        public virtual AuthorityType? AuthorityType { get; set; }
+        public virtual Branch? Branch { get; set; }
+        public virtual User? User { get; set; }
     }
 }

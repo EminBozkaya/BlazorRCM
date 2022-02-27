@@ -9,6 +9,6 @@ namespace BlazorRCM.Shared.DTOs
     public class AuthorityTypeDTO
     {
         public short ATId { get; set; }
-        public string Type { get; set; }
+        public string? Type { get; set; }
     }
 }

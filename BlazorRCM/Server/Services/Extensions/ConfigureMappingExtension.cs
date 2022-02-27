@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using BlazorRCM.Shared.DTOs;
+using BlazorRCM.Shared.Utils;
+using RCMServerData.Models;
 
 namespace BlazorRCM.Server.Services.Extensions
 {
@@ -23,29 +26,32 @@ namespace BlazorRCM.Server.Services.Extensions
             AllowNullDestinationValues = true;
             AllowNullCollections = true;
 
-            //CreateMap<Suppliers, SupplierDTO>()
-            //    .ReverseMap();
-
-            //CreateMap<Users, UserDTO>()
-            //    .ForMember(x => x.Password, y => y.MapFrom(z => PasswordEncrypter.Decrypt(z.Password)));
-
-            //CreateMap<UserDTO, Users>()
-            //    .ForMember(x => x.Password, y => y.MapFrom(z => PasswordEncrypter.Encrypt(z.Password)))
-            //    ;
-
-            //CreateMap<Orders, OrderDTO>()
-            //    .ForMember(x => x.SupplierName, y => y.MapFrom(z => z.Supplier.Name))
-            //    .ForMember(x => x.CreatedUserFullName, y => y.MapFrom(z => z.CreatedUser.FirstName + " " + z.CreatedUser.LastName));
-
-            //CreateMap<OrderDTO, Orders>();
+            CreateMap<AuthorityType, AuthorityTypeDTO>()
+                .ReverseMap();
 
 
+            CreateMap<Branch, BranchDTO>()
+                .ReverseMap();
 
-            //CreateMap<OrderItems, OrderItemsDTO>()
-            //    .ForMember(x => x.CreatedUserFullName, y => y.MapFrom(z => z.CreatedUser.FirstName + " " + z.CreatedUser.LastName))
-            //    .ForMember(x => x.OrderName, y => y.MapFrom(z => z.Order.Name ?? ""));
 
-            //CreateMap<OrderItemsDTO, OrderItems>();
+            CreateMap<Supplier, SupplierDTO>()
+                .ReverseMap();
+
+
+            CreateMap<UserBranchAuthority, UserBranchAuthorityDTO>()
+                .ForMember(x => x.UserFullName, y => y.MapFrom(z=>z.User!.FirstName + " " +z.User.LastName));
+
+            CreateMap<UserBranchAuthorityDTO, UserBranchAuthority>();
+
+
+            CreateMap<User, UserDTO>()
+                .ForMember(x => x.Password, y => y.MapFrom(z => PasswordEncrypter.Decrypt(z.Password!)));
+
+            CreateMap<UserDTO, User>()
+                .ForMember(x => x.Password, y => y.MapFrom(z => PasswordEncrypter.Encrypt(z.Password!)));
+
+
+
         }
     }
 }
