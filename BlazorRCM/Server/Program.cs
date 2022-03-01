@@ -3,7 +3,7 @@ using System.Configuration;
 using BlazorRCM.Server.Services.Extensions;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
-using RCMServerData.Context;
+using RCMServerData.EFContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,11 +13,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.ConfigureMapping();
 
-builder.Services.AddDbContext<RCMBlazorContext>(config =>
-{
-    config.UseNpgsql(builder.Configuration.GetConnectionString("RCMpostgreConnection"), b => b.MigrationsAssembly("RCMServerData"));
-    config.EnableSensitiveDataLogging();
-});
+builder.Services.AddDbContext<RCMBlazorContext>();
+//builder.Services.AddDbContext<RCMBlazorContext>(config =>
+//{
+//    config.UseNpgsql(builder.Configuration.GetConnectionString("RCMpostgreConnection"), b => b.MigrationsAssembly("RCMServerData"));
+//    config.EnableSensitiveDataLogging();
+//});
 //builder.Services.AddScoped<DbContext>(provider =>  provider.GetService<RCMBlazorContext>());
 
 var app = builder.Build();

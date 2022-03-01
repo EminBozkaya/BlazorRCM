@@ -14,17 +14,13 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\RCMServerData\RCMServerData.csproj" />
     <ProjectReference Include="..\Client\BlazorRCM.Client.csproj" />
     <ProjectReference Include="..\Shared\BlazorRCM.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\BusinessInfrastructure\" />
-    <Folder Include="Services\BusinessServices\" />
   </ItemGroup>
 
 

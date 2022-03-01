@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlazorRCM.Shared.DTOs
 {
-    public class SupplierDTO
+    public class SupplierDTO : BaseDTO
     {
         public int SpId { get; set; }
         public short BId { get; set; }

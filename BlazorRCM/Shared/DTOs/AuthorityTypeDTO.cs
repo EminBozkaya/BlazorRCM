@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlazorRCM.Shared.DTOs
 {
-    public class AuthorityTypeDTO
+    public class AuthorityTypeDTO : BaseDTO
     {
         public short ATId { get; set; }
         public string? Type { get; set; }

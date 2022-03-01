@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlazorRCM.Shared.DTOs
 {
-    public class UserDTO
+    public class UserDTO : BaseDTO
     {
         public int UId { get; set; }
         public string? FirstName { get; set; }
