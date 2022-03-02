@@ -29,6 +29,8 @@ namespace RCMServerData.Models
 
         public short BId { get; set; }
         public string? Name { get; set; }
+        public string? Adress { get; set; }
+
         public bool IsActive { get; set; }
         public DateTime CreatedTime { get; set; }
         public DateTime ModifiedTime { get; set; }

@@ -1,10 +1,11 @@
 ﻿using RCMServerData.Repositories.Abstract;
 using RCMServerData.Models;
 using BlazorRCM.Server.Services.BusinessInfrastructure;
+using BlazorRCM.Shared.DTOs;
 
 namespace RCM.Business.Concrete
 {
-    public class UserBranchAuthorityBs : BusinessService<UserBranchAuthority>
+    public class UserBranchAuthorityBs : BusinessService<UserBranchAuthorityDTO>
     {
         private readonly IUserBranchAuthorityRepo _repo;
 

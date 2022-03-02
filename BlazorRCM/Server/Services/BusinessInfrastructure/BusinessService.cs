@@ -4,17 +4,17 @@ using System.Linq.Expressions;
 
 namespace BlazorRCM.Server.Services.BusinessInfrastructure
 {
-    public class BusinessService<TEntity> : IBusinessService<TEntity>
-    where TEntity : BaseDomain, new()
+    public class BusinessService<TEntityDTO> : IBusinessService<TEntityDTO>
+    where TEntityDTO : BaseDTO, new()
     {
-        IRepository<TEntity> _repo;
+        IRepository<TEntityDTO> _repo;
 
-        public BusinessService(IRepository<TEntity> repo)
+        public BusinessService(IRepository<TEntityDTO> repo)
         {
             _repo = repo;
         }
 
-        public virtual async Task<TEntity> Get(Expression<Func<TEntity, bool>> filter, params string[] includeList)
+        public virtual async Task<TEntityDTO> Get(Expression<Func<TEntityDTO, bool>> filter, params string[] includeList)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace BlazorRCM.Server.Services.BusinessInfrastructure
             }
         }
 
-        public async Task<ICollection<TEntity>> GetAll(Expression<Func<TEntity, bool>>? filter = null, params string[] includeList)
+        public async Task<ICollection<TEntityDTO>> GetAll(Expression<Func<TEntityDTO, bool>>? filter = null, params string[] includeList)
         {
             try
             {
@@ -40,16 +40,16 @@ namespace BlazorRCM.Server.Services.BusinessInfrastructure
             }
         }
 
-        public virtual async Task<TEntity> Create(TEntity entity)
+        public virtual async Task<TEntityDTO> Create(TEntityDTO entity)
         {
 
             //Type type = Type.GetType("RCM.Business.ValidationRules.FluentValidation.Domain." + entity.GetType().Name + "Validator");
 
-            //AbstractValidator<TEntity> validatorObj = Activator.CreateInstance(type) as AbstractValidator<TEntity>;
+            //AbstractValidator<TEntityDTO> validatorObj = Activator.CreateInstance(type) as AbstractValidator<TEntityDTO>;
 
             try
             {
-                //ValidationTool<TEntity>.Validate(validatorObj, entity);
+                //ValidationTool<TEntityDTO>.Validate(validatorObj, entity);
 
                 return await _repo.Create(entity);
             }
@@ -63,15 +63,15 @@ namespace BlazorRCM.Server.Services.BusinessInfrastructure
 
         }
 
-        public virtual async Task<TEntity> Update(TEntity entity)
+        public virtual async Task<TEntityDTO> Update(TEntityDTO entity)
         {
             //Type type = Type.GetType("RCM.Business.ValidationRules.FluentValidation.Domain." + entity.GetType().Name + "Validator");
 
-            //AbstractValidator<TEntity> validatorObj = Activator.CreateInstance(type) as AbstractValidator<TEntity>;
+            //AbstractValidator<TEntityDTO> validatorObj = Activator.CreateInstance(type) as AbstractValidator<TEntityDTO>;
 
             try
             {
-                //ValidationTool<TEntity>.Validate(validatorObj, entity);
+                //ValidationTool<TEntityDTO>.Validate(validatorObj, entity);
                 return await _repo.Update(entity);
             }
             
@@ -81,7 +81,7 @@ namespace BlazorRCM.Server.Services.BusinessInfrastructure
             }
         }
 
-        public virtual async Task Delete(TEntity entity)
+        public virtual async Task Delete(TEntityDTO entity)
         {
             try
             {

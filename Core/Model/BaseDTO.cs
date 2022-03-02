@@ -1,13 +1,12 @@
-﻿using Core.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorRCM.Shared.DTOs
+namespace Core.Model
 {
-    public abstract class BaseDTO : BaseDomain
+    public abstract class BaseDTO : Base
     {
     }
 }

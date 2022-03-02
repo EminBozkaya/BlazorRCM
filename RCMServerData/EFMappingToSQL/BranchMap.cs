@@ -23,6 +23,12 @@ namespace RCMServerData.EFMappingToSQL
                 .HasMaxLength(50)
                 .IsRequired();
 
+            builder.Property(x => x.Adress)
+                .HasColumnName("Adress")
+                .HasColumnType("varchar")
+                .HasMaxLength(250)
+                .IsRequired();
+
             builder.Property(x => x.IsActive)
                 .HasColumnName("IsActive")
                 .HasColumnType("boolean")

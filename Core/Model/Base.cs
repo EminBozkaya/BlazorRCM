@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Model
 {
-    public abstract class BaseDomain : Base
+    public abstract class Base
     {
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.BaseInfrastructure
 {
-    public interface IRepository<T> where T : BaseDomain, new()
+    public interface IRepository<T> where T : Base, new()
     {
 
         Task<ICollection<T>> GetAll(Expression<Func<T, bool>>? filter = null, params string[] includeList);

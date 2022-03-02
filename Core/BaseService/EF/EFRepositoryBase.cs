@@ -1,32 +1,51 @@
 ﻿using Core.BaseInfrastructure;
 using Core.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.Extensions.Configuration;
+using AutoMapper.QueryableExtensions;
 
 namespace Core.BaseService.EF
 {
-    public class EfRepositoryBase<TContext, TEntity> : IRepository<TEntity>
+    public class EfRepositoryBase<TContext, TEntity, TEntityDTO> : IRepository<TEntityDTO>
         where TEntity : BaseDomain, new()
         where TContext : DbContext, new()
+        where TEntityDTO : BaseDTO, new()
     {
+        private readonly IMapper mapper;
 
-        public async Task<ICollection<TEntity>> GetAll(Expression<Func<TEntity, bool>>? filter = null, params string[] includeList)
+        public EfRepositoryBase(IMapper Mapper)
+        {
+            mapper = Mapper;
+        }
+
+        public async Task<ICollection<TEntityDTO>> GetAll(Expression<Func<TEntityDTO, bool>>? filter = null, params string[] includeList)
         {
             try
             {
 
                 using (TContext ctx = new TContext())
                 {
-                    IQueryable<TEntity> query = filter == null
-                        ? ctx.Set<TEntity>()
-                        : ctx.Set<TEntity>().Where(filter);
+                    //IQueryable<TEntity> query = filter == null
+                    //    ? ctx.Set<TEntity>()
+                    //    : ctx.Set<TEntity>().Where(filter);
+
+                    //TEntity entity = new TEntity();
+                    //Type type = Type.GetType("BlazorRCM.Shared.DTOs." + entity.GetType().Name + "DTO")!;
+
+
+
+                    IQueryable<TEntityDTO> query = filter == null
+                        ? ctx.Set<TEntity>().ProjectTo<TEntityDTO>(mapper.ConfigurationProvider)
+                        : ctx.Set<TEntity>().ProjectTo<TEntityDTO>(mapper.ConfigurationProvider).Where(filter);
+
+                    //IQueryable<TEntity> query = filter == null
+                    //    ? ctx.Set<TEntity>().ProjectTo<TEntityDTO>(mapper.ConfigurationProvider)
+                    //    : ctx.Set<TEntity>().Where(filter).ProjectTo<TEntityDTO>(mapper.ConfigurationProvider);
+
+                    //                _mapper.ProjectTo<SomeViewModel>(dbContext.SomeEntity)
+                    //.ToListAsync();
 
                     if (includeList != null)
                     {
@@ -46,14 +65,15 @@ namespace Core.BaseService.EF
             }
         }
 
-
-        public async Task<TEntity> Get(Expression<Func<TEntity, bool>> filter, params string[] includeList)
+        public async Task<TEntityDTO> Get(Expression<Func<TEntityDTO, bool>> filter, params string[] includeList)
         {
             try
             {
                 using (TContext ctx = new TContext())
                 {
-                    IQueryable<TEntity> query = ctx.Set<TEntity>();
+                    //IQueryable<TEntity> query = ctx.Set<TEntity>();
+
+                    IQueryable<TEntityDTO> query = ctx.Set<TEntity>().ProjectTo<TEntityDTO>(mapper.ConfigurationProvider);
 
                     if (includeList != null)
                     {
@@ -63,7 +83,10 @@ namespace Core.BaseService.EF
                         }
                     }
 
-                    return await query.FirstOrDefaultAsync(filter);
+                    if ((await query.FirstOrDefaultAsync(filter)) == null)
+                        throw new Exception("Kritere uyan kayıt bulunamadı");
+
+                    return (await query.FirstOrDefaultAsync(filter))!;
                 }
             }
 
@@ -74,7 +97,7 @@ namespace Core.BaseService.EF
         }
 
 
-        public async Task<TEntity> Create(TEntity entity)
+        public async Task<TEntityDTO> Create(TEntityDTO entity)
         {
             try
             {
@@ -87,10 +110,17 @@ namespace Core.BaseService.EF
                     //return addedEntity;
 
 
-                    TEntity? addedEntity = (await ctx.Set<TEntity>().AddAsync(entity)) as TEntity;
+
+                    //TEntity? addedEntity = (await ctx.Set<TEntity>().AddAsync(entity)) as TEntity;
+                    //await ctx.SaveChangesAsync();
+
+                    TEntity? Entity = mapper.Map<TEntity>(entity);
+                    TEntity? addedEntity = (await ctx.Set<TEntity>().AddAsync(Entity)) as TEntity;
                     await ctx.SaveChangesAsync();
 
-                    return addedEntity;
+                    TEntityDTO addedDTOEntity = mapper.Map<TEntityDTO>(addedEntity);
+
+                    return addedDTOEntity;
                 }
             }
 
@@ -101,17 +131,20 @@ namespace Core.BaseService.EF
         }
 
 
-        public async Task<TEntity> Update(TEntity entity)
+        public async Task<TEntityDTO> Update(TEntityDTO entity)
         {
             try
             {
                 using (TContext ctx = new TContext())
                 {
-                    ctx.Set<TEntity>().Attach(entity);
-                    ctx.Entry(entity).State = EntityState.Modified;
+                    TEntity? Entity = mapper.Map<TEntity>(entity);
+                    ctx.Set<TEntity>().Attach(Entity);
+                    ctx.Entry(Entity).State = EntityState.Modified;
                     await ctx.SaveChangesAsync();
 
-                    return entity;
+                    TEntityDTO updatedDTOEntity = mapper.Map<TEntityDTO>(Entity);
+
+                    return updatedDTOEntity;
                 }
             }
 
@@ -122,16 +155,18 @@ namespace Core.BaseService.EF
         }
 
 
-        public async Task Delete(TEntity entity)
+        public async Task Delete(TEntityDTO entity)
         {
             try
             {
                 using (TContext ctx = new TContext())
                 {
-                    if (ctx.Entry(entity).State == EntityState.Detached)
-                        ctx.Set<TEntity>().Attach(entity);
+                    TEntity? Entity = mapper.Map<TEntity>(entity);
 
-                    ctx.Set<TEntity>().Remove(entity);
+                    if (ctx.Entry(Entity).State == EntityState.Detached)
+                        ctx.Set<TEntity>().Attach(Entity);
+
+                    ctx.Set<TEntity>().Remove(Entity);
                     await ctx.SaveChangesAsync();
                 }
             }

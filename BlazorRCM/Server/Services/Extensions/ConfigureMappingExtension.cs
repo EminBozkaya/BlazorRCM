@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BlazorRCM.Shared.DTOs;
 using BlazorRCM.Shared.Utils;
+using Core.Model;
 using RCMServerData.Models;
 
 namespace BlazorRCM.Server.Services.Extensions
@@ -25,6 +26,8 @@ namespace BlazorRCM.Server.Services.Extensions
         {
             AllowNullDestinationValues = true;
             AllowNullCollections = true;
+
+            
 
             CreateMap<AuthorityType, AuthorityTypeDTO>()
                 .ReverseMap();
