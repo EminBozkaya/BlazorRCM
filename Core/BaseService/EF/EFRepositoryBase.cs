@@ -35,7 +35,6 @@ namespace Core.BaseService.EF
                     //Type type = Type.GetType("BlazorRCM.Shared.DTOs." + entity.GetType().Name + "DTO")!;
 
 
-
                     IQueryable<TEntityDTO> query = filter == null
                         ? ctx.Set<TEntity>().ProjectTo<TEntityDTO>(mapper.ConfigurationProvider)
                         : ctx.Set<TEntity>().ProjectTo<TEntityDTO>(mapper.ConfigurationProvider).Where(filter);

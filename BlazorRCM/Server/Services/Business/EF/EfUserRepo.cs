@@ -3,11 +3,8 @@ using BlazorRCM.Shared.DTOs;
 using Core.BaseService.EF;
 using RCMServerData.EFContext;
 using RCMServerData.Models;
-using RCMServerData.Repositories.Abstract;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace RCMServerData.Repositories.Concrete.EF
+namespace BlazorRCM.Server.Services.Business.EF
 {
     public class EfUserRepo : EfRepositoryBase<RCMBlazorContext, User, UserDTO>, IUserRepo
     {

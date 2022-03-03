@@ -2,9 +2,10 @@
 using Core.BaseInfrastructure;
 using RCMServerData.Models;
 
-namespace RCMServerData.Repositories.Abstract
+namespace BlazorRCM.Server
 {
-    public interface IBranchRepo : IRepository<BranchDTO>
+    public interface ISupplierRepo : IRepository<SupplierDTO>
+
     {
     }
 }

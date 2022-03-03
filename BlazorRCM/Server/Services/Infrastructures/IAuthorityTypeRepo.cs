@@ -2,7 +2,7 @@
 using Core.BaseInfrastructure;
 using RCMServerData.Models;
 
-namespace RCMServerData.Repositories.Abstract
+namespace BlazorRCM.Server
 {
     public interface IAuthorityTypeRepo : IRepository<AuthorityTypeDTO>
     {

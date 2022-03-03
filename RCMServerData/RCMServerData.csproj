@@ -22,7 +22,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\BlazorRCM\Shared\BlazorRCM.Shared.csproj" />
 		<ProjectReference Include="..\Core\Core.csproj" />
 	</ItemGroup>
 

@@ -18,7 +18,7 @@ namespace RCMServerData.EFContext
             //optionsBuilder.UseNpgsql(ConfigurationManager.ConnectionStrings["RCMpostgreConnection"].ConnectionString);
 
             optionsBuilder.UseNpgsql("User ID=postgres;password=posgres;Host=localhost;Port=5432;Database=MyBlazor;SearchPath=public");
-            
+            optionsBuilder.EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

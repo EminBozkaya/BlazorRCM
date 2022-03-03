@@ -1,8 +1,6 @@
-using System;
-using System.Configuration;
-using BlazorRCM.Server.Services.Extensions;
-using Microsoft.AspNetCore.ResponseCompression;
-using Microsoft.EntityFrameworkCore;
+using BlazorRCM.Server;
+using BlazorRCM.Server.Services.Business.EF;
+using BlazorRCM.Shared.Extensions;
 using RCMServerData.EFContext;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +10,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.ConfigureMapping();
+builder.Services.AddHttpContextAccessor();
+
+#region MyRepos
+
+builder.Services.AddScoped<IAuthorityTypeRepo, EfAuthorityTypeRepo>();
+builder.Services.AddScoped<IBranchRepo, EfBranchRepo>();
+builder.Services.AddScoped<ISupplierRepo, EfSupplierRepo>();
+builder.Services.AddScoped<IUserBranchAuthorityRepo, EfUserBranchAuthorityRepo>();
+builder.Services.AddScoped<IUserRepo, EfUserRepo>();
+
+#endregion
 
 builder.Services.AddDbContext<RCMBlazorContext>();
 //builder.Services.AddDbContext<RCMBlazorContext>(config =>

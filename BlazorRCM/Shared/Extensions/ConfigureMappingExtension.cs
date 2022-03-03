@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using BlazorRCM.Shared.DTOs;
 using BlazorRCM.Shared.Utils;
-using Core.Model;
+using Microsoft.Extensions.DependencyInjection;
 using RCMServerData.Models;
+//using RCMServerData.Models;
 
-namespace BlazorRCM.Server.Services.Extensions
+namespace BlazorRCM.Shared.Extensions
 {
     public static class ConfigureMappingExtension
     {
@@ -27,7 +28,7 @@ namespace BlazorRCM.Server.Services.Extensions
             AllowNullDestinationValues = true;
             AllowNullCollections = true;
 
-            
+
 
             CreateMap<AuthorityType, AuthorityTypeDTO>()
                 .ReverseMap();
@@ -42,7 +43,7 @@ namespace BlazorRCM.Server.Services.Extensions
 
 
             CreateMap<UserBranchAuthority, UserBranchAuthorityDTO>()
-                .ForMember(x => x.UserFullName, y => y.MapFrom(z=>z.User!.FirstName + " " +z.User.LastName));
+                .ForMember(x => x.UserFullName, y => y.MapFrom(z => z.User!.FirstName + " " + z.User.LastName));
 
             CreateMap<UserBranchAuthorityDTO, UserBranchAuthority>();
 
