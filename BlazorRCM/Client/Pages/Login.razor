@@ -1,0 +1,59 @@
+﻿@layout BlazorRCM.Client.Shared.EmptyLayout
+@page "/login"
+
+
+<div id="loginPage" class="limiter" style="background-image: url(/MyImages/Login/LoginFon_1.png);background-size: contain">
+        <div class="container-login100">
+            <div class="wrap-login100" style="width:580px; border-radius:70px">
+                <div style="background-color:white">
+                    <div class="login100-form-title" style="background-image: url(/MyImages/Login/LoginPanel.png); background-size: contain; height:240px;">
+                        @*<span class="login100-form-title-1">
+                ÖNCÜ
+            </span>*@
+                    </div>
+
+                    <form class="login100-form validate-form" id="myLoginForm">
+                        <div class="wrap-input100 validate-input m-b-26" @*data-validate="Username is required"*@>
+                            <span class="label-input100">Kullanıcı Adı :</span>
+                            <input id="txtUsername" class="input100" type="text" name="txtusername" placeholder="Kullanıcı ad-soyad giriniz">
+                            @*@Html.TextBoxFor(x => x.loginVm.UserName, new { id = "txtUsername", @class = "input100", placeholder = "Kullanıcı ad-soyad giriniz" })*@
+                            @* @Html.ValidationMessageFor(x=> x.Username)*@
+
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input m-b-18" @*data-validate="Password is required"*@>
+                            <span class="label-input100">Şifre  :</span>
+                            <input id="txtPassword" class="input100" type="password" name="pass" placeholder="Şifreyi giriniz">
+                            @*@Html.PasswordFor(x => x.loginVm.Password, new { id = "txtPassword", @type = "password", @class = "input100", placeholder = "Şifre giriniz" })*@
+                            @*@Html.ValidationMessageFor(x => x.Password)*@
+
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="flex-sb-m w-full p-b-30">
+                            <div class="contact100-form-checkbox">
+                                <input class="input-checkbox100" id="chkRememberMe" type="checkbox" name="remember-me">
+                                <label class="label-checkbox100" for="chkRememberMe">
+                                    Beni Hatırla
+                                </label>
+                            </div>
+
+                            <div>
+                                <a href="#" data-toggle="modal" data-target="#divForgotPassword" class="txt1">
+                                    Bilgilerimi Unuttum?
+                                </a>
+                            </div>
+                        </div>
+
+                        <div id="mydiv" class="container-login100-form-btn">
+                            <button id="btnLogIn" type="button" class="login100-form-btn" style="background-color: tomato; width:50px">
+                                Giriş
+                            </button><img id="loginWait" style="display:none;width:50px;margin-left:65px" src="~/MyGifs/progressIcon.jpg" />
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
