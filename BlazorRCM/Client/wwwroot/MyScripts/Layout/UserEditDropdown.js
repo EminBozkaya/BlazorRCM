@@ -214,64 +214,68 @@
 
 
 //------------------to Use Dropdown in DropdwnList Working Properly (hide/show change/attributes ..etc)----------
-var clicked;
-var clickedClassName;
+window.onload = function () {
+    /*$(document).ready(function () {*/
+    var clicked;
+    var clickedClassName;
 
-$("#inputID").on('click', function (e) {
-    e.stopPropagation();
+    $("#inputID").on('click', function (e) {
+        e.stopPropagation();
 
-    setDefaultMyDropDownList();
+        setDefaultMyDropDownList();
 
-    changeAcceptButtonStyle();
+        changeAcceptButtonStyle();
 
-    var userDiv = document.getElementById("userEditMenu");
-    $(userDiv).is(":hidden") ? $(userDiv).show() : $(userDiv).hide();
-});
+        var userDiv = document.getElementById("userEditMenu");
+        $(userDiv).is(":hidden") ? $(userDiv).show() : $(userDiv).hide();
+    });
 
-document.addEventListener('click', (e) => clicked = e.target);
+    document.addEventListener('click', (e) => clicked = e.target);
 
-$(document).click(function (event) {
-    event.stopPropagation();
-    var el = document.getElementById("inputID");
-    var myel = document.querySelector("[dir='ltr']");
-    var classname = $(myel)[0].className;
-    var spanClassName = "select2 select2-container select2-container--bootstrap4 select2-container--below select2-container--open";
+    $(document).click(function (event) {
+        event.stopPropagation();
+        var el = document.getElementById("inputID");
+        var myel = document.querySelector("[dir='ltr']");
+        var classname = $(myel)[0].className;
+        var spanClassName = "select2 select2-container select2-container--bootstrap4 select2-container--below select2-container--open";
 
-    var $target = $(event.target);
-    if (!$target.closest('#userEditMenu').length && (clicked != el) && $('#userEditMenu').is(":visible") && (classname != spanClassName)) {
-        $('#userEditMenu').hide();
+        var $target = $(event.target);
+        if (!$target.closest('#userEditMenu').length && (clicked != el) && $('#userEditMenu').is(":visible") && (classname != spanClassName)) {
+            $('#userEditMenu').hide();
+        }
+
+    });
+
+
+    document.querySelectorAll('.select2').forEach(item => {
+        item.setAttribute("onclick", "setClass($(this).attr('class'));");
+    });
+
+    function setClass(className) {
+        clickedClassName = className;
     }
-    
-});
 
 
-document.querySelectorAll('.select2').forEach(item => {
-    item.setAttribute("onclick", "setClass($(this).attr('class'));");
-});
-
-function setClass(className) {
-    clickedClassName = className;
-};
-
-$(function () {
     $("#branchList").change(function (e) {
         e.preventDefault();
         changeAcceptButtonStyle();
     });
-});
 
-function changeAcceptButtonStyle() {
-    var selectedValue = $('select[name=mySelection] option').filter(':selected').val();
-    var activeBrnchId = document.getElementById("activeUserInfo").getAttribute("userBrnchId");
 
-    selectedValue != 0 && selectedValue != activeBrnchId ? $("#btnAcceptBranch").attr("style", "color: white; background-color:#17a2b8") : $("#btnAcceptBranch").attr("style", "color: lightslategrey; background-color:white");
+    function changeAcceptButtonStyle() {
+        var selectedValue = $('select[name=mySelection] option').filter(':selected').val();
+        var activeBrnchId = document.getElementById("activeUserInfo").getAttribute("userBrnchId");
+
+        selectedValue != 0 && selectedValue != activeBrnchId ? $("#btnAcceptBranch").attr("style", "color: white; background-color:#17a2b8") : $("#btnAcceptBranch").attr("style", "color: lightslategrey; background-color:white");
+    }
+
+    function setDefaultMyDropDownList() {
+        $("#branchList").val($("#branchList option:first").val());
+        document.getElementById("select2-branchList-container").innerHTML = "Şube Değiştir";
+    }
+
+    /*})*/
 }
-
-function setDefaultMyDropDownList() {
-    $("#branchList").val($("#branchList option:first").val());
-    document.getElementById("select2-branchList-container").innerHTML = "Şube Değiştir";
-}
-
 //--------------------------------/-------------------------------------
 
 
