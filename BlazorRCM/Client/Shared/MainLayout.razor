@@ -1,10 +1,39 @@
 ﻿@inherits LayoutComponentBase
 
 
-<div id="page-content" class="content">
+@*<div id="page-content" class="content">
     <br />
     <div id="dashPage" class="container-fluid">
 
-        @Body
+    @Body
+    </div>
+    </div>*@
+
+@*<div class="wrapper" >*@
+
+
+
+@*@Body*@
+
+<MainHeader />
+<MainSidebar />
+
+
+<div class="content-wrapper" style="background-color:cornsilk">
+    <!-- Main content -->
+    <div id="page-content" class="content">
+        <br />
+        <div id="dashPage" class="container-fluid">
+            @Body
+        </div>
     </div>
 </div>
+
+
+
+@*</div>*@
+
+
+
+
+
