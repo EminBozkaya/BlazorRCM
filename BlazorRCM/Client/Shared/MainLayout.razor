@@ -1,39 +1,45 @@
 ﻿@inherits LayoutComponentBase
 
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
 
-@*<div id="page-content" class="content">
-    <br />
-    <div id="dashPage" class="container-fluid">
-
-    @Body
-    </div>
-    </div>*@
-
-@*<div class="wrapper" >*@
-
-
-
-@*@Body*@
-
-<MainHeader />
-<MainSidebar />
-
-
-<div class="content-wrapper" style="background-color:cornsilk">
-    <!-- Main content -->
-    <div id="page-content" class="content">
-        <br />
-        <div id="dashPage" class="container-fluid">
+<MudLayout>
+    <MudAppBar Elevation="0" Color="Color.Error">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+            <div Style="color:white"><MudBreadcrumbs Items="_items"></MudBreadcrumbs></div>
+        <MudSpacer />
+        <MudIconButton><MudAvatar Image="MyImages/Layout/Getir_icon.ico" Style="height:30px; width:30px"/></MudIconButton>
+        <MudIconButton><MudAvatar Image="MyImages/Layout/yemekSepeti.ico" Style="height:40px; width:40px" /></MudIconButton>
+        <MudIconButton Icon="fas fa-solid fa-user" Color="Color.Inherit"></MudIconButton>
+    </MudAppBar>
+    <MudDrawer @bind-Open="_drawerOpen" Elevation="1">
+        <MudDrawerHeader>
+            <MudText Typo="Typo.h6">MyApplication</MudText>
+        </MudDrawerHeader>
+        <NavMenu />
+    </MudDrawer>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.Large" Class="my-16 pt-16">
             @Body
-        </div>
-    </div>
-</div>
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
 
+@code {
 
+    private List<BreadcrumbItem> _items = new List<BreadcrumbItem>
+    {
+        new BreadcrumbItem("Hızlı Satış", href: null, icon: Icons.Material.Filled.Home),
+        new BreadcrumbItem("Paket Satışı", href: null, icon: Icons.Material.Filled.VideoLibrary),
+    };
 
-@*</div>*@
+    bool _drawerOpen = true;
 
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
 
-
-
-
+    
+}
