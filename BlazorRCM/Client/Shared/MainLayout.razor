@@ -5,18 +5,22 @@
 <MudSnackbarProvider />
 
 <MudLayout>
-    <MudAppBar Elevation="0" Color="Color.Error">
+    <MudAppBar Elevation="0">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
             <div Style="color:white"><MudBreadcrumbs Items="_items"></MudBreadcrumbs></div>
         <MudSpacer />
-        <MudIconButton><MudAvatar Image="MyImages/Layout/Getir_icon.ico" Style="height:30px; width:30px"/></MudIconButton>
-        <MudIconButton><MudAvatar Image="MyImages/Layout/yemekSepeti.ico" Style="height:40px; width:40px" /></MudIconButton>
+        <MudIconButton><MudAvatar id="getir" Image="MyImages/Layout/Getir_icon.ico"/></MudIconButton>
+        <MudIconButton><MudAvatar id="yemekSepeti" Image="MyImages/Layout/yemekSepeti.ico"/></MudIconButton>
         <MudIconButton Icon="fas fa-solid fa-user" Color="Color.Inherit"></MudIconButton>
     </MudAppBar>
+
+
     <MudDrawer @bind-Open="_drawerOpen" Elevation="1">
-        <MudDrawerHeader>
-            <MudText Typo="Typo.h6">MyApplication</MudText>
+        <MudDrawerHeader Style="justify-content:center">
+            <MudImage Src="MyImages/Layout/oncu.png" Alt="Mony the dog" Elevation="10" Height="150" Class="rounded-circle"/>
         </MudDrawerHeader>
+
+
         <NavMenu />
     </MudDrawer>
     <MudMainContent>
@@ -30,8 +34,8 @@
 
     private List<BreadcrumbItem> _items = new List<BreadcrumbItem>
     {
-        new BreadcrumbItem("Hızlı Satış", href: null, icon: Icons.Material.Filled.Home),
-        new BreadcrumbItem("Paket Satışı", href: null, icon: Icons.Material.Filled.VideoLibrary),
+        new BreadcrumbItem("Hızlı Satış", href: null, icon: @Icons.Filled.Restaurant),
+        new BreadcrumbItem("Paket Satışı", href: null, icon: @Icons.Filled.DeliveryDining),
     };
 
     bool _drawerOpen = true;

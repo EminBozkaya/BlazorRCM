@@ -6,11 +6,11 @@ namespace BlazorRCM.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class ManageUserController : ControllerBase
     {
         private readonly IUserRepo userService;
 
-        public UserController(IUserRepo userBs)
+        public ManageUserController(IUserRepo userBs)
         {
             userService = userBs;
         }
@@ -20,7 +20,7 @@ namespace BlazorRCM.Server.Controllers
         {
             return new ServiceResponse<List<UserDTO>>()
             {
-                Value = (await userService.GetAll(a => a.FirstName=="emin") as List<UserDTO>)!
+                Value = (await userService.GetAll() as List<UserDTO>)!
             };
         }
     }

@@ -1,0 +1,28 @@
+﻿.mud-breadcrumb-item > a {
+    /*display: flex;
+    align-items: center;*/
+    color:ghostwhite;
+}
+
+.mud-appbar {
+    background-color: #fb1b1b;
+    height: 40px;
+}
+
+.mud-appbar .mud-toolbar-appbar {
+    height: 40px;
+}
+
+.mud-avatar.mud-avatar-medium#getir {
+    width: 27px;
+    height: 27px;
+    font-size: 1.25rem;
+    margin-top: 5px;
+}
+
+.mud-avatar.mud-avatar-medium#yemekSepeti {
+    width: 33px;
+    height: 33px;
+    font-size: 1.25rem;
+    margin-top: 5px;
+}
