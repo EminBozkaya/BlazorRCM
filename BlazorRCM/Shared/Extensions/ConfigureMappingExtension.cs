@@ -48,13 +48,14 @@ namespace BlazorRCM.Shared.Extensions
             CreateMap<UserBranchAuthorityDTO, UserBranchAuthority>();
 
 
+            //CreateMap<User, UserDTO>()
+            //    .ForMember(x => x.Password, y => y.MapFrom(z => PasswordEncrypter.Decrypt(z.Password!)));
+
+            //CreateMap<UserDTO, User>()
+            //    .ForMember(x => x.Password, y => y.MapFrom(z => PasswordEncrypter.Encrypt(z.Password!)));
+
             CreateMap<User, UserDTO>()
-                .ForMember(x => x.Password, y => y.MapFrom(z => PasswordEncrypter.Decrypt(z.Password!)));
-
-            CreateMap<UserDTO, User>()
-                .ForMember(x => x.Password, y => y.MapFrom(z => PasswordEncrypter.Encrypt(z.Password!)));
-
-
+            .ReverseMap();
 
         }
     }

@@ -1,59 +1,135 @@
-﻿@layout BlazorRCM.Client.Shared.EmptyLayout
-@page "/login"
+﻿@page "/login"
+@layout BlazorRCM.Client.Shared.EmptyLayout
 
 
-<div id="loginPage" class="limiter" style="background-image: url(/MyImages/Login/LoginFon_1.png);background-size: contain">
-        <div class="container-login100">
-            <div class="wrap-login100" style="width:580px; border-radius:70px">
-                <div style="background-color:white">
-                    <div class="login100-form-title" style="background-image: url(/MyImages/Login/LoginPanel.png); background-size: contain; height:240px;">
-                        @*<span class="login100-form-title-1">
-                ÖNCÜ
-            </span>*@
-                    </div>
+<MudCard Style="position:fixed; width:600px;">
+    <MudCardMedia Image="MyImages/Login/LoginPanel.png" Height="200" Style="position:relative" />
+    
+    <MudForm Model="@userLoginRequest">
+        <MudCardContent>
+            <MudTextField @bind-Value="@userLoginRequest.UserName"
+                          Label="Kullanıcı Adı" />
 
-                    <form class="login100-form validate-form" id="myLoginForm">
-                        <div class="wrap-input100 validate-input m-b-26" @*data-validate="Username is required"*@>
-                            <span class="label-input100">Kullanıcı Adı :</span>
-                            <input id="txtUsername" class="input100" type="text" name="txtusername" placeholder="Kullanıcı ad-soyad giriniz">
-                            @*@Html.TextBoxFor(x => x.loginVm.UserName, new { id = "txtUsername", @class = "input100", placeholder = "Kullanıcı ad-soyad giriniz" })*@
-                            @* @Html.ValidationMessageFor(x=> x.Username)*@
+            <MudTextField @bind-Value="@userLoginRequest.Password"
+                          Label="Şifre" />
 
-                            <span class="focus-input100"></span>
-                        </div>
+        </MudCardContent>
 
-                        <div class="wrap-input100 validate-input m-b-18" @*data-validate="Password is required"*@>
-                            <span class="label-input100">Şifre  :</span>
-                            <input id="txtPassword" class="input100" type="password" name="pass" placeholder="Şifreyi giriniz">
-                            @*@Html.PasswordFor(x => x.loginVm.Password, new { id = "txtPassword", @type = "password", @class = "input100", placeholder = "Şifre giriniz" })*@
-                            @*@Html.ValidationMessageFor(x => x.Password)*@
+    </MudForm>
 
-                            <span class="focus-input100"></span>
-                        </div>
+<MudCardActions>
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="@loginProcess">Giriş</MudButton>
+</MudCardActions>
+</MudCard>
 
-                        <div class="flex-sb-m w-full p-b-30">
-                            <div class="contact100-form-checkbox">
-                                <input class="input-checkbox100" id="chkRememberMe" type="checkbox" name="remember-me">
-                                <label class="label-checkbox100" for="chkRememberMe">
-                                    Beni Hatırla
-                                </label>
-                            </div>
 
-                            <div>
-                                <a href="#" data-toggle="modal" data-target="#divForgotPassword" class="txt1">
-                                    Bilgilerimi Unuttum?
-                                </a>
-                            </div>
-                        </div>
+@code {
 
-                        <div id="mydiv" class="container-login100-form-btn">
-                            <button id="btnLogIn" type="button" class="login100-form-btn" style="background-color: tomato; width:50px">
-                                Giriş
-                            </button><img id="loginWait" style="display:none;width:50px;margin-left:65px" src="~/MyGifs/progressIcon.jpg" />
-                        </div>
-                    </form>
-                </div>
-                
-            </div>
-        </div>
-    </div>
+    [Inject]
+    HttpClient? Client { get; set; }
+
+    //[Inject]
+    //ModalManager ModalManager { get; set; }
+
+    [Inject]
+    NavigationManager? NavManeger { get; set; }
+
+    [Inject]
+    ILocalStorageService? localStorageService { get; set; }
+
+    //[Inject]
+    //AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+
+    private UserLoginRequestDTO userLoginRequest = new UserLoginRequestDTO();
+
+
+    private async Task loginProcess()
+    {
+        var httpReqRes = await Client.PostAsJsonAsync("api/ManageUser/Login", userLoginRequest);
+
+        if (httpReqRes.IsSuccessStatusCode)
+        {
+            try
+            {
+                var res = await httpReqRes.Content.ReadFromJsonAsync<ServiceResponse<UserLoginResponseDTO>>();
+
+                if (res.Success)
+                    NavManeger.NavigateTo("/userlist");
+                else
+                    throw new Exception("böyle biri yok");
+            }
+            catch (Exception ex)
+            {
+                NavManeger.NavigateTo("/");
+            }
+        }
+    }
+
+}
+
+
+
+
+
+
+
+    @*@code {
+
+    [Inject]
+    HttpClient Client { get; set; }
+
+    [Inject]
+    ModalManager ModalManager { get; set; }
+
+    [Inject]
+    NavigationManager NavManeger { get; set; }
+
+    [Inject]
+    ILocalStorageService localStorageService { get; set; }
+
+    [Inject]
+    AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+
+    private UserLoginRequestDTO userLoginRequest = new UserLoginRequestDTO();
+
+
+    private async Task loginProcess()
+    {
+    var httpReqRes = await Client.PostAsJsonAsync("api/User/Login", userLoginRequest);
+
+    if (httpReqRes.IsSuccessStatusCode)
+    {
+    try
+    {
+    var res = await httpReqRes.Content.ReadFromJsonAsync<ServiceResponse<UserLoginResponseDTO>>();
+
+    if (res.Success)
+    {
+
+    await localStorageService.SetItemAsync("token", res.Value.ApiToken);
+    await localStorageService.SetItemAsync("email", res.Value.User.EMailAddress);
+    await localStorageService.SetItemAsync("UserId", res.Value.User.Id.ToString());
+    await localStorageService.SetItemAsync("UserFullName", res.Value.User.FullName);
+
+    (AuthenticationStateProvider as AuthStateProvider).NotifyUserLogin(res.Value.User.EMailAddress);
+
+    Client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", res.Value.ApiToken);
+
+    NavManeger.NavigateTo("/");
+    }
+    else
+    {
+
+    await ModalManager.ShowMessageAsync("Login Error", res.Message);
+
+    }
+    }
+    catch (Exception ex)
+    {
+    await ModalManager.ShowMessageAsync("Login Error", ex.Message);
+    }
+    }
+
+    }
+
+    }*@

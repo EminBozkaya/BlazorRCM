@@ -82,10 +82,11 @@ namespace Core.BaseService.EF
                         }
                     }
 
-                    if ((await query.FirstOrDefaultAsync(filter)) == null)
+                    TEntityDTO? dto = await query.FirstOrDefaultAsync(filter);
+                    if (dto == null)
                         throw new Exception("Kritere uyan kayıt bulunamadı");
 
-                    return (await query.FirstOrDefaultAsync(filter))!;
+                    return dto;
                 }
             }
 

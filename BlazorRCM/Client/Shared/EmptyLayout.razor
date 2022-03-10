@@ -1,2 +1,11 @@
 ﻿@inherits LayoutComponentBase
-@Body
+<MudThemeProvider/>
+
+<MudLayout>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.Large" Class="my-16 pt-16">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+

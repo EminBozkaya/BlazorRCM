@@ -10,9 +10,18 @@ namespace BlazorRCM.Server.Controllers
     {
         private readonly IUserRepo userService;
 
-        public ManageUserController(IUserRepo userBs)
+        public ManageUserController(IUserRepo repo)
         {
-            userService = userBs;
+            userService = repo;
+        }
+
+        [HttpPost("Login")]
+        public async Task<ServiceResponse<UserLoginResponseDTO>> Login(UserLoginRequestDTO dto)
+        {
+            return new ServiceResponse<UserLoginResponseDTO>()
+            {
+                Value = await userService.Login(dto.UserName, dto.Password)
+            };
         }
 
         [HttpGet("Users")]
