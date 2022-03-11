@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider />
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode"/>
 <MudDialogProvider />
 <MudSnackbarProvider />
 
@@ -12,6 +12,7 @@
         <MudIconButton><MudAvatar id="getir" Image="MyImages/Layout/Getir_icon.ico"/></MudIconButton>
         <MudIconButton><MudAvatar id="yemekSepeti" Image="MyImages/Layout/yemekSepeti.ico"/></MudIconButton>
         <MudIconButton Icon="fas fa-solid fa-user" Color="Color.Inherit"></MudIconButton>
+        <MudSwitch @bind-Checked="@_isDarkMode" Color="Color.Primary" Class="ma-4" T="bool" Label="Koyu Mod"/>
     </MudAppBar>
 
 
@@ -24,7 +25,7 @@
         <NavMenu />
     </MudDrawer>
     <MudMainContent>
-        <MudContainer MaxWidth="MaxWidth.Large" Class="my-16 pt-16">
+        <MudContainer MaxWidth="MaxWidth.Large">
             @Body
         </MudContainer>
     </MudMainContent>
@@ -45,5 +46,6 @@
         _drawerOpen = !_drawerOpen;
     }
 
-    
+   
+    private bool _isDarkMode;
 }

@@ -28,9 +28,14 @@ namespace BlazorRCM.Server.Services.Business.EF
             // Veritabanı Kullanıcı Doğrulama İşlemleri Yapıldı.
             UserDTO dbUser = new ();
             var encryptedPassword = PasswordEncrypter.Encrypt(Password);
-
-            dbUser = await base.Get(i => i.UserName == Username && i.Password == encryptedPassword);
-
+            try
+            {
+                dbUser = await base.Get(i => i.UserName == Username && i.Password == encryptedPassword);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
             //var dbUser = await context.Users.FirstOrDefaultAsync(i => i.EMailAddress == EMail && i.Password == Password);
 
             if (dbUser == null)

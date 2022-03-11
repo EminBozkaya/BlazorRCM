@@ -1,10 +1,12 @@
 ﻿@page "/login"
 @layout BlazorRCM.Client.Shared.EmptyLayout
 
+@inject SweetAlertService Swal;
 
-<MudCard Style="position:fixed; width:600px;">
-    <MudCardMedia Image="MyImages/Login/LoginPanel.png" Height="200" Style="position:relative" />
-    
+<MudCard Style="border-radius:20px">
+    @*<MudCard>*@
+    <MudCardMedia Image="MyImages/Login/LoginPanel.png" Height="250" Style="position:relative" />
+
     <MudForm Model="@userLoginRequest">
         <MudCardContent>
             <MudTextField @bind-Value="@userLoginRequest.UserName"
@@ -17,12 +19,20 @@
 
     </MudForm>
 
-<MudCardActions>
-    <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="@loginProcess">Giriş</MudButton>
-</MudCardActions>
+    <MudCardActions>
+        <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Large" OnClick="@loginProcess" Style="margin-left:90px; width:130px; height:50px; border-radius:15px">Giriş</MudButton>
+        <MudButton
+           Variant="Variant.Text"
+           EndIcon="@Icons.Filled.QuestionMark"
+           Color="Color.Error"
+           Style="text-transform:none; margin-left: 100px;">
+    Şifremi Unuttum
+</MudButton>
+    </MudCardActions>
 </MudCard>
 
-
+@*EndIcon="fa-light fa-comment-question"*@
+@*<i class="fa-light fa-comment-question" style="color:red"></i>*@
 @code {
 
     [Inject]
@@ -45,27 +55,32 @@
 
     private async Task loginProcess()
     {
-        var httpReqRes = await Client.PostAsJsonAsync("api/ManageUser/Login", userLoginRequest);
+       
+            var httpReqRes = await Client.PostAsJsonAsync("api/ManageUser/Login", userLoginRequest);
 
-        if (httpReqRes.IsSuccessStatusCode)
-        {
-            try
+            if (httpReqRes.IsSuccessStatusCode)
             {
+
                 var res = await httpReqRes.Content.ReadFromJsonAsync<ServiceResponse<UserLoginResponseDTO>>();
 
                 if (res.Success)
                     NavManeger.NavigateTo("/userlist");
                 else
-                    throw new Exception("böyle biri yok");
+                {
+                    NavManeger.NavigateTo("/");
+                }
+
             }
-            catch (Exception ex)
-            {
-                NavManeger.NavigateTo("/");
-            }
-        }
+            else
+                {
+                    await Swal.FireAsync("Başarısız", "Böyle bir kullanıcı yok", "error");
+                    //NavManeger.NavigateTo("/");
+                }
+       
+    }
     }
 
-}
+
 
 
 

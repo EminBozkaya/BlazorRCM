@@ -18,10 +18,19 @@ namespace BlazorRCM.Server.Controllers
         [HttpPost("Login")]
         public async Task<ServiceResponse<UserLoginResponseDTO>> Login(UserLoginRequestDTO dto)
         {
-            return new ServiceResponse<UserLoginResponseDTO>()
+            //ServiceResponse<UserLoginResponseDTO> result = new();
+            try
             {
-                Value = await userService.Login(dto.UserName, dto.Password)
-            };
+                return new ServiceResponse<UserLoginResponseDTO>()
+                {
+                    Value = await userService.Login(dto.UserName, dto.Password)
+                };
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
         }
 
         [HttpGet("Users")]
