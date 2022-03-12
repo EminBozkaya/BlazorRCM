@@ -10,7 +10,7 @@ namespace RCMServerData.Models
         public bool IsActive { get; set; }
 
 
-        public virtual Product Product { get; set; }
-        public virtual RawMaterial RawMaterial { get; set; }
+        public virtual Product? Product { get; set; }
+        public virtual RawMaterial? RawMaterial { get; set; }
     }
 }

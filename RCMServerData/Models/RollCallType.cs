@@ -11,7 +11,7 @@ namespace RCMServerData.Models
         }
 
         public byte RCTId { get; set; }
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         public virtual ICollection<EmployeeRollCall> EmployeeRollCalls { get; set; }
     }

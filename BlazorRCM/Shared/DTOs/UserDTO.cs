@@ -20,5 +20,12 @@ namespace BlazorRCM.Shared.DTOs
         public DateTime? CreatedTime { get; set; }
         public DateTime? ModifiedTime { get; set; }
         public String FullName => $"{FirstName} {LastName}";
+        //public String FullName
+        //{
+        //    get
+        //    {
+        //        return $"{FirstName} {LastName}";
+        //    }
+        //}
     }
 }

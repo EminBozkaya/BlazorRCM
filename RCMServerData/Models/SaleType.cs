@@ -13,12 +13,12 @@ namespace RCMServerData.Models
         }
 
         public byte STId { get; set; }
-        public string Type { get; set; }
+        public string? Type { get; set; }
         public Nullable<byte> TopSTId { get; set; }
         public Nullable<double> CutOffRate { get; set; }
 
         public virtual ICollection<Sale> Sales { get; set; }
         public virtual ICollection<SaleType> SaleType1 { get; set; }
-        public virtual SaleType SaleType2 { get; set; }
+        public virtual SaleType? SaleType2 { get; set; }
     }
 }

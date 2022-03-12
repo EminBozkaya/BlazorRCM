@@ -12,7 +12,7 @@ namespace RCMServerData.Models
         }
 
         public byte CCId { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         public virtual ICollection<BranchCreditCard> BranchCreditCards { get; set; }
         public virtual ICollection<BranchCreditCardFlow> BranchCreditCardFlows { get; set; }

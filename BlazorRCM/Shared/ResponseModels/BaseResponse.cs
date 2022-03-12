@@ -15,7 +15,7 @@ namespace BlazorRCM.Shared.ResponseModels
 
         public bool Success { get; set; }
 
-        public String Message { get; set; }
+        public String? Message { get; set; }
 
         public void SetException(Exception Exception)
         {

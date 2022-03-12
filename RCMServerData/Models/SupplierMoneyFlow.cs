@@ -12,16 +12,16 @@ namespace RCMServerData.Models
         public byte CTId { get; set; }
         public Nullable<decimal> Dept { get; set; }
         public Nullable<decimal> Payment { get; set; }
-        public string Note { get; set; }
+        public string? Note { get; set; }
         public System.DateTime Date { get; set; }
-        public string IpAdress { get; set; }
+        public string? IpAdress { get; set; }
         public bool IsEOD { get; set; }
         public Nullable<System.DateTime> EOD { get; set; }
         public bool IsActive { get; set; }
 
-        public virtual Branch Branch { get; set; }
-        public virtual CaseType CaseType { get; set; }
-        public virtual User User { get; set; }
-        public virtual Supplier Supplier { get; set; }
+        public virtual Branch? Branch { get; set; }
+        public virtual CaseType? CaseType { get; set; }
+        public virtual User? User { get; set; }
+        public virtual Supplier? Supplier { get; set; }
     }
 }

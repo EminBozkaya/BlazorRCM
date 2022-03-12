@@ -10,6 +10,6 @@ namespace RCMServerData.Models
         public System.DateTime Date { get; set; }
         public Nullable<decimal> Amount { get; set; }
 
-        public virtual Branch Branch { get; set; }
+        public virtual Branch? Branch { get; set; }
     }
 }

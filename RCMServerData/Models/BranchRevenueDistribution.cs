@@ -11,13 +11,13 @@ namespace RCMServerData.Models
         public decimal Amount { get; set; }
         public System.DateTime Date { get; set; }
         public int UId { get; set; }
-        public string IpAdress { get; set; }
+        public string? IpAdress { get; set; }
         public bool IsActive { get; set; }
         public bool IsEOD { get; set; }
         public Nullable<System.DateTime> EOD { get; set; }
 
-        public virtual Branch Branch { get; set; }
-        public virtual CaseType CaseType { get; set; }
-        public virtual User User { get; set; }
+        public virtual Branch? Branch { get; set; }
+        public virtual CaseType? CaseType { get; set; }
+        public virtual User? User { get; set; }
     }
 }

@@ -33,7 +33,7 @@
 
 @code {
     //private IEnumerable<Element> Elements = new List<Element>();
-    private string _searchString;
+    private string? _searchString;
     //private bool _sortNameByLength;
     // custom sort by name length
     //private Func<UserDTO, object> _sortBy => x =>
@@ -49,16 +49,16 @@
         if (string.IsNullOrWhiteSpace(_searchString))
             return true;
 
-        if (x.FirstName.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+        if (x.FirstName!.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
             return true;
 
-        if (x.LastName.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+        if (x.LastName!.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
             return true;
 
-        if (x.UserName.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+        if (x.UserName!.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
             return true;
 
-        if (x.Phone.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+        if (x.Phone!.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
             return true;
 
 

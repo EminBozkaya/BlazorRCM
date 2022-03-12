@@ -8,6 +8,6 @@ namespace BlazorRCM.Shared.ResponseModels
 {
     public class ServiceResponse<T> : BaseResponse
     {
-        public T Value { get; set; }
+        public T? Value { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace RCMServerData.Models
         }
 
         public byte Id { get; set; }
-        public string NotCat { get; set; }
+        public string? NotCat { get; set; }
 
         public virtual ICollection<SaleNote> SaleNotes { get; set; }
     }

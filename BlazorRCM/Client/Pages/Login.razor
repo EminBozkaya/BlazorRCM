@@ -21,13 +21,12 @@
 
     <MudCardActions>
         <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Large" OnClick="@loginProcess" Style="margin-left:90px; width:130px; height:50px; border-radius:15px">Giriş</MudButton>
-        <MudButton
-           Variant="Variant.Text"
-           EndIcon="@Icons.Filled.QuestionMark"
-           Color="Color.Error"
-           Style="text-transform:none; margin-left: 100px;">
-    Şifremi Unuttum
-</MudButton>
+        <MudButton Variant="Variant.Text"
+                   EndIcon="@Icons.Filled.QuestionMark"
+                   Color="Color.Error"
+                   Style="text-transform:none; margin-left: 100px;">
+            Şifremi Unuttum
+        </MudButton>
     </MudCardActions>
 </MudCard>
 
@@ -55,28 +54,40 @@
 
     private async Task loginProcess()
     {
-       
-            var httpReqRes = await Client.PostAsJsonAsync("api/ManageUser/Login", userLoginRequest);
 
-            if (httpReqRes.IsSuccessStatusCode)
+        var httpReqRes = await Client!.PostAsJsonAsync("api/ManageUser/Login", userLoginRequest);
+
+        if (httpReqRes.IsSuccessStatusCode)
+        {
+            try
             {
-
-                var res = await httpReqRes.Content.ReadFromJsonAsync<ServiceResponse<UserLoginResponseDTO>>();
+                var res = (await httpReqRes.Content.ReadFromJsonAsync<ServiceResponse<UserLoginResponseDTO>>())!;
 
                 if (res.Success)
-                    NavManeger.NavigateTo("/userlist");
-                else
                 {
-                    NavManeger.NavigateTo("/");
+                    await localStorageService!.SetItemAsync("token", res.Value!.ApiToken);
+                    await localStorageService.SetItemAsync("email", res.Value.User!.Email);
+
+                    NavManeger!.NavigateTo("/userlist");
                 }
 
-            }
-            else
+                else
                 {
-                    await Swal.FireAsync("Başarısız", "Böyle bir kullanıcı yok", "error");
-                    //NavManeger.NavigateTo("/");
+                    NavManeger!.NavigateTo("/");
                 }
-       
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        else
+        {
+            await Swal.FireAsync("Başarısız", "Böyle bir kullanıcı yok", "error");
+            //NavManeger.NavigateTo("/");
+        }
+
     }
     }
 

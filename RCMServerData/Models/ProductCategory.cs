@@ -11,7 +11,7 @@ namespace RCMServerData.Models
         }
 
         public byte CatId { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
     }

@@ -18,7 +18,7 @@ namespace RCMServerData.Models
         }
 
         public byte CTId { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         public virtual ICollection<BranchCaseType> BranchCaseTypes { get; set; }
         public virtual ICollection<BranchCaseTypeFlow> BranchCaseTypeFlows { get; set; }

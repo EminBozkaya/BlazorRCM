@@ -11,8 +11,8 @@ namespace RCMServerData.Models
         }
 
         public byte NoteId { get; set; }
-        public string Definition { get; set; }
-        public virtual SaleNoteCategory SaleNoteCategory { get; set; }
+        public string? Definition { get; set; }
+        public virtual SaleNoteCategory? SaleNoteCategory { get; set; }
         public virtual ICollection<SaleNoteOfProduct> SaleNoteOfProducts { get; set; }
     }
 }

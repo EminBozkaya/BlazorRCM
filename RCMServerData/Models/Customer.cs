@@ -13,10 +13,10 @@ namespace RCMServerData.Models
 
         public int CId { get; set; }
         public short BId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Phone { get; set; }
-        public string PrivateNote { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? Phone { get; set; }
+        public string? PrivateNote { get; set; }
         public bool IsActive { get; set; }
 
         public virtual ICollection<AdressOfCustomer> AdressOfCustomers { get; set; }

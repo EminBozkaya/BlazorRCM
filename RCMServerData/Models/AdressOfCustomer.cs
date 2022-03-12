@@ -7,11 +7,11 @@ namespace RCMServerData.Models
         
         public int Id { get; set; }
         public int CId { get; set; }
-        public string AdressName { get; set; }
-        public string Adress { get; set; }
-        public string Ev { get; set; } 
+        public string? AdressName { get; set; }
+        public string? Adress { get; set; }
+        public string? Ev { get; set; } 
 
 
-        public virtual Customer Customer { get; set; }
+        public virtual Customer? Customer { get; set; }
     }
 }

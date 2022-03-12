@@ -8,7 +8,7 @@ namespace RCMServerData.Models
         public byte NoteId { get; set; }
         public bool IsActive { get; set; }
 
-        public virtual Product Product { get; set; }
-        public virtual SaleNote SaleNote { get; set; }
+        public virtual Product? Product { get; set; }
+        public virtual SaleNote? SaleNote { get; set; }
     }
 }

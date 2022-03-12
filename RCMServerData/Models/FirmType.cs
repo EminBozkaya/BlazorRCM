@@ -11,7 +11,7 @@ namespace RCMServerData.Models
         }
 
         public byte FTId { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         public virtual ICollection<Supplier> Suppliers { get; set; }
     }

@@ -11,7 +11,7 @@ namespace RCMServerData.Models
         }
 
         public byte EPTId { get; set; }
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         public virtual ICollection<EmployeeMoneyFlow> EmployeeMoneyFlows { get; set; }
     }

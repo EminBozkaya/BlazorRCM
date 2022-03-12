@@ -13,14 +13,14 @@ namespace RCMServerData.Models
         public byte Qty { get; set; }
         public double Portion { get; set; }
         public decimal Total { get; set; }
-        public string Note { get; set; }
+        public string? Note { get; set; }
         public Nullable<decimal> CutOff { get; set; }
         public bool IsActive { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedTime { get; set; }
 
-        public virtual Product Product { get; set; }
-        public virtual Sale Sale { get; set; }
-        public virtual User User { get; set; }
+        public virtual Product? Product { get; set; }
+        public virtual Sale? Sale { get; set; }
+        public virtual User? User { get; set; }
     }
 }

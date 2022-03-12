@@ -17,7 +17,7 @@ namespace RCMServerData.Models
         }
 
         public short PId { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public byte CatId { get; set; }
         public Nullable<decimal> Price { get; set; }
         public Nullable<double> VATpercent { get; set; }
@@ -26,8 +26,8 @@ namespace RCMServerData.Models
 
         public virtual ICollection<BranchProductPrice> BranchProductPrices { get; set; }
         public virtual ICollection<Product> Product1 { get; set; }
-        public virtual Product Product2 { get; set; }
-        public virtual ProductCategory ProductCategory { get; set; }
+        public virtual Product? Product2 { get; set; }
+        public virtual ProductCategory? ProductCategory { get; set; }
         public virtual ICollection<ProductPhoto> ProductPhotoes { get; set; }
         public virtual ICollection<RawMaterialOfProduct> RawMaterialOfProducts { get; set; }
         public virtual ICollection<SaleDetail> SaleDetails { get; set; }

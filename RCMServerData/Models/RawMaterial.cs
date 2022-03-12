@@ -15,8 +15,8 @@ namespace RCMServerData.Models
         }
 
         public short RMId { get; set; }
-        public string Name { get; set; }
-        public string UnitName { get; set; }
+        public string? Name { get; set; }
+        public string? UnitName { get; set; }
         public Nullable<byte> VATpercent { get; set; }
 
         public virtual ICollection<BranchStock> BranchStocks { get; set; }

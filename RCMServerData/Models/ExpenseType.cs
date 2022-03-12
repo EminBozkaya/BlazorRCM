@@ -11,7 +11,7 @@ namespace RCMServerData.Models
         }
 
         public byte ExId { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         public virtual ICollection<ExpenseFlow> ExpenseFlows { get; set; }
     }

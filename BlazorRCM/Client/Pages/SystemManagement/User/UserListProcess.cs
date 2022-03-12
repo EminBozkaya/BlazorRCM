@@ -10,7 +10,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.User
         [Inject]
         public HttpClient? Client { get; set; }
 
-        protected List<UserDTO> UserList = new List<UserDTO>();
+        protected List<UserDTO> UserList = new ();
 
 
         protected async override Task OnInitializedAsync()
@@ -20,10 +20,20 @@ namespace BlazorRCM.Client.Pages.SystemManagement.User
 
         protected async Task LoadList()
         {
-            var serviceResponse = await Client.GetFromJsonAsync<ServiceResponse<List<UserDTO>>>("api/ManageUser/users");
+            try
+            {
+                var serviceResponse = await Client!.GetFromJsonAsync<ServiceResponse<List<UserDTO>>>("api/ManageUser/users");
 
-            if (serviceResponse.Success)
-                UserList = serviceResponse.Value;
+                if (serviceResponse!.Success)
+                    UserList = serviceResponse.Value!;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("kayıt yok" + ex.Message);
+            }
+            
+
+            
         }
     }
 }

@@ -23,7 +23,7 @@ namespace BlazorRCM.Server.Controllers
             {
                 return new ServiceResponse<UserLoginResponseDTO>()
                 {
-                    Value = await userService.Login(dto.UserName, dto.Password)
+                    Value = await userService.Login(dto.UserName!, dto.Password!)
                 };
             }
             catch (Exception)

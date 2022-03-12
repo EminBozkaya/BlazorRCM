@@ -12,10 +12,10 @@ namespace RCMServerData.Models
         public Nullable<decimal> CardDept { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public System.DateTime Date { get; set; }
-        public string IpAdress { get; set; }
+        public string? IpAdress { get; set; }
 
-        public virtual Branch Branch { get; set; }
-        public virtual CreditCard CreditCard { get; set; }
-        public virtual User User { get; set; }
+        public virtual Branch? Branch { get; set; }
+        public virtual CreditCard? CreditCard { get; set; }
+        public virtual User? User { get; set; }
     }
 }

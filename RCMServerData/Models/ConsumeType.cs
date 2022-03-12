@@ -11,7 +11,7 @@ namespace RCMServerData.Models
         }
 
         public byte ConsTId { get; set; }
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         public virtual ICollection<BranchConsumption> BranchConsumptions { get; set; }
     }

@@ -11,7 +11,7 @@ namespace RCMServerData.Models
         public Nullable<double> VATpercent { get; set; }
         public Nullable<bool> IsFavorite { get; set; }
 
-        public virtual Branch Branch { get; set; }
-        public virtual Product Product { get; set; }
+        public virtual Branch? Branch { get; set; }
+        public virtual Product? Product { get; set; }
     }
 }
