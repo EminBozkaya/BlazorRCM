@@ -5,45 +5,74 @@
 
 @using System.Net.Http.Json
 @using BlazorRCM.Shared.DTOs
-@inject HttpClient httpClient
 
-<MudDataGrid MultiSelection="true" Items="@UserList" Sortable="true" Filterable="true" QuickFilter="@_quickFilter">
+
+
+<SpinLoader IsLoading="@_elementIsLoading">
+    <LoadingTemplate>
+        <div class="col-12" style="vertical-align:middle; margin-top:100px">
+            <Chase Center="true" Size="40px" Color="#F44336"></Chase>
+        </div>
+    </LoadingTemplate>
+    <ContentTemplate>
+        <MudDataGrid MultiSelection="true" Items="@UserList" Sortable="true" Filterable="true" QuickFilter="@_quickFilter">
+            <ToolBarContent>
+                <MudText Typo="Typo.h6">Kullanıcılar</MudText>
+                <MudSpacer />
+                <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
+                              AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+            </ToolBarContent>
+            <Columns>
+                <Column T="UserDTO" Field="UId" Title="ID" />
+                <Column T="UserDTO" Field="FirstName" />
+                <Column T="UserDTO" Field="LastName" />
+                <Column T="UserDTO" Field="UserName" />
+                <Column T="UserDTO" Field="Phone" />
+            </Columns>
+            <PagerContent>
+                <MudDataGridPager T="UserDTO" />
+            </PagerContent>
+        </MudDataGrid>
+    </ContentTemplate>
+</SpinLoader>
+
+
+
+@*<div id="@_processing">
+    @if (_processing)
+    {
+
+    <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+    <br/>
+    <br/>
+    <MudText Class="ms-2">Processing</MudText>
+    }
+
+    <MudDataGrid Class="@visibility" MultiSelection="true" Items="@UserList" Sortable="true" Filterable="true" QuickFilter="@_quickFilter">
     <ToolBarContent>
-        <MudText Typo="Typo.h6">Kullanıcılar</MudText>
-        <MudSpacer />
-        <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
-            AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+    <MudText Typo="Typo.h6">Kullanıcılar</MudText>
+    <MudSpacer />
+    <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
+    AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
     </ToolBarContent>
     <Columns>
-        <Column T="UserDTO" Field="UId" Title="ID" />
-        <Column T="UserDTO" Field="FirstName" />
-        <Column T="UserDTO" Field="LastName"/>
-        <Column T="UserDTO" Field="UserName" />
-        <Column T="UserDTO" Field="Phone"/>
+    <Column T="UserDTO" Field="UId" Title="ID" />
+    <Column T="UserDTO" Field="FirstName" />
+    <Column T="UserDTO" Field="LastName" />
+    <Column T="UserDTO" Field="UserName" />
+    <Column T="UserDTO" Field="Phone" />
     </Columns>
     <PagerContent>
-        <MudDataGridPager T="UserDTO" />
+    <MudDataGridPager T="UserDTO" />
     </PagerContent>
-</MudDataGrid>
-
-@*<div class="d-flex flex-wrap mt-4">
-    <MudSwitch @bind-Checked="@_sortNameByLength" Color="Color.Primary">Sort Name Column By Length</MudSwitch>
-</div>*@
+    </MudDataGrid>
+    </div>*@
 
 
 @code {
-    //private IEnumerable<Element> Elements = new List<Element>();
+
     private string? _searchString;
-    //private bool _sortNameByLength;
-    // custom sort by name length
-    //private Func<UserDTO, object> _sortBy => x =>
-    //{
-    //    if (_sortNameByLength)
-    //        return x.LastName.Length;
-    //    else
-    //        return x.LastName;
-    //};
-    // quick filter - filter gobally across multiple columns with the same input
+
     private Func<UserDTO, bool> _quickFilter => x =>
     {
         if (string.IsNullOrWhiteSpace(_searchString))
@@ -67,10 +96,5 @@
 
         return false;
     };
-
-    //protected override async Task OnInitializedAsync()
-    //{
-    //    Elements = await httpClient.GetFromJsonAsync<List<Element>>("webapi/periodictable");
-    //}
 
 }
