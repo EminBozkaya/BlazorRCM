@@ -1,31 +1,58 @@
 ﻿
 <MudNavMenu Class="mud-width-full">
-        <MudText Typo="Typo.h6" Class="px-4">Öncü Merzifon</MudText>
-        <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Hoşgeldin Emin</MudText>
+    <MudText Typo="Typo.h6" Class="px-4">Öncü Döner</MudText>
+    <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Hoşgeldiniz @logingUserName</MudText>
 
-        <MudDivider Class="my-2" />
+    <MudDivider Class="my-2" />
 
-        @*<MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
-            AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>*@
+    <AuthorizeView>
 
-        <MudNavLink Href="/dashboard" Icon="@Icons.Filled.Dashboard">Ana Sayfa</MudNavLink>
-
-
-        <MudNavGroup Title="Satışlar" Icon=@Icons.Filled.PointOfSale>
-            <MudNavLink Href="#" Icon=@Icons.Filled.Restaurant IconColor="Color.Success">Hızlı Satış</MudNavLink>
-            <MudNavLink Href="#" Icon=@Icons.Filled.DeliveryDining IconColor="Color.Info">Paket Satışı</MudNavLink>
-            <MudNavLink Href="#" Style="color:#983fbd">Getir Yemek</MudNavLink>
-            <MudNavLink Href="#" Style="color:#c56879">Yemek Sepeti</MudNavLink>
-            <MudNavLink Href="#" Style="color:#ff841b">Trendyol Yemek</MudNavLink>
-        </MudNavGroup>
+        <Authorized>
 
 
-        <MudNavLink Href="/billing" Icon="fas fa-receipt" Disabled="true">Cari</MudNavLink>
+            @*<MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
+                AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>*@
 
-        <MudNavGroup Title="Sistem Yönetimi" Icon="fas fa-cogs" Expanded="true">
-            <MudNavLink Href="/userlist" Icon="fas fa-users" IconColor="Color.Success">Users</MudNavLink>
-            <MudNavLink Href="/spinner" Icon="fas fa-user-shield" IconColor="Color.Info">SpinnerPage</MudNavLink>
-        </MudNavGroup>
-    </MudNavMenu>
+            <MudNavLink Href="/dashboard" Icon="@Icons.Filled.Dashboard">Ana Sayfa</MudNavLink>
 
-    
+
+            <MudNavGroup Title="Satışlar" Icon=@Icons.Filled.PointOfSale>
+                <MudNavLink Href="#" Icon=@Icons.Filled.Restaurant IconColor="Color.Success">Hızlı Satış</MudNavLink>
+                <MudNavLink Href="#" Icon=@Icons.Filled.DeliveryDining IconColor="Color.Info">Paket Satışı</MudNavLink>
+                <MudNavLink Href="#" Style="color:#983fbd">Getir Yemek</MudNavLink>
+                <MudNavLink Href="#" Style="color:#c56879">Yemek Sepeti</MudNavLink>
+                <MudNavLink Href="#" Style="color:#ff841b">Trendyol Yemek</MudNavLink>
+            </MudNavGroup>
+
+
+            <MudNavLink Href="/billing" Icon="fas fa-receipt" Disabled="true">Cari</MudNavLink>
+
+            <MudNavGroup Title="Sistem Yönetimi" Icon="fas fa-cogs" Expanded="true">
+                <MudNavLink Href="/userlist" Icon="fas fa-users" IconColor="Color.Success">Users</MudNavLink>
+                <MudNavLink Href="/spinner" Icon="fas fa-user-shield" IconColor="Color.Info">SpinnerPage</MudNavLink>
+            </MudNavGroup>
+
+            <MudNavLink Href="/logout" Icon="fas fa-logout">Çıkış</MudNavLink>
+
+        </Authorized>
+
+        <NotAuthorized>
+            <MudNavLink Href="/login" Icon="fas fa-login">Giriş</MudNavLink>
+        </NotAuthorized>
+
+
+    </AuthorizeView>
+</MudNavMenu>
+
+@code {
+
+    [Inject]
+    ILocalStorageService? LocalStorageService { get; set; }
+
+    private String logingUserName = "Lütfen Giriş Yapınız";
+
+    protected async override Task OnInitializedAsync()
+    {
+        logingUserName = await LocalStorageService!.GetItemAsStringAsync("fullname");
+    }
+}

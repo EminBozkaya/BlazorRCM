@@ -25,8 +25,9 @@ namespace BlazorRCM.Shared.Utils
                 return anonymous;
 
             string? email = await localStorageService.GetItemAsStringAsync("email");
+            string? fullname = await localStorageService.GetItemAsStringAsync("fullname");
 
-            var cp = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Email, email) }, "jwtAuthType"));
+            var cp = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Email, email), new Claim(ClaimTypes.Name, fullname) }, "jwtAuthType"));
 
             return new AuthenticationState(cp);
         }

@@ -32,7 +32,7 @@
 </MudLayout>
 
 @code {
-
+    private bool _isDarkMode;
     private List<BreadcrumbItem> _items = new List<BreadcrumbItem>
     {
         new BreadcrumbItem("Hızlı Satış", href: null, icon: @Icons.Filled.Restaurant),
@@ -46,6 +46,35 @@
         _drawerOpen = !_drawerOpen;
     }
 
-   
-    private bool _isDarkMode;
+    
+
+    [CascadingParameter]
+    public Task<AuthenticationState>? AuthState { get; set; }
+
+    [Inject]
+    ILocalStorageService? LocalStorageService { get; set; }
+
+    [Inject]
+    NavigationManager? NavigationManager { get; set; }
+
+    private String logingUserName = "Lütfen Giriş Yapınız";
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        var authState = await AuthState!;
+
+        if (authState.User.Identity!.IsAuthenticated)
+        {
+            //authState.User.Claims.FirstOrDefault(i => i.ValueType == ClaimTypes.EMail);
+
+            logingUserName = await LocalStorageService!.GetItemAsStringAsync("fullname");
+        }
+        else
+        {
+            NavigationManager!.NavigateTo("/login");
+        }
+    }
+
+
 }
