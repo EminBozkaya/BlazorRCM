@@ -87,6 +87,7 @@
                 throw new Exception(ex.Message);
             }
         }
+        else if((int)httpReqRes.StatusCode==401)await Swal.FireAsync("Başarısız", "yetkiniz yok", "error");
         else
         {
             await Swal.FireAsync("Başarısız", "Böyle bir kullanıcı yok", "error");

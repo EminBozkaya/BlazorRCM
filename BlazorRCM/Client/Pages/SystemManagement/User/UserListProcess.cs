@@ -1,12 +1,17 @@
 ﻿using BlazorRCM.Shared.DTOs;
 using BlazorRCM.Shared.ResponseModels;
+using BlazorRCM.Shared.Extensions;
 using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
+using BlazorRCM.Shared.CustomExceptions;
+using CurrieTechnologies.Razor.SweetAlert2;
 
 namespace BlazorRCM.Client.Pages.SystemManagement.User
 {
     public class UserListProcess: ComponentBase
     {
+
+
         [Inject]
         public HttpClient? Client { get; set; }
 
@@ -15,6 +20,8 @@ namespace BlazorRCM.Client.Pages.SystemManagement.User
         //protected string visibility = "invisible";
         protected bool _elementIsLoading = true;
         
+        [Inject]
+        public SweetAlertService? Sw { get; set; }
 
 
 
@@ -30,19 +37,19 @@ namespace BlazorRCM.Client.Pages.SystemManagement.User
         {
             try
             {
-               
+                await Task.Delay(2000);
 
-                
-                await Task.Delay(3000);
+                UserList = await Client!.GetServiceResponseAsync<List<UserDTO>>("api/ManageUser/users", true);
 
-                var serviceResponse = await Client!.GetFromJsonAsync<ServiceResponse<List<UserDTO>>>("api/ManageUser/users");
-
-                if (serviceResponse!.Success)
-                    UserList = serviceResponse.Value!;
+            }
+            catch (ApiException ex)
+            {
+                await Sw!.FireAsync("Api Exception", ex.Message, "error");
             }
             catch (Exception ex)
             {
-                throw new Exception("kayıt yok" + ex.Message);
+                await Sw!.FireAsync("Exception", ex.Message, "error");
+
             }
             finally
             {

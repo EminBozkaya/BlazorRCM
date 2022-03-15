@@ -55,6 +55,7 @@ namespace Core.BaseService.EF
                     }
 
                     return await query.ToListAsync();
+
                 }
             }
 

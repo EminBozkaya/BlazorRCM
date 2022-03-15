@@ -12,9 +12,11 @@ namespace BlazorRCM.Shared.Utils
     {
         private readonly ILocalStorageService localStorageService;
         private readonly AuthenticationState anonymous;
+        private readonly HttpClient? client;
 
-        public AuthStateProvider(ILocalStorageService localStorageService)
+        public AuthStateProvider(ILocalStorageService localStorageService, HttpClient Client)
         {
+            client = Client;
             this.localStorageService = localStorageService;
             anonymous = new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
         }
@@ -25,9 +27,10 @@ namespace BlazorRCM.Shared.Utils
                 return anonymous;
 
             string? email = await localStorageService.GetItemAsStringAsync("email");
-            string? fullname = await localStorageService.GetItemAsStringAsync("fullname");
+            //string? fullname = await localStorageService.GetItemAsStringAsync("fullname");
 
-            var cp = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Email, email), new Claim(ClaimTypes.Name, fullname) }, "jwtAuthType"));
+            var cp = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Email, email)}));
+            client!.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", apiToken);
 
             return new AuthenticationState(cp);
         }

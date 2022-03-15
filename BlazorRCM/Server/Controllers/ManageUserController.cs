@@ -1,11 +1,14 @@
-﻿using BlazorRCM.Shared.DTOs;
+﻿using BlazorRCM.Shared.CustomExceptions;
+using BlazorRCM.Shared.DTOs;
 using BlazorRCM.Shared.ResponseModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorRCM.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ManageUserController : ControllerBase
     {
         private readonly IUserRepo userService;
@@ -16,11 +19,14 @@ namespace BlazorRCM.Server.Controllers
         }
 
         [HttpPost("Login")]
+        [AllowAnonymous]
         public async Task<ServiceResponse<UserLoginResponseDTO>> Login(UserLoginRequestDTO dto)
         {
             //ServiceResponse<UserLoginResponseDTO> result = new();
             try
             {
+                
+
                 return new ServiceResponse<UserLoginResponseDTO>()
                 {
                     Value = await userService.Login(dto.UserName!, dto.Password!)
@@ -34,8 +40,10 @@ namespace BlazorRCM.Server.Controllers
         }
 
         [HttpGet("Users")]
+        
         public async Task<ServiceResponse<List<UserDTO>>> GetUsers()
         {
+            
             return new ServiceResponse<List<UserDTO>>()
             {
                 Value = (await userService.GetAll() as List<UserDTO>)!

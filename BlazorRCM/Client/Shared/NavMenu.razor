@@ -1,7 +1,7 @@
 ﻿
 <MudNavMenu Class="mud-width-full">
     <MudText Typo="Typo.h6" Class="px-4">Öncü Döner</MudText>
-    <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Hoşgeldiniz @logingUserName</MudText>
+    <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Hoşgeldiniz @_logingUserName</MudText>
 
     <MudDivider Class="my-2" />
 
@@ -49,10 +49,12 @@
     [Inject]
     ILocalStorageService? LocalStorageService { get; set; }
 
-    private String logingUserName = "Lütfen Giriş Yapınız";
+    private String _logingUserName = "Lütfen Giriş Yapınız";
 
     protected async override Task OnInitializedAsync()
     {
-        logingUserName = await LocalStorageService!.GetItemAsStringAsync("fullname");
+        var result = await LocalStorageService!.GetItemAsStringAsync("fullname");
+        if(result!=null)
+        _logingUserName = result.ToString()!.Replace('"', ' ').Trim();
     }
 }

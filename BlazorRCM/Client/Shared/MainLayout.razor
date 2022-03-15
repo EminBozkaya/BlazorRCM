@@ -4,7 +4,7 @@
 <MudDialogProvider />
 <MudSnackbarProvider />
 
-<MudLayout>
+<MudLayout Class="@visibility">
     <MudAppBar Elevation="0">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
             <div Style="color:white"><MudBreadcrumbs Items="_items"></MudBreadcrumbs></div>
@@ -32,6 +32,7 @@
 </MudLayout>
 
 @code {
+    private string visibility="invisible";
     private bool _isDarkMode;
     private List<BreadcrumbItem> _items = new List<BreadcrumbItem>
     {
@@ -46,7 +47,7 @@
         _drawerOpen = !_drawerOpen;
     }
 
-    
+
 
     [CascadingParameter]
     public Task<AuthenticationState>? AuthState { get; set; }
@@ -57,7 +58,6 @@
     [Inject]
     NavigationManager? NavigationManager { get; set; }
 
-    private String logingUserName = "Lütfen Giriş Yapınız";
 
 
     protected async override Task OnInitializedAsync()
@@ -68,7 +68,8 @@
         {
             //authState.User.Claims.FirstOrDefault(i => i.ValueType == ClaimTypes.EMail);
 
-            logingUserName = await LocalStorageService!.GetItemAsStringAsync("fullname");
+            //logingUserName = await LocalStorageService!.GetItemAsStringAsync("fullname");
+            visibility = "visible";
         }
         else
         {
