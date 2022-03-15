@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
 using BlazorRCM.Shared.CustomExceptions;
 using CurrieTechnologies.Razor.SweetAlert2;
+using Microsoft.JSInterop;
 
 namespace BlazorRCM.Client.Pages.SystemManagement.User
 {
@@ -23,12 +24,16 @@ namespace BlazorRCM.Client.Pages.SystemManagement.User
         [Inject]
         public SweetAlertService? Sw { get; set; }
 
+        [Inject]
+        IJSRuntime? JSRuntime { get; set; }
+
 
 
         protected async override Task OnInitializedAsync()
         {
             
             await LoadList();
+            await JSRuntime!.InvokeAsync<object>("TestDataTablesAdd", ".mud-table-root");
 
             //StateHasChanged();
         }
@@ -57,7 +62,6 @@ namespace BlazorRCM.Client.Pages.SystemManagement.User
                 StateHasChanged();
             }
 
-            
         }
 
         

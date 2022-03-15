@@ -28,8 +28,6 @@
 
   <ItemGroup>
     <Folder Include="CustomComponents\" />
-    <Folder Include="wwwroot\Content\" />
-    <Folder Include="wwwroot\MyScripts\" />
   </ItemGroup>
 
 </Project>

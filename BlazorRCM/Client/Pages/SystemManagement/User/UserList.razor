@@ -7,7 +7,7 @@
 @using BlazorRCM.Shared.DTOs
 
 
-
+@*
 <SpinLoader IsLoading="@_elementIsLoading">
     <LoadingTemplate>
         <div class="col-12" style="vertical-align:middle; margin-top:100px">
@@ -15,7 +15,7 @@
         </div>
     </LoadingTemplate>
     <ContentTemplate>
-        <MudDataGrid MultiSelection="true" Items="@UserList" Sortable="true" Filterable="true" QuickFilter="@_quickFilter">
+        <MudDataGrid id=tblUser MultiSelection="true" Items="@UserList" Sortable="true" Filterable="true" QuickFilter="@_quickFilter">
             <ToolBarContent>
                 <MudText Typo="Typo.h6">Kullanıcılar</MudText>
                 <MudSpacer />
@@ -35,38 +35,6 @@
         </MudDataGrid>
     </ContentTemplate>
 </SpinLoader>
-
-
-
-@*<div id="@_processing">
-    @if (_processing)
-    {
-
-    <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
-    <br/>
-    <br/>
-    <MudText Class="ms-2">Processing</MudText>
-    }
-
-    <MudDataGrid Class="@visibility" MultiSelection="true" Items="@UserList" Sortable="true" Filterable="true" QuickFilter="@_quickFilter">
-    <ToolBarContent>
-    <MudText Typo="Typo.h6">Kullanıcılar</MudText>
-    <MudSpacer />
-    <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
-    AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
-    </ToolBarContent>
-    <Columns>
-    <Column T="UserDTO" Field="UId" Title="ID" />
-    <Column T="UserDTO" Field="FirstName" />
-    <Column T="UserDTO" Field="LastName" />
-    <Column T="UserDTO" Field="UserName" />
-    <Column T="UserDTO" Field="Phone" />
-    </Columns>
-    <PagerContent>
-    <MudDataGridPager T="UserDTO" />
-    </PagerContent>
-    </MudDataGrid>
-    </div>*@
 
 
 @code {
@@ -97,4 +65,110 @@
         return false;
     };
 
-}
+}*@
+
+
+
+
+
+
+<table id="tblUsers" class="table table-bordered table-striped " style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>#ID</th>
+                                <th>Ad</th>
+                                <th>Soyad</th>
+                                <th>Kullanıcı adı</th>
+                                <th>Telefon</th>
+                                <th>Email</th>
+                                <th>Şifre</th>
+                                <th>Aktif/Pasif</th>
+                                <th>Oluşturulma Tarihi</th>
+                                <th>Değişiklik Tarihi</th>
+                                <th>Düzenle</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (UserDTO item in UserList)
+                            {
+                                <tr adminId="@item.UId">
+                                    <td>
+                                        <span id="spnId">@item.UId</span>
+                                    </td>
+                                    <td>
+                                        <span id="spnFirstName">@item.FirstName</span>
+                                    </td>
+                                    <td>
+                                        <span id="spnLastName">@item.LastName</span>
+                                    </td>
+                                    <td>
+                                        <span id="spnUserName">@item.UserName</span>
+                                    </td>
+                                    <td>
+                                        <span id="spnPhone">@item.Phone</span>
+                                    </td>
+                                    <td>
+                                        <span id="spnEmail">@item.Email</span>
+                                    </td>
+                                    <td>
+                                        <span id="spnPassword">@item.Password</span>
+                                    </td>
+                                    <td>
+                                        @{
+                                            if (item.IsActive)
+                                            {
+                                                <span id="spnIsActive" class="badge bg-success" isActive="true" value="1">Aktif</span>
+                                            }
+                                            else
+                                            {
+                                                <span id="spnIsActive" class="badge bg-danger" isActive="false" value="0">Pasif</span>
+                                            }
+                                        }
+                                    </td>
+                                    <td>
+                                        <span id="spnCrtdate">@item.CreatedTime!.Value.ToString("d")</span>
+
+                                    </td>
+                                    <td>
+                                        @{
+                                            if (item.ModifiedTime.HasValue)
+                                            {
+                                                <span id="spnMdfdate">@item.ModifiedTime.Value.ToString("d")</span>
+                                            }
+                                            else
+                                            {
+                                                <span id="spnMdfdate"> - </span>
+                                            }
+                                        }
+                                    </td>
+                                    <td>
+                                        <a href="#myedit">
+                                            <img id="imgEdit" class="imgedit" title="Değiştir" src="MyImages/DataTable/Edit.ico" style="width:25px;" adminId="@item.UId" />
+                                        </a>
+                                        <span>&nbsp;&nbsp;</span>
+                                        <a href="#mydelete">
+                                            <img id="imgDelete" class="imgdelete" title="Sil" src="MyImages/DataTable/Delete.ico" style="width:30px;" adminId="@item.UId" />
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>#ID</th>
+                                <th>Ad</th>
+                                <th>Soyad</th>
+                                <th>Kullanıcı adı</th>
+                                <th>Telefon</th>
+                                <th>Email</th>
+                                <th>Şifre</th>
+                                <th>Aktif/Pasif</th>
+                                <th>Oluşturulma Tarihi</th>
+                                <th>Değişiklik Tarihi</th>
+                                <th>Düzenle</th>
+
+                            </tr>
+                        </tfoot>
+                    </table>
