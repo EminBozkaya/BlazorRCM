@@ -8,7 +8,7 @@ namespace BlazorRCM.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class ManageUserController : ControllerBase
     {
         private readonly IUserRepo userService;
@@ -19,7 +19,7 @@ namespace BlazorRCM.Server.Controllers
         }
 
         [HttpPost("Login")]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public async Task<ServiceResponse<UserLoginResponseDTO>> Login(UserLoginRequestDTO dto)
         {
             //ServiceResponse<UserLoginResponseDTO> result = new();
@@ -47,6 +47,16 @@ namespace BlazorRCM.Server.Controllers
             return new ServiceResponse<List<UserDTO>>()
             {
                 Value = (await userService.GetAll() as List<UserDTO>)!
+            };
+        }
+
+
+        [HttpPost("Create")]
+        public async Task<ServiceResponse<UserDTO>> CreateUser([FromBody] UserDTO User)
+        {
+            return new ServiceResponse<UserDTO>()
+            {
+                Value = await userService.Create(User)
             };
         }
     }

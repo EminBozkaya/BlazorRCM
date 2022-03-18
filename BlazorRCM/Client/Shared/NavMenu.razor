@@ -5,9 +5,9 @@
 
     <MudDivider Class="my-2" />
 
-    <AuthorizeView>
+    @*<AuthorizeView>
 
-        <Authorized>
+        <Authorized>*@
 
 
             @*<MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
@@ -26,6 +26,34 @@
 
 
             <MudNavLink Href="/billing" Icon="fas fa-receipt" Disabled="true">Cari</MudNavLink>
+            <MudNavGroup Title="Satışlar" Icon=@Icons.Filled.PointOfSale>
+                <MudNavLink Href="#" Icon=@Icons.Filled.Restaurant IconColor="Color.Success">Hızlı Satış</MudNavLink>
+                <MudNavLink Href="#" Icon=@Icons.Filled.DeliveryDining IconColor="Color.Info">Paket Satışı</MudNavLink>
+                <MudNavLink Href="#" Style="color:#983fbd">Getir Yemek</MudNavLink>
+                <MudNavLink Href="#" Style="color:#c56879">Yemek Sepeti</MudNavLink>
+                <MudNavLink Href="#" Style="color:#ff841b">Trendyol Yemek</MudNavLink>
+            </MudNavGroup>
+            <MudNavGroup Title="Satışlar" Icon=@Icons.Filled.PointOfSale>
+                <MudNavLink Href="#" Icon=@Icons.Filled.Restaurant IconColor="Color.Success">Hızlı Satış</MudNavLink>
+                <MudNavLink Href="#" Icon=@Icons.Filled.DeliveryDining IconColor="Color.Info">Paket Satışı</MudNavLink>
+                <MudNavLink Href="#" Style="color:#983fbd">Getir Yemek</MudNavLink>
+                <MudNavLink Href="#" Style="color:#c56879">Yemek Sepeti</MudNavLink>
+                <MudNavLink Href="#" Style="color:#ff841b">Trendyol Yemek</MudNavLink>
+            </MudNavGroup>
+            <MudNavGroup Title="Satışlar" Icon=@Icons.Filled.PointOfSale>
+                <MudNavLink Href="#" Icon=@Icons.Filled.Restaurant IconColor="Color.Success">Hızlı Satış</MudNavLink>
+                <MudNavLink Href="#" Icon=@Icons.Filled.DeliveryDining IconColor="Color.Info">Paket Satışı</MudNavLink>
+                <MudNavLink Href="#" Style="color:#983fbd">Getir Yemek</MudNavLink>
+                <MudNavLink Href="#" Style="color:#c56879">Yemek Sepeti</MudNavLink>
+                <MudNavLink Href="#" Style="color:#ff841b">Trendyol Yemek</MudNavLink>
+            </MudNavGroup>
+            <MudNavGroup Title="Satışlar" Icon=@Icons.Filled.PointOfSale>
+                <MudNavLink Href="#" Icon=@Icons.Filled.Restaurant IconColor="Color.Success">Hızlı Satış</MudNavLink>
+                <MudNavLink Href="#" Icon=@Icons.Filled.DeliveryDining IconColor="Color.Info">Paket Satışı</MudNavLink>
+                <MudNavLink Href="#" Style="color:#983fbd">Getir Yemek</MudNavLink>
+                <MudNavLink Href="#" Style="color:#c56879">Yemek Sepeti</MudNavLink>
+                <MudNavLink Href="#" Style="color:#ff841b">Trendyol Yemek</MudNavLink>
+            </MudNavGroup>
 
             <MudNavGroup Title="Sistem Yönetimi" Icon="fas fa-cogs" Expanded="true">
                 <MudNavLink Href="/userlist" Icon="fas fa-users" IconColor="Color.Success">Users</MudNavLink>
@@ -34,14 +62,14 @@
 
             <MudNavLink Href="/logout" Icon="fas fa-logout">Çıkış</MudNavLink>
 
-        </Authorized>
+        @*</Authorized>
 
-        <NotAuthorized>
+        <NotAuthorized>*@
             <MudNavLink Href="/login" Icon="fas fa-login">Giriş</MudNavLink>
-        </NotAuthorized>
+        @*</NotAuthorized>
 
 
-    </AuthorizeView>
+    </AuthorizeView>*@
 </MudNavMenu>
 
 @code {

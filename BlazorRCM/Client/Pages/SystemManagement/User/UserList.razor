@@ -1,13 +1,9 @@
 ﻿@page "/userlist"
-
 @inherits UserListProcess
-
 
 @using System.Net.Http.Json
 @using BlazorRCM.Shared.DTOs
 
-
-@*
 <SpinLoader IsLoading="@_elementIsLoading">
     <LoadingTemplate>
         <div class="col-12" style="vertical-align:middle; margin-top:100px">
@@ -15,160 +11,278 @@
         </div>
     </LoadingTemplate>
     <ContentTemplate>
-        <MudDataGrid id=tblUser MultiSelection="true" Items="@UserList" Sortable="true" Filterable="true" QuickFilter="@_quickFilter">
-            <ToolBarContent>
-                <MudText Typo="Typo.h6">Kullanıcılar</MudText>
-                <MudSpacer />
-                <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
-                              AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
-            </ToolBarContent>
-            <Columns>
-                <Column T="UserDTO" Field="UId" Title="ID" />
-                <Column T="UserDTO" Field="FirstName" />
-                <Column T="UserDTO" Field="LastName" />
-                <Column T="UserDTO" Field="UserName" />
-                <Column T="UserDTO" Field="Phone" />
-            </Columns>
-            <PagerContent>
-                <MudDataGridPager T="UserDTO" />
-            </PagerContent>
-        </MudDataGrid>
+
+        <SfGrid ID="Grid" @ref="Grid" DataSource="@UserList" Toolbar="@(new List<string>() { "ExcelExport", "CsvExport", "PdfExport","Add", "Edit", "Delete", "Update", "Cancel", "Search"})" AllowExcelExport="true" AllowPdfExport="true" AllowPaging="true" AllowSorting="true" AllowFiltering="true" AllowGrouping="true" AllowTextWrap="true" AllowReordering="true" AllowResizing="true">
+            <GridEvents OnToolbarClick="ToolbarClick" OnActionBegin="ActionBegin" TValue="UserDTO"></GridEvents>
+
+            <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
+            <GridPageSettings PageSize="10" PageSizes="true"></GridPageSettings>
+            <GridColumns>
+                <GridColumn IsPrimaryKey="true" Field=@nameof(UserDTO.UId) HeaderText="ID" TextAlign="TextAlign.Right" Width="120"></GridColumn>
+                <GridColumn Field=@nameof(UserDTO.UserName) HeaderText="UserName" TextAlign="TextAlign.Right" Width="120"></GridColumn>
+                <GridColumn Field=@nameof(UserDTO.FirstName) HeaderText="FirstName" TextAlign="TextAlign.Right" Width="120"></GridColumn>
+                <GridColumn Field=@nameof(UserDTO.LastName) HeaderText="LastName" TextAlign="TextAlign.Right" Width="120"></GridColumn>
+                <GridColumn Field=@nameof(UserDTO.Phone) HeaderText="Phone" TextAlign="TextAlign.Right" Width="120"></GridColumn>
+
+                @*<GridColumn Field=@nameof() HeaderText=" Order Date" Format="d" Type="ColumnType.Date" TextAlign="TextAlign.Right" Width="130"></GridColumn>*@
+                @*<GridColumn Field=@nameof(Order.Freight) HeaderText="Freight" Format="C2" TextAlign="TextAlign.Right" Width="120"></GridColumn>*@
+            </GridColumns>
+            <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog">
+                <Template>
+                    @{
+                        var DTO = (context as UserDTO);
+                    }
+                    <div>
+                        
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <SfTextBox ID="FirstName" @bind-Value="@(DTO!.FirstName)" FloatLabelType="FloatLabelType.Always" Placeholder="Adı"></SfTextBox>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <SfTextBox ID="LastName" @bind-Value="@(DTO.LastName)" FloatLabelType="FloatLabelType.Always" Placeholder="Soyadı"></SfTextBox>
+                                
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <SfTextBox ID="UserName" @bind-Value="@(DTO.UserName)" FloatLabelType="FloatLabelType.Always" Placeholder="Kullanıcı Adı"></SfTextBox>
+                            </div>
+                            
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <SfTextBox ID="Phone" @bind-Value="@(DTO.Phone)" FloatLabelType="FloatLabelType.Always" Placeholder="Telefon Numarası"></SfTextBox>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <SfTextBox ID="Email" @bind-Value="@(DTO.Email)" FloatLabelType="FloatLabelType.Always" Placeholder="Mail Adresi"></SfTextBox>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <SfTextBox ID="Password" @bind-Value="@(DTO.Password)" FloatLabelType="FloatLabelType.Always" Placeholder="Şifre"></SfTextBox>
+                            </div>
+                        </div>
+                        @*<div class="form-row">
+                            <div class="form-group col-md-6">
+                                <SfCheckBox ID="IsActive" @bind-Value="@(DTO.IsActive)" @bind-Checked="true">Aktif/Pasif:</SfCheckBox>
+                            </div>
+                        </div>*@
+                    </div>
+                </Template>
+            </GridEditSettings>
+        </SfGrid>
+
     </ContentTemplate>
 </SpinLoader>
 
-
 @code {
+    //private Boolean Check = false;
+    //private DialogSettings DialogParams = new DialogSettings { MinHeight = "400px", Width = "450px" };
 
-    private string? _searchString;
-
-    private Func<UserDTO, bool> _quickFilter => x =>
+    //------------------------------syncfusion------------------------------------
+    
+    SfGrid<UserDTO>? Grid;
+    public void ToolbarClick(Syncfusion.Blazor.Navigations.ClickEventArgs args)
     {
-        if (string.IsNullOrWhiteSpace(_searchString))
-            return true;
+        if (args.Item.Id == "Grid_pdfexport")
+        {
+            this.Grid!.PdfExport();
+        }
+        if (args.Item.Id == "Grid_excelexport")
+        {
+            this.Grid!.ExcelExport();
+        }
+        if (args.Item.Id == "Grid_csvexport")
+        {
+            this.Grid!.CsvExport();
+        }
+    }
 
-        if (x.FirstName!.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
-            return true;
-
-        if (x.LastName!.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
-            return true;
-
-        if (x.UserName!.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
-            return true;
-
-        if (x.Phone!.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
-            return true;
-
-
-        if ($"{x.UId}".Contains(_searchString))
-            return true;
-
-        return false;
-    };
-
-}*@
+    
+}
 
 
 
 
 
 
-<table id="tblUsers" class="table table-bordered table-striped " style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>#ID</th>
-                                <th>Ad</th>
-                                <th>Soyad</th>
-                                <th>Kullanıcı adı</th>
-                                <th>Telefon</th>
-                                <th>Email</th>
-                                <th>Şifre</th>
-                                <th>Aktif/Pasif</th>
-                                <th>Oluşturulma Tarihi</th>
-                                <th>Değişiklik Tarihi</th>
-                                <th>Düzenle</th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (UserDTO item in UserList)
-                            {
-                                <tr adminId="@item.UId">
-                                    <td>
-                                        <span id="spnId">@item.UId</span>
-                                    </td>
-                                    <td>
-                                        <span id="spnFirstName">@item.FirstName</span>
-                                    </td>
-                                    <td>
-                                        <span id="spnLastName">@item.LastName</span>
-                                    </td>
-                                    <td>
-                                        <span id="spnUserName">@item.UserName</span>
-                                    </td>
-                                    <td>
-                                        <span id="spnPhone">@item.Phone</span>
-                                    </td>
-                                    <td>
-                                        <span id="spnEmail">@item.Email</span>
-                                    </td>
-                                    <td>
-                                        <span id="spnPassword">@item.Password</span>
-                                    </td>
-                                    <td>
-                                        @{
-                                            if (item.IsActive)
-                                            {
-                                                <span id="spnIsActive" class="badge bg-success" isActive="true" value="1">Aktif</span>
-                                            }
-                                            else
-                                            {
-                                                <span id="spnIsActive" class="badge bg-danger" isActive="false" value="0">Pasif</span>
-                                            }
-                                        }
-                                    </td>
-                                    <td>
-                                        <span id="spnCrtdate">@item.CreatedTime!.Value.ToString("d")</span>
 
-                                    </td>
-                                    <td>
-                                        @{
-                                            if (item.ModifiedTime.HasValue)
-                                            {
-                                                <span id="spnMdfdate">@item.ModifiedTime.Value.ToString("d")</span>
-                                            }
-                                            else
-                                            {
-                                                <span id="spnMdfdate"> - </span>
-                                            }
-                                        }
-                                    </td>
-                                    <td>
-                                        <a href="#myedit">
-                                            <img id="imgEdit" class="imgedit" title="Değiştir" src="MyImages/DataTable/Edit.ico" style="width:25px;" adminId="@item.UId" />
-                                        </a>
-                                        <span>&nbsp;&nbsp;</span>
-                                        <a href="#mydelete">
-                                            <img id="imgDelete" class="imgdelete" title="Sil" src="MyImages/DataTable/Delete.ico" style="width:30px;" adminId="@item.UId" />
-                                        </a>
-                                    </td>
-                                </tr>
-                            }
 
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>#ID</th>
-                                <th>Ad</th>
-                                <th>Soyad</th>
-                                <th>Kullanıcı adı</th>
-                                <th>Telefon</th>
-                                <th>Email</th>
-                                <th>Şifre</th>
-                                <th>Aktif/Pasif</th>
-                                <th>Oluşturulma Tarihi</th>
-                                <th>Değişiklik Tarihi</th>
-                                <th>Düzenle</th>
 
-                            </tr>
-                        </tfoot>
-                    </table>
+
+
+
+@*<SpinLoader IsLoading="@_elementIsLoading">
+    <LoadingTemplate>
+    <div class="col-12" style="vertical-align:middle; margin-top:100px">
+    <Chase Center="true" Size="40px" Color="#F44336"></Chase>
+    </div>
+    </LoadingTemplate>
+    <ContentTemplate>
+    <MudDataGrid id=tblUser MultiSelection="true" Items="@UserList" Sortable="true" Filterable="true" QuickFilter="@_quickFilter">
+    <ToolBarContent>
+    <MudText Typo="Typo.h6">Kullanıcılar</MudText>
+    <MudSpacer />
+    <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
+    AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+    </ToolBarContent>
+    <Columns>
+    <Column T="UserDTO" Field="UId" Title="ID" />
+    <Column T="UserDTO" Field="FirstName" />
+    <Column T="UserDTO" Field="LastName" />
+    <Column T="UserDTO" Field="UserName" />
+    <Column T="UserDTO" Field="Phone" />
+    </Columns>
+    <PagerContent>
+    <MudDataGridPager T="UserDTO" />
+    </PagerContent>
+    </MudDataGrid>
+    </ContentTemplate>
+    </SpinLoader>*@
+
+@*using mud blazor grid*@
+
+    @*//private string? _searchString;
+
+    //private Func<UserDTO, bool> _quickFilter => x =>
+    //{
+    //    if (string.IsNullOrWhiteSpace(_searchString))
+    //        return true;
+
+    //    if (x.FirstName!.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+    //        return true;
+
+    //    if (x.LastName!.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+    //        return true;
+
+    //    if (x.UserName!.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+    //        return true;
+
+    //    if (x.Phone!.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+    //        return true;
+
+
+    //    if ($"{x.UId}".Contains(_searchString))
+    //        return true;
+
+    //    return false;
+    //};*@
+
+
+
+@*// using std datatable*@
+
+@*<table id="tblUsers" class="table table-bordered table-striped " style="width:100%">
+
+    <thead>
+    <tr>
+    <th>#ID</th>
+    <th>Ad</th>
+    <th>Soyad</th>
+    <th>Kullanıcı adı</th>
+    <th>Telefon</th>
+    <th>Email</th>
+    <th>Şifre</th>
+    <th>Aktif/Pasif</th>
+    <th>Oluşturulma Tarihi</th>
+    <th>Değişiklik Tarihi</th>
+    <th>Düzenle</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (UserDTO item in UserList)
+    {
+    <tr adminId="@item.UId">
+    <td>
+    <span id="spnId">@item.UId</span>
+    </td>
+    <td>
+    <span id="spnFirstName">@item.FirstName</span>
+    </td>
+    <td>
+    <span id="spnLastName">@item.LastName</span>
+    </td>
+    <td>
+    <span id="spnUserName">@item.UserName</span>
+    </td>
+    <td>
+    <span id="spnPhone">@item.Phone</span>
+    </td>
+    <td>
+    <span id="spnEmail">@item.Email</span>
+    </td>
+    <td>
+    <span id="spnPassword">@item.Password</span>
+    </td>
+    <td>
+    @{
+    if (item.IsActive)
+    {
+    <span id="spnIsActive" class="badge bg-success" isActive="true" value="1">Aktif</span>
+    }
+    else
+    {
+    <span id="spnIsActive" class="badge bg-danger" isActive="false" value="0">Pasif</span>
+    }
+    }
+    </td>
+    <td>
+    <span id="spnCrtdate">@item.CreatedTime!.Value.ToString("d")</span>
+
+    </td>
+    <td>
+    @{
+    if (item.ModifiedTime.HasValue)
+    {
+    <span id="spnMdfdate">@item.ModifiedTime.Value.ToString("d")</span>
+    }
+    else
+    {
+    <span id="spnMdfdate"> - </span>
+    }
+    }
+    </td>
+    <td>
+    <a href="#myedit">
+    <img id="imgEdit" class="imgedit" title="Değiştir" src="MyImages/DataTable/Edit.ico" style="width:25px;" adminId="@item.UId" />
+    </a>
+    <span>&nbsp;&nbsp;</span>
+    <a href="#mydelete">
+    <img id="imgDelete" class="imgdelete" title="Sil" src="MyImages/DataTable/Delete.ico" style="width:30px;" adminId="@item.UId" />
+    </a>
+    </td>
+    </tr>
+    }
+
+    </tbody>
+    <tfoot>
+    <tr>
+    <th>#ID</th>
+    <th>Ad</th>
+    <th>Soyad</th>
+    <th>Kullanıcı adı</th>
+    <th>Telefon</th>
+    <th>Email</th>
+    <th>Şifre</th>
+    <th>Aktif/Pasif</th>
+    <th>Oluşturulma Tarihi</th>
+    <th>Değişiklik Tarihi</th>
+    <th>Düzenle</th>
+
+    </tr>
+    </tfoot>
+    </table>*@
+
+
+
+
+
+
+
+

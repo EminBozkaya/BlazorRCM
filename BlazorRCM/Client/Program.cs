@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.VisualStudio.Web.BrowserLink;
 using MudBlazor.Services;
+using Syncfusion.Blazor;
+using System.Globalization;
+using BlazorRCM.Client.Shared;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -16,6 +19,14 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddMudServices();
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddSweetAlert2();
+
+builder.Services.AddSyncfusionBlazor(options => { options.IgnoreScriptIsolation = true; });
+// Register the Syncfusion locale service to customize the  SyncfusionBlazor component locale culture
+builder.Services.AddSingleton(typeof(ISyncfusionStringLocalizer), typeof(SyncfusionLocalizer));
+
+// Set the default culture of the application
+CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("tr");
+CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("tr");
 
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();

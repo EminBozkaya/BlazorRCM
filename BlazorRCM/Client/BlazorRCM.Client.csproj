@@ -16,6 +16,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.1" PrivateAssets="all" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
     <PackageReference Include="MudBlazor" Version="6.0.7" />
+    <PackageReference Include="Syncfusion.Blazor.Buttons" Version="19.4.0.56" />
+    <PackageReference Include="Syncfusion.Blazor.DropDowns" Version="19.4.0.56" />
+    <PackageReference Include="Syncfusion.Blazor.Grid" Version="19.4.0.56" />
+    <PackageReference Include="Syncfusion.Blazor.Layouts" Version="19.4.0.56" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,4 +34,30 @@
     <Folder Include="CustomComponents\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\SfResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\SfResources.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+	
+	
+	
+	<!--<ItemGroup>
+		<Compile Update="Resources\SfResources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>SfResources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\SfResources.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>SfResources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>-->
+	
 </Project>
