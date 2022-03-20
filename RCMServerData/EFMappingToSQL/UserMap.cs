@@ -62,8 +62,7 @@ namespace RCMServerData.EFMappingToSQL
 
             builder.Property(x => x.CreatedTime)
                 .HasColumnName("CreatedTime")
-                .HasColumnType("date")
-                .HasDefaultValueSql("current_date");
+                .HasColumnType("date");
 
             builder.Property(x => x.ModifiedTime)
                 .HasColumnName("ModifiedTime")

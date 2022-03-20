@@ -19,7 +19,7 @@ namespace Core.BaseInfrastructure
 
         Task<T> Update(T entity);
 
-        Task Delete(T entity);
+        Task<bool> Delete(T entity);
 
     }
 }

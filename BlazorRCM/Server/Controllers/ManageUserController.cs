@@ -59,5 +59,23 @@ namespace BlazorRCM.Server.Controllers
                 Value = await userService.Create(User)
             };
         }
+
+        [HttpPost("Update")]
+        public async Task<ServiceResponse<UserDTO>> UpdateUser([FromBody] UserDTO User)
+        {
+            return new ServiceResponse<UserDTO>()
+            {
+                Value = await userService.Update(User)
+            };
+        }
+
+        [HttpPost("Delete")]
+        public async Task<ServiceResponse<bool>> DeleteUser([FromBody] UserDTO User)
+        {
+            return new ServiceResponse<bool>()
+            {
+                Value = await userService.Delete(User)
+            };
+        }
     }
 }

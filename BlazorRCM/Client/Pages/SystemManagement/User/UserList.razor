@@ -12,23 +12,71 @@
     </LoadingTemplate>
     <ContentTemplate>
 
-        <SfGrid ID="Grid" @ref="Grid" DataSource="@UserList" Toolbar="@(new List<string>() { "ExcelExport", "CsvExport", "PdfExport","Add", "Edit", "Delete", "Update", "Cancel", "Search"})" AllowExcelExport="true" AllowPdfExport="true" AllowPaging="true" AllowSorting="true" AllowFiltering="true" AllowGrouping="true" AllowTextWrap="true" AllowReordering="true" AllowResizing="true">
-            <GridEvents OnToolbarClick="ToolbarClick" OnActionBegin="ActionBegin" TValue="UserDTO"></GridEvents>
+        @*<SfGrid ID="Grid" @ref="Grid" DataSource="@UserList" *@
+        <SfGrid ID="Grid" @ref="Grid" DataSource="@UserList" 
+
+        Toolbar="@(new List<string>() { "ExcelExport", "PdfExport", "CsvExport", "Add", "Edit", "Delete", "Cancel", "Search"})" 
+            AllowExcelExport="true" AllowPdfExport="true"
+            AllowPaging="true" AllowSorting="true" AllowFiltering="true" AllowGrouping="true" AllowTextWrap="true" AllowReordering="true" AllowResizing="true">
+
+            <GridEvents OnToolbarClick="ToolbarClick" OnActionBegin="ActionBeginHandler" OnActionComplete="ActionCompleteHandler" TValue="UserDTO"></GridEvents>
 
             <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
             <GridPageSettings PageSize="10" PageSizes="true"></GridPageSettings>
-            <GridColumns>
-                <GridColumn IsPrimaryKey="true" Field=@nameof(UserDTO.UId) HeaderText="ID" TextAlign="TextAlign.Right" Width="120"></GridColumn>
-                <GridColumn Field=@nameof(UserDTO.UserName) HeaderText="UserName" TextAlign="TextAlign.Right" Width="120"></GridColumn>
-                <GridColumn Field=@nameof(UserDTO.FirstName) HeaderText="FirstName" TextAlign="TextAlign.Right" Width="120"></GridColumn>
-                <GridColumn Field=@nameof(UserDTO.LastName) HeaderText="LastName" TextAlign="TextAlign.Right" Width="120"></GridColumn>
-                <GridColumn Field=@nameof(UserDTO.Phone) HeaderText="Phone" TextAlign="TextAlign.Right" Width="120"></GridColumn>
 
-                @*<GridColumn Field=@nameof() HeaderText=" Order Date" Format="d" Type="ColumnType.Date" TextAlign="TextAlign.Right" Width="130"></GridColumn>*@
-                @*<GridColumn Field=@nameof(Order.Freight) HeaderText="Freight" Format="C2" TextAlign="TextAlign.Right" Width="120"></GridColumn>*@
-            </GridColumns>
             <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog">
-                <Template>
+            </GridEditSettings>
+
+            <GridColumns>
+                <GridColumn Field=@nameof(UserDTO.UId) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Width="120"></GridColumn>
+                <GridColumn Field=@nameof(UserDTO.FirstName) HeaderText="Ad" TextAlign="TextAlign.Left" Width="120"></GridColumn>
+                <GridColumn Field=@nameof(UserDTO.LastName) HeaderText="Soyad" TextAlign="TextAlign.Left" Width="120"></GridColumn>
+                <GridColumn Field=@nameof(UserDTO.UserName) HeaderText="Kullanıcı Adı" TextAlign="TextAlign.Left" Width="120"></GridColumn>
+                <GridColumn Field=@nameof(UserDTO.Phone) HeaderText="Telefon" TextAlign="TextAlign.Left" Width="120"></GridColumn>
+                <GridColumn Field=@nameof(UserDTO.Email) HeaderText="Email" TextAlign="TextAlign.Left" Width="120"></GridColumn>
+
+                <GridColumn Field=@nameof(UserDTO.Password) HeaderText="Şifre" TextAlign="TextAlign.Left" Width="120"></GridColumn>
+                <GridColumn Field=@nameof(UserDTO.IsActive) HeaderText="Statü" TextAlign="TextAlign.Left" Width="120" >
+                    @*<Template>
+                                @{
+                                    var dto = (context as UserDTO);
+                                    if (dto!.IsActive == true)
+                                    {
+                                        <span>Aktif</span>
+                                        //<MudChip Variant="Variant.Outlined" Color="Color.Success">Aktif</MudChip>
+                                    }
+                                    else
+                                    {
+                                        <span>Pasif</span>
+                                        //<MudChip Variant="Variant.Outlined" Color="Color.Error">Pasif</MudChip>
+                                    }
+                                }
+                            </Template>*@
+                            </GridColumn>
+
+                <GridColumn Field=@nameof(UserDTO.CreatedTime) HeaderText="Oluşturulma Tarihi" TextAlign="TextAlign.Left" Format="d" AllowEditing="false" AllowAdding="false" Type="Syncfusion.Blazor.Grids.ColumnType.Date" Width="120"></GridColumn>
+
+                <GridColumn Field=@nameof(UserDTO.ModifiedTime) HeaderText="Değiştirilme Tarihi" TextAlign="TextAlign.Left" Format="d" AllowEditing="false" AllowAdding="false" Type="Syncfusion.Blazor.Grids.ColumnType.Date" Width="120"></GridColumn>
+
+            </GridColumns>
+            
+        </SfGrid>
+
+    </ContentTemplate>
+</SpinLoader>
+
+@code {
+    //private Boolean Check = false;
+    //private DialogSettings DialogParams = new DialogSettings { MinHeight = "400px", Width = "450px" };
+
+    //------------------------------syncfusion------------------------------------
+    
+    
+
+    
+}
+
+@*<Template>
                     @{
                         var DTO = (context as UserDTO);
                     }
@@ -70,42 +118,9 @@
                             <div class="form-group col-md-6">
                                 <SfCheckBox ID="IsActive" @bind-Value="@(DTO.IsActive)" @bind-Checked="true">Aktif/Pasif:</SfCheckBox>
                             </div>
-                        </div>*@
+                        </div>
                     </div>
-                </Template>
-            </GridEditSettings>
-        </SfGrid>
-
-    </ContentTemplate>
-</SpinLoader>
-
-@code {
-    //private Boolean Check = false;
-    //private DialogSettings DialogParams = new DialogSettings { MinHeight = "400px", Width = "450px" };
-
-    //------------------------------syncfusion------------------------------------
-    
-    SfGrid<UserDTO>? Grid;
-    public void ToolbarClick(Syncfusion.Blazor.Navigations.ClickEventArgs args)
-    {
-        if (args.Item.Id == "Grid_pdfexport")
-        {
-            this.Grid!.PdfExport();
-        }
-        if (args.Item.Id == "Grid_excelexport")
-        {
-            this.Grid!.ExcelExport();
-        }
-        if (args.Item.Id == "Grid_csvexport")
-        {
-            this.Grid!.CsvExport();
-        }
-    }
-
-    
-}
-
-
+                </Template>*@
 
 
 

@@ -10,18 +10,18 @@ using Syncfusion.Blazor.Grids;
 
 namespace BlazorRCM.Client.Pages.SystemManagement.User
 {
-    public class UserListProcess: ComponentBase
+    public class UserListProcess : ComponentBase
     {
 
 
         [Inject]
         public HttpClient? Client { get; set; }
 
-        protected List<UserDTO> UserList = new ();
+        protected List<UserDTO> UserList = new();
         //protected bool _processing = true;
         //protected string visibility = "invisible";
         protected bool _elementIsLoading = true;
-        
+
         [Inject]
         public SweetAlertService? Sw { get; set; }
 
@@ -32,9 +32,11 @@ namespace BlazorRCM.Client.Pages.SystemManagement.User
         [Inject]
         SweetAlertService? Swal { get; set; }
 
+        protected SfGrid<UserDTO>? Grid;
+        protected Syncfusion.Blazor.Navigations.ClickEventArgs? clickevent;
         protected async override Task OnInitializedAsync()
         {
-            
+
             await LoadList();
             //await JSRuntime!.InvokeAsync<object>("TestDataTablesAdd", ".mud-table-root");
 
@@ -45,7 +47,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.User
         {
             try
             {
-                await Task.Delay(2000);
+                //await Task.Delay(2000);
 
                 UserList = await Client!.GetServiceResponseAsync<List<UserDTO>>("api/ManageUser/users", true);
 
@@ -67,41 +69,135 @@ namespace BlazorRCM.Client.Pages.SystemManagement.User
 
         }
 
-        public async Task ActionBegin(ActionEventArgs<UserDTO> args)
+        public async Task ActionBeginHandler(ActionEventArgs<UserDTO> args)
         {
             if (args.RequestType == Syncfusion.Blazor.Grids.Action.Save)
             {
                 UserDTO newdto = args.Data;
-                try
+
+                if (args.Action == "Add")
                 {
-                    await Task.Delay(2000);
-                    newdto = await Client!.PostGetServiceResponseAsync<UserDTO, UserDTO>("api/ManageUser/Create", newdto, true);
-                    await Swal!.FireAsync("Başarılı", "Yeni kayıt başarıyla oluşturuldu", "success");
+                    try
+                    {
+                        newdto.CreatedTime= DateTime.Now;
+                        newdto = await Client!.PostGetServiceResponseAsync<UserDTO, UserDTO>("api/ManageUser/Create", newdto, true);
+                    }
+                    catch (ApiException ex)
+                    {
+                        args.Cancel = true;
+                        await Grid!.CloseEdit();
+                        await Swal!.FireAsync("Api Exception", ex.Message, "error");
+                    }
+                    catch (Exception ex)
+                    {
+                        args.Cancel = true;
+                        await Grid!.CloseEdit();
+                        await Swal!.FireAsync("Exception", ex.Message, "error");
+                    }
                 }
-                catch (ApiException ex)
+                else 
                 {
-                    await Swal!.FireAsync("Api Exception", ex.Message, "error");
+                    try
+                    {
+                        newdto.ModifiedTime = DateTime.Now;
+                        newdto = await Client!.PostGetServiceResponseAsync<UserDTO, UserDTO>("api/ManageUser/Update", newdto, true);
+                    }
+                    catch (ApiException ex)
+                    {
+                        args.Cancel = true;
+                        await Grid!.CloseEdit();
+                        await Swal!.FireAsync("Api Exception", ex.Message, "error");
+                    }
+                    catch (Exception ex)
+                    {
+                        args.Cancel = true;
+                        await Grid!.CloseEdit();
+                        await Swal!.FireAsync("Exception", ex.Message, "error");
+                    }
                 }
-                catch (Exception ex)
-                {
-                    await Swal!.FireAsync("Exception", ex.Message, "error");
-                }
-
-
-                //from here you can call the AddMethod of you database.            
-                // UserBuildingRepository.AddUserBuilding(args.Data);
-
-
-
-                //args.Cancel = true;
-                //await Grid!.CloseEdit(); // cancel the editing
+                
             }
-            else if (args.RequestType == Syncfusion.Blazor.Grids.Action.Delete)
+            if (args.RequestType == Syncfusion.Blazor.Grids.Action.Delete)
             {
+                SweetAlertResult result = await Swal!.FireAsync(new SweetAlertOptions
+                {
+                    Title = "DİKKAT",
+                    Text = "Emin misiniz, Sildiğiniz takdirde işlemi geri alamazsınız!",
+                    Icon = SweetAlertIcon.Warning,
+                    ShowCancelButton = true,
+                    ConfirmButtonColor= "#3085d6",
+                    CancelButtonColor= "#d33",
+                    ConfirmButtonText = "Evet sil!",
+                    CancelButtonText = "Vazgeç"
+                });
 
-                if(args.Data.UserName=="no")
+                if (!string.IsNullOrEmpty(result.Value))
+                {
+                    UserDTO dto = args.Data;
+                    if (dto == null) await Swal.FireAsync(null, "Silmek için kayıt seçmelisiniz!", "danger");
+                    else
+                    {
+                        try
+                        {
+                            bool deleted = await Client!.PostGetServiceResponseAsync<bool, UserDTO>("api/ManageUser/Delete", dto, true);
+                        }
+                        catch (ApiException ex)
+                        {
+                            args.Cancel = true;
+                            await Grid!.CloseEdit();
+                            await Swal!.FireAsync("Api Exception", ex.Message, "error");
+                        }
+                        catch (Exception ex)
+                        {
+                            args.Cancel = true;
+                            await Grid!.CloseEdit();
+                            await Swal!.FireAsync("Exception", ex.Message, "error");
+                        }
+                    }
+                }
+                else if (result.Dismiss == DismissReason.Cancel)
+                {
+                    args.Cancel = true;
+                }
+            }
+        }
+
+        public async Task ActionCompleteHandler(ActionEventArgs<UserDTO> args)
+        {
+            if (args.RequestType.Equals(Syncfusion.Blazor.Grids.Action.Save))
+            {
+                if (args.Action == "Add") await Swal!.FireAsync("Başarılı", "Yeni kayıt başarıyla oluşturuldu", "success");
+                else await Swal!.FireAsync("Başarılı", "Kayıt başarıyla güncelleştirildi", "success");
+
                 args.Cancel = true;
-                //UserBuildingRepository.RemoveUserBuilding(args.Data);
+                await Grid!.CloseEdit();
+                await LoadList();
+            }
+
+            if (args.RequestType.Equals(Syncfusion.Blazor.Grids.Action.Delete))
+            {
+                args.Cancel = true;
+                await Grid!.CloseEdit();
+                await Swal!.FireAsync(
+                                  "İşlem başarılı",
+                                  "Kayıt başarıyla silindi",
+                                  SweetAlertIcon.Success
+                                  );
+            }
+        }
+        public void ToolbarClick(Syncfusion.Blazor.Navigations.ClickEventArgs args)
+        {
+            if (args.Item.Id == "Grid_pdfexport")
+            {
+                this.Grid!.PdfExport();
+            }
+            if (args.Item.Id == "Grid_excelexport")
+            {
+                this.Grid!.ExcelExport();
+            }
+            if (args.Item.Id == "Grid_csvexport")
+            {
+                this.Grid!.CsvExport();
             }
         }
     }

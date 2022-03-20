@@ -156,7 +156,7 @@ namespace Core.BaseService.EF
         }
 
 
-        public async Task Delete(TEntityDTO entity)
+        public async Task<bool> Delete(TEntityDTO entity)
         {
             try
             {
@@ -168,7 +168,9 @@ namespace Core.BaseService.EF
                         ctx.Set<TEntity>().Attach(Entity);
 
                     ctx.Set<TEntity>().Remove(Entity);
-                    await ctx.SaveChangesAsync();
+                    int result = await ctx.SaveChangesAsync();
+
+                    return result > 0;
                 }
             }
 
