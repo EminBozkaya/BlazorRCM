@@ -394,7 +394,7 @@
     <value>Azalan</value>
   </data>
   <data name="FileManager_None" xml:space="preserve">
-     <value>Yok</value>
+    <value>Yok</value>
   </data>
   <data name="FileManager_ViewLargeIcons" xml:space="preserve">
     <value>Büyük ikonlar</value>
@@ -2386,16 +2386,16 @@
     <value>Yazdır</value>
   </data>
   <data name="Grid_Pdfexport" xml:space="preserve">
-    <value>PDF Dışa Aktarma</value>
+    <value>PDF Dışa Aktar</value>
   </data>
   <data name="Grid_Excelexport" xml:space="preserve">
-    <value>Excel Dışa Aktarma</value>
+    <value>Excel Dışa Aktar</value>
   </data>
   <data name="Grid_Wordexport" xml:space="preserve">
     <value>Kelime Dışa Aktarma</value>
   </data>
   <data name="Grid_Csvexport" xml:space="preserve">
-    <value>CSV Dışa Aktarma</value>
+    <value>CSV Dışa Aktar</value>
   </data>
   <data name="Grid_Search" xml:space="preserve">
     <value>Arama</value>
@@ -2419,13 +2419,13 @@
     <value>Silme işlemi için kayıt seçilmedi</value>
   </data>
   <data name="Grid_SaveButton" xml:space="preserve">
-    <value>Kayıt etmek</value>
+    <value>Kaydet</value>
   </data>
   <data name="Grid_OKButton" xml:space="preserve">
     <value>tamam</value>
   </data>
   <data name="Grid_CancelButton" xml:space="preserve">
-    <value>İptal etmek</value>
+    <value>İptal et</value>
   </data>
   <data name="Grid_EditFormTitle" xml:space="preserve">
     <value>Ayrıntıları</value>
@@ -2554,7 +2554,7 @@
     <value>Hiçbir sonuç bulunamadı</value>
   </data>
   <data name="Grid_ClearFilter" xml:space="preserve">
-    <value>Temiz filtre</value>
+    <value>Filtreyi Temizle</value>
   </data>
   <data name="Grid_NumberFilter" xml:space="preserve">
     <value>Filtre Sayısı</value>
@@ -2978,7 +2978,7 @@
   </data>
   <data name="Tab_CloseButtonTitle" xml:space="preserve">
     <value>Kapat</value>
-</data>
+  </data>
   <data name="PdfViewer" xml:space="preserve">
     <value> PDF Görüntüleyici </value>
   </data>
@@ -4939,7 +4939,7 @@
     <value>internet sayfası düzeni</value>
   </data>
   <data name="DocumentEditorContainer_ToggleBetweenTheInternalClipboardAndSystemClipboard" xml:space="preserve">
-    <value>Dahili pano ile sistem panosu arasında geçiş yapın. &#xD; Tarayıcı güvenlik ilkesi nedeniyle komut dosyası aracılığıyla sistem panosuna erişim reddedildi. Bunun yerine, &#xD; 1. İç panonun bileşen içinde kesmesini, kopyalanmasını ve yapıştırmasını etkinleştirebilirsiniz. &#xD; 2. Kesmek için klavye kısayollarını (Ctrl + X, Ctrl + C ve Ctrl + V) kullanabilirsiniz. , kopyala ve sistem panosu ile yapıştırın.</value>
+    <value>Dahili pano ile sistem panosu arasında geçiş yapın.  Tarayıcı güvenlik ilkesi nedeniyle komut dosyası aracılığıyla sistem panosuna erişim reddedildi. Bunun yerine,  1. İç panonun bileşen içinde kesmesini, kopyalanmasını ve yapıştırmasını etkinleştirebilirsiniz.  2. Kesmek için klavye kısayollarını (Ctrl + X, Ctrl + C ve Ctrl + V) kullanabilirsiniz. , kopyala ve sistem panosu ile yapıştırın.</value>
   </data>
   <data name="DocumentEditorContainer_TextForm" xml:space="preserve">
     <value>Metin Formu</value>

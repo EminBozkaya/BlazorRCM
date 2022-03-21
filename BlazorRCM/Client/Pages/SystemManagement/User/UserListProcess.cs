@@ -7,13 +7,15 @@ using BlazorRCM.Shared.CustomExceptions;
 using CurrieTechnologies.Razor.SweetAlert2;
 using Microsoft.JSInterop;
 using Syncfusion.Blazor.Grids;
+using BlazorRCM.Client.Shared;
+using BlazorRCM.Client.Utils;
+using System.Configuration;
 
 namespace BlazorRCM.Client.Pages.SystemManagement.User
 {
     public class UserListProcess : ComponentBase
     {
-
-
+        
         [Inject]
         public HttpClient? Client { get; set; }
 
@@ -28,11 +30,11 @@ namespace BlazorRCM.Client.Pages.SystemManagement.User
         [Inject]
         IJSRuntime? JSRuntime { get; set; }
 
-
         [Inject]
         SweetAlertService? Swal { get; set; }
 
         protected SfGrid<UserDTO>? Grid;
+
         protected Syncfusion.Blazor.Navigations.ClickEventArgs? clickevent;
         protected async override Task OnInitializedAsync()
         {
@@ -80,6 +82,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.User
                     try
                     {
                         newdto.CreatedTime= DateTime.Now;
+                        newdto.ModifiedTime = DateTime.Now;
                         newdto = await Client!.PostGetServiceResponseAsync<UserDTO, UserDTO>("api/ManageUser/Create", newdto, true);
                     }
                     catch (ApiException ex)
@@ -185,20 +188,118 @@ namespace BlazorRCM.Client.Pages.SystemManagement.User
                                   );
             }
         }
-        public void ToolbarClick(Syncfusion.Blazor.Navigations.ClickEventArgs args)
+
+        public async Task ToolbarClick(Syncfusion.Blazor.Navigations.ClickEventArgs args)
         {
-            if (args.Item.Id == "Grid_pdfexport")
+            SyncfusionExportation<UserDTO> syfExp = new();
+            await syfExp.ToolBarClick(args, this.Grid!);
+            //await SyncfusionExportation<UserDTO>.ToolBarClick(args, this.Grid!);
+        }
+        public void ExcelQueryCellInfoHandler(ExcelQueryCellInfoEventArgs<UserDTO> args)
+        {
+            if (args.Column.Field == "IsActive")
             {
-                this.Grid!.PdfExport();
-            }
-            if (args.Item.Id == "Grid_excelexport")
-            {
-                this.Grid!.ExcelExport();
-            }
-            if (args.Item.Id == "Grid_csvexport")
-            {
-                this.Grid!.CsvExport();
+                //if (args.Data.IsActive==true)
+                //    args.Cell.Value = "Aktif";
+                //else args.Cell.Value = "Pasif";
+
+                //args.Cell.Value = args.Data.IsActive;
+                args.Cell.Value = "hey";
             }
         }
+        public void PdfQueryCellInfoHandler(PdfQueryCellInfoEventArgs<UserDTO> args)
+        {
+            if (args.Column.Field == "IsActive")
+            {
+                if (args.Data.IsActive == true)
+                    args.Cell.Value = "Aktif";
+                else args.Cell.Value = "Pasif";
+                //args.Cell.Value = 'X' ;
+
+            }
+        }
+        //public async Task ToolbarClick(Syncfusion.Blazor.Navigations.ClickEventArgs args)
+        //{
+        //    if (args.Item.Id == "Grid_pdfexport")
+        //    {
+        //        //this.Grid!.PdfExport();
+        //        PdfExportProperties ExportProperties = new PdfExportProperties();
+
+        //        PdfTheme Theme = new PdfTheme();
+
+
+        //        PdfThemeStyle HeaderThemeStyle = new PdfThemeStyle()
+
+        //        {
+
+        //            Font = new PdfGridFont { IsTrueType = true, FontSize = 8, FontFamily = "T1RUTwA..." }, //apply your custom font base64 string to FontFamily
+
+        //            FontColor = "#64FA50",
+
+        //            FontName = "Calibri",
+
+        //            FontSize = 17,
+
+        //            Bold = true,
+
+        //            //Border = HeaderBorder
+
+        //        };
+
+        //        Theme.Header = HeaderThemeStyle;
+
+
+        //        PdfThemeStyle RecordThemeStyle = new PdfThemeStyle()
+
+        //        {
+
+
+        //            Font = new PdfGridFont { IsTrueType = true, FontSize = 8, FontFamily = "T1RUTwALAI..." }, //apply your custom font base64 string to FontFamily
+
+        //            FontColor = "#64FA50",
+
+        //            FontName = "Calibri",
+
+        //            FontSize = 17
+
+
+        //        };
+
+        //        Theme.Record = RecordThemeStyle;
+
+
+        //        PdfThemeStyle CaptionThemeStyle = new PdfThemeStyle()
+
+        //        {
+
+        //            Font = new PdfGridFont { IsTrueType = true, FontSize = 8, FontFamily = "T1RUT...ABQ=" }, //apply your custom font base64 string to FontFamily
+
+        //            FontColor = "#64FA50",
+
+        //            FontName = "Calibri",
+
+        //            FontSize = 17,
+
+        //            Bold = true
+
+
+        //        };
+
+        //        Theme.Caption = CaptionThemeStyle;
+
+
+        //        ExportProperties.Theme = Theme;
+
+        //        await this.Grid!.PdfExport(ExportProperties);
+        //    }
+        //    if (args.Item.Id == "Grid_excelexport")
+        //    {
+        //        await this.Grid!.ExcelExport();
+        //    }
+        //    if (args.Item.Id == "Grid_csvexport")
+        //    {
+        //        await this.Grid!.CsvExport();
+        //    }
+        //}
     }
 }

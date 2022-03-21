@@ -2,7 +2,7 @@
 using Core.BaseInfrastructure;
 using RCMServerData.Models;
 
-namespace BlazorRCM.Server
+namespace BlazorRCM.Server.Infrasructures
 {
     public interface ISupplierRepo : IRepository<SupplierDTO>
 

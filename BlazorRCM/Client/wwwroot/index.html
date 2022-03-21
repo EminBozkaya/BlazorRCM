@@ -20,7 +20,9 @@
     <link id="theme" href="_content/Syncfusion.Blazor.Themes/bootstrap5.css" rel="stylesheet" />
     <script src="_content/Syncfusion.Blazor.Core/scripts/syncfusion-blazor.min.js" type="text/javascript"></script>
     <!--<script src="Content/DataTable/js/jquery.min.js"></script>-->
-
+    <link href="manifest.json" rel="manifest" />
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
 
 
 
@@ -57,27 +59,7 @@
     <script src="_content/CurrieTechnologies.Razor.SweetAlert2/sweetAlert2.min.js"></script>
 
 
-    <!--<script src="MyScripts/site.js"></script>-->
-    <!--<script>
-        function setTheme(themeName) {
-            $(document).ready(function () {
-
-                //add a new css link
-                let newLink = document.createElement("link");
-                newLink.setAttribute("id", "theme");
-                newLink.setAttribute("rel", "stylesheet");
-                newLink.setAttribute("type", "text/css");
-                newLink.setAttribute("href", `css/app-${themeName}.css`);
-
-                //remove the theme from the head tag
-                let head = document.getElementsByTagName("head")[0];
-                head.querySelector("#theme").remove();
-
-                head.appendChild(newLink);
-            })
-        }
-    </script>-->
-
+    
 </body>
 
 </html>

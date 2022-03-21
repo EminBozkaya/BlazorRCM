@@ -1,4 +1,5 @@
-﻿using BlazorRCM.Shared.CustomExceptions;
+﻿using BlazorRCM.Server.Infrasructures;
+using BlazorRCM.Shared.CustomExceptions;
 using BlazorRCM.Shared.DTOs;
 using BlazorRCM.Shared.ResponseModels;
 using Microsoft.AspNetCore.Authorization;
@@ -25,8 +26,6 @@ namespace BlazorRCM.Server.Controllers
             //ServiceResponse<UserLoginResponseDTO> result = new();
             try
             {
-                
-
                 return new ServiceResponse<UserLoginResponseDTO>()
                 {
                     Value = await userService.Login(dto.UserName!, dto.Password!)
@@ -43,7 +42,6 @@ namespace BlazorRCM.Server.Controllers
         
         public async Task<ServiceResponse<List<UserDTO>>> GetUsers()
         {
-            
             return new ServiceResponse<List<UserDTO>>()
             {
                 Value = (await userService.GetAll() as List<UserDTO>)!

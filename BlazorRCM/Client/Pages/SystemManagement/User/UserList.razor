@@ -14,18 +14,29 @@
 
         @*<SfGrid ID="Grid" @ref="Grid" DataSource="@UserList" *@
         <SfGrid ID="Grid" @ref="Grid" DataSource="@UserList" 
-
+        
         Toolbar="@(new List<string>() { "ExcelExport", "PdfExport", "CsvExport", "Add", "Edit", "Delete", "Cancel", "Search"})" 
-            AllowExcelExport="true" AllowPdfExport="true"
-            AllowPaging="true" AllowSorting="true" AllowFiltering="true" AllowGrouping="true" AllowTextWrap="true" AllowReordering="true" AllowResizing="true">
+            AllowExcelExport="true" 
+            AllowPdfExport="true"
+            AllowPaging="true" 
+            AllowSorting="true" 
+            AllowFiltering="true" 
+            AllowGrouping="true" 
+            AllowTextWrap="true" 
+            AllowReordering="true" 
+            AllowResizing="true">
 
-            <GridEvents OnToolbarClick="ToolbarClick" OnActionBegin="ActionBeginHandler" OnActionComplete="ActionCompleteHandler" TValue="UserDTO"></GridEvents>
+            <GridEvents OnToolbarClick="ToolbarClick" OnActionBegin="ActionBeginHandler" OnActionComplete="ActionCompleteHandler" ExcelQueryCellInfoEvent="ExcelQueryCellInfoHandler" PdfQueryCellInfoEvent="PdfQueryCellInfoHandler" TValue="UserDTO"></GridEvents>
+
 
             <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
+
             <GridPageSettings PageSize="10" PageSizes="true"></GridPageSettings>
 
             <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog">
             </GridEditSettings>
+
+
 
             <GridColumns>
                 <GridColumn Field=@nameof(UserDTO.UId) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Width="120"></GridColumn>
@@ -37,21 +48,21 @@
 
                 <GridColumn Field=@nameof(UserDTO.Password) HeaderText="Şifre" TextAlign="TextAlign.Left" Width="120"></GridColumn>
                 <GridColumn Field=@nameof(UserDTO.IsActive) HeaderText="Statü" TextAlign="TextAlign.Left" Width="120" >
-                    @*<Template>
+                    <Template>
                                 @{
                                     var dto = (context as UserDTO);
                                     if (dto!.IsActive == true)
                                     {
-                                        <span>Aktif</span>
-                                        //<MudChip Variant="Variant.Outlined" Color="Color.Success">Aktif</MudChip>
+                                        //<span>Aktif</span>
+                                        <MudChip Variant="Variant.Outlined" Color="Color.Success">Aktif</MudChip>
                                     }
                                     else
                                     {
-                                        <span>Pasif</span>
-                                        //<MudChip Variant="Variant.Outlined" Color="Color.Error">Pasif</MudChip>
+                                        //<span>Pasif</span>
+                                        <MudChip Variant="Variant.Outlined" Color="Color.Error">Pasif</MudChip>
                                     }
                                 }
-                            </Template>*@
+                            </Template>
                             </GridColumn>
 
                 <GridColumn Field=@nameof(UserDTO.CreatedTime) HeaderText="Oluşturulma Tarihi" TextAlign="TextAlign.Left" Format="d" AllowEditing="false" AllowAdding="false" Type="Syncfusion.Blazor.Grids.ColumnType.Date" Width="120"></GridColumn>

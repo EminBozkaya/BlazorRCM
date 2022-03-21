@@ -1,11 +1,13 @@
 using Blazored.LocalStorage;
 using BlazorRCM.Server;
+using BlazorRCM.Server.Infrasructures;
 using BlazorRCM.Server.Services.Business.EF;
 using BlazorRCM.Shared.Extensions;
+using Core.BaseInfrastructure;
+using Core.BaseService.EF;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using RCMServerData.EFContext;
-using System.Configuration;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +21,6 @@ builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddHttpContextAccessor();
 
 #region MyRepos
-
 builder.Services.AddScoped<IAuthorityTypeRepo, EfAuthorityTypeRepo>();
 builder.Services.AddScoped<IBranchRepo, EfBranchRepo>();
 builder.Services.AddScoped<ISupplierRepo, EfSupplierRepo>();
@@ -27,6 +28,8 @@ builder.Services.AddScoped<IUserBranchAuthorityRepo, EfUserBranchAuthorityRepo>(
 builder.Services.AddScoped<IUserRepo, EfUserRepo>();
 
 #endregion
+
+//builder.Services.AddScoped(typeof(ISyncfusionExportation<>), typeof(SyncfusionExportation<>));
 
 builder.Services.AddDbContext<RCMBlazorContext>();
 
