@@ -1,0 +1,6 @@
+-login procedürü derinlemesine kont edilecek
+-yeni kull. oluşturulurken mevcut mu kont. edilecek
+-şifemi unuttum/mail gönderimi
+-Client/server val.
+-try/catch heryere(gerekli olan)
+-logging

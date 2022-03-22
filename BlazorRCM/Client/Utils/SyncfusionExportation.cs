@@ -8,6 +8,7 @@ namespace BlazorRCM.Client.Utils
         where T : class, new()
 
     {
+        //IConfiguration? _configuration;
         //private IConfiguration _configuration;
         //public SyncfusionExportation(IConfiguration configuration)
         //{
@@ -24,21 +25,22 @@ namespace BlazorRCM.Client.Utils
         public async Task ToolBarClick(Syncfusion.Blazor.Navigations.ClickEventArgs args, SfGrid<T> Grid)
 
         {
+
             
             //string fontType = File.ReadAllText(@"E:\RCMblazor\RCM\BlazorRCM\Client\wwwroot\Others\pdfTurkish.txt");
 
             //string fontType = ConfigHelper.AppSetting("CustomSyncfusionExportationFont");
 
             //Configuration _configuration=new Configuration();
-            //string fontType = _configuration!["CustomSyncfusionExportationFont"];
-            //string fontType = "";
+            //string fntType = _configuration!["CustomSyncfusionExportationFont"];
+            //string fontTyp = "";
 
             //Grid = _grid;
 
             if (args.Item.Id == "Grid_pdfexport")
             {
                 //this.Grid!.PdfExport();
-                string fontType = PdfTurkishTxt.txt;
+                string fontType = PdfTurkishTxt.Txt;
                 PdfExportProperties ExportProperties = new PdfExportProperties();
 
                 PdfTheme Theme = new PdfTheme();

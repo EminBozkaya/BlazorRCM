@@ -71,6 +71,13 @@ else
     app.UseHsts();
 }
 
+//ILocalStorageService service = app.Services.GetRequiredService<ILocalStorageService>();
+//LSManager.Configure(service);
+
+//app.Use(<LSManager.Configure(app.Services.GetService<ILocalStorageService>())>);
+//LSManager.Configure(app.Services.GetRequiredService<ILocalStorageService>());
+//LSManager.Configure(app.GetService<ILocalStorageService>());
+
 app.UseHttpsRedirection();
 
 app.UseBlazorFrameworkFiles();

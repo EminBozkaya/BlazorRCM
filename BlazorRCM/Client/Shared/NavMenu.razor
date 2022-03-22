@@ -81,7 +81,7 @@
 
     protected async override Task OnInitializedAsync()
     {
-        var result = await LocalStorageService!.GetItemAsStringAsync("fullname");
+        var result = await LocalStorageService!.GetItemAsStringAsync("Fullname");
         if(result!=null)
         _logingUserName = result.ToString()!.Replace('"', ' ').Trim();
     }
