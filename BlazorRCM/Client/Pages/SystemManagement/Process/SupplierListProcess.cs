@@ -1,28 +1,19 @@
 ﻿using BlazorRCM.Shared.DTOs;
-using BlazorRCM.Shared.ResponseModels;
 using BlazorRCM.Shared.Extensions;
 using Microsoft.AspNetCore.Components;
-using System.Net.Http.Json;
 using BlazorRCM.Shared.CustomExceptions;
 using CurrieTechnologies.Razor.SweetAlert2;
 using Microsoft.JSInterop;
 using Syncfusion.Blazor.Grids;
-using BlazorRCM.Client.Shared;
 using BlazorRCM.Client.Utils;
-using System.Configuration;
 
-namespace BlazorRCM.Client.Pages.SystemManagement.User
+namespace BlazorRCM.Client.Pages.SystemManagement.Process
 {
-    public class UserListProcess : ComponentBase
+    public class SupplierListProcess : ComponentBase
     {
         
         [Inject]
         public HttpClient? Client { get; set; }
-
-        protected List<UserDTO> UserList = new();
-        //protected bool _processing = true;
-        //protected string visibility = "invisible";
-        protected bool _elementIsLoading = true;
 
         [Inject]
         public SweetAlertService? Sw { get; set; }
@@ -33,13 +24,41 @@ namespace BlazorRCM.Client.Pages.SystemManagement.User
         [Inject]
         SweetAlertService? Swal { get; set; }
 
-        protected SfGrid<UserDTO>? Grid;
 
+        //protected AddNewSupplierDTO AddNewSupplierDTO = new();
+        //protected List<BranchDTO> BranchList = new();
+        //protected List<AuthorityTypeDTO> AuthorityTypeList = new();
+        protected List<SupplierDTO> SupplierList = new();
+
+
+        protected bool _elementIsLoading = true;
+        protected SfGrid<SupplierDTO>? Grid;
+        protected DialogSettings DialogParams = new DialogSettings { MinHeight = "400px", Width = "750px" };
         protected Syncfusion.Blazor.Navigations.ClickEventArgs? clickevent;
+
+        //public List<ExpandoObject> Suppliers { get; set; } = new List<ExpandoObject>();
         protected async override Task OnInitializedAsync()
         {
 
             await LoadList();
+
+            //AddNewSupplierDTO.SupplierDTOList = SupplierList;
+            //AddNewSupplierDTO.BranchDTOList = BranchList;
+            //AddNewSupplierDTO.AuthorityTypeDTOList = AuthorityTypeList;
+
+            //Suppliers = Enumerable.Range(1, SupplierList.Count()).Select((x) => 
+            //{
+            //    dynamic d = new ExpandoObject();
+            //    dynamic Supplier = new ExpandoObject();
+            //    dynamic branch = new ExpandoObject();
+            //    dynamic authorityType = new ExpandoObject();
+
+                
+            //    return d;
+            //}).Cast<ExpandoObject>().ToList<ExpandoObject>();
+
+
+
             //await JSRuntime!.InvokeAsync<object>("TestDataTablesAdd", ".mud-table-root");
 
             //StateHasChanged();
@@ -51,7 +70,9 @@ namespace BlazorRCM.Client.Pages.SystemManagement.User
             {
                 //await Task.Delay(2000);
 
-                UserList = await Client!.GetServiceResponseAsync<List<UserDTO>>("api/ManageUser/users", true);
+                SupplierList = await Client!.GetServiceResponseAsync<List<SupplierDTO>>("api/ManageSupplier/GetList", true);
+                //BranchList = await Client!.GetServiceResponseAsync<List<BranchDTO>>("api/ManageBranch/Branches", true);
+                //AuthorityTypeList = await Client!.GetServiceResponseAsync<List<AuthorityTypeDTO>>("api/ManageAuthorityType/AuthorityTypes", true);
 
             }
             catch (ApiException ex)
@@ -71,19 +92,27 @@ namespace BlazorRCM.Client.Pages.SystemManagement.User
 
         }
 
-        public async Task ActionBeginHandler(ActionEventArgs<UserDTO> args)
+        public async Task ActionBeginHandler(ActionEventArgs<SupplierDTO> args)
         {
+            //if (args.RequestType == Syncfusion.Blazor.Grids.Action.BeginEdit || args.RequestType == Syncfusion.Blazor.Grids.Action.Add)
+            //{
+            //    await Grid!.ShowColumns("Statü");
+            //}
+
             if (args.RequestType == Syncfusion.Blazor.Grids.Action.Save)
             {
-                UserDTO newdto = args.Data;
+                SupplierDTO newdto = args.Data;
+                newdto.ModifiedTime = DateTime.Now;
+
+                if (newdto.Phone!.Length == 10) newdto.Phone = "90" + newdto.Phone;
+                if (newdto.Phone!.Length == 11) newdto.Phone = "9" + newdto.Phone;
 
                 if (args.Action == "Add")
                 {
                     try
                     {
-                        newdto.CreatedTime= DateTime.Now;
-                        newdto.ModifiedTime = DateTime.Now;
-                        newdto = await Client!.PostGetServiceResponseAsync<UserDTO, UserDTO>("api/ManageUser/Create", newdto, true);
+                        
+                        newdto = await Client!.PostGetServiceResponseAsync<SupplierDTO, SupplierDTO>("api/ManageSupplier/Create", newdto, true);
                     }
                     catch (ApiException ex)
                     {
@@ -102,8 +131,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.User
                 {
                     try
                     {
-                        newdto.ModifiedTime = DateTime.Now;
-                        newdto = await Client!.PostGetServiceResponseAsync<UserDTO, UserDTO>("api/ManageUser/Update", newdto, true);
+                        newdto = await Client!.PostGetServiceResponseAsync<SupplierDTO, SupplierDTO>("api/ManageSupplier/Update", newdto, true);
                     }
                     catch (ApiException ex)
                     {
@@ -136,13 +164,13 @@ namespace BlazorRCM.Client.Pages.SystemManagement.User
 
                 if (!string.IsNullOrEmpty(result.Value))
                 {
-                    UserDTO dto = args.Data;
+                    SupplierDTO dto = args.Data;
                     if (dto == null) await Swal.FireAsync(null, "Silmek için kayıt seçmelisiniz!", "danger");
                     else
                     {
                         try
                         {
-                            bool deleted = await Client!.PostGetServiceResponseAsync<bool, UserDTO>("api/ManageUser/Delete", dto, true);
+                            bool deleted = await Client!.PostGetServiceResponseAsync<bool, SupplierDTO>("api/ManageSupplier/Delete", dto, true);
                         }
                         catch (ApiException ex)
                         {
@@ -165,13 +193,16 @@ namespace BlazorRCM.Client.Pages.SystemManagement.User
             }
         }
 
-        public async Task ActionCompleteHandler(ActionEventArgs<UserDTO> args)
+        public async Task ActionCompleteHandler(ActionEventArgs<SupplierDTO> args)
         {
+            
+
             if (args.RequestType.Equals(Syncfusion.Blazor.Grids.Action.Save))
             {
                 if (args.Action == "Add") await Swal!.FireAsync("Başarılı", "Yeni kayıt başarıyla oluşturuldu", "success");
                 else await Swal!.FireAsync("Başarılı", "Kayıt başarıyla güncelleştirildi", "success");
 
+                //await Grid!.HideColumns("Statü");
                 args.Cancel = true;
                 await Grid!.CloseEdit();
                 await LoadList();
@@ -179,6 +210,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.User
 
             if (args.RequestType.Equals(Syncfusion.Blazor.Grids.Action.Delete))
             {
+                //await Grid!.HideColumns("Statü");
                 args.Cancel = true;
                 await Grid!.CloseEdit();
                 await Swal!.FireAsync(
@@ -187,119 +219,42 @@ namespace BlazorRCM.Client.Pages.SystemManagement.User
                                   SweetAlertIcon.Success
                                   );
             }
+
+            //if (args.RequestType.Equals(Syncfusion.Blazor.Grids.Action.Cancel)) await Grid!.HideColumns("Statü");
+
         }
 
         public async Task ToolbarClick(Syncfusion.Blazor.Navigations.ClickEventArgs args)
         {
-            SyncfusionExportation<UserDTO> syfExp = new();
+            
+            SyncfusionExportation<SupplierDTO> syfExp = new();
             await syfExp.ToolBarClick(args, this.Grid!);
-            //await SyncfusionExportation<UserDTO>.ToolBarClick(args, this.Grid!);
         }
-        public void ExcelQueryCellInfoHandler(ExcelQueryCellInfoEventArgs<UserDTO> args)
-        {
-            if (args.Column.Field == "IsActive")
-            {
-                //if (args.Data.IsActive==true)
-                //    args.Cell.Value = "Aktif";
-                //else args.Cell.Value = "Pasif";
 
-                //args.Cell.Value = args.Data.IsActive;
-                args.Cell.Value = "hey";
-            }
-        }
-        public void PdfQueryCellInfoHandler(PdfQueryCellInfoEventArgs<UserDTO> args)
+        //public void OnCommandClicked(CommandClickEventArgs<SupplierDTO> args)
+        //{
+        //    if (args.CommandColumn.Type == CommandButtonType.Edit)
+        //    {
+        //        //show your edit dialog here while clicking command buttons to perform edit operation 
+        //    }
+        //}
+        public void ExcelQueryCellInfoHandler(ExcelQueryCellInfoEventArgs<SupplierDTO> args)
         {
             if (args.Column.Field == "IsActive")
             {
                 if (args.Data.IsActive == true)
                     args.Cell.Value = "Aktif";
                 else args.Cell.Value = "Pasif";
-                //args.Cell.Value = 'X' ;
-
             }
         }
-        //public async Task ToolbarClick(Syncfusion.Blazor.Navigations.ClickEventArgs args)
-        //{
-        //    if (args.Item.Id == "Grid_pdfexport")
-        //    {
-        //        //this.Grid!.PdfExport();
-        //        PdfExportProperties ExportProperties = new PdfExportProperties();
-
-        //        PdfTheme Theme = new PdfTheme();
-
-
-        //        PdfThemeStyle HeaderThemeStyle = new PdfThemeStyle()
-
-        //        {
-
-        //            Font = new PdfGridFont { IsTrueType = true, FontSize = 8, FontFamily = "T1RUTwA..." }, //apply your custom font base64 string to FontFamily
-
-        //            FontColor = "#64FA50",
-
-        //            FontName = "Calibri",
-
-        //            FontSize = 17,
-
-        //            Bold = true,
-
-        //            //Border = HeaderBorder
-
-        //        };
-
-        //        Theme.Header = HeaderThemeStyle;
-
-
-        //        PdfThemeStyle RecordThemeStyle = new PdfThemeStyle()
-
-        //        {
-
-
-        //            Font = new PdfGridFont { IsTrueType = true, FontSize = 8, FontFamily = "T1RUTwALAI..." }, //apply your custom font base64 string to FontFamily
-
-        //            FontColor = "#64FA50",
-
-        //            FontName = "Calibri",
-
-        //            FontSize = 17
-
-
-        //        };
-
-        //        Theme.Record = RecordThemeStyle;
-
-
-        //        PdfThemeStyle CaptionThemeStyle = new PdfThemeStyle()
-
-        //        {
-
-        //            Font = new PdfGridFont { IsTrueType = true, FontSize = 8, FontFamily = "T1RUT...ABQ=" }, //apply your custom font base64 string to FontFamily
-
-        //            FontColor = "#64FA50",
-
-        //            FontName = "Calibri",
-
-        //            FontSize = 17,
-
-        //            Bold = true
-
-
-        //        };
-
-        //        Theme.Caption = CaptionThemeStyle;
-
-
-        //        ExportProperties.Theme = Theme;
-
-        //        await this.Grid!.PdfExport(ExportProperties);
-        //    }
-        //    if (args.Item.Id == "Grid_excelexport")
-        //    {
-        //        await this.Grid!.ExcelExport();
-        //    }
-        //    if (args.Item.Id == "Grid_csvexport")
-        //    {
-        //        await this.Grid!.CsvExport();
-        //    }
-        //}
+        public void PdfQueryCellInfoHandler(PdfQueryCellInfoEventArgs<SupplierDTO> args)
+        {
+            if (args.Column.Field == "IsActive")
+            {
+                if (args.Data.IsActive == true)
+                    args.Cell.Value = "Aktif";
+                else args.Cell.Value = "Pasif";
+            }
+        }
     }
 }

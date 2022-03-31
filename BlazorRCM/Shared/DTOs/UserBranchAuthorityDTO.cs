@@ -13,7 +13,6 @@ namespace BlazorRCM.Shared.DTOs
         public int UId { get; set; }
         public short BId { get; set; }
         public short ATId { get; set; }
-        public bool IsActive { get; set; }
         public string? UserFullName { get; set; }
         public string? BranchName { get; set; }
         public string? AuthorityType { get; set; }

@@ -11,6 +11,7 @@ using Syncfusion.Blazor;
 using System.Globalization;
 using BlazorRCM.Client.Shared;
 
+Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjAwNzYzQDMxMzkyZTM0MmUzMGdJb002aVRNbU0zRkNiaithUFF6azFyU2VvYVZWK1FXekNlcjJlYzl0MjA9");
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");

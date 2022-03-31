@@ -26,6 +26,8 @@ namespace RCMServerData.EFMappingToSQL
                 .HasColumnName("Type")
                 .HasColumnType("varchar")
                 .HasMaxLength(20);
+
+            
         }
     }
 }

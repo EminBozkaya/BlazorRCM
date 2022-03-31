@@ -22,7 +22,7 @@ namespace RCMServerData.Models
             //this.EmployeeRollCalls = new HashSet<EmployeeRollCall>();
             //this.ExpenseFlows = new HashSet<ExpenseFlow>();
             //this.Sales = new HashSet<Sale>();
-            this.Suppliers = new HashSet<Supplier>();
+            this.BranchSuppliers = new HashSet<BranchSupplier>();
             //this.SupplierMoneyFlows = new HashSet<SupplierMoneyFlow>();
             this.UserBranchAuthorities = new HashSet<UserBranchAuthority>();
         }
@@ -50,7 +50,7 @@ namespace RCMServerData.Models
         //public virtual ICollection<EmployeeRollCall> EmployeeRollCalls { get; set; }
         //public virtual ICollection<ExpenseFlow> ExpenseFlows { get; set; }
         //public virtual ICollection<Sale> Sales { get; set; }
-        public virtual ICollection<Supplier> Suppliers { get; set; }
+        public virtual ICollection<BranchSupplier> BranchSuppliers { get; set; }
         //public virtual ICollection<SupplierMoneyFlow> SupplierMoneyFlows { get; set; }
         public virtual ICollection<UserBranchAuthority> UserBranchAuthorities { get; set; }
     }

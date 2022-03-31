@@ -14,7 +14,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.2" />
     <PackageReference Include="MudBlazor" Version="6.0.7" />
     <PackageReference Include="Syncfusion.Blazor.Buttons" Version="19.4.0.56" />
     <PackageReference Include="Syncfusion.Blazor.DropDowns" Version="19.4.0.56" />
@@ -32,6 +38,7 @@
 
   <ItemGroup>
     <Folder Include="CustomComponents\" />
+    <Folder Include="Pages\UserManagement\" />
   </ItemGroup>
 
   <ItemGroup>

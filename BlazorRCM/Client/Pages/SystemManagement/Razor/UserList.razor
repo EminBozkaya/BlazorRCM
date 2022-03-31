@@ -1,8 +1,6 @@
 ﻿@page "/userlist"
-@inherits UserListProcess
+@inherits BlazorRCM.Client.Pages.SystemManagement.Process.UserListProcess
 
-@using System.Net.Http.Json
-@using BlazorRCM.Shared.DTOs
 
 <SpinLoader IsLoading="@_elementIsLoading">
     <LoadingTemplate>
@@ -13,64 +11,120 @@
     <ContentTemplate>
 
         @*<SfGrid ID="Grid" @ref="Grid" DataSource="@UserList" *@
-        <SfGrid ID="Grid" @ref="Grid" DataSource="@UserList" 
-        
-        Toolbar="@(new List<string>() { "ExcelExport", "PdfExport", "CsvExport", "Add", "Edit", "Delete", "Cancel", "Search"})" 
-            AllowExcelExport="true" 
-            AllowPdfExport="true"
-            AllowPaging="true" 
-            AllowSorting="true" 
-            AllowFiltering="true" 
-            AllowGrouping="true" 
-            AllowTextWrap="true" 
-            AllowReordering="true" 
-            AllowResizing="true">
+        <SfGrid ID="Grid" @ref="Grid" DataSource="@UserList"
+                Toolbar="@(new List<string>() { "ExcelExport", "PdfExport", "CsvExport", "Add", "Edit", "Delete", "Cancel", "Search"})"
+                AllowExcelExport="true"
+                AllowPdfExport="true"
+                AllowPaging="true"
+                AllowSorting="true"
+                AllowFiltering="true"
+                AllowGrouping="true"
+                AllowTextWrap="true"
+                AllowReordering="true"
+                AllowResizing="true">
 
-            <GridEvents OnToolbarClick="ToolbarClick" OnActionBegin="ActionBeginHandler" OnActionComplete="ActionCompleteHandler" ExcelQueryCellInfoEvent="ExcelQueryCellInfoHandler" PdfQueryCellInfoEvent="PdfQueryCellInfoHandler" TValue="UserDTO"></GridEvents>
+            <GridEvents  OnToolbarClick="ToolbarClick" OnActionBegin="ActionBeginHandler" OnActionComplete="ActionCompleteHandler" ExcelQueryCellInfoEvent="ExcelQueryCellInfoHandler" PdfQueryCellInfoEvent="PdfQueryCellInfoHandler" TValue="UserDTO"></GridEvents>
 
 
             <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
 
             <GridPageSettings PageSize="10" PageSizes="true"></GridPageSettings>
 
-            <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog">
+            <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog" Dialog="DialogParams">
+                @*<Template>
+                    @{
+                        var DTO = (context as UserDTO);
+                    }
+                    <div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <SfTextBox ID="FirstName" @bind-Value="@(DTO!.FirstName)" FloatLabelType="FloatLabelType.Always" Placeholder="Ad"></SfTextBox>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <SfTextBox ID="LastName" @bind-Value="@(DTO.LastName)" FloatLabelType="FloatLabelType.Always" Placeholder="Soyad"></SfTextBox>
+
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <SfTextBox ID="UserName" @bind-Value="@(DTO.UserName)" FloatLabelType="FloatLabelType.Always" Placeholder="Kullanıcı Adı"></SfTextBox>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <SfTextBox ID="Phone" @bind-Value="@(DTO.Phone)" FloatLabelType="FloatLabelType.Always" Placeholder="Telefon Numarası"></SfTextBox>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            
+                            <div class="form-group col-md-6">
+                                <SfTextBox ID="Email" @bind-Value="@(DTO.Email)" FloatLabelType="FloatLabelType.Always" Placeholder="Mail Adresi"></SfTextBox>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <SfTextBox ID="Password" @bind-Value="@(DTO.Password)" FloatLabelType="FloatLabelType.Always" Placeholder="Şifre"></SfTextBox>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                    <SfAutoComplete TItem="OrdersDetails" ID="CustomerID" @bind-Value="@(Order.CustomerID)" TValue="string" DataSource="@GridData" FloatLabelType="FloatLabelType.Always" Placeholder="Customer Name">
+                                        <AutoCompleteFieldSettings Value="CustomerID"></AutoCompleteFieldSettings>
+                                    </SfAutoComplete>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <SfAutoComplete TItem="OrdersDetails" ID="CustomerID" @bind-Value="@(Order.CustomerID)" TValue="string" DataSource="@GridData" FloatLabelType="FloatLabelType.Always" Placeholder="Customer Name">
+                                        <AutoCompleteFieldSettings Value="CustomerID"></AutoCompleteFieldSettings>
+                                    </SfAutoComplete>
+                                </div>
+                        </div>
+                        
+                    </div>
+                </Template>*@
             </GridEditSettings>
 
 
 
             <GridColumns>
-                <GridColumn Field=@nameof(UserDTO.UId) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Width="120"></GridColumn>
-                <GridColumn Field=@nameof(UserDTO.FirstName) HeaderText="Ad" TextAlign="TextAlign.Left" Width="120"></GridColumn>
-                <GridColumn Field=@nameof(UserDTO.LastName) HeaderText="Soyad" TextAlign="TextAlign.Left" Width="120"></GridColumn>
-                <GridColumn Field=@nameof(UserDTO.UserName) HeaderText="Kullanıcı Adı" TextAlign="TextAlign.Left" Width="120"></GridColumn>
-                <GridColumn Field=@nameof(UserDTO.Phone) HeaderText="Telefon" TextAlign="TextAlign.Left" Width="120"></GridColumn>
-                <GridColumn Field=@nameof(UserDTO.Email) HeaderText="Email" TextAlign="TextAlign.Left" Width="120"></GridColumn>
+                <GridColumn Field=@nameof(UserDTO.UId) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Width="50"></GridColumn>
+                <GridColumn Field=@nameof(UserDTO.FirstName) HeaderText="Ad" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field=@nameof(UserDTO.LastName) HeaderText="Soyad" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field=@nameof(UserDTO.UserName) HeaderText="Kullanıcı Adı" TextAlign="TextAlign.Left" Width="100"></GridColumn>
 
-                <GridColumn Field=@nameof(UserDTO.Password) HeaderText="Şifre" TextAlign="TextAlign.Left" Width="120"></GridColumn>
-                <GridColumn Field=@nameof(UserDTO.IsActive) HeaderText="Statü" TextAlign="TextAlign.Left" Width="120" >
+                <GridColumn Field=@nameof(UserDTO.Password) HeaderText="Şifre" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field=@nameof(UserDTO.Phone) HeaderText="Telefon" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field=@nameof(UserDTO.Email) HeaderText="Email" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field=@nameof(UserDTO.IsActive) HeaderText="Statü" TextAlign="TextAlign.Left" Width="60" DefaultValue="@true">
                     <Template>
-                                @{
-                                    var dto = (context as UserDTO);
-                                    if (dto!.IsActive == true)
-                                    {
-                                        //<span>Aktif</span>
-                                        <MudChip Variant="Variant.Outlined" Color="Color.Success">Aktif</MudChip>
-                                    }
-                                    else
-                                    {
-                                        //<span>Pasif</span>
-                                        <MudChip Variant="Variant.Outlined" Color="Color.Error">Pasif</MudChip>
-                                    }
-                                }
-                            </Template>
-                            </GridColumn>
+                        @{
+                            var dto = (context as UserDTO);
+                            if (dto!.IsActive == true)
+                            {
+                                //<span>Aktif</span>
+                                <MudChip Variant="Variant.Outlined" Color="Color.Success">Aktif</MudChip>
+                            }
+                            else
+                            {
+                                //<span>Pasif</span>
+                                <MudChip Variant="Variant.Outlined" Color="Color.Error">Pasif</MudChip>
+                            }
+                        }
+                    </Template>
+                </GridColumn>
+                <GridColumn Field=@nameof(UserDTO.CreatedTime) HeaderText="Oluşturulma Tarihi" TextAlign="TextAlign.Left" Format="d" AllowEditing="false" AllowAdding="false" Type="Syncfusion.Blazor.Grids.ColumnType.Date" Width="90"></GridColumn>
 
-                <GridColumn Field=@nameof(UserDTO.CreatedTime) HeaderText="Oluşturulma Tarihi" TextAlign="TextAlign.Left" Format="d" AllowEditing="false" AllowAdding="false" Type="Syncfusion.Blazor.Grids.ColumnType.Date" Width="120"></GridColumn>
+                <GridColumn Field=@nameof(UserDTO.ModifiedTime) HeaderText="Değiştirilme Tarihi" TextAlign="TextAlign.Left" Format="d" AllowEditing="false" AllowAdding="false" Type="Syncfusion.Blazor.Grids.ColumnType.Date" Width="90"></GridColumn>
 
-                <GridColumn Field=@nameof(UserDTO.ModifiedTime) HeaderText="Değiştirilme Tarihi" TextAlign="TextAlign.Left" Format="d" AllowEditing="false" AllowAdding="false" Type="Syncfusion.Blazor.Grids.ColumnType.Date" Width="120"></GridColumn>
+                @*<GridColumn HeaderText="Manage Records" Width="120">
+                    <GridCommandColumns>
+                        <GridCommandColumn Type="CommandButtonType.Edit" ButtonOption="@(new CommandButtonOptions() { IconCss = "e-icons e-edit", CssClass = "e-flat" })"></GridCommandColumn>
+                        <GridCommandColumn Type="CommandButtonType.Delete" ButtonOption="@(new CommandButtonOptions() { IconCss = "e-icons e-delete", CssClass = "e-flat" })"></GridCommandColumn>
+                        <GridCommandColumn Type="CommandButtonType.Save" ButtonOption="@(new CommandButtonOptions() { IconCss = "e-icons e-update", CssClass = "e-flat" })"></GridCommandColumn>
+                        <GridCommandColumn Type="CommandButtonType.Cancel" ButtonOption="@(new CommandButtonOptions() { IconCss = "e-icons e-cancel-icon", CssClass = "e-flat" })"></GridCommandColumn>
+                    </GridCommandColumns>
+                </GridColumn>*@
 
             </GridColumns>
             
+
         </SfGrid>
 
     </ContentTemplate>
@@ -81,57 +135,13 @@
     //private DialogSettings DialogParams = new DialogSettings { MinHeight = "400px", Width = "450px" };
 
     //------------------------------syncfusion------------------------------------
-    
-    
 
-    
+
+
+
 }
 
-@*<Template>
-                    @{
-                        var DTO = (context as UserDTO);
-                    }
-                    <div>
-                        
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <SfTextBox ID="FirstName" @bind-Value="@(DTO!.FirstName)" FloatLabelType="FloatLabelType.Always" Placeholder="Adı"></SfTextBox>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <SfTextBox ID="LastName" @bind-Value="@(DTO.LastName)" FloatLabelType="FloatLabelType.Always" Placeholder="Soyadı"></SfTextBox>
-                                
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <SfTextBox ID="UserName" @bind-Value="@(DTO.UserName)" FloatLabelType="FloatLabelType.Always" Placeholder="Kullanıcı Adı"></SfTextBox>
-                            </div>
-                            
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <SfTextBox ID="Phone" @bind-Value="@(DTO.Phone)" FloatLabelType="FloatLabelType.Always" Placeholder="Telefon Numarası"></SfTextBox>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <SfTextBox ID="Email" @bind-Value="@(DTO.Email)" FloatLabelType="FloatLabelType.Always" Placeholder="Mail Adresi"></SfTextBox>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <SfTextBox ID="Password" @bind-Value="@(DTO.Password)" FloatLabelType="FloatLabelType.Always" Placeholder="Şifre"></SfTextBox>
-                            </div>
-                        </div>
-                        @*<div class="form-row">
-                            <div class="form-group col-md-6">
-                                <SfCheckBox ID="IsActive" @bind-Value="@(DTO.IsActive)" @bind-Checked="true">Aktif/Pasif:</SfCheckBox>
-                            </div>
-                        </div>
-                    </div>
-                </Template>*@
+
 
 
 

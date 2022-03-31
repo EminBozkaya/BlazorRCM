@@ -10,8 +10,12 @@ namespace BlazorRCM.Server.Services.Business.EF
     public class EfUserBranchAuthorityRepo : EfRepositoryBase<RCMBlazorContext, UserBranchAuthority, UserBranchAuthorityDTO>, IUserBranchAuthorityRepo
 
     {
-        public EfUserBranchAuthorityRepo(IMapper Mapper) : base(Mapper)
+        private IConfiguration configuration;
+        private IMapper mapper;
+        public EfUserBranchAuthorityRepo(IMapper Mapper, IConfiguration Configuration) : base(Mapper, Configuration)
         {
+            configuration = Configuration;
+            mapper = Mapper;
         }
     }
 }

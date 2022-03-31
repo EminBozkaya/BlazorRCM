@@ -41,11 +41,21 @@ namespace BlazorRCM.Shared.Extensions
             CreateMap<Supplier, SupplierDTO>()
                 .ReverseMap();
 
+            CreateMap<User, UserDTO>()
+            .ReverseMap();
 
             CreateMap<UserBranchAuthority, UserBranchAuthorityDTO>()
-                .ForMember(x => x.UserFullName, y => y.MapFrom(z => z.User!.FirstName + " " + z.User.LastName));
+                //.Include<User, UserDTO>()
+                .ForMember(x => x.UserFullName, y => y.MapFrom(z => z.User!.FirstName + " " + z.User.LastName))
+                .ForMember(x => x.BranchName, y => y.MapFrom(z => z.Branch!.Name))
+                .ForMember(x => x.AuthorityType, y => y.MapFrom(z => z.AuthorityType!.Type));
 
             CreateMap<UserBranchAuthorityDTO, UserBranchAuthority>();
+
+
+            CreateMap<FirmType, FirmTypeDTO>()
+                .ReverseMap();
+            //CreateMap<UserBranchAuthorityDTO, UserBranchAuthority>();
 
 
             //CreateMap<User, UserDTO>()
@@ -54,8 +64,7 @@ namespace BlazorRCM.Shared.Extensions
             //CreateMap<UserDTO, User>()
             //    .ForMember(x => x.Password, y => y.MapFrom(z => PasswordEncrypter.Encrypt(z.Password!)));
 
-            CreateMap<User, UserDTO>()
-            .ReverseMap();
+
 
         }
     }

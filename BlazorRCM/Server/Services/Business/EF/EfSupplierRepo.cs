@@ -10,8 +10,12 @@ namespace BlazorRCM.Server.Services.Business.EF
     public class EfSupplierRepo : EfRepositoryBase<RCMBlazorContext, Supplier, SupplierDTO>, ISupplierRepo
 
     {
-        public EfSupplierRepo(IMapper Mapper) : base(Mapper)
+        private IConfiguration configuration;
+        private IMapper mapper;
+        public EfSupplierRepo(IMapper Mapper, IConfiguration Configuration) : base(Mapper, Configuration)
         {
+            configuration = Configuration;
+            mapper = Mapper;
         }
     }
 }

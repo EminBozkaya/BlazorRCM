@@ -1,0 +1,77 @@
+﻿@page "/branchlist"
+@inherits BlazorRCM.Client.Pages.SystemManagement.Process.BranchListProcess
+
+
+<SpinLoader IsLoading="@_elementIsLoading">
+    <LoadingTemplate>
+        <div class="col-12" style="vertical-align:middle; margin-top:100px">
+            <Chase Center="true" Size="40px" Color="#F44336"></Chase>
+        </div>
+    </LoadingTemplate>
+    <ContentTemplate>
+
+        @*<SfGrid ID="Grid" @ref="Grid" DataSource="@UserList" *@
+        <SfGrid ID="Grid" @ref="Grid" DataSource="@BranchList"
+                Toolbar="@(new List<string>() { "ExcelExport", "PdfExport", "CsvExport", "Add", "Edit", "Delete", "Cancel", "Search"})"
+                AllowExcelExport="true"
+                AllowPdfExport="true"
+                AllowPaging="true"
+                AllowSorting="true"
+                AllowFiltering="true"
+                AllowGrouping="true"
+                AllowTextWrap="true"
+                AllowReordering="true"
+                AllowResizing="true">
+
+            <GridEvents  OnToolbarClick="ToolbarClick" OnActionBegin="ActionBeginHandler" OnActionComplete="ActionCompleteHandler" ExcelQueryCellInfoEvent="ExcelQueryCellInfoHandler" PdfQueryCellInfoEvent="PdfQueryCellInfoHandler" TValue="BranchDTO"></GridEvents>
+
+
+            <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
+
+            <GridPageSettings PageSize="10" PageSizes="true"></GridPageSettings>
+
+            <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog" Dialog="DialogParams">
+            </GridEditSettings>
+
+            <GridColumns>
+                <GridColumn Field=@nameof(BranchDTO.BId) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Width="50"></GridColumn>
+                <GridColumn Field=@nameof(BranchDTO.Name) HeaderText="Şube Adı" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field=@nameof(BranchDTO.Adress) HeaderText="Adres" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                
+                <GridColumn Field=@nameof(BranchDTO.IsActive) HeaderText="Faaliyet" TextAlign="TextAlign.Left" Width="60" DefaultValue="@true">
+                    <Template>
+                        @{
+                            var dto = (context as BranchDTO);
+                            if (dto!.IsActive == true)
+                            {
+                                //<span>Aktif</span>
+                                <MudChip Variant="Variant.Outlined" Color="Color.Success">Aktif</MudChip>
+                            }
+                            else
+                            {
+                                //<span>Pasif</span>
+                                <MudChip Variant="Variant.Outlined" Color="Color.Error">Pasif</MudChip>
+                            }
+                        }
+                    </Template>
+                </GridColumn>
+                <GridColumn Field=@nameof(BranchDTO.CreatedTime) HeaderText="Oluşturulma Tarihi" TextAlign="TextAlign.Left" Format="d" AllowEditing="false" AllowAdding="false" Type="Syncfusion.Blazor.Grids.ColumnType.Date" Width="90"></GridColumn>
+
+                <GridColumn Field=@nameof(BranchDTO.ModifiedTime) HeaderText="Değiştirilme Tarihi" TextAlign="TextAlign.Left" Format="d" AllowEditing="false" AllowAdding="false" Type="Syncfusion.Blazor.Grids.ColumnType.Date" Width="90"></GridColumn>
+
+                @*<GridColumn HeaderText="Manage Records" Width="120">
+                    <GridCommandColumns>
+                        <GridCommandColumn Type="CommandButtonType.Edit" ButtonOption="@(new CommandButtonOptions() { IconCss = "e-icons e-edit", CssClass = "e-flat" })"></GridCommandColumn>
+                        <GridCommandColumn Type="CommandButtonType.Delete" ButtonOption="@(new CommandButtonOptions() { IconCss = "e-icons e-delete", CssClass = "e-flat" })"></GridCommandColumn>
+                        <GridCommandColumn Type="CommandButtonType.Save" ButtonOption="@(new CommandButtonOptions() { IconCss = "e-icons e-update", CssClass = "e-flat" })"></GridCommandColumn>
+                        <GridCommandColumn Type="CommandButtonType.Cancel" ButtonOption="@(new CommandButtonOptions() { IconCss = "e-icons e-cancel-icon", CssClass = "e-flat" })"></GridCommandColumn>
+                    </GridCommandColumns>
+                </GridColumn>*@
+
+            </GridColumns>
+            
+
+        </SfGrid>
+
+    </ContentTemplate>
+</SpinLoader>

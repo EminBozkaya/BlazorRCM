@@ -1,0 +1,328 @@
+﻿@page "/supplierlist"
+@inherits BlazorRCM.Client.Pages.SystemManagement.Process.SupplierListProcess
+
+
+<SpinLoader IsLoading="@_elementIsLoading">
+    <LoadingTemplate>
+        <div class="col-12" style="vertical-align:middle; margin-top:100px">
+            <Chase Center="true" Size="40px" Color="#F44336"></Chase>
+        </div>
+    </LoadingTemplate>
+    <ContentTemplate>
+
+        @*<SfGrid ID="Grid" @ref="Grid" DataSource="@SupplierList" *@
+        <SfGrid ID="Grid" @ref="Grid" DataSource="@SupplierList"
+                Toolbar="@(new List<string>() { "ExcelExport", "PdfExport", "CsvExport", "Add", "Edit", "Delete", "Cancel", "Search"})"
+                AllowExcelExport="true"
+                AllowPdfExport="true"
+                AllowPaging="true"
+                AllowSorting="true"
+                AllowFiltering="true"
+                AllowGrouping="true"
+                AllowTextWrap="true"
+                AllowReordering="true"
+                AllowResizing="true">
+
+            <GridEvents  OnToolbarClick="ToolbarClick" OnActionBegin="ActionBeginHandler" OnActionComplete="ActionCompleteHandler" ExcelQueryCellInfoEvent="ExcelQueryCellInfoHandler" PdfQueryCellInfoEvent="PdfQueryCellInfoHandler" TValue="SupplierDTO"></GridEvents>
+
+
+            <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
+
+            <GridPageSettings PageSize="10" PageSizes="true"></GridPageSettings>
+
+            <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog" Dialog="DialogParams">
+                @*<Template>
+                    @{
+                        var DTO = (context as SupplierDTO);
+                    }
+                    <div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <SfTextBox ID="FirstName" @bind-Value="@(DTO!.FirstName)" FloatLabelType="FloatLabelType.Always" Placeholder="Ad"></SfTextBox>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <SfTextBox ID="LastName" @bind-Value="@(DTO.LastName)" FloatLabelType="FloatLabelType.Always" Placeholder="Soyad"></SfTextBox>
+
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <SfTextBox ID="SupplierName" @bind-Value="@(DTO.SupplierName)" FloatLabelType="FloatLabelType.Always" Placeholder="Kullanıcı Adı"></SfTextBox>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <SfTextBox ID="Phone" @bind-Value="@(DTO.Phone)" FloatLabelType="FloatLabelType.Always" Placeholder="Telefon Numarası"></SfTextBox>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            
+                            <div class="form-group col-md-6">
+                                <SfTextBox ID="Email" @bind-Value="@(DTO.Email)" FloatLabelType="FloatLabelType.Always" Placeholder="Mail Adresi"></SfTextBox>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <SfTextBox ID="Password" @bind-Value="@(DTO.Password)" FloatLabelType="FloatLabelType.Always" Placeholder="Şifre"></SfTextBox>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                    <SfAutoComplete TItem="OrdersDetails" ID="CustomerID" @bind-Value="@(Order.CustomerID)" TValue="string" DataSource="@GridData" FloatLabelType="FloatLabelType.Always" Placeholder="Customer Name">
+                                        <AutoCompleteFieldSettings Value="CustomerID"></AutoCompleteFieldSettings>
+                                    </SfAutoComplete>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <SfAutoComplete TItem="OrdersDetails" ID="CustomerID" @bind-Value="@(Order.CustomerID)" TValue="string" DataSource="@GridData" FloatLabelType="FloatLabelType.Always" Placeholder="Customer Name">
+                                        <AutoCompleteFieldSettings Value="CustomerID"></AutoCompleteFieldSettings>
+                                    </SfAutoComplete>
+                                </div>
+                        </div>
+                        
+                    </div>
+                </Template>*@
+            </GridEditSettings>
+
+
+
+            <GridColumns>
+                <GridColumn Field=@nameof(SupplierDTO.SpId) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Width="50"></GridColumn>
+                <GridColumn Field=@nameof(SupplierDTO.Name) HeaderText="Adı" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field=@nameof(SupplierDTO.CompanyName) HeaderText="Şirket Adı" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field=@nameof(SupplierDTO.Phone) HeaderText="Telefon" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field=@nameof(SupplierDTO.Adress) HeaderText="Adres" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field=@nameof(SupplierDTO.FTId) HeaderText="Firma Tipi" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+
+                <GridColumn Field=@nameof(SupplierDTO.Note) HeaderText="Not" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field=@nameof(SupplierDTO.BId) HeaderText="Çalıştığı Şube" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field=@nameof(SupplierDTO.IsActive) HeaderText="Statü" TextAlign="TextAlign.Left" Width="60" DefaultValue="@true">
+                    <Template>
+                        @{
+                            var dto = (context as SupplierDTO);
+                            if (dto!.IsActive == true)
+                            {
+                                //<span>Aktif</span>
+                                <MudChip Variant="Variant.Outlined" Color="Color.Success">Aktif</MudChip>
+                            }
+                            else
+                            {
+                                //<span>Pasif</span>
+                                <MudChip Variant="Variant.Outlined" Color="Color.Error">Pasif</MudChip>
+                            }
+                        }
+                    </Template>
+                </GridColumn>
+
+                <GridColumn Field=@nameof(SupplierDTO.ModifiedTime) HeaderText="Değiştirilme Tarihi" TextAlign="TextAlign.Left" Format="d" AllowEditing="false" AllowAdding="false" Type="Syncfusion.Blazor.Grids.ColumnType.Date" Width="90"></GridColumn>
+
+                <GridColumn Field=@nameof(SupplierDTO.ModifiedBy) HeaderText="Değişikliği Yapan" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+
+                <GridColumn Field=@nameof(SupplierDTO.CurrentDept) HeaderText="Mevcut Bakiye" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+
+                @*<GridColumn HeaderText="Manage Records" Width="120">
+                    <GridCommandColumns>
+                        <GridCommandColumn Type="CommandButtonType.Edit" ButtonOption="@(new CommandButtonOptions() { IconCss = "e-icons e-edit", CssClass = "e-flat" })"></GridCommandColumn>
+                        <GridCommandColumn Type="CommandButtonType.Delete" ButtonOption="@(new CommandButtonOptions() { IconCss = "e-icons e-delete", CssClass = "e-flat" })"></GridCommandColumn>
+                        <GridCommandColumn Type="CommandButtonType.Save" ButtonOption="@(new CommandButtonOptions() { IconCss = "e-icons e-update", CssClass = "e-flat" })"></GridCommandColumn>
+                        <GridCommandColumn Type="CommandButtonType.Cancel" ButtonOption="@(new CommandButtonOptions() { IconCss = "e-icons e-cancel-icon", CssClass = "e-flat" })"></GridCommandColumn>
+                    </GridCommandColumns>
+                </GridColumn>*@
+
+            </GridColumns>
+            
+
+        </SfGrid>
+
+    </ContentTemplate>
+</SpinLoader>
+
+@code {
+    //private Boolean Check = false;
+    //private DialogSettings DialogParams = new DialogSettings { MinHeight = "400px", Width = "450px" };
+
+    //------------------------------syncfusion------------------------------------
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<SpinLoader IsLoading="@_elementIsLoading">
+    <LoadingTemplate>
+    <div class="col-12" style="vertical-align:middle; margin-top:100px">
+    <Chase Center="true" Size="40px" Color="#F44336"></Chase>
+    </div>
+    </LoadingTemplate>
+    <ContentTemplate>
+    <MudDataGrid id=tblSupplier MultiSelection="true" Items="@SupplierList" Sortable="true" Filterable="true" QuickFilter="@_quickFilter">
+    <ToolBarContent>
+    <MudText Typo="Typo.h6">Kullanıcılar</MudText>
+    <MudSpacer />
+    <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
+    AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+    </ToolBarContent>
+    <Columns>
+    <Column T="SupplierDTO" Field="UId" Title="ID" />
+    <Column T="SupplierDTO" Field="FirstName" />
+    <Column T="SupplierDTO" Field="LastName" />
+    <Column T="SupplierDTO" Field="SupplierName" />
+    <Column T="SupplierDTO" Field="Phone" />
+    </Columns>
+    <PagerContent>
+    <MudDataGridPager T="SupplierDTO" />
+    </PagerContent>
+    </MudDataGrid>
+    </ContentTemplate>
+    </SpinLoader>*@
+
+@*using mud blazor grid*@
+
+    @*//private string? _searchString;
+
+    //private Func<SupplierDTO, bool> _quickFilter => x =>
+    //{
+    //    if (string.IsNullOrWhiteSpace(_searchString))
+    //        return true;
+
+    //    if (x.FirstName!.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+    //        return true;
+
+    //    if (x.LastName!.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+    //        return true;
+
+    //    if (x.SupplierName!.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+    //        return true;
+
+    //    if (x.Phone!.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+    //        return true;
+
+
+    //    if ($"{x.UId}".Contains(_searchString))
+    //        return true;
+
+    //    return false;
+    //};*@
+
+
+
+@*// using std datatable*@
+
+@*<table id="tblSuppliers" class="table table-bordered table-striped " style="width:100%">
+
+    <thead>
+    <tr>
+    <th>#ID</th>
+    <th>Ad</th>
+    <th>Soyad</th>
+    <th>Kullanıcı adı</th>
+    <th>Telefon</th>
+    <th>Email</th>
+    <th>Şifre</th>
+    <th>Aktif/Pasif</th>
+    <th>Oluşturulma Tarihi</th>
+    <th>Değişiklik Tarihi</th>
+    <th>Düzenle</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (SupplierDTO item in SupplierList)
+    {
+    <tr adminId="@item.UId">
+    <td>
+    <span id="spnId">@item.UId</span>
+    </td>
+    <td>
+    <span id="spnFirstName">@item.FirstName</span>
+    </td>
+    <td>
+    <span id="spnLastName">@item.LastName</span>
+    </td>
+    <td>
+    <span id="spnSupplierName">@item.SupplierName</span>
+    </td>
+    <td>
+    <span id="spnPhone">@item.Phone</span>
+    </td>
+    <td>
+    <span id="spnEmail">@item.Email</span>
+    </td>
+    <td>
+    <span id="spnPassword">@item.Password</span>
+    </td>
+    <td>
+    @{
+    if (item.IsActive)
+    {
+    <span id="spnIsActive" class="badge bg-success" isActive="true" value="1">Aktif</span>
+    }
+    else
+    {
+    <span id="spnIsActive" class="badge bg-danger" isActive="false" value="0">Pasif</span>
+    }
+    }
+    </td>
+    <td>
+    <span id="spnCrtdate">@item.CreatedTime!.Value.ToString("d")</span>
+
+    </td>
+    <td>
+    @{
+    if (item.ModifiedTime.HasValue)
+    {
+    <span id="spnMdfdate">@item.ModifiedTime.Value.ToString("d")</span>
+    }
+    else
+    {
+    <span id="spnMdfdate"> - </span>
+    }
+    }
+    </td>
+    <td>
+    <a href="#myedit">
+    <img id="imgEdit" class="imgedit" title="Değiştir" src="MyImages/DataTable/Edit.ico" style="width:25px;" adminId="@item.UId" />
+    </a>
+    <span>&nbsp;&nbsp;</span>
+    <a href="#mydelete">
+    <img id="imgDelete" class="imgdelete" title="Sil" src="MyImages/DataTable/Delete.ico" style="width:30px;" adminId="@item.UId" />
+    </a>
+    </td>
+    </tr>
+    }
+
+    </tbody>
+    <tfoot>
+    <tr>
+    <th>#ID</th>
+    <th>Ad</th>
+    <th>Soyad</th>
+    <th>Kullanıcı adı</th>
+    <th>Telefon</th>
+    <th>Email</th>
+    <th>Şifre</th>
+    <th>Aktif/Pasif</th>
+    <th>Oluşturulma Tarihi</th>
+    <th>Değişiklik Tarihi</th>
+    <th>Düzenle</th>
+
+    </tr>
+    </tfoot>
+    </table>*@
+
+
+
+
+
+
+
+

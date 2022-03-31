@@ -83,6 +83,77 @@ namespace RCMServerData.Migrations
                     b.ToTable("Branch");
                 });
 
+            modelBuilder.Entity("RCMServerData.Models.BranchSupplier", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<int>("Id"));
+
+                    b.Property<short>("BId")
+                        .HasColumnType("smallint")
+                        .HasColumnName("BId");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int")
+                        .HasColumnName("CreatedBy");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("date")
+                        .HasColumnName("CreatedTime")
+                        .HasDefaultValueSql("current_date");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean")
+                        .HasColumnName("IsActive");
+
+                    b.Property<int>("ModifiedBy")
+                        .HasColumnType("int")
+                        .HasColumnName("ModifiedBy");
+
+                    b.Property<DateTime>("ModifiedTime")
+                        .HasColumnType("date")
+                        .HasColumnName("ModifiedTime");
+
+                    b.Property<int>("SpId")
+                        .HasColumnType("int")
+                        .HasColumnName("SpId");
+
+                    b.HasKey("Id")
+                        .HasName("pk_BranchSupplier_id");
+
+                    b.HasIndex("BId");
+
+                    b.HasIndex("ModifiedBy");
+
+                    b.HasIndex("SpId");
+
+                    b.ToTable("BranchSupplier");
+                });
+
+            modelBuilder.Entity("RCMServerData.Models.FirmType", b =>
+                {
+                    b.Property<short>("FTId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("smallint")
+                        .HasColumnName("FTId");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<short>("FTId"));
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar")
+                        .HasColumnName("Name");
+
+                    b.HasKey("FTId")
+                        .HasName("pk_FirmType_id");
+
+                    b.ToTable("FirmType");
+                });
+
             modelBuilder.Entity("RCMServerData.Models.Supplier", b =>
                 {
                     b.Property<int>("SpId")
@@ -97,26 +168,21 @@ namespace RCMServerData.Migrations
                         .HasColumnType("varchar")
                         .HasColumnName("Adress");
 
-                    b.Property<short>("BId")
-                        .HasColumnType("smallint")
-                        .HasColumnName("BId");
-
-                    b.Property<short?>("BranchBId")
-                        .HasColumnType("smallint");
-
                     b.Property<string>("CompanyName")
-                        .HasMaxLength(50)
+                        .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("varchar")
                         .HasColumnName("CompanyName");
 
-                    b.Property<decimal>("CurrentDept")
-                        .HasPrecision(19, 4)
-                        .HasColumnType("numeric(19,4)")
-                        .HasColumnName("CurrentDept");
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int")
+                        .HasColumnName("CreatedBy");
 
-                    b.Property<byte>("FTId")
-                        .HasColumnType("smallint")
-                        .HasColumnName("FTId");
+                    b.Property<DateTime>("CreatedTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("date")
+                        .HasColumnName("CreatedTime")
+                        .HasDefaultValueSql("current_date");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean")
@@ -130,32 +196,63 @@ namespace RCMServerData.Migrations
                         .HasColumnType("date")
                         .HasColumnName("ModifiedTime");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar")
-                        .HasColumnName("Name");
+                    b.HasKey("SpId")
+                        .HasName("pk_Supplier_id");
 
-                    b.Property<string>("Note")
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar")
-                        .HasColumnName("Note");
-
-                    b.Property<string>("Phone")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar")
-                        .HasColumnName("Phone");
-
-                    b.Property<int?>("UserUId")
-                        .HasColumnType("int");
-
-                    b.HasKey("SpId");
-
-                    b.HasIndex("BranchBId");
-
-                    b.HasIndex("UserUId");
+                    b.HasIndex("ModifiedBy");
 
                     b.ToTable("Supplier");
+                });
+
+            modelBuilder.Entity("RCMServerData.Models.SupplierFirmType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int")
+                        .HasColumnName("CreatedBy");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("date")
+                        .HasColumnName("CreatedTime")
+                        .HasDefaultValueSql("current_date");
+
+                    b.Property<short>("FtId")
+                        .HasColumnType("smallint")
+                        .HasColumnName("FtId");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean")
+                        .HasColumnName("IsActive");
+
+                    b.Property<int>("ModifiedBy")
+                        .HasColumnType("int")
+                        .HasColumnName("ModifiedBy");
+
+                    b.Property<DateTime>("ModifiedTime")
+                        .HasColumnType("date")
+                        .HasColumnName("ModifiedTime");
+
+                    b.Property<int>("SpId")
+                        .HasColumnType("int")
+                        .HasColumnName("SpId");
+
+                    b.HasKey("Id")
+                        .HasName("pk_SupplierFirmType_id");
+
+                    b.HasIndex("FtId");
+
+                    b.HasIndex("ModifiedBy");
+
+                    b.HasIndex("SpId");
+
+                    b.ToTable("SupplierFirmType");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.User", b =>
@@ -168,8 +265,10 @@ namespace RCMServerData.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<int>("UId"));
 
                     b.Property<DateTime>("CreatedTime")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("date")
-                        .HasColumnName("CreatedTime");
+                        .HasColumnName("CreatedTime")
+                        .HasDefaultValueSql("current_date");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -205,11 +304,10 @@ namespace RCMServerData.Migrations
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasMaxLength(10)
+                        .HasMaxLength(12)
                         .IsUnicode(false)
-                        .HasColumnType("char(10)")
-                        .HasColumnName("Phone")
-                        .IsFixedLength();
+                        .HasColumnType("char(12)")
+                        .HasColumnName("Phone");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -236,15 +334,9 @@ namespace RCMServerData.Migrations
                         .HasColumnType("smallint")
                         .HasColumnName("ATId");
 
-                    b.Property<short?>("AuthorityTypeATId")
-                        .HasColumnType("smallint");
-
                     b.Property<short>("BId")
                         .HasColumnType("smallint")
                         .HasColumnName("BId");
-
-                    b.Property<short?>("BranchBId")
-                        .HasColumnType("smallint");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean")
@@ -254,32 +346,86 @@ namespace RCMServerData.Migrations
                         .HasColumnType("int")
                         .HasColumnName("UId");
 
-                    b.Property<int?>("UserUId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id")
                         .HasName("pk_UserBranchAuthority_id");
 
-                    b.HasIndex("AuthorityTypeATId");
+                    b.HasIndex("ATId");
 
-                    b.HasIndex("BranchBId");
+                    b.HasIndex("BId");
 
-                    b.HasIndex("UserUId");
+                    b.HasIndex("UId");
 
                     b.ToTable("UserBranchAuthority");
                 });
 
-            modelBuilder.Entity("RCMServerData.Models.Supplier", b =>
+            modelBuilder.Entity("RCMServerData.Models.BranchSupplier", b =>
                 {
                     b.HasOne("RCMServerData.Models.Branch", "Branch")
-                        .WithMany("Suppliers")
-                        .HasForeignKey("BranchBId");
+                        .WithMany("BranchSuppliers")
+                        .HasForeignKey("BId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_BranchSupplier_Branch_BId");
 
                     b.HasOne("RCMServerData.Models.User", "User")
-                        .WithMany("Suppliers")
-                        .HasForeignKey("UserUId");
+                        .WithMany("BranchSuppliers")
+                        .HasForeignKey("ModifiedBy")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_BranchSupplier_User_ModifiedBy");
+
+                    b.HasOne("RCMServerData.Models.Supplier", "Supplier")
+                        .WithMany("BranchSuppliers")
+                        .HasForeignKey("SpId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_BranchSupplier_Supplier_SpId");
 
                     b.Navigation("Branch");
+
+                    b.Navigation("Supplier");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("RCMServerData.Models.Supplier", b =>
+                {
+                    b.HasOne("RCMServerData.Models.User", "User")
+                        .WithMany("Suppliers")
+                        .HasForeignKey("ModifiedBy")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_Supplier_User_ModifiedBy");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("RCMServerData.Models.SupplierFirmType", b =>
+                {
+                    b.HasOne("RCMServerData.Models.FirmType", "FirmType")
+                        .WithMany("SupplierFirmTypes")
+                        .HasForeignKey("FtId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_SupplierFirmType_FirmType_FtId");
+
+                    b.HasOne("RCMServerData.Models.User", "User")
+                        .WithMany("SupplierFirmTypes")
+                        .HasForeignKey("ModifiedBy")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_SupplierFirmType_User_ModifiedBy");
+
+                    b.HasOne("RCMServerData.Models.Supplier", "Supplier")
+                        .WithMany("SupplierFirmTypes")
+                        .HasForeignKey("SpId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_SupplierFirmType_Supplier_SpId");
+
+                    b.Navigation("FirmType");
+
+                    b.Navigation("Supplier");
 
                     b.Navigation("User");
                 });
@@ -288,15 +434,24 @@ namespace RCMServerData.Migrations
                 {
                     b.HasOne("RCMServerData.Models.AuthorityType", "AuthorityType")
                         .WithMany("UserBranchAuthorities")
-                        .HasForeignKey("AuthorityTypeATId");
+                        .HasForeignKey("ATId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_UserBranchAuthoritiy_AuthorityType_ATId");
 
                     b.HasOne("RCMServerData.Models.Branch", "Branch")
                         .WithMany("UserBranchAuthorities")
-                        .HasForeignKey("BranchBId");
+                        .HasForeignKey("BId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_UserBranchAuthoritiy_Branch_BId");
 
                     b.HasOne("RCMServerData.Models.User", "User")
                         .WithMany("UserBranchAuthorities")
-                        .HasForeignKey("UserUId");
+                        .HasForeignKey("UId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_UserBranchAuthoritiy_User_UId");
 
                     b.Navigation("AuthorityType");
 
@@ -312,13 +467,29 @@ namespace RCMServerData.Migrations
 
             modelBuilder.Entity("RCMServerData.Models.Branch", b =>
                 {
-                    b.Navigation("Suppliers");
+                    b.Navigation("BranchSuppliers");
 
                     b.Navigation("UserBranchAuthorities");
                 });
 
+            modelBuilder.Entity("RCMServerData.Models.FirmType", b =>
+                {
+                    b.Navigation("SupplierFirmTypes");
+                });
+
+            modelBuilder.Entity("RCMServerData.Models.Supplier", b =>
+                {
+                    b.Navigation("BranchSuppliers");
+
+                    b.Navigation("SupplierFirmTypes");
+                });
+
             modelBuilder.Entity("RCMServerData.Models.User", b =>
                 {
+                    b.Navigation("BranchSuppliers");
+
+                    b.Navigation("SupplierFirmTypes");
+
                     b.Navigation("Suppliers");
 
                     b.Navigation("UserBranchAuthorities");

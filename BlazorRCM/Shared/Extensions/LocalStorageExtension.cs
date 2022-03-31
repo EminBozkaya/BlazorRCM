@@ -1,4 +1,5 @@
-﻿using Blazored.LocalStorage;
+﻿using AutoMapper;
+using Blazored.LocalStorage;
 using BlazorRCM.Shared.DTOs;
 using RCMServerData.Models;
 using System;
@@ -11,7 +12,27 @@ namespace BlazorRCM.Shared.Extensions
 {
     public static class LocalStorageExtension
     {
-        public async static Task<int> GetUserId(this ILocalStorageService LocalStorage)
+
+        //private static ILocalStorageService? _storageService;
+
+        //public static void Configure(ILocalStorageService localStorageService)
+        //{
+        //    _storageService = localStorageService;
+        //}
+
+
+        //public static String EMail {
+        //    get
+        //    {
+        //        return _storageService!.GetItemAsStringAsync("email").ToString()!;
+        //    }
+        //    set
+        //    {
+        //        _storageService!.SetItemAsync("email",value);
+        //    }
+        //}
+        
+public async static Task<int> GetUserId(this ILocalStorageService LocalStorage)
         {
             return int.Parse(await LocalStorage.GetItemAsStringAsync("activeUserId"));
 

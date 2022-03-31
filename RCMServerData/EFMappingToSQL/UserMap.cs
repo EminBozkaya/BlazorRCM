@@ -38,8 +38,7 @@ namespace RCMServerData.EFMappingToSQL
             builder.Property(x => x.Phone)
                 .HasColumnName("Phone")
                 .HasColumnType("char")
-                .HasMaxLength(10)
-                .IsFixedLength()
+                .HasMaxLength(12)
                 .IsUnicode(false)
                 .IsRequired();
 
@@ -62,11 +61,14 @@ namespace RCMServerData.EFMappingToSQL
 
             builder.Property(x => x.CreatedTime)
                 .HasColumnName("CreatedTime")
-                .HasColumnType("date");
+                .HasColumnType("date")
+                .HasDefaultValueSql("current_date");
 
             builder.Property(x => x.ModifiedTime)
                 .HasColumnName("ModifiedTime")
                 .HasColumnType("date");
+
+
         }
     }
 }

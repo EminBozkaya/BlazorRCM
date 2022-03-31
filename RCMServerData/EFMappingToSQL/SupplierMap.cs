@@ -8,7 +8,8 @@ namespace RCMServerData.EFMappingToSQL
     {
         public void Configure(EntityTypeBuilder<Supplier> builder)
         {
-            builder.HasKey(x => x.SpId);
+            builder.HasKey(x => x.SpId)
+                .HasName("pk_Supplier_id");
 
             builder.Property(x => x.SpId)
                 .HasColumnName("SpId")
@@ -16,46 +17,25 @@ namespace RCMServerData.EFMappingToSQL
                 .ValueGeneratedOnAdd()
                 .UseIdentityAlwaysColumn();
 
-            builder.Property(x => x.BId)
-                .HasColumnName("BId")
-                .HasColumnType("smallint")
-                .IsRequired();
-
-            builder.Property(x => x.Name)
-                .HasColumnName("Name")
+            builder.Property(x => x.CompanyName)
+                .HasColumnName("CompanyName")
                 .HasColumnType("varchar")
-                .HasMaxLength(20)
+                .HasMaxLength(100)
                 .IsRequired();
-
-            builder.Property(x => x.FTId)
-                .HasColumnName("FTId")
-                .HasColumnType("smallint")
-                .IsRequired();
-
-            builder.Property(x => x.CurrentDept)
-                .HasColumnName("CurrentDept")
-                .HasColumnType("decimal")
-                .HasPrecision(19, 4);
 
             builder.Property(x => x.Adress)
                 .HasColumnName("Adress")
                 .HasColumnType("varchar")
                 .HasMaxLength(200);
 
-            builder.Property(x => x.CompanyName)
-                .HasColumnName("CompanyName")
-                .HasColumnType("varchar")
-                .HasMaxLength(50);
+            builder.Property(x => x.CreatedBy)
+                .HasColumnName("CreatedBy")
+                .HasColumnType("int");
 
-            builder.Property(x => x.Phone)
-                .HasColumnName("Phone")
-                .HasColumnType("varchar")
-                .HasMaxLength(50);
-
-            builder.Property(x => x.Note)
-                .HasColumnName("Note")
-                .HasColumnType("varchar")
-                .HasMaxLength(200);
+            builder.Property(x => x.CreatedTime)
+                .HasColumnName("CreatedTime")
+                .HasColumnType("date")
+                .HasDefaultValueSql("current_date");
 
             builder.Property(x => x.ModifiedBy)
                 .HasColumnName("ModifiedBy")
@@ -69,6 +49,23 @@ namespace RCMServerData.EFMappingToSQL
                 .HasColumnName("IsActive")
                 .HasColumnType("boolean")
                 .IsRequired();
+
+
+
+
+            builder
+                .HasOne(e => e.User)
+                .WithMany(e => e.Suppliers)
+                .HasForeignKey(f => f.CreatedBy)
+                .HasConstraintName("FK_Supplier_User_CreatedBy")
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder
+                .HasOne(e => e.User)
+                .WithMany(e => e.Suppliers)
+                .HasForeignKey(f => f.ModifiedBy)
+                .HasConstraintName("FK_Supplier_User_ModifiedBy")
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

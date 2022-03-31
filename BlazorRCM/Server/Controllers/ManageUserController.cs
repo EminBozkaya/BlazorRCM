@@ -12,11 +12,11 @@ namespace BlazorRCM.Server.Controllers
     //[Authorize]
     public class ManageUserController : ControllerBase
     {
-        private readonly IUserRepo userService;
+        private readonly IUserRepo Repo;
 
         public ManageUserController(IUserRepo repo)
         {
-            userService = repo;
+            Repo = repo;
         }
 
         [HttpPost("Login")]
@@ -28,7 +28,7 @@ namespace BlazorRCM.Server.Controllers
             {
                 return new ServiceResponse<UserLoginResponseDTO>()
                 {
-                    Value = await userService.Login(dto.UserName!, dto.Password!)
+                    Value = await Repo.Login(dto.UserName!, dto.Password!)
                 };
             }
             catch (Exception)
@@ -38,41 +38,41 @@ namespace BlazorRCM.Server.Controllers
             
         }
 
-        [HttpGet("Users")]
+        [HttpGet("GetList")]
         
-        public async Task<ServiceResponse<List<UserDTO>>> GetUsers()
+        public async Task<ServiceResponse<List<UserDTO>>> Get()
         {
             return new ServiceResponse<List<UserDTO>>()
             {
-                Value = (await userService.GetAll() as List<UserDTO>)!
+                Value = (await Repo.GetAll() as List<UserDTO>)!
             };
         }
 
 
         [HttpPost("Create")]
-        public async Task<ServiceResponse<UserDTO>> CreateUser([FromBody] UserDTO User)
+        public async Task<ServiceResponse<UserDTO>> Create([FromBody] UserDTO dto)
         {
             return new ServiceResponse<UserDTO>()
             {
-                Value = await userService.Create(User)
+                Value = await Repo.Create(dto)
             };
         }
 
         [HttpPost("Update")]
-        public async Task<ServiceResponse<UserDTO>> UpdateUser([FromBody] UserDTO User)
+        public async Task<ServiceResponse<UserDTO>> Update([FromBody] UserDTO dto)
         {
             return new ServiceResponse<UserDTO>()
             {
-                Value = await userService.Update(User)
+                Value = await Repo.Update(dto)
             };
         }
 
         [HttpPost("Delete")]
-        public async Task<ServiceResponse<bool>> DeleteUser([FromBody] UserDTO User)
+        public async Task<ServiceResponse<bool>> Delete([FromBody] UserDTO dto)
         {
             return new ServiceResponse<bool>()
             {
-                Value = await userService.Delete(User)
+                Value = await Repo.Delete(dto)
             };
         }
     }

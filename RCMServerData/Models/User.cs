@@ -25,6 +25,8 @@ namespace RCMServerData.Models
             this.Suppliers = new HashSet<Supplier>();
             //this.SupplierMoneyFlows = new HashSet<SupplierMoneyFlow>();
             this.UserBranchAuthorities = new HashSet<UserBranchAuthority>();
+            this.BranchSuppliers = new HashSet<BranchSupplier>();
+            this.SupplierFirmTypes = new HashSet<SupplierFirmType>();
         }
 
         public int UId { get; set; }        
@@ -56,5 +58,7 @@ namespace RCMServerData.Models
         public virtual ICollection<Supplier> Suppliers { get; set; }
         //public virtual ICollection<SupplierMoneyFlow> SupplierMoneyFlows { get; set; }
         public virtual ICollection<UserBranchAuthority> UserBranchAuthorities { get; set; }
+        public virtual ICollection<BranchSupplier> BranchSuppliers { get; set; }
+        public virtual ICollection<SupplierFirmType> SupplierFirmTypes { get; set; }
     }
 }

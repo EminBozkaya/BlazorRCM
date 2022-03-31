@@ -42,6 +42,8 @@ namespace RCMServerData.EFMappingToSQL
             builder.Property(x => x.ModifiedTime)
                 .HasColumnName("ModifiedTime")
                 .HasColumnType("date");
+
+           
         }
     }
 }

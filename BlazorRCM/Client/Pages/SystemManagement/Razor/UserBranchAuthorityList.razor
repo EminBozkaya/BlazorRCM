@@ -1,0 +1,78 @@
+﻿@page "/UserBranchAuthoritylist"
+@inherits BlazorRCM.Client.Pages.SystemManagement.Process.UserBranchAuthorityListProcess
+
+
+<SpinLoader IsLoading="@_elementIsLoading">
+    <LoadingTemplate>
+        <div class="col-12" style="vertical-align:middle; margin-top:100px">
+            <Chase Center="true" Size="40px" Color="#F44336"></Chase>
+        </div>
+    </LoadingTemplate>
+    <ContentTemplate>
+
+
+        <SfGrid ID="Grid" @ref="Grid" DataSource="@UserBranchAuthorityList"
+                Toolbar="@(new List<string>() { "ExcelExport", "PdfExport", "CsvExport", "Add", "Edit", "Delete", "Cancel", "Search"})"
+                AllowExcelExport="true"
+                AllowPdfExport="true"
+                AllowPaging="true"
+                AllowSorting="true"
+                AllowFiltering="true"
+                AllowGrouping="true"
+                AllowTextWrap="true"
+                AllowReordering="true"
+                AllowResizing="true">
+
+            <GridEvents OnToolbarClick="ToolbarClick" OnActionBegin="ActionBeginHandler" OnActionComplete="ActionCompleteHandler" TValue="UserBranchAuthorityDTO"></GridEvents>
+            <GridEvents OnToolbarClick="ToolbarClick" OnActionBegin="ActionBeginHandler" OnActionComplete="ActionCompleteHandler" TValue="UserBranchAuthorityDTO"></GridEvents>
+
+
+            <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
+
+            <GridPageSettings PageSize="10" PageSizes="true"></GridPageSettings>
+
+            <GridColumns>
+
+                <GridColumn Field=@nameof(UserBranchAuthorityDTO.UserFullName) HeaderText="Kullanıcı" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field=@nameof(UserBranchAuthorityDTO.BranchName) HeaderText="Yetkili Olduğu Şube" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field=@nameof(UserBranchAuthorityDTO.AuthorityType) HeaderText="Yetki Tipi" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+
+            </GridColumns>
+
+            <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog" Dialog="DialogParams">
+                <Template>
+                    @{
+                        var DTO = (context as UserBranchAuthorityDTO);
+                    }
+                    <div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <SfDropDownList ID="UId" TItem="UserDTO" @bind-Value="@(DTO!.UId)" TValue="int" DataSource="@UserList" FloatLabelType="FloatLabelType.Always" Placeholder="Kullanıcı Seçiniz">
+                                    <DropDownListFieldSettings Value="UId" Text="FullName"></DropDownListFieldSettings>
+                                </SfDropDownList>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <SfDropDownList ID="BId" TItem="BranchDTO" @bind-Value="@(DTO!.BId)" TValue="short" DataSource="@BranchList" FloatLabelType="FloatLabelType.Always" Placeholder="Şube Seçiniz">
+                                    <DropDownListFieldSettings Value="BId" Text="Name"></DropDownListFieldSettings>
+                                </SfDropDownList>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <SfDropDownList ID="ATId" TItem="AuthorityTypeDTO" @bind-Value="@(DTO!.ATId)" TValue="short" DataSource="@AuthorityTypeList" FloatLabelType="FloatLabelType.Always" Placeholder="Yetki Seçiniz">
+                                    <DropDownListFieldSettings Value="ATId" Text="Type"></DropDownListFieldSettings>
+                                </SfDropDownList>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </Template>
+            </GridEditSettings>
+
+        </SfGrid>
+    </ContentTemplate>
+</SpinLoader>

@@ -1,0 +1,42 @@
+﻿@page "/FirmTypelist"
+@inherits BlazorRCM.Client.Pages.SystemManagement.Process.FirmTypeListProcess
+
+
+<SpinLoader IsLoading="@_elementIsLoading">
+    <LoadingTemplate>
+        <div class="col-12" style="vertical-align:middle; margin-top:100px">
+            <Chase Center="true" Size="40px" Color="#F44336"></Chase>
+        </div>
+    </LoadingTemplate>
+    <ContentTemplate>
+
+        <SfGrid ID="Grid" @ref="Grid" DataSource="@FirmTypeList"
+                Toolbar="@(new List<string>() { "ExcelExport", "PdfExport", "CsvExport", "Add", "Edit", "Delete", "Cancel", "Search"})"
+                AllowExcelExport="true"
+                AllowPdfExport="true"
+                AllowPaging="true"
+                AllowSorting="true"
+                AllowFiltering="true"
+                AllowGrouping="true"
+                AllowTextWrap="true"
+                AllowReordering="true"
+                AllowResizing="true">
+
+            <GridEvents  OnToolbarClick="ToolbarClick" OnActionBegin="ActionBeginHandler" OnActionComplete="ActionCompleteHandler" TValue="FirmTypeDTO"></GridEvents>
+
+
+            <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
+
+            <GridPageSettings PageSize="10" PageSizes="true"></GridPageSettings>
+
+            <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog" Dialog="DialogParams">
+            </GridEditSettings>
+
+            <GridColumns>
+                <GridColumn Field=@nameof(FirmTypeDTO.FTId) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Width="50"></GridColumn>
+                <GridColumn Field=@nameof(FirmTypeDTO.Name) HeaderText="Firma Tipi" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                
+            </GridColumns>
+        </SfGrid>
+    </ContentTemplate>
+</SpinLoader>

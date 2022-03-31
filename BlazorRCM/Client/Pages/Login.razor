@@ -69,6 +69,8 @@
                 {
                     await localStorageService!.SetItemAsync("token", res.Value!.ApiToken);
                     await localStorageService.SetItemAsync("email", res.Value.User!.Email);
+                    //LocalStorageExtension.EMail = res.Value.User!.Email!;
+                    //string email = LocalStorageExtension.EMail;
                     await localStorageService.SetItemAsync("fullname", res.Value.User!.FullName);
                     await localStorageService!.SetItemAsync("themeModeSwitch", false);
 

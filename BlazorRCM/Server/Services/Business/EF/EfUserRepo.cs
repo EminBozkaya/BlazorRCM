@@ -18,7 +18,7 @@ namespace BlazorRCM.Server.Services.Business.EF
         private IMapper mapper;
         
 
-        public EfUserRepo(IMapper Mapper, IConfiguration Configuration) : base(Mapper)
+        public EfUserRepo(IMapper Mapper, IConfiguration Configuration) : base(Mapper, Configuration)
         {
             configuration = Configuration;
             mapper = Mapper;

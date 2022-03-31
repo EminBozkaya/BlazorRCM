@@ -1,3 +1,4 @@
+using AutoMapper;
 using Blazored.LocalStorage;
 using BlazorRCM.Server;
 using BlazorRCM.Server.Infrasructures;
@@ -26,6 +27,7 @@ builder.Services.AddScoped<IBranchRepo, EfBranchRepo>();
 builder.Services.AddScoped<ISupplierRepo, EfSupplierRepo>();
 builder.Services.AddScoped<IUserBranchAuthorityRepo, EfUserBranchAuthorityRepo>();
 builder.Services.AddScoped<IUserRepo, EfUserRepo>();
+builder.Services.AddScoped<IFirmTypeRepo, EfFirmTypeRepo>();
 
 #endregion
 
@@ -75,7 +77,13 @@ else
 //LSManager.Configure(service);
 
 //app.Use(<LSManager.Configure(app.Services.GetService<ILocalStorageService>())>);
-//LSManager.Configure(app.Services.GetRequiredService<ILocalStorageService>());
+//using (var scope = app.Services.CreateScope()) 
+//{
+//    var service = scope.ServiceProvider.GetService<ILocalStorageService>();
+//    LocalStorageExtension.Configure(service!);
+//};
+
+//LocalStorageExtension.Configure(app.Services.GetRequiredService<ILocalStorageService>());
 //LSManager.Configure(app.GetService<ILocalStorageService>());
 
 app.UseHttpsRedirection();
