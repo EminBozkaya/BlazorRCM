@@ -1,4 +1,5 @@
-﻿using Core.Model;
+﻿using BlazorRCM.Shared.Extensions;
+using Core.Model;
 using Syncfusion.Blazor.Grids;
 using System.Configuration;
 
@@ -40,6 +41,10 @@ namespace BlazorRCM.Client.Utils
             if (args.Item.Id == "Grid_pdfexport")
             {
                 //this.Grid!.PdfExport();
+                //GetAppsettingsExtension ex = new();
+                
+                //string str = GetAppsettingsExtension.GetConnString;
+
                 string fontType = PdfTurkishTxt.Txt;
                 PdfExportProperties ExportProperties = new PdfExportProperties();
 

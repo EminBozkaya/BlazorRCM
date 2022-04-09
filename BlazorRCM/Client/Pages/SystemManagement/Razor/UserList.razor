@@ -23,7 +23,7 @@
                 AllowReordering="true"
                 AllowResizing="true">
 
-            <GridEvents  OnToolbarClick="ToolbarClick" OnActionBegin="ActionBeginHandler" OnActionComplete="ActionCompleteHandler" ExcelQueryCellInfoEvent="ExcelQueryCellInfoHandler" PdfQueryCellInfoEvent="PdfQueryCellInfoHandler" TValue="UserDTO"></GridEvents>
+            <GridEvents  OnToolbarClick="ToolbarClick" OnActionBegin="ActionBeginHandler" OnActionComplete="ActionCompleteHandler" OnActionFailure="ActionFailureHandler" ExcelQueryCellInfoEvent="ExcelQueryCellInfoHandler" PdfQueryCellInfoEvent="PdfQueryCellInfoHandler" TValue="UserDTO"></GridEvents>
 
 
             <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
@@ -84,7 +84,7 @@
 
 
             <GridColumns>
-                <GridColumn Field=@nameof(UserDTO.UId) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Width="50"></GridColumn>
+                <GridColumn Field=@nameof(UserDTO.Id) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Width="50"></GridColumn>
                 <GridColumn Field=@nameof(UserDTO.FirstName) HeaderText="Ad" TextAlign="TextAlign.Left" Width="100"></GridColumn>
                 <GridColumn Field=@nameof(UserDTO.LastName) HeaderText="Soyad" TextAlign="TextAlign.Left" Width="100"></GridColumn>
                 <GridColumn Field=@nameof(UserDTO.UserName) HeaderText="Kullanıcı Adı" TextAlign="TextAlign.Left" Width="100"></GridColumn>

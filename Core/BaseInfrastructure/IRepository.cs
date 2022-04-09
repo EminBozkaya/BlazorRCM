@@ -17,6 +17,7 @@ namespace Core.BaseInfrastructure
 
         Task<T> Create(T entity);
 
+        //T Update(T entity);
         Task<T> Update(T entity);
 
         Task<bool> Delete(T entity);

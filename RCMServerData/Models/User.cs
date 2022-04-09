@@ -29,7 +29,7 @@ namespace RCMServerData.Models
             this.SupplierFirmTypes = new HashSet<SupplierFirmType>();
         }
 
-        public int UId { get; set; }        
+        public int Id { get; set; }        
         public string? FirstName { get; set; }    
         public string? LastName { get; set; }
         public string? UserName { get; set; }
@@ -38,7 +38,7 @@ namespace RCMServerData.Models
         public string? Password { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedTime { get; set; }
-        public DateTime ModifiedTime { get; set; }
+        public DateTime? ModifiedTime { get; set; }
 
         //public virtual ICollection<BranchCaseType> BranchCaseTypes { get; set; }
         //public virtual ICollection<BranchCaseTypeFlow> BranchCaseTypeFlows { get; set; }
@@ -55,10 +55,10 @@ namespace RCMServerData.Models
 
         //public virtual ICollection<Sale> Sales { get; set; }
         //public virtual ICollection<SaleDetail> SaleDetails { get; set; }
-        public virtual ICollection<Supplier> Suppliers { get; set; }
+        public ICollection<Supplier> Suppliers { get; set; }
         //public virtual ICollection<SupplierMoneyFlow> SupplierMoneyFlows { get; set; }
-        public virtual ICollection<UserBranchAuthority> UserBranchAuthorities { get; set; }
-        public virtual ICollection<BranchSupplier> BranchSuppliers { get; set; }
-        public virtual ICollection<SupplierFirmType> SupplierFirmTypes { get; set; }
+        public ICollection<UserBranchAuthority> UserBranchAuthorities { get; set; }
+        public ICollection<BranchSupplier> BranchSuppliers { get; set; }
+        public ICollection<SupplierFirmType> SupplierFirmTypes { get; set; }
     }
 }

@@ -23,7 +23,7 @@
                 AllowReordering="true"
                 AllowResizing="true">
 
-            <GridEvents  OnToolbarClick="ToolbarClick" OnActionBegin="ActionBeginHandler" OnActionComplete="ActionCompleteHandler" ExcelQueryCellInfoEvent="ExcelQueryCellInfoHandler" PdfQueryCellInfoEvent="PdfQueryCellInfoHandler" TValue="SupplierDTO"></GridEvents>
+            <GridEvents  OnToolbarClick="ToolbarClick" OnActionBegin="ActionBeginHandler" OnActionComplete="ActionCompleteHandler" OnActionFailure="ActionFailureHandler" ExcelQueryCellInfoEvent="ExcelQueryCellInfoHandler" PdfQueryCellInfoEvent="PdfQueryCellInfoHandler" TValue="SupplierDTO"></GridEvents>
 
 
             <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
@@ -84,15 +84,11 @@
 
 
             <GridColumns>
-                <GridColumn Field=@nameof(SupplierDTO.SpId) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Width="50"></GridColumn>
-                <GridColumn Field=@nameof(SupplierDTO.Name) HeaderText="Adı" TextAlign="TextAlign.Left" Width="100"></GridColumn>
+                <GridColumn Field=@nameof(SupplierDTO.Id) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Width="50"></GridColumn>
                 <GridColumn Field=@nameof(SupplierDTO.CompanyName) HeaderText="Şirket Adı" TextAlign="TextAlign.Left" Width="100"></GridColumn>
                 <GridColumn Field=@nameof(SupplierDTO.Phone) HeaderText="Telefon" TextAlign="TextAlign.Left" Width="100"></GridColumn>
                 <GridColumn Field=@nameof(SupplierDTO.Adress) HeaderText="Adres" TextAlign="TextAlign.Left" Width="100"></GridColumn>
-                <GridColumn Field=@nameof(SupplierDTO.FTId) HeaderText="Firma Tipi" TextAlign="TextAlign.Left" Width="100"></GridColumn>
 
-                <GridColumn Field=@nameof(SupplierDTO.Note) HeaderText="Not" TextAlign="TextAlign.Left" Width="100"></GridColumn>
-                <GridColumn Field=@nameof(SupplierDTO.BId) HeaderText="Çalıştığı Şube" TextAlign="TextAlign.Left" Width="100"></GridColumn>
                 <GridColumn Field=@nameof(SupplierDTO.IsActive) HeaderText="Statü" TextAlign="TextAlign.Left" Width="60" DefaultValue="@true">
                     <Template>
                         @{
@@ -111,11 +107,12 @@
                     </Template>
                 </GridColumn>
 
+                <GridColumn Field=@nameof(SupplierDTO.CreatedTime) HeaderText="Oluşturulma Tarihi" TextAlign="TextAlign.Left" Format="d" AllowEditing="false" AllowAdding="false" Type="Syncfusion.Blazor.Grids.ColumnType.Date" Width="90"></GridColumn>
                 <GridColumn Field=@nameof(SupplierDTO.ModifiedTime) HeaderText="Değiştirilme Tarihi" TextAlign="TextAlign.Left" Format="d" AllowEditing="false" AllowAdding="false" Type="Syncfusion.Blazor.Grids.ColumnType.Date" Width="90"></GridColumn>
 
+                <GridColumn Field=@nameof(SupplierDTO.CreatedBy) HeaderText="Oluşturan" TextAlign="TextAlign.Left" Width="100"></GridColumn>
                 <GridColumn Field=@nameof(SupplierDTO.ModifiedBy) HeaderText="Değişikliği Yapan" TextAlign="TextAlign.Left" Width="100"></GridColumn>
 
-                <GridColumn Field=@nameof(SupplierDTO.CurrentDept) HeaderText="Mevcut Bakiye" TextAlign="TextAlign.Left" Width="100"></GridColumn>
 
                 @*<GridColumn HeaderText="Manage Records" Width="120">
                     <GridCommandColumns>

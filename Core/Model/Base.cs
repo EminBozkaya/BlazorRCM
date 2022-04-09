@@ -8,5 +8,6 @@ namespace Core.Model
 {
     public abstract class Base
     {
+        //public abstract int Id { get; set; }
     }
 }

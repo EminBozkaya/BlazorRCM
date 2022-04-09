@@ -6,6 +6,7 @@ using CurrieTechnologies.Razor.SweetAlert2;
 using Microsoft.JSInterop;
 using Syncfusion.Blazor.Grids;
 using BlazorRCM.Client.Utils;
+using Newtonsoft.Json;
 
 namespace BlazorRCM.Client.Pages.SystemManagement.Process
 {
@@ -94,60 +95,67 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
 
         public async Task ActionBeginHandler(ActionEventArgs<UserDTO> args)
         {
-            //if (args.RequestType == Syncfusion.Blazor.Grids.Action.BeginEdit || args.RequestType == Syncfusion.Blazor.Grids.Action.Add)
-            //{
-            //    await Grid!.ShowColumns("Statü");
-            //}
-
             if (args.RequestType == Syncfusion.Blazor.Grids.Action.Save)
             {
                 UserDTO newdto = args.Data;
-                newdto.ModifiedTime = DateTime.Now;
-
-                if (newdto.Phone!.Length == 10) newdto.Phone = "90" + newdto.Phone;
-                if (newdto.Phone!.Length == 11) newdto.Phone = "9" + newdto.Phone;
-
                 if (args.Action == "Add")
                 {
-                    newdto.CreatedTime = DateTime.Now;
                     try
                     {
-                        
                         newdto = await Client!.PostGetServiceResponseAsync<UserDTO, UserDTO>("api/ManageUser/Create", newdto, true);
+
+
+                        args.Cancel = true;
+                        await Grid!.CloseEditAsync();
+                        await Swal!.FireAsync("Başarılı", "Kayıt başarıyla oluşturuldu", "success");
+                        await LoadList();
                     }
                     catch (ApiException ex)
                     {
                         args.Cancel = true;
-                        await Grid!.CloseEdit();
+                        await Grid!.CloseEditAsync();
                         await Swal!.FireAsync("Api Exception", ex.Message, "error");
                     }
                     catch (Exception ex)
                     {
                         args.Cancel = true;
-                        await Grid!.CloseEdit();
+                        await Grid!.CloseEditAsync();
                         await Swal!.FireAsync("Exception", ex.Message, "error");
                     }
+                    finally
+                    {
+                        args.Cancel = true;
+                        await Grid!.CloseEditAsync();
+                    }
                 }
-                else 
+                else
                 {
                     try
                     {
                         newdto = await Client!.PostGetServiceResponseAsync<UserDTO, UserDTO>("api/ManageUser/Update", newdto, true);
+                        args.Cancel = true;
+                        await Grid!.CloseEditAsync();
+                        await Swal!.FireAsync("Başarılı", "Kayıt başarıyla güncellendi", "success");
+                        await LoadList();
                     }
                     catch (ApiException ex)
                     {
                         args.Cancel = true;
-                        await Grid!.CloseEdit();
+                        await Grid!.CloseEditAsync();
                         await Swal!.FireAsync("Api Exception", ex.Message, "error");
                     }
                     catch (Exception ex)
                     {
                         args.Cancel = true;
-                        await Grid!.CloseEdit();
+                        await Grid!.CloseEditAsync();
                         await Swal!.FireAsync("Exception", ex.Message, "error");
                     }
+                    finally
+                    {
+                        args.Cancel = true;
+                        await Grid!.CloseEditAsync();
+                    }
                 }
-                
             }
             if (args.RequestType == Syncfusion.Blazor.Grids.Action.Delete)
             {
@@ -157,8 +165,8 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                     Text = "Emin misiniz, Sildiğiniz takdirde işlemi geri alamazsınız!",
                     Icon = SweetAlertIcon.Warning,
                     ShowCancelButton = true,
-                    ConfirmButtonColor= "#3085d6",
-                    CancelButtonColor= "#d33",
+                    ConfirmButtonColor = "#3085d6",
+                    CancelButtonColor = "#d33",
                     ConfirmButtonText = "Evet sil!",
                     CancelButtonText = "Vazgeç"
                 });
@@ -172,73 +180,77 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                         try
                         {
                             bool deleted = await Client!.PostGetServiceResponseAsync<bool, UserDTO>("api/ManageUser/Delete", dto, true);
+
+                            args.Cancel = true;
+                            await Grid!.CloseEditAsync();
+                            await Swal!.FireAsync(
+                                              "İşlem başarılı",
+                                              "Kayıt silindi",
+                                              SweetAlertIcon.Success
+                                              );
+                            await LoadList();
                         }
                         catch (ApiException ex)
                         {
                             args.Cancel = true;
-                            await Grid!.CloseEdit();
+                            await Grid!.CloseEditAsync();
                             await Swal!.FireAsync("Api Exception", ex.Message, "error");
                         }
                         catch (Exception ex)
                         {
                             args.Cancel = true;
-                            await Grid!.CloseEdit();
+                            await Grid!.CloseEditAsync();
                             await Swal!.FireAsync("Exception", ex.Message, "error");
+                        }
+                        finally
+                        {
+                            args.Cancel = true;
+                            await Grid!.CloseEditAsync();
                         }
                     }
                 }
                 else if (result.Dismiss == DismissReason.Cancel)
                 {
                     args.Cancel = true;
+                    await Grid!.CloseEditAsync();
                 }
             }
         }
-
         public async Task ActionCompleteHandler(ActionEventArgs<UserDTO> args)
         {
-            
-
             if (args.RequestType.Equals(Syncfusion.Blazor.Grids.Action.Save))
             {
-                if (args.Action == "Add") await Swal!.FireAsync("Başarılı", "Yeni kayıt başarıyla oluşturuldu", "success");
-                else await Swal!.FireAsync("Başarılı", "Kayıt başarıyla güncelleştirildi", "success");
+                //if (args.Action == "Add") await Swal!.FireAsync("Başarılı", "Yeni kayıt başarıyla oluşturuldu", "success");
+                //else await Swal!.FireAsync("Başarılı", "Kayıt başarıyla güncelleştirildi", "success");
 
-                //await Grid!.HideColumns("Statü");
                 args.Cancel = true;
-                await Grid!.CloseEdit();
-                await LoadList();
+                await Grid!.CloseEditAsync();
+                //await LoadList();
             }
 
             if (args.RequestType.Equals(Syncfusion.Blazor.Grids.Action.Delete))
             {
-                //await Grid!.HideColumns("Statü");
                 args.Cancel = true;
-                await Grid!.CloseEdit();
-                await Swal!.FireAsync(
-                                  "İşlem başarılı",
-                                  "Kayıt başarıyla silindi",
-                                  SweetAlertIcon.Success
-                                  );
+                await Grid!.CloseEditAsync();
+                //await Swal!.FireAsync(
+                //                  "İşlem başarılı",
+                //                  "Kayıt başarıyla silindi",
+                //                  SweetAlertIcon.Success
+                //                  );
             }
-
-            //if (args.RequestType.Equals(Syncfusion.Blazor.Grids.Action.Cancel)) await Grid!.HideColumns("Statü");
-
         }
-
+        public async Task ActionFailureHandler(FailureEventArgs args)
+        {
+            var s = JsonConvert.DeserializeObject<Dictionary<string, object>>(JsonConvert.SerializeObject(args.Error));  //get details 
+            await Swal!.FireAsync("??", "Tabloda bilinmeyen bir hata oluştu", "error");
+            await LoadList();
+        }
         public async Task ToolbarClick(Syncfusion.Blazor.Navigations.ClickEventArgs args)
         {
-            
+
             SyncfusionExportation<UserDTO> syfExp = new();
             await syfExp.ToolBarClick(args, this.Grid!);
         }
-
-        //public void OnCommandClicked(CommandClickEventArgs<UserDTO> args)
-        //{
-        //    if (args.CommandColumn.Type == CommandButtonType.Edit)
-        //    {
-        //        //show your edit dialog here while clicking command buttons to perform edit operation 
-        //    }
-        //}
         public void ExcelQueryCellInfoHandler(ExcelQueryCellInfoEventArgs<UserDTO> args)
         {
             if (args.Column.Field == "IsActive")

@@ -7,6 +7,7 @@ using BlazorRCM.Shared.Extensions;
 using Core.BaseInfrastructure;
 using Core.BaseService.EF;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using RCMServerData.EFContext;
 using System.Text;
@@ -34,6 +35,11 @@ builder.Services.AddScoped<IFirmTypeRepo, EfFirmTypeRepo>();
 //builder.Services.AddScoped(typeof(ISyncfusionExportation<>), typeof(SyncfusionExportation<>));
 
 builder.Services.AddDbContext<RCMBlazorContext>();
+//builder.Services.AddDbContext<RCMBlazorContext>(config =>
+//{
+//    config.UseNpgsql(builder.Configuration.GetConnectionString("RCMpostgreConnection"));
+//    config.EnableSensitiveDataLogging();
+//});
 
 
 builder.Services.AddAuthentication(opt =>

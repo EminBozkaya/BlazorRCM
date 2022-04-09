@@ -13,6 +13,7 @@ using System.Text;
 namespace BlazorRCM.Server.Services.Business.EF
 {
     public class EfUserRepo : EfRepositoryBase<RCMBlazorContext, User, UserDTO>, IUserRepo
+        
     {
         private IConfiguration configuration;
         private IMapper mapper;
@@ -26,6 +27,11 @@ namespace BlazorRCM.Server.Services.Business.EF
 
         public async Task<UserLoginResponseDTO> Login(string Username, string Password)
         {
+
+            //using(RCMBlazorContext ctx = new())
+            //{
+            //    ctx.Set<User>
+            //}
             // Veritabanı Kullanıcı Doğrulama İşlemleri Yapıldı.
             UserDTO dbUser = new ();
             var encryptedPassword = PasswordEncrypter.Encrypt(Password);

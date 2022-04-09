@@ -23,7 +23,8 @@ namespace BlazorRCM.Server.Controllers
         {
             return new ServiceResponse<List<UserBranchAuthorityDTO>>()
             {
-                Value = (await Repo.GetAll(null,"Users", "Branchs", "AuthorityTypes") as List<UserBranchAuthorityDTO>)!
+                Value = (await Repo.GetAll() as List<UserBranchAuthorityDTO>)!
+                //Value = (await Repo.GetAll(null,"User", "Branch", "AuthorityType") as List<UserBranchAuthorityDTO>)!
             };
         }
 
@@ -58,6 +59,14 @@ namespace BlazorRCM.Server.Controllers
                 Value = await Repo.Update(dto)
             };
         }
+
+        //[HttpPost("Delete")]
+        //public async Task<BaseResponse> Delete([FromBody] UserBranchAuthorityDTO dto)
+        //{
+        //    await Repo.Delete(dto);
+        //    return new BaseResponse();
+        //}
+
 
         [HttpPost("Delete")]
         public async Task<ServiceResponse<bool>> Delete([FromBody] UserBranchAuthorityDTO dto)

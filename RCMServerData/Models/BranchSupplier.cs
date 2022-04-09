@@ -25,12 +25,12 @@ namespace RCMServerData.Models
         public int CreatedBy { get; set; }
         public int ModifiedBy { get; set; }
         public DateTime CreatedTime { get; set; }
-        public DateTime ModifiedTime { get; set; }
+        public DateTime? ModifiedTime { get; set; }
         public bool IsActive { get; set; }
 
-        public virtual Supplier? Supplier { get; set; }        
-        public virtual Branch? Branch { get; set; }
-        public virtual User? User { get; set; }
+        public Supplier? Supplier { get; set; }        
+        public Branch? Branch { get; set; }
+        public User? User { get; set; }
         //public virtual FirmType? FirmType { get; set; }
         //public virtual ICollection<RawMaterialOfSupplier> RawMaterialOfSuppliers { get; set; }
         //public virtual ICollection<SupplierMoneyFlow> SupplierMoneyFlows { get; set; }

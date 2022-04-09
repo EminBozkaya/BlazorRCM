@@ -8,11 +8,11 @@ namespace RCMServerData.EFMappingToSQL
     {
         public void Configure(EntityTypeBuilder<Branch> builder)
         {
-            builder.HasKey(x => x.BId)
+            builder.HasKey(x => x.Id)
                 .HasName("pk_Branch_id");
 
-            builder.Property(x => x.BId)
-                .HasColumnName("BId")
+            builder.Property(x => x.Id)
+                .HasColumnName("Id")
                 .HasColumnType("smallint")
                 .ValueGeneratedOnAdd()
                 .UseIdentityAlwaysColumn();
@@ -42,8 +42,9 @@ namespace RCMServerData.EFMappingToSQL
             builder.Property(x => x.ModifiedTime)
                 .HasColumnName("ModifiedTime")
                 .HasColumnType("date");
+                
 
-           
+
         }
     }
 }

@@ -11,12 +11,12 @@ namespace RCMServerData.EFMappingToSQL
         public void Configure(EntityTypeBuilder<AuthorityType> builder)
         {
 
-            builder.HasKey(x => x.ATId)
+            builder.HasKey(x => x.Id)
                 .HasName("pk_AuthorityType_id");
 
 
-            builder.Property(x => x.ATId)
-                .HasColumnName("ATId")
+            builder.Property(x => x.Id)
+                .HasColumnName("Id")
                 .HasColumnType("smallint")
                 .ValueGeneratedOnAdd()
                 .UseIdentityAlwaysColumn();

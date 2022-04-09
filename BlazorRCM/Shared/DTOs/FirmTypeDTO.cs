@@ -9,7 +9,7 @@ namespace BlazorRCM.Shared.DTOs
 {
     public class FirmTypeDTO : BaseDTO
     {
-        public short FTId { get; set; }
+        public short Id { get; set; }
         public string? Name { get; set; }
     }
 }

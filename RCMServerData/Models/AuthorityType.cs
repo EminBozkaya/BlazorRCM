@@ -11,10 +11,10 @@ namespace RCMServerData.Models
             this.UserBranchAuthorities = new HashSet<UserBranchAuthority>();
         }
 
-        public short ATId { get; set; }
+        public short Id { get; set; }
         public string? Type { get; set; }
         
 
-        public virtual ICollection<UserBranchAuthority> UserBranchAuthorities { get; set; }
+        public ICollection<UserBranchAuthority> UserBranchAuthorities { get; set; }
     }
 }

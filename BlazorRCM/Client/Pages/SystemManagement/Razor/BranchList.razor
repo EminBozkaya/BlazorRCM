@@ -23,7 +23,7 @@
                 AllowReordering="true"
                 AllowResizing="true">
 
-            <GridEvents  OnToolbarClick="ToolbarClick" OnActionBegin="ActionBeginHandler" OnActionComplete="ActionCompleteHandler" ExcelQueryCellInfoEvent="ExcelQueryCellInfoHandler" PdfQueryCellInfoEvent="PdfQueryCellInfoHandler" TValue="BranchDTO"></GridEvents>
+            <GridEvents  OnToolbarClick="ToolbarClick" OnActionBegin="ActionBeginHandler" OnActionComplete="ActionCompleteHandler" OnActionFailure="ActionFailureHandler" ExcelQueryCellInfoEvent="ExcelQueryCellInfoHandler" PdfQueryCellInfoEvent="PdfQueryCellInfoHandler" TValue="BranchDTO"></GridEvents>
 
 
             <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
@@ -34,7 +34,7 @@
             </GridEditSettings>
 
             <GridColumns>
-                <GridColumn Field=@nameof(BranchDTO.BId) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Width="50"></GridColumn>
+                <GridColumn Field=@nameof(BranchDTO.Id) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Width="50"></GridColumn>
                 <GridColumn Field=@nameof(BranchDTO.Name) HeaderText="Şube Adı" TextAlign="TextAlign.Left" Width="100"></GridColumn>
                 <GridColumn Field=@nameof(BranchDTO.Adress) HeaderText="Adres" TextAlign="TextAlign.Left" Width="100"></GridColumn>
                 

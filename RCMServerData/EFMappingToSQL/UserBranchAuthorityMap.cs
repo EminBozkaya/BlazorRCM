@@ -44,24 +44,26 @@ namespace RCMServerData.EFMappingToSQL
                 .HasOne(e => e.User)
                 .WithMany(e => e.UserBranchAuthorities)
                 .HasForeignKey(f => f.UId)
-                .HasConstraintName("FK_UserBranchAuthoritiy_User_UId")
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasConstraintName("FK_UserBranchAuthoritiy_User_UId");
+            //.OnDelete(DeleteBehavior.Cascade);
 
             builder
                 .HasOne(e => e.Branch)
                 .WithMany(e => e.UserBranchAuthorities)
                 .HasForeignKey(f => f.BId)
-                .HasConstraintName("FK_UserBranchAuthoritiy_Branch_BId")
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasConstraintName("FK_UserBranchAuthoritiy_Branch_BId");
+            //.OnDelete(DeleteBehavior.Cascade);
 
             builder
                 .HasOne(e => e.AuthorityType)
                 .WithMany(e => e.UserBranchAuthorities)
-                .HasForeignKey(f=>f.ATId)
-                .HasConstraintName("FK_UserBranchAuthoritiy_AuthorityType_ATId")
-                .OnDelete(DeleteBehavior.Cascade);
-            
-            
+                .HasForeignKey(f => f.ATId)
+                .HasConstraintName("FK_UserBranchAuthoritiy_AuthorityType_ATId");
+            //.OnDelete(DeleteBehavior.Cascade);
+
+            //builder.HasKey(uba => new { uba.UId, uba.BId, uba.ATId });
+
+
 
         }
     }

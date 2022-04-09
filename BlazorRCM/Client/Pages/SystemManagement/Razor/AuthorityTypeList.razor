@@ -22,7 +22,7 @@
                 AllowReordering="true"
                 AllowResizing="true">
 
-            <GridEvents  OnToolbarClick="ToolbarClick" OnActionBegin="ActionBeginHandler" OnActionComplete="ActionCompleteHandler" TValue="AuthorityTypeDTO"></GridEvents>
+            <GridEvents  OnToolbarClick="ToolbarClick" OnActionBegin="ActionBeginHandler" OnActionComplete="ActionCompleteHandler" OnActionFailure="ActionFailureHandler" ExcelQueryCellInfoEvent="ExcelQueryCellInfoHandler" PdfQueryCellInfoEvent="PdfQueryCellInfoHandler" TValue="AuthorityTypeDTO"></GridEvents>
 
 
             <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
@@ -33,7 +33,7 @@
             </GridEditSettings>
 
             <GridColumns>
-                <GridColumn Field=@nameof(AuthorityTypeDTO.ATId) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Width="50"></GridColumn>
+                <GridColumn Field=@nameof(AuthorityTypeDTO.Id) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Width="50"></GridColumn>
                 <GridColumn Field=@nameof(AuthorityTypeDTO.Type) HeaderText="Yetki Tipi" TextAlign="TextAlign.Left" Width="100"></GridColumn>
                 
             </GridColumns>

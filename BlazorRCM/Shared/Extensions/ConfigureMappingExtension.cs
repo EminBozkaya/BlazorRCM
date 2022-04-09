@@ -48,9 +48,14 @@ namespace BlazorRCM.Shared.Extensions
                 //.Include<User, UserDTO>()
                 .ForMember(x => x.UserFullName, y => y.MapFrom(z => z.User!.FirstName + " " + z.User.LastName))
                 .ForMember(x => x.BranchName, y => y.MapFrom(z => z.Branch!.Name))
-                .ForMember(x => x.AuthorityType, y => y.MapFrom(z => z.AuthorityType!.Type));
+                .ForMember(x => x.AuthorityTypeName, y => y.MapFrom(z => z.AuthorityType!.Type));
+            //.ReverseMap();
 
             CreateMap<UserBranchAuthorityDTO, UserBranchAuthority>();
+                //.ForMember(x => x.Id, y => y.MapFrom(z => z.Id))
+                //.ForMember(x => x.UId, y => y.MapFrom(z => z.UId))
+                //.ForMember(x => x.BId, y => y.MapFrom(z => z.BId))
+                //.ForMember(x => x.ATId, y => y.MapFrom(z => z.ATId));
 
 
             CreateMap<FirmType, FirmTypeDTO>()

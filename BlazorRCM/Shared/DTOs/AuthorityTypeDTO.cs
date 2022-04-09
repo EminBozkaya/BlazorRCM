@@ -9,7 +9,7 @@ namespace BlazorRCM.Shared.DTOs
 {
     public class AuthorityTypeDTO : BaseDTO
     {
-        public short ATId { get; set; }
+        public short Id { get; set; }
         public string? Type { get; set; }
     }
 }

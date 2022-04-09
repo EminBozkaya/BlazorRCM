@@ -24,19 +24,19 @@ namespace RCMServerData.Migrations
 
             modelBuilder.Entity("RCMServerData.Models.AuthorityType", b =>
                 {
-                    b.Property<short>("ATId")
+                    b.Property<short>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("smallint")
-                        .HasColumnName("ATId");
+                        .HasColumnName("Id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<short>("ATId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<short>("Id"));
 
                     b.Property<string>("Type")
                         .HasMaxLength(20)
                         .HasColumnType("varchar")
                         .HasColumnName("Type");
 
-                    b.HasKey("ATId")
+                    b.HasKey("Id")
                         .HasName("pk_AuthorityType_id");
 
                     b.ToTable("AuthorityType");
@@ -44,12 +44,12 @@ namespace RCMServerData.Migrations
 
             modelBuilder.Entity("RCMServerData.Models.Branch", b =>
                 {
-                    b.Property<short>("BId")
+                    b.Property<short>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("smallint")
-                        .HasColumnName("BId");
+                        .HasColumnName("Id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<short>("BId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<short>("Id"));
 
                     b.Property<string>("Adress")
                         .IsRequired()
@@ -67,7 +67,7 @@ namespace RCMServerData.Migrations
                         .HasColumnType("boolean")
                         .HasColumnName("IsActive");
 
-                    b.Property<DateTime>("ModifiedTime")
+                    b.Property<DateTime?>("ModifiedTime")
                         .HasColumnType("date")
                         .HasColumnName("ModifiedTime");
 
@@ -77,7 +77,7 @@ namespace RCMServerData.Migrations
                         .HasColumnType("varchar")
                         .HasColumnName("Name");
 
-                    b.HasKey("BId")
+                    b.HasKey("Id")
                         .HasName("pk_Branch_id");
 
                     b.ToTable("Branch");
@@ -114,7 +114,7 @@ namespace RCMServerData.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ModifiedBy");
 
-                    b.Property<DateTime>("ModifiedTime")
+                    b.Property<DateTime?>("ModifiedTime")
                         .HasColumnType("date")
                         .HasColumnName("ModifiedTime");
 
@@ -136,19 +136,19 @@ namespace RCMServerData.Migrations
 
             modelBuilder.Entity("RCMServerData.Models.FirmType", b =>
                 {
-                    b.Property<short>("FTId")
+                    b.Property<short>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("smallint")
-                        .HasColumnName("FTId");
+                        .HasColumnName("Id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<short>("FTId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<short>("Id"));
 
                     b.Property<string>("Name")
                         .HasMaxLength(30)
                         .HasColumnType("varchar")
                         .HasColumnName("Name");
 
-                    b.HasKey("FTId")
+                    b.HasKey("Id")
                         .HasName("pk_FirmType_id");
 
                     b.ToTable("FirmType");
@@ -156,12 +156,12 @@ namespace RCMServerData.Migrations
 
             modelBuilder.Entity("RCMServerData.Models.Supplier", b =>
                 {
-                    b.Property<int>("SpId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("SpId");
+                        .HasColumnName("Id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<int>("SpId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Adress")
                         .HasMaxLength(200)
@@ -192,11 +192,11 @@ namespace RCMServerData.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ModifiedBy");
 
-                    b.Property<DateTime>("ModifiedTime")
+                    b.Property<DateTime?>("ModifiedTime")
                         .HasColumnType("date")
                         .HasColumnName("ModifiedTime");
 
-                    b.HasKey("SpId")
+                    b.HasKey("Id")
                         .HasName("pk_Supplier_id");
 
                     b.HasIndex("ModifiedBy");
@@ -235,7 +235,7 @@ namespace RCMServerData.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ModifiedBy");
 
-                    b.Property<DateTime>("ModifiedTime")
+                    b.Property<DateTime?>("ModifiedTime")
                         .HasColumnType("date")
                         .HasColumnName("ModifiedTime");
 
@@ -257,12 +257,12 @@ namespace RCMServerData.Migrations
 
             modelBuilder.Entity("RCMServerData.Models.User", b =>
                 {
-                    b.Property<int>("UId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("UId");
+                        .HasColumnName("Id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<int>("UId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
@@ -292,7 +292,7 @@ namespace RCMServerData.Migrations
                         .HasColumnType("varchar")
                         .HasColumnName("LastName");
 
-                    b.Property<DateTime>("ModifiedTime")
+                    b.Property<DateTime?>("ModifiedTime")
                         .HasColumnType("date")
                         .HasColumnName("ModifiedTime");
 
@@ -315,7 +315,7 @@ namespace RCMServerData.Migrations
                         .HasColumnType("varchar")
                         .HasColumnName("UserName");
 
-                    b.HasKey("UId")
+                    b.HasKey("Id")
                         .HasName("pk_User_id");
 
                     b.ToTable("User");

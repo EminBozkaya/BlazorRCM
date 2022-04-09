@@ -9,7 +9,7 @@ namespace BlazorRCM.Shared.DTOs
 {
     public class BranchDTO : BaseDTO
     {
-        public short BId { get; set; }
+        public short Id { get; set; }
         public string? Name { get; set; }
         public string? Adress { get; set; }
         public bool IsActive { get; set; }

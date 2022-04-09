@@ -14,7 +14,7 @@ namespace RCMServerData.Models
             //    this.RawMaterialOfSuppliers = new HashSet<RawMaterialOfSupplier>();
         }
 
-        public int SpId { get; set; }
+        public int Id { get; set; }
         //public short BId { get; set; }
         //public string? Name { get; set; }
         //public byte FTId { get; set; }
@@ -26,14 +26,14 @@ namespace RCMServerData.Models
         public int CreatedBy { get; set; }
         public int ModifiedBy { get; set; }
         public DateTime CreatedTime { get; set; }
-        public DateTime ModifiedTime { get; set; }
+        public DateTime? ModifiedTime { get; set; }
         public bool IsActive { get; set; }
 
         //public virtual Branch? Branch { get; set; }
-        public virtual User? User { get; set; }
+        public User? User { get; set; }
         //public virtual FirmType? FirmType { get; set; }
-        public virtual ICollection<BranchSupplier> BranchSuppliers { get; set; }
-        public virtual ICollection<SupplierFirmType> SupplierFirmTypes { get; set; }
+        public ICollection<BranchSupplier> BranchSuppliers { get; set; }
+        public ICollection<SupplierFirmType> SupplierFirmTypes { get; set; }
         //public virtual ICollection<RawMaterialOfSupplier> RawMaterialOfSuppliers { get; set; }
         //public virtual ICollection<SupplierMoneyFlow> SupplierMoneyFlows { get; set; }
     }

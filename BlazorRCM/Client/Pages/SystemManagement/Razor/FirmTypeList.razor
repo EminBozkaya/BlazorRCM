@@ -22,7 +22,7 @@
                 AllowReordering="true"
                 AllowResizing="true">
 
-            <GridEvents  OnToolbarClick="ToolbarClick" OnActionBegin="ActionBeginHandler" OnActionComplete="ActionCompleteHandler" TValue="FirmTypeDTO"></GridEvents>
+            <GridEvents  OnToolbarClick="ToolbarClick" OnActionBegin="ActionBeginHandler" OnActionComplete="ActionCompleteHandler" OnActionFailure="ActionFailureHandler" TValue="FirmTypeDTO"></GridEvents>
 
 
             <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
@@ -33,7 +33,7 @@
             </GridEditSettings>
 
             <GridColumns>
-                <GridColumn Field=@nameof(FirmTypeDTO.FTId) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Width="50"></GridColumn>
+                <GridColumn Field=@nameof(FirmTypeDTO.Id) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Width="50"></GridColumn>
                 <GridColumn Field=@nameof(FirmTypeDTO.Name) HeaderText="Firma Tipi" TextAlign="TextAlign.Left" Width="100"></GridColumn>
                 
             </GridColumns>

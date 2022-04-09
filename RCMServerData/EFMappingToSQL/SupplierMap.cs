@@ -8,11 +8,11 @@ namespace RCMServerData.EFMappingToSQL
     {
         public void Configure(EntityTypeBuilder<Supplier> builder)
         {
-            builder.HasKey(x => x.SpId)
+            builder.HasKey(x => x.Id)
                 .HasName("pk_Supplier_id");
 
-            builder.Property(x => x.SpId)
-                .HasColumnName("SpId")
+            builder.Property(x => x.Id)
+                .HasColumnName("Id")
                 .HasColumnType("int")
                 .ValueGeneratedOnAdd()
                 .UseIdentityAlwaysColumn();

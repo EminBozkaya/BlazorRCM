@@ -11,10 +11,10 @@ namespace RCMServerData.Models
             this.SupplierFirmTypes = new HashSet<SupplierFirmType>();
         }
 
-        public short FTId { get; set; }
+        public short Id { get; set; }
         public string? Name { get; set; }
 
         //public virtual ICollection<Supplier> Suppliers { get; set; }
-        public virtual ICollection<SupplierFirmType> SupplierFirmTypes { get; set; }
+        public ICollection<SupplierFirmType> SupplierFirmTypes { get; set; }
     }
 }
