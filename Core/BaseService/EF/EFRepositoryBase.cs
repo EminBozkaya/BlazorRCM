@@ -31,7 +31,13 @@ namespace Core.BaseService.EF
             {
 
                 using TContext ctx = new TContext();
-                IQueryable<TEntity> query = ctx.Set<TEntity>();
+                var query = ctx.Set<TEntity>().AsQueryable();
+                //DbSet<TEntity>? query = ctx.Set<TEntity>();
+                //IQueryable<TEntity> query = ctx.Set<TEntity>();
+
+                //query.Include("User");
+                //includeList = new[] { "Branch", "AuthorityType" };
+
 
                 //TEntity ety = query.AsEnumerable().FirstOrDefault(x => x.GetType().GetProperty("Id")!.GetValue(x)!.ToString()! == "4")!;
 
@@ -63,7 +69,7 @@ namespace Core.BaseService.EF
                 {
                     for (int i = 0; i < includeList.Length; i++)
                     {
-                        query = query.Include(includeList[i]);
+                        query = query!.Include(includeList[i]);
                     }
                 }
 
@@ -101,7 +107,7 @@ namespace Core.BaseService.EF
             try
             {
                 using TContext ctx = new TContext();
-                //IQueryable<TEntity> query = ctx.Set<TEntity>();
+                var query = ctx.Set<TEntity>().AsQueryable();
 
                 ////IQueryable<TEntityDTO> query = ctx.Set<TEntity>().ProjectTo<TEntityDTO>(mapper.ConfigurationProvider);
 
@@ -127,7 +133,7 @@ namespace Core.BaseService.EF
 
 
 
-                IQueryable<TEntity> query = ctx.Set<TEntity>();
+                //IQueryable<TEntity> query = ctx.Set<TEntity>();
 
 
 

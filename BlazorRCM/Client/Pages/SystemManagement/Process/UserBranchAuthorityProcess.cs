@@ -78,7 +78,6 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
 
                 UserBranchAuthorityList = await Client!.GetServiceResponseAsync<List<UserBranchAuthorityDTO>>("api/ManageUserBranchAuthority/GetList", true);
 
-
                 //UserBranchAuthorityList = await Client!.PostGetServiceResponseAsync<List<UserBranchAuthorityDTO>, FiltersAndIncludesModel<UserBranchAuthorityDTO>>("api/ManageUserBranchAuthority/UserBranchAuthorities", model, true);
 
                 UserList = await Client!.GetServiceResponseAsync<List<UserDTO>>("api/ManageUser/GetList", true);

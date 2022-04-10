@@ -61,7 +61,7 @@ namespace BlazorRCM.Server.Services.Business.EF
 
             var claims = new[]
             {
-                new Claim(ClaimTypes.Name, dbUser.FullName),
+                new Claim(ClaimTypes.Name, dbUser.FullName!),
                 new Claim(ClaimTypes.Email, dbUser.Email!)
                 //new Claim(ClaimTypes.Name, dbUser.FirstName + " " + dbUser.LastName),
                 //new Claim(ClaimTypes.UserData, dbUser.Id.ToString())

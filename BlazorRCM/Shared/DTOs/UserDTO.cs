@@ -19,7 +19,7 @@ namespace BlazorRCM.Shared.DTOs
         public bool IsActive { get; set; }
         public DateTime? CreatedTime { get; set; }
         public DateTime? ModifiedTime { get; set; }
-        public String FullName => $"{FirstName} {LastName}";
+        public String? FullName => $"{FirstName} {LastName}";
         //public String FullName
         //{
         //    get

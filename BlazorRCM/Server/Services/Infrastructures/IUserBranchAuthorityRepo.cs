@@ -6,5 +6,6 @@ namespace BlazorRCM.Server.Infrasructures
 {
     public interface IUserBranchAuthorityRepo : IRepository<UserBranchAuthorityDTO>
     {
+        public Task<List<UserBranchAuthorityDTO>> MyList();
     }
 }

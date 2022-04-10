@@ -39,7 +39,15 @@ namespace RCMServerData.Models
         public bool IsActive { get; set; }
         public DateTime CreatedTime { get; set; }
         public DateTime? ModifiedTime { get; set; }
-
+        //public String? FullName => $"{FirstName} {LastName}";
+        //public String? FullName
+        //{
+        //    get
+        //    {
+        //        return $"{FirstName} {LastName}";
+        //    }
+        //    set { }
+        //}
         //public virtual ICollection<BranchCaseType> BranchCaseTypes { get; set; }
         //public virtual ICollection<BranchCaseTypeFlow> BranchCaseTypeFlows { get; set; }
         //public virtual ICollection<BranchConsumption> BranchConsumptions { get; set; }

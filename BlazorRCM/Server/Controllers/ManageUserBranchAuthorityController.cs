@@ -2,6 +2,7 @@
 using BlazorRCM.Shared.DTOs;
 using BlazorRCM.Shared.ResponseModels;
 using Microsoft.AspNetCore.Mvc;
+using RCMServerData.EFContext;
 using System.Linq.Expressions;
 
 namespace BlazorRCM.Server.Controllers
@@ -23,8 +24,10 @@ namespace BlazorRCM.Server.Controllers
         {
             return new ServiceResponse<List<UserBranchAuthorityDTO>>()
             {
+                //Value = await Repo.MyList()
                 Value = (await Repo.GetAll() as List<UserBranchAuthorityDTO>)!
-                //Value = (await Repo.GetAll(null,"User", "Branch", "AuthorityType") as List<UserBranchAuthorityDTO>)!
+                //Value = (await Repo.GetAll(x=>x.Id>7) as List<UserBranchAuthorityDTO>)!
+                //Value = (await Repo.GetAll(x=>x.Id>7, "User", "Branch", "AuthorityType") as List<UserBranchAuthorityDTO>)!
             };
         }
 

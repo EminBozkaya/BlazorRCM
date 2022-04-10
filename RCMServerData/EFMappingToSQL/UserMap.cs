@@ -35,6 +35,12 @@ namespace RCMServerData.EFMappingToSQL
                 .HasMaxLength(50)
                 .IsRequired();
 
+            //builder.Property(x => x.FullName)
+            //    .HasColumnName("FullName")
+            //    .HasColumnType("varchar")
+            //    .HasMaxLength(50)
+            //    .IsRequired();
+
             builder.Property(x => x.Phone)
                 .HasColumnName("Phone")
                 .HasColumnType("char")

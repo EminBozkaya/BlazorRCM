@@ -40,6 +40,13 @@ namespace BlazorRCM.Shared.Extensions
 
             CreateMap<Supplier, SupplierDTO>()
                 .ReverseMap();
+            
+            CreateMap<SupplierFirmType, SupplierFirmTypeDTO>()
+                .ForMember(x=>x.SupplierName, y=>y.MapFrom(z=>z.Supplier!.CompanyName))
+                .ForMember(x=>x.FirmType, y=>y.MapFrom(z=>z.FirmType!.Name))
+                .ForMember(x=>x.CreatedBy, y=>y.MapFrom(z => z.User!.FirstName + " " + z.User.LastName))
+                .ForMember(x=>x.ModifiedBy, y=>y.MapFrom(z => z.User!.FirstName + " " + z.User.LastName))
+                .ReverseMap();
 
             CreateMap<User, UserDTO>()
             .ReverseMap();

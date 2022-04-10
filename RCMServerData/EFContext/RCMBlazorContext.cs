@@ -39,8 +39,8 @@ namespace RCMServerData.EFContext
         //public DbSet<AdressOfCustomer>? AdressOfCustomers { get; set; }
 
 
-        //public DbSet<AuthorityType>? AuthorityTypes { get; set; }
-        //public DbSet<Branch>? Branches { get; set; }
+        public DbSet<AuthorityType>? AuthorityTypes { get; set; }
+        public DbSet<Branch>? Branches { get; set; }
 
 
         //public DbSet<BranchCaseType>? BranchCaseTypes { get; set; }
@@ -52,6 +52,7 @@ namespace RCMServerData.EFContext
         //public DbSet<BranchProductPrice>? BranchProductPrices { get; set; }
         //public DbSet<BranchRevenueDistribution>? BranchRevenueDistributions { get; set; }
         //public DbSet<BranchStock>? BranchStocks { get; set; }
+        public DbSet<BranchSupplier>? BranchSuppliers { get; set; }
         //public DbSet<BranchStockEntry>? BranchStockEntries { get; set; }
         //public DbSet<CaseType>? CaseTypes { get; set; }
         //public DbSet<ConsumeType>? ConsumeTypes { get; set; }
@@ -65,7 +66,7 @@ namespace RCMServerData.EFContext
         //public DbSet<ExpenseType>? ExpenseTypes { get; set; }
 
 
-        //public DbSet<FirmType>? FirmTypes { get; set; }
+        public DbSet<FirmType>? FirmTypes { get; set; }
 
 
         //public DbSet<MyException>? MyExceptions { get; set; }
@@ -84,9 +85,10 @@ namespace RCMServerData.EFContext
         //public DbSet<SupplierMoneyFlow>? SupplierMoneyFlows { get; set; }
 
 
-        //public DbSet<Supplier>? Suppliers { get; set; }
-        //public DbSet<User>? Users { get; set; }
-        //public DbSet<UserBranchAuthority>? UserBranchAuthorities { get; set; }
+        public DbSet<Supplier>? Suppliers { get; set; }
+        public DbSet<SupplierFirmType>? SupplierFirmTypes { get; set; }
+        public DbSet<User>? Users { get; set; }
+        public DbSet<UserBranchAuthority>? UserBranchAuthorities { get; set; }
 
 
 
