@@ -1,6 +1,5 @@
-﻿using BlazorRCM.Shared.DTOs;
-using Core.BaseInfrastructure;
-using RCMServerData.Models;
+﻿using BlazorRCM.Shared.DTOs.ModelDTOs;
+using BlazorRCM.Server.Services.BaseServices.BaseInfrastructure;
 
 namespace BlazorRCM.Server.Infrasructures
 {

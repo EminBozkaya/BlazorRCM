@@ -1,4 +1,4 @@
-﻿using BlazorRCM.Shared.DTOs;
+﻿using BlazorRCM.Shared.DTOs.ModelDTOs;
 using BlazorRCM.Shared.Extensions;
 using Microsoft.AspNetCore.Components;
 using BlazorRCM.Shared.CustomExceptions;
@@ -7,6 +7,7 @@ using Microsoft.JSInterop;
 using Syncfusion.Blazor.Grids;
 using BlazorRCM.Client.Utils;
 using Newtonsoft.Json;
+
 
 namespace BlazorRCM.Client.Pages.SystemManagement.Process
 {

@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using BlazorRCM.Shared.DTOs;
-using BlazorRCM.Shared.Utils;
+using BlazorRCM.Shared.DTOs.ModelDTOs;
 using Microsoft.Extensions.DependencyInjection;
 using RCMServerData.Models;
-//using RCMServerData.Models;
 
 namespace BlazorRCM.Shared.Extensions
 {

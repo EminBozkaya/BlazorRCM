@@ -31,16 +31,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Core.csproj" />
     <ProjectReference Include="..\..\RCMServerData\RCMServerData.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <SupportedPlatform Include="browser" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DTOs\ViewDTOs\" />
   </ItemGroup>
 
 

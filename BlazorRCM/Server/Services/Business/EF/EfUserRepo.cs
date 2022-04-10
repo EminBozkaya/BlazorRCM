@@ -1,14 +1,15 @@
 ﻿using AutoMapper;
 using BlazorRCM.Server.Infrasructures;
-using BlazorRCM.Shared.DTOs;
+using BlazorRCM.Shared.DTOs.ModelDTOs;
 using BlazorRCM.Shared.Utils;
-using Core.BaseService.EF;
+using BlazorRCM.Server.Services.BaseServices.BaseService.EF;
 using Microsoft.IdentityModel.Tokens;
 using RCMServerData.EFContext;
 using RCMServerData.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using BlazorRCM.Shared.DTOs.ViewDTOs;
 
 namespace BlazorRCM.Server.Services.Business.EF
 {

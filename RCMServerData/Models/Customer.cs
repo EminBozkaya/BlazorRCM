@@ -1,4 +1,4 @@
-﻿using Core.Model;
+﻿using RCMServerData.BaseModels;
 using System.Collections.Generic;
 
 namespace RCMServerData.Models

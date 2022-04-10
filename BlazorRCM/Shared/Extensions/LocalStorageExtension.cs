@@ -1,12 +1,5 @@
-﻿using AutoMapper;
-using Blazored.LocalStorage;
-using BlazorRCM.Shared.DTOs;
-using RCMServerData.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Blazored.LocalStorage;
+using BlazorRCM.Shared.DTOs.ModelDTOs;
 
 namespace BlazorRCM.Shared.Extensions
 {

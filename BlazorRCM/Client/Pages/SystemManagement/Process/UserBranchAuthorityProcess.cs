@@ -1,4 +1,4 @@
-﻿using BlazorRCM.Shared.DTOs;
+﻿using BlazorRCM.Shared.DTOs.ModelDTOs;
 using BlazorRCM.Shared.Extensions;
 using Microsoft.AspNetCore.Components;
 using BlazorRCM.Shared.CustomExceptions;

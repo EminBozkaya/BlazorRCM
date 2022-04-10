@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Model
+namespace RCMServerData.BaseModel
 {
-    public abstract class BaseDomain : Base
+    public abstract class Base
     {
     }
 }

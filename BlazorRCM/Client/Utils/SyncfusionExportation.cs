@@ -1,7 +1,4 @@
-﻿using BlazorRCM.Shared.Extensions;
-using Core.Model;
-using Syncfusion.Blazor.Grids;
-using System.Configuration;
+﻿using Syncfusion.Blazor.Grids;
 
 namespace BlazorRCM.Client.Utils
 {

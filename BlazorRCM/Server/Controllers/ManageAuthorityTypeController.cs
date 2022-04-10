@@ -1,5 +1,5 @@
 ﻿using BlazorRCM.Server.Infrasructures;
-using BlazorRCM.Shared.DTOs;
+using BlazorRCM.Shared.DTOs.ModelDTOs;
 using BlazorRCM.Shared.ResponseModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq.Expressions;

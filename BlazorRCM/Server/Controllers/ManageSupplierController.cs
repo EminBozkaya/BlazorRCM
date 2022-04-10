@@ -1,6 +1,6 @@
 ﻿using BlazorRCM.Server.Infrasructures;
 using BlazorRCM.Shared.CustomExceptions;
-using BlazorRCM.Shared.DTOs;
+using BlazorRCM.Shared.DTOs.ModelDTOs;
 using BlazorRCM.Shared.ResponseModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

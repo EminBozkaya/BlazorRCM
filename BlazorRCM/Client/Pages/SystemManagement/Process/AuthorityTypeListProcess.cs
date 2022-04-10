@@ -1,15 +1,12 @@
-﻿using BlazorRCM.Shared.DTOs;
-using BlazorRCM.Shared.Extensions;
+﻿using BlazorRCM.Shared.Extensions;
 using Microsoft.AspNetCore.Components;
 using BlazorRCM.Shared.CustomExceptions;
 using CurrieTechnologies.Razor.SweetAlert2;
 using Microsoft.JSInterop;
 using Syncfusion.Blazor.Grids;
 using BlazorRCM.Client.Utils;
-using BlazorRCM.Shared.ResponseModels;
-using System.Linq.Expressions;
-using System.Net.Http.Json;
 using Newtonsoft.Json;
+using BlazorRCM.Shared.DTOs.ModelDTOs;
 
 namespace BlazorRCM.Client.Pages.SystemManagement.Process
 {

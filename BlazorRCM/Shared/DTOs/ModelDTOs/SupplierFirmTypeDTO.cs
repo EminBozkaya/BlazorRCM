@@ -1,12 +1,13 @@
-﻿using System;
+﻿using BlazorRCM.Shared.DTOs.BaseDTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorRCM.Shared.DTOs
+namespace BlazorRCM.Shared.DTOs.ModelDTOs
 {
-    public class SupplierFirmTypeDTO
+    public class SupplierFirmTypeDTO : BaseDTO
     {
         public int Id { get; set; }
         public int SpId { get; set; }
