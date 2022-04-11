@@ -44,7 +44,7 @@ namespace RCMServerData.EFMappingToSQL
             builder.Property(x => x.Phone)
                 .HasColumnName("Phone")
                 .HasColumnType("char")
-                .HasMaxLength(12)
+                .HasMaxLength(10)
                 .IsUnicode(false)
                 .IsRequired();
 

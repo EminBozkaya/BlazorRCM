@@ -62,43 +62,114 @@ namespace BlazorRCM.Server.Controllers
         //        Value = await Repo.Create(dto)
         //    };
         //}
+
         [HttpPost("Create")]
         public async Task<ServiceResponse<UserDTO>> Create([FromBody] UserDTO dto)
         {
-            var validatorResult = validator.Validate(dto);
-            if (validatorResult.IsValid)
+            try 
             {
+                var value = await Repo.Create(dto);
                 return new ServiceResponse<UserDTO>()
                 {
-                    Value = await Repo.Create(dto)
+                    Value = value
                 };
             }
-            else
+            catch (ValidationException ex) 
             {
                 String? errorMessages = " | ";
-                string[] errors = validatorResult.Errors.Select(x => x.ErrorMessage).ToArray();
+                string[] errors = ex.Errors.Select(x => x.ErrorMessage).ToArray();
                 for (int i = 0; i < errors.Length; i++)
                 {
-                    errorMessages = errorMessages +  errors[i] + " | ";
+                    errorMessages = errorMessages + errors[i] + " | ";
                 }
-                //throw new Exception(errorMessages);
                 return new ServiceResponse<UserDTO>()
                 {
-                    Success=false,
+                    Success = false,
                     Message = errorMessages
                 };
             }
-            
+            catch(Exception ex)
+            {
+                return new ServiceResponse<UserDTO>()
+                {
+                    Success = false,
+                    Message = ex.Message
+                };
+            }
         }
+
+
+        //[HttpPost("Create")]
+        //public async Task<ServiceResponse<UserDTO>> Create([FromBody] UserDTO dto)
+        //{
+        //    var validatorResult = validator.Validate(dto);
+        //    if (validatorResult.IsValid)
+        //    {
+        //        return new ServiceResponse<UserDTO>()
+        //        {
+        //            Value = await Repo.Create(dto)
+        //        };
+        //    }
+        //    else
+        //    {
+        //        String? errorMessages = " | ";
+        //        string[] errors = validatorResult.Errors.Select(x => x.ErrorMessage).ToArray();
+        //        for (int i = 0; i < errors.Length; i++)
+        //        {
+        //            errorMessages = errorMessages +  errors[i] + " | ";
+        //        }
+        //        return new ServiceResponse<UserDTO>()
+        //        {
+        //            Success=false,
+        //            Message = errorMessages
+        //        };
+        //    }
+
+        //}
 
         [HttpPost("Update")]
         public async Task<ServiceResponse<UserDTO>> Update([FromBody] UserDTO dto)
         {
-            return new ServiceResponse<UserDTO>()
+            try
             {
-                Value = await Repo.Update(dto)
-            };
+                var value = await Repo.Update(dto);
+                return new ServiceResponse<UserDTO>()
+                {
+                    Value = value
+                };
+            }
+            catch (ValidationException ex)
+            {
+                String? errorMessages = " | ";
+                string[] errors = ex.Errors.Select(x => x.ErrorMessage).ToArray();
+                for (int i = 0; i < errors.Length; i++)
+                {
+                    errorMessages = errorMessages + errors[i] + " | ";
+                }
+                return new ServiceResponse<UserDTO>()
+                {
+                    Success = false,
+                    Message = errorMessages
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResponse<UserDTO>()
+                {
+                    Success = false,
+                    Message = ex.Message
+                };
+            }
         }
+
+        //[HttpPost("Update")]
+        //    public async Task<ServiceResponse<UserDTO>> Update([FromBody] UserDTO dto)
+        //    {
+        //        return new ServiceResponse<UserDTO>()
+        //        {
+        //            Value = await Repo.Update(dto)
+        //        };
+        //    }
 
         [HttpPost("Delete")]
         public async Task<ServiceResponse<bool>> Delete([FromBody] UserDTO dto)

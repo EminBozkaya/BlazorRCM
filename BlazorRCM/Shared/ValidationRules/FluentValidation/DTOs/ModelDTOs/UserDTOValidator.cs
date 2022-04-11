@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BlazorRCM.Shared.ValidationRules.FluentValidation.DTOs.ModelDTOs
@@ -33,7 +34,8 @@ namespace BlazorRCM.Shared.ValidationRules.FluentValidation.DTOs.ModelDTOs
             RuleFor(x => x.Phone)
                 .NotEmpty()
                 .WithMessage("Telefon numarası boş bırakılamaz")
-                .Matches(@"^[1-9][0-9]{9}$")
+                .Matches(new Regex(@"^[1-9][0-9]{9}$"))
+                //.Matches(@"^[1-9][0-9]{10}$")
                 .WithMessage("Telefon numarasını başında SIFIR olmadan 10 karakter olacak şekilde sadece rakam giriniz");
 
             RuleFor(x => x.Email)

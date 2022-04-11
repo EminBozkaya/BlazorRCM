@@ -5,6 +5,9 @@ using AutoMapper.QueryableExtensions;
 using RCMServerData.BaseModels;
 using BlazorRCM.Shared.DTOs.BaseDTOs;
 using BlazorRCM.Server.Services.BaseServices.BaseInfrastructure;
+using FluentValidation;
+using BlazorRCM.Shared.Utils;
+using BlazorRCM.Shared.ValidationRules.FluentValidation.DTOs.ModelDTOs;
 //using System.Data;
 
 namespace BlazorRCM.Server.Services.BaseServices.BaseService.EF
@@ -165,10 +168,26 @@ namespace BlazorRCM.Server.Services.BaseServices.BaseService.EF
         {
             try
             {
+                //*******validation for TEntityDTO entity**************
+                string? validatorName = "BlazorRCM.Shared.ValidationRules.FluentValidation.DTOs.ModelDTOs." + entity.GetType().Name + "Validator";
+                Type? validatorType = Type.GetType($"{validatorName}, BlazorRCM.Shared");
+
+                if (validatorType != null)
+                {
+                    AbstractValidator<TEntityDTO>? validatorObj = Activator.CreateInstance(validatorType!) as AbstractValidator<TEntityDTO>;
+                    if (validatorObj != null)
+                        FluentValidationTool<TEntityDTO>.Validate(validatorObj, entity);
+                }
+                //*******************************************
+
                 using TContext ctx = new TContext();
 
 
                 TEntity? Entity = mapper.Map<TEntity>(entity);
+
+                //*******validation for TEntity Entity(maybe later)**************
+
+
                 await ctx.Set<TEntity>().AddAsync(Entity);
                 //TEntity? addedEntity = (await ctx.Set<TEntity>().AddAsync(Entity)) as TEntity;
                 await ctx.SaveChangesAsync();
@@ -189,6 +208,19 @@ namespace BlazorRCM.Server.Services.BaseServices.BaseService.EF
         {
             try
             {
+                //*******validation for TEntity entity**************
+                string? validatorName = "BlazorRCM.Shared.ValidationRules.FluentValidation.DTOs.ModelDTOs." + entity.GetType().Name + "Validator";
+                Type? validatorType = Type.GetType($"{validatorName}, BlazorRCM.Shared");
+
+                if (validatorType != null) 
+                {
+                    AbstractValidator<TEntityDTO>? validatorObj = Activator.CreateInstance(validatorType!) as AbstractValidator<TEntityDTO>;
+                    if (validatorObj != null)
+                        FluentValidationTool<TEntityDTO>.Validate(validatorObj, entity);
+                }
+                
+                //*******************************************
+
                 using TContext ctx = new();
 
                 IQueryable<TEntity> query = ctx.Set<TEntity>();
