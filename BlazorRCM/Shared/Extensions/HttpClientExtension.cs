@@ -25,17 +25,24 @@ namespace BlazorRCM.Shared.Extensions
         public async static Task<TResult> PostGetServiceResponseAsync<TResult, TValue>(this HttpClient Client, String Url, TValue Value, bool ThrowSuccessException = false)
         {
             HttpResponseMessage httpRes = new();
-            
+            //try 
+            //{
                 httpRes = await Client.PostAsJsonAsync(Url, Value);
 
-            //if (httpRes.IsSuccessStatusCode)
-            //{
-            var res = await httpRes.Content.ReadFromJsonAsync<ServiceResponse<TResult>>();
+                if (httpRes.IsSuccessStatusCode)
+                {
+                    var res = await httpRes.Content.ReadFromJsonAsync<ServiceResponse<TResult>>();
 
-            return !res!.Success && ThrowSuccessException ? throw new ApiException(res.Message!) : res.Value!;
+                return !res!.Success && ThrowSuccessException ? throw new ApiException(res.Message!) : res.Value!;
+                }
+
+                throw new HttpException(httpRes.StatusCode.ToString());
             //}
-
-            throw new HttpException(httpRes.StatusCode.ToString());
+            //catch (Exception ex)
+            //{
+            //    throw ex!;
+            //}
+            
         }
 
         public async static Task<BaseResponse> PostGetBaseResponseAsync<TValue>(this HttpClient Client, String Url, TValue Value, bool ThrowSuccessException = false)

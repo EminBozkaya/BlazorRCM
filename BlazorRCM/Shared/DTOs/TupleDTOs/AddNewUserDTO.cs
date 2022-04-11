@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorRCM.Shared.DTOs.ComplexDTOs
+namespace BlazorRCM.Shared.DTOs.TupleDTOs
 {
     public class AddNewUserDTO : BaseDTO
     {

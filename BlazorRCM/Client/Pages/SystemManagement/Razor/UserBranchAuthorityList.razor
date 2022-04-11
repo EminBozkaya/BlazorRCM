@@ -59,39 +59,44 @@
                 <Template>
                     @{
                         var DTO = (context as UserBranchAuthorityDTO);
+
+                        <div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <SfDropDownList ID="UId" TItem="UserDTO" @bind-Value="@(DTO!.UId)" TValue="int" DataSource="@UserList" FloatLabelType="FloatLabelType.Always" Placeholder="Kullanıcı Seçiniz">
+                                        <DropDownListFieldSettings Value="Id" Text="FullName"></DropDownListFieldSettings>
+                                    </SfDropDownList>
+                                    <ValidationMessage For="@(()=>DTO.UId)"/>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <SfDropDownList ID="BId" TItem="BranchDTO" @bind-Value="@(DTO!.BId)" TValue="short" DataSource="@BranchList" FloatLabelType="FloatLabelType.Always" Placeholder="Şube Seçiniz">
+                                        <DropDownListFieldSettings Value="Id" Text="Name"></DropDownListFieldSettings>
+                                    </SfDropDownList>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <SfDropDownList ID="ATIdl" TItem="AuthorityTypeDTO" @bind-Value="@(DTO!.ATId)" TValue="short" DataSource="@AuthorityTypeList" FloatLabelType="FloatLabelType.Always" Placeholder="Yetki Seçiniz">
+                                        <DropDownListFieldSettings Value="Id" Text="Type"></DropDownListFieldSettings>
+                                    </SfDropDownList>
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <SfCheckBox Name="IsActive" @bind-Checked="@(DTO!.IsActive)" Label="IsActive"></SfCheckBox>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <SfcFluentValidationValidator TValidator="UserBranchAuthorityDTOValidator" />
+                        <ValidationSummary />
                     }
-                    <div>
-
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <SfDropDownList ID="UId" TItem="UserDTO" @bind-Value="@(DTO!.UId)" TValue="int" DataSource="@UserList" FloatLabelType="FloatLabelType.Always" Placeholder="Kullanıcı Seçiniz">
-                                    <DropDownListFieldSettings Value="Id" Text="FullName"></DropDownListFieldSettings>
-                                </SfDropDownList>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <SfDropDownList ID="BId" TItem="BranchDTO" @bind-Value="@(DTO!.BId)" TValue="short" DataSource="@BranchList" FloatLabelType="FloatLabelType.Always" Placeholder="Şube Seçiniz">
-                                    <DropDownListFieldSettings Value="Id" Text="Name"></DropDownListFieldSettings>
-                                </SfDropDownList>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <SfDropDownList ID="ATIdl" TItem="AuthorityTypeDTO" @bind-Value="@(DTO!.ATId)" TValue="short" DataSource="@AuthorityTypeList" FloatLabelType="FloatLabelType.Always" Placeholder="Yetki Seçiniz">
-                                    <DropDownListFieldSettings Value="Id" Text="Type"></DropDownListFieldSettings>
-                                </SfDropDownList>
-                            </div>
-
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <SfCheckBox Name="IsActive" @bind-Checked="@(DTO!.IsActive)" Label="IsActive"></SfCheckBox>
-                            </div>
-
-                        </div>
-
-                    </div>
                 </Template>
             </GridEditSettings>
 

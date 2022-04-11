@@ -1,17 +1,47 @@
 using Blazored.LocalStorage;
 using BlazorRCM.Server.Infrasructures;
 using BlazorRCM.Server.Services.Business.EF;
+using BlazorRCM.Shared.DTOs.ModelDTOs;
 using BlazorRCM.Shared.Extensions;
+using BlazorRCM.Shared.ValidationRules.FluentValidation.DTOs.ModelDTOs;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using RCMServerData.EFContext;
+using System.Reflection;
 using System.Text;
+//using FluentValidation;
+//using FluentValidation.DependencyInjectionExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+
+//builder.Services.AddControllersWithViews()
+//    .AddFluentValidation(options =>
+//    {
+//        // Validate child properties and root collection elements
+//        options.ImplicitlyValidateChildProperties = true;
+//        options.ImplicitlyValidateRootCollectionElements = true;
+//        // Automatic registration of validators in assembly
+//        options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+//    });
+
+//builder.Services.AddControllersWithViews()
+//    .AddFluentValidation(options => options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
+
+
 builder.Services.AddControllersWithViews();
+//builder.Services.AddControllersWithViews()
+//    .AddFluentValidation(fv =>
+//    {
+//        fv.DisableDataAnnotationsValidation = true;
+//    });
+
+builder.Services.AddTransient<IValidator<UserDTO>, UserDTOValidator>();
+
 builder.Services.AddRazorPages();
 builder.Services.ConfigureMapping();
 builder.Services.AddBlazoredLocalStorage();

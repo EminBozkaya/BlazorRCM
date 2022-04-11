@@ -7,7 +7,8 @@ using Microsoft.JSInterop;
 using Syncfusion.Blazor.Grids;
 using BlazorRCM.Client.Utils;
 using Newtonsoft.Json;
-
+using FluentValidation;
+using BlazorRCM.Shared.ValidationRules.FluentValidation.DTOs.ModelDTOs;
 
 namespace BlazorRCM.Client.Pages.SystemManagement.Process
 {
@@ -26,6 +27,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
         [Inject]
         SweetAlertService? Swal { get; set; }
 
+        //UserDTOValidator validator=new();
 
         //protected AddNewUserDTO AddNewUserDTO = new();
         //protected List<BranchDTO> BranchList = new();
@@ -98,8 +100,12 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
         {
             if (args.RequestType == Syncfusion.Blazor.Grids.Action.Save)
             {
+
                 UserDTO newdto = args.Data;
-                if (args.Action == "Add")
+                //var validatorResult = validator.Validate(newdto);
+                //if (validatorResult.IsValid) { }
+                //else { }
+                    if (args.Action == "Add")
                 {
                     try
                     {

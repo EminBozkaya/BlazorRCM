@@ -1,5 +1,5 @@
 ﻿@page "/userlist"
-@using BlazorRCM.Shared.DTOs.ModelDTOs
+
 @inherits BlazorRCM.Client.Pages.SystemManagement.Process.UserListProcess
 
 
@@ -32,6 +32,7 @@
             <GridPageSettings PageSize="10" PageSizes="true"></GridPageSettings>
 
             <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog" Dialog="DialogParams">
+                
                 @*<Template>
                     @{
                         var DTO = (context as UserDTO);
@@ -80,6 +81,11 @@
                         
                     </div>
                 </Template>*@
+
+
+                @*<SfcFluentValidationValidator TValidator="UserDTOValidator" />
+                <ValidationSummary />*@
+
             </GridEditSettings>
 
 
