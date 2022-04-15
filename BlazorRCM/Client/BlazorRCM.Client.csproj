@@ -23,7 +23,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.2" />
-    <PackageReference Include="MudBlazor" Version="6.0.7" />
+    <PackageReference Include="MudBlazor" Version="6.0.9" />
     <PackageReference Include="Syncfusion.Blazor.Buttons" Version="19.4.0.56" />
     <PackageReference Include="Syncfusion.Blazor.DropDowns" Version="19.4.0.56" />
     <PackageReference Include="Syncfusion.Blazor.Grid" Version="19.4.0.56" />

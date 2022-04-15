@@ -18,7 +18,10 @@
         <MudIconButton><MudAvatar id="getir" Image="MyImages/Layout/Getir_icon.ico" /></MudIconButton>
         <MudIconButton><MudAvatar id="yemekSepeti" Image="MyImages/Layout/yemekSepeti.ico" /></MudIconButton>
         <MudIconButton Icon="fas fa-solid fa-user" Color="Color.Inherit"></MudIconButton>
-        <MudSwitch CheckedChanged="UpdateTheme" Color="Color.Primary" Class="ma-4" T="bool" Label="Koyu Mod" />
+        @*<MudSwitch CheckedChanged="UpdateTheme" Color="Color.Primary" Class="ma-4" T="bool" Label="Koyu Mod" />*@
+        <MudToggleIconButton ToggledChanged="UpdateTheme"
+                     Icon="@Icons.TwoTone.DarkMode" Color="@Color.Inherit"
+                     ToggledIcon="@Icons.Material.Filled.LightMode" ToggledColor="@Color.Inherit"/>
         @*<MudSwitch @bind-Checked="_isDarkMode" Color="Color.Primary" Class="ma-4" T="bool" Label="Koyu Mod"/>*@
     </MudAppBar>
 
@@ -34,8 +37,9 @@
     </MudDrawer>
 
     <MudMainContent>
-        <MudContainer MaxWidth="MaxWidth.Large">
+        <MudContainer MaxWidth="MaxWidth.ExtraExtraLarge">
             @Body
+
         </MudContainer>
     </MudMainContent>
 </MudLayout>

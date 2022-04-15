@@ -1,8 +1,347 @@
 ﻿@page "/"
 
 
-<PageTitle>Index</PageTitle>
+<MudContainer Class="mt-4 px-4" MaxWidth="MaxWidth.ExtraExtraLarge">
+    <MudGrid>
 
-<MudText Typo="Typo.h3" GutterBottom="true">Hello, world!</MudText>
-<MudText Class="mb-8">Welcome to your new app, powered by MudBlazor!</MudText>
 
+        @*---------carousel----------------*@
+        <MudItem xs="12" sm="12" md="12" lg="12">
+            <MudText Class="pb-2" Typo="Typo.h6">Önemli Duyurular:</MudText>
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 300px;">
+                <MudCarousel id="carousel" Class="mud-width-full" Style="height:270px;" ShowArrows="@arrows" ShowBullets="@bullets" AutoCycle="@autocycle" TData="object">
+
+                    <MudCarouselItem Transition="transition" Color="@Color.Secondary">
+                        <div class="d-flex" style="height:100%">
+                            <MudGrid Class="mx-auto my-auto">
+                                <MudText Style="padding:50px;text-align: center;margin:auto" Typo="Typo.h4">
+                                    Yemek Sepeti ödemeleriniz yapılmıştır, detayına
+                                    <MudElement HtmlTag="a" Class="ma-0" Style="color:blue;font-weight:bold" href="https://github.com/MudBlazor/MudBlazor" target="blank" rel="noopener noreferrer">
+                                        buradan
+                                    </MudElement> ulaşabilirsiniz
+                                </MudText>
+                            </MudGrid>
+                        </div>
+                    </MudCarouselItem>
+                    <MudCarouselItem Transition="transition" Style="@($"background:{Colors.DeepOrange.Default};")">
+                        <div class="d-flex" style="height:100%">
+                            <MudGrid Class="mx-auto my-auto">
+                                <MudText Style="padding:50px;color:white;text-align: center;margin:auto" Typo="Typo.h4">Broşür siparişleriniz için son gün 25.08.2022 / Perşembe günüdür! </MudText>
+                            </MudGrid>
+                        </div>
+                    </MudCarouselItem>
+                    <MudCarouselItem Transition="transition">
+                        <div class="d-flex" style="height:100%">
+                            <MudGrid Class="mx-4 my-auto justify-center">
+                                <MudStack Row="true" Justify="Justify.Center">
+                                    <MudImage Src="MyImages/Dashboard/kazandıranMenu.png" Height="170" Width="500" Alt="Kazandıran Menu" Elevation="25" Class="rounded-lg ma-4" />
+                                    <MudText Style="@($"color:{Colors.DeepOrange.Default};text-align: center;margin: auto")" Typo="Typo.h4">Kazandıran Menü fiyatı güncellenmiştir</MudText>
+                                </MudStack>
+                            </MudGrid>
+
+                        </div>
+                    </MudCarouselItem>
+
+                </MudCarousel>
+            </MudPaper>
+        </MudItem>
+        @*---------/carousel----------------*@
+
+
+
+
+
+        @*---------incomes----------------*@
+        <MudGrid Class="mt-2">
+            <MudItem Class="pt-10" xs="12" sm="12" md="12" lg="12">
+                <MudText Typo="Typo.h6">Günlük Satışlar:</MudText>
+            </MudItem>
+            <MudItem xs="12" sm="6" md="4">
+                <MudPaper Elevation="2" Class="pa-4" Style="height: 150px;">
+                    <MudStack>
+                        <MudStack Row="true">
+                            <MudFab Color="Color.Primary" StartIcon="@Icons.Filled.PointOfSale" />
+                            <MudText Class="my-auto" Typo="Typo.h5">Günlük Ciro : </MudText>
+                            <MudText Class="my-auto" Typo="Typo.body2">(TL/Ad)</MudText>
+                        </MudStack>
+                        <MudStack Spacing="0" Row="true">
+                            <MudText Class="my-auto ml-auto" Typo="Typo.h4">6948,00 </MudText>&nbsp;&nbsp;
+                            <MudText Class="my-auto mr-auto" Typo="Typo.body1">/ 207</MudText>
+                        </MudStack>
+                    </MudStack>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12" sm="6" md="4">
+                <MudPaper Elevation="2" Class="pa-4" Style="height: 150px;">
+                    <MudStack>
+                        <MudStack Row="true">
+                            <MudFab Color="Color.Warning" StartIcon="@Icons.Filled.Restaurant" />
+                            <MudText Class="my-auto" Typo="Typo.h5">Hızlı Satış : </MudText>
+                            <MudText Class="my-auto" Typo="Typo.body2">(TL/Ad)</MudText>
+                        </MudStack>
+                        <MudStack Spacing="0" Row="true">
+                            <MudText Class="my-auto ml-auto" Typo="Typo.h4">4348,00 </MudText>&nbsp;&nbsp;
+                            <MudText Class="my-auto mr-auto" Typo="Typo.body1">/ 115</MudText>
+                        </MudStack>
+                    </MudStack>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12" sm="6" md="4">
+                <MudPaper Elevation="2" Class="pa-4" Style="height: 150px;">
+                    <MudStack>
+                        <MudStack Row="true">
+                            <MudFab Color="Color.Tertiary" StartIcon="@Icons.Filled.DeliveryDining" />
+                            <MudText Class="my-auto" Typo="Typo.h5">Paket Satışı : </MudText>
+                            <MudText Class="my-auto" Typo="Typo.body2">(TL/Ad)</MudText>
+                        </MudStack>
+                        <MudStack Spacing="0" Row="true">
+                            <MudText Class="my-auto ml-auto" Typo="Typo.h4">2600,00 </MudText>&nbsp;&nbsp;
+                            <MudText Class="my-auto mr-auto" Typo="Typo.body1">/ 92</MudText>
+                        </MudStack>
+                    </MudStack>
+                </MudPaper>
+            </MudItem>
+        </MudGrid>
+        @*---------/incomes----------------*@
+
+
+
+
+        @*---------sales of delivery----------------*@
+        <MudContainer Class="pt-10">
+            <MudText Typo="Typo.h6" GutterBottom="true">Günlük paket satış özeti:</MudText>
+            <MudGrid Class="mt-2">
+                <MudItem xs="12" sm="6" md="3">
+                    <MudCard Elevation="25" Class="rounded-lg pb-4">
+                        <MudCardHeader>
+                            <CardHeaderContent>
+                                <MudText Color="Color.Primary" Typo="Typo.h6" Align="Align.Center">Telefon Satışları</MudText>
+                            </CardHeaderContent>
+                        </MudCardHeader>
+                        <MudCardContent>
+                            <div class="d-flex justify-center">
+                                <MudText Typo="Typo.h5">407</MudText>
+                                <MudText Typo="Typo.body2" Class="ml-2 my-auto" Color="Color.Primary">/ 21</MudText>
+                            </div>
+                        </MudCardContent>
+                        <MudCardActions Class="d-flex justify-center">
+                            <MudLink Href="/" Underline="Underline.Always">Sayfaya Git</MudLink>
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+                <MudItem xs="12" sm="6" md="3">
+                    <MudCard Elevation="25" Class="rounded-lg pb-4">
+                        <MudCardHeader>
+                            <CardHeaderContent>
+                                <MudText Color="Color.Secondary" Typo="Typo.h6" Align="Align.Center">Yemek Sepeti</MudText>
+                            </CardHeaderContent>
+                        </MudCardHeader>
+                        <MudCardContent>
+                            <div class="d-flex justify-center">
+                                <MudText Typo="Typo.h5">247</MudText>
+                                <MudText Typo="Typo.body2" Class="ml-2 my-auto" Color="Color.Secondary">/ 18</MudText>
+                            </div>
+                        </MudCardContent>
+                        <MudCardActions Class="d-flex justify-center">
+                            <MudLink Href="/" Underline="Underline.Always">Sayfaya Git</MudLink>
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+                <MudItem xs="12" sm="6" md="3">
+                    <MudCard Elevation="25" Class="rounded-lg pb-4">
+                        <MudCardHeader>
+                            <CardHeaderContent>
+                                <MudText Style="color:#983fbd" Typo="Typo.h6" Align="Align.Center">Getir Yemek</MudText>
+                            </CardHeaderContent>
+                        </MudCardHeader>
+                        <MudCardContent>
+                            <div class="d-flex justify-center">
+                                <MudText Typo="Typo.h5">110</MudText>
+                                <MudText Typo="Typo.body2" Class="ml-2 my-auto" Style="color:#983fbd">/ 6</MudText>
+                            </div>
+                        </MudCardContent>
+                        <MudCardActions Class="d-flex justify-center">
+                            <MudLink Href="/" Underline="Underline.Always">Sayfaya Git</MudLink>
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+                <MudItem xs="12" sm="6" md="3">
+                    <MudCard Elevation="25" Class="rounded-lg pb-4">
+                        <MudCardHeader>
+                            <CardHeaderContent>
+                                <MudText Style="@($"color:{Colors.DeepOrange.Default}")" Typo="Typo.h6" Align="Align.Center">Trendyol Yemek</MudText>
+                            </CardHeaderContent>
+                        </MudCardHeader>
+                        <MudCardContent>
+                            <div class="d-flex justify-center">
+                                <MudText Typo="Typo.h5">145</MudText>
+                                <MudText Typo="Typo.body2" Class="ml-2 my-auto" Style="@($"color:{Colors.DeepOrange.Default}")">/ 9</MudText>
+                            </div>
+                        </MudCardContent>
+                        <MudCardActions Class="d-flex justify-center">
+                            <MudLink Href="/" Underline="Underline.Always">Sayfaya Git</MudLink>
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+            </MudGrid>
+        </MudContainer>
+        @*---------/sales of delivery----------------*@
+
+
+
+
+        @*---------Mounth Report----------------*@
+        <MudItem Class="pt-10" xs="12" sm="12" md="12" lg="12">
+            <MudText Typo="Typo.h6">Aylık Genel Durum:</MudText>
+        </MudItem>
+        <MudItem xs="12" sm="6">
+            <MudPaper Elevation="2" Class="pt-15 ma-auto justify-center" Style="height: 350px">
+                <MudStack>
+                    <MudText Align="Align.Center" Color="Color.Info" Typo="Typo.h4">Toplam Ciro:</MudText>
+                    <MudText Align="Align.Center" Typo="Typo.h3">256.134,50</MudText>
+                </MudStack>
+                <MudStack Class="pt-6" Row="true">
+                    <MudGrid Class="ms-auto justify-center">
+                        <MudStack>
+                            <MudText Align="Align.Center" Color="Color.Success" Typo="Typo.h5">Tavuk</MudText>
+                            @*<MudDivider />*@
+                            <MudGrid Class="justify-center">
+                                <MudText Typo="Typo.h5">407.000</MudText>
+                                <MudText Typo="Typo.body2" Class="ml-2 my-auto"> gr &nbsp;</MudText>
+                                <MudDivider Vertical="true" />
+                                <MudText Typo="Typo.h5">&nbsp;3200</MudText>
+                                <MudText Typo="Typo.body2" Class="ml-2 my-auto"> lvş</MudText>
+                            </MudGrid>
+                            @*<MudDivider />*@
+                            <MudText Align="Align.Center" Color="Color.Success" Typo="Typo.h6">Ortalama Gramaj: 124 gr</MudText>
+                        </MudStack>
+                    </MudGrid>
+                    <MudDivider Vertical="true" FlexItem="true" />
+                    <MudGrid Class="ms-auto justify-center">
+                        <MudStack>
+                            <MudText Align="Align.Center" Color="Color.Error" Typo="Typo.h5">Et</MudText>
+                            @*<MudDivider />*@
+                            <MudGrid Class="justify-center">
+                                <MudText Typo="Typo.h5">115.000</MudText>
+                                <MudText Typo="Typo.body2" Class="ml-2 my-auto"> gr &nbsp;</MudText>
+                                <MudDivider Vertical="true" />
+                                <MudText Typo="Typo.h5">&nbsp;200</MudText>
+                                <MudText Typo="Typo.body2" Class="ml-2 my-auto"> lvş</MudText>
+                            </MudGrid>
+                            @*<MudDivider />*@
+                            <MudText Align="Align.Center" Color="Color.Error" Typo="Typo.h6">Ortalama Gramaj: 145 gr</MudText>
+                        </MudStack>
+                    </MudGrid>
+                </MudStack>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6">
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudPaper Elevation="2" Class="pa-4" Style="height: 100px;">
+                        <MudStack Row="true">
+                            <MudGrid Class="justify-center">
+                                <MudStack>
+                                    <MudText Align="Align.Center" Color="Color.Warning" Typo="Typo.h6">1.Periyot</MudText>
+                                    <MudDivider />
+                                    <MudText Align="Align.Center" Typo="Typo.h6">108.412 TL</MudText>
+                                </MudStack>
+                            </MudGrid>
+                            <MudDivider Vertical="true" FlexItem="true" />
+                            <MudGrid Class="justify-center">
+                                <MudStack Spacing="1">
+                                    <MudText Align="Align.Center" Color="Color.Success" Typo="Typo.h6">Tavuk</MudText>
+                                    <MudText Align="Align.Center" Typo="Typo.body1">90.108 gr / 5018 lvş</MudText>
+                                    <MudText Align="Align.Center" Color="Color.Success" Typo="Typo.body1">Otralama: 118 gr</MudText>
+                                </MudStack>
+                            </MudGrid>
+                            <MudDivider Vertical="true" FlexItem="true" />
+                            <MudGrid Class="justify-center">
+                                <MudStack Spacing="1">
+                                    <MudText Align="Align.Center" Color="Color.Error" Typo="Typo.h6">Et</MudText>
+                                    <MudText Align="Align.Center" Typo="Typo.body1">28.108 gr / 180 lvş</MudText>
+                                    <MudText Align="Align.Center" Color="Color.Error" Typo="Typo.body1">Otralama: 138 gr</MudText>
+                                </MudStack>
+                            </MudGrid>
+                        </MudStack>
+                    </MudPaper>
+                </MudItem>
+                <MudItem xs="12">
+                    <MudPaper Elevation="2" Class="pa-4" Style="height: 100px;">
+                        <MudStack Row="true">
+                            <MudGrid Class="justify-center">
+                                <MudStack>
+                                    <MudText Align="Align.Center" Color="Color.Warning" Typo="Typo.h6">2.Periyot</MudText>
+                                    <MudDivider />
+                                    <MudText Align="Align.Center" Typo="Typo.h6">108.412 TL</MudText>
+                                </MudStack>
+                            </MudGrid>
+                            <MudDivider Vertical="true" FlexItem="true" />
+                            <MudGrid Class="justify-center">
+                                <MudStack Spacing="1">
+                                    <MudText Align="Align.Center" Color="Color.Success" Typo="Typo.h6">Tavuk</MudText>
+                                    <MudText Align="Align.Center" Typo="Typo.body1">90.108 gr / 5018 lvş</MudText>
+                                    <MudText Align="Align.Center" Color="Color.Success" Typo="Typo.body1">Otralama: 118 gr</MudText>
+                                </MudStack>
+                            </MudGrid>
+                            <MudDivider Vertical="true" FlexItem="true" />
+                            <MudGrid Class="justify-center">
+                                <MudStack Spacing="1">
+                                    <MudText Align="Align.Center" Color="Color.Error" Typo="Typo.h6">Et</MudText>
+                                    <MudText Align="Align.Center" Typo="Typo.body1">28.108 gr / 180 lvş</MudText>
+                                    <MudText Align="Align.Center" Color="Color.Error" Typo="Typo.body1">Otralama: 138 gr</MudText>
+                                </MudStack>
+                            </MudGrid>
+                        </MudStack>
+                    </MudPaper>
+                </MudItem>
+                <MudItem xs="12">
+                    <MudPaper Elevation="2" Class="pa-4" Style="height: 100px;">
+                        <MudStack Row="true">
+                            <MudGrid Class="justify-center">
+                                <MudStack>
+                                    <MudText Align="Align.Center" Color="Color.Warning" Typo="Typo.h6">3.Periyot</MudText>
+                                    <MudDivider />
+                                    <MudText Align="Align.Center" Typo="Typo.h6">108.412 TL</MudText>
+                                </MudStack>
+                            </MudGrid>
+                            <MudDivider Vertical="true" FlexItem="true" />
+                            <MudGrid Class="justify-center">
+                                <MudStack Spacing="1">
+                                    <MudText Align="Align.Center" Color="Color.Success" Typo="Typo.h6">Tavuk</MudText>
+                                    <MudText Align="Align.Center" Typo="Typo.body1">90.108 gr / 5018 lvş</MudText>
+                                    <MudText Align="Align.Center" Color="Color.Success" Typo="Typo.body1">Otralama: 118 gr</MudText>
+                                </MudStack>
+                            </MudGrid>
+                            <MudDivider Vertical="true" FlexItem="true" />
+                            <MudGrid Class="justify-center">
+                                <MudStack Spacing="1">
+                                    <MudText Align="Align.Center" Color="Color.Error" Typo="Typo.h6">Et</MudText>
+                                    <MudText Align="Align.Center" Typo="Typo.body1">28.108 gr / 180 lvş</MudText>
+                                    <MudText Align="Align.Center" Color="Color.Error" Typo="Typo.body1">Otralama: 138 gr</MudText>
+                                </MudStack>
+                            </MudGrid>
+                        </MudStack>
+                    </MudPaper>
+                </MudItem>
+            </MudGrid>
+        </MudItem>
+        @*---------/Mounth Report----------------*@
+
+
+    </MudGrid>
+</MudContainer>
+
+
+
+@code {
+    private bool arrows = true;
+    private bool bullets = true;
+    private bool autocycle = false;
+    private Transition transition = Transition.Slide;
+
+    protected override void OnInitialized()
+    {
+        autocycle = true;
+    }
+}
