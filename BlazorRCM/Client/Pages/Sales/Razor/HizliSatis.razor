@@ -1,0 +1,156 @@
+﻿@page "/hizlisatis"
+
+
+
+<MudContainer Class="ps-2" MaxWidth="MaxWidth.ExtraExtraLarge">
+    <MudGrid>
+        @*------------Quick Sale MenuList-----------*@
+        <MudItem xs="12" sm="12" md="7" lg="7">
+            <MudCard>
+                <MudCardHeader Class="pa-0">
+                    <MudText Class="pb-0" Typo="Typo.body2">Hızlı Satış Menü</MudText>
+                </MudCardHeader>
+                <MudCardContent Class="pa-2">
+                    <MudTabs Elevation="0" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-0">
+                        <MudTabPanel Text="Favori Liste">
+                            <MudStack>
+                                <MudGrid Class="ma-auto">
+                                    @for (int i = 0; i < 17; i++)
+                                    {
+                                        <MudButton Class="ma-1" Variant="Variant.Filled" Color="Color.Success" Style="width: 100px; height: 85px;">Tavuk Dürüm</MudButton>
+                                    }
+                                </MudGrid>
+                                <MudGrid Class="ma-auto">
+                                    @for (int i = 0; i < 15; i++)
+                                    {
+                                        <MudButton Class="ma-1" Variant="Variant.Filled" Color="Color.Error" Style="width: 100px; height: 85px;">Et Dürüm</MudButton>
+                                    }
+                                </MudGrid>
+                                <MudGrid Class="ma-auto">
+                                    @for (int i = 0; i < 5; i++)
+                                    {
+                                        <MudButton Class="ma-1" Variant="Variant.Filled" Color="Color.Info" Style="width: 100px; height: 85px;">Yan Ürün</MudButton>
+                                    }
+                                </MudGrid>
+                            </MudStack>
+                        </MudTabPanel>
+                        <MudTabPanel Text="Dürümler">
+                            <MudText>Content Two</MudText>
+                        </MudTabPanel>
+                        <MudTabPanel Text="Menüler">
+                            <MudText>Content Three</MudText>
+                        </MudTabPanel>
+                        <MudTabPanel Text="İçecekler">
+                            <MudText>Content Disabled</MudText>
+                        </MudTabPanel>
+                        <MudTabPanel Text="Yan Ürünler">
+                            <MudText>Content Disabled</MudText>
+                        </MudTabPanel>
+                        <MudTabPanel Text="Diğer Ürünler">
+                            <MudText>Content Disabled</MudText>
+                        </MudTabPanel>
+                    </MudTabs>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+        @*-----------/Quick Sale MenuList-----------*@
+
+
+
+        @*------------Bill Details-----------*@
+        <MudItem xs="12" sm="12" md="5" lg="5">
+            <MudStack>
+                <MudCard Style="height:300px">
+                <MudCardHeader Class="pa-0">
+                    <MudText Class="pb-0" Typo="Typo.body2">Adiston İçerik</MudText>
+                </MudCardHeader>
+                <MudCardContent Class="pa-2">
+                    @*<MudSimpleTable Hover="true" Dense="true" FixedHeader="true">
+                        <thead>
+                        <tr>
+                        <th>Sıra</th>
+                        <th>Not</th>
+                        <th>Ürün</th>
+                        <th>Porsiyon</th>
+                        <th>Fiyat</th>
+                        <th>Miktar</th>
+                        <th>Tutar</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        </MudSimpleTable>*@
+                    <SfGrid DataSource="@GridData">
+                        <GridColumns>
+                            <GridColumn Field=@nameof(QuickSaleBillDTO.LineNo) HeaderText="Sıra No"></GridColumn>
+                            <GridColumn Field=@nameof(QuickSaleBillDTO.HasNote) HeaderText="Not" DisplayAsCheckBox="true" DefaultValue="false"></GridColumn>
+                            <GridColumn Field=@nameof(QuickSaleBillDTO.ProductName) HeaderText="Ürün"></GridColumn>
+                            <GridColumn Field=@nameof(QuickSaleBillDTO.Portion) HeaderText="Prs"></GridColumn>
+                            <GridColumn Field=@nameof(QuickSaleBillDTO.Quantity) HeaderText="Adet"></GridColumn>
+                            <GridColumn Field=@nameof(QuickSaleBillDTO.TotalPrice) HeaderText="Tutar"></GridColumn>
+                        </GridColumns>
+                        <GridAggregate>
+                            <GridAggregateColumns>
+                                <GridAggregateColumn Field=@nameof(QuickSaleBillDTO.TotalPrice) Type="Syncfusion.Blazor.Grids.AggregateType.Sum" Format="C2">
+                                    <FooterTemplate>
+                                        @{
+                                            var aggregate = (context as AggregateTemplateContext);
+                                            <div>
+                                                <p>Sum: @aggregate!.Sum</p>
+                                            </div>
+                                        }
+                                    </FooterTemplate>
+                                </GridAggregateColumn>
+                            </GridAggregateColumns>
+                        </GridAggregate>
+                    </SfGrid>
+                </MudCardContent>
+            </MudCard>
+            <MudGrid Class="ma-auto ms-auto">
+                    <MudStack>
+                        <MudGrid Class="pt-4 ma-auto">
+                            <MudStack Row="true">
+                                <MudFab StartIcon="@Icons.Filled.Bookmark" Color="Color.Primary" Label="Ürün Notu Gir" />
+                                <MudFab StartIcon="@Icons.Filled.Delete" Color="Color.Secondary" Label="Ürün Sil" />
+                                <MudFab StartIcon="@Icons.Filled.DeleteSweep" Color="Color.Error" Label="Temizle" />
+                            </MudStack>
+                        </MudGrid>
+                        <MudGrid Class="pt-4 ma-auto">
+                            <MudStack Row="true">
+                                <MudText Class="my-auto" Typo="Typo.body1" Color=Color.Primary>Adet:</MudText>
+                                <MudButtonGroup Color="Color.Primary" Variant="Variant.Filled">
+                                    <MudButton>+</MudButton>
+                                    <MudButton>-</MudButton>
+                                    <MudButton>3</MudButton>
+                                    <MudButton>4</MudButton>
+                                    <MudButton>5</MudButton>
+                                    <MudButton Variant="Variant.Filled">Diğer</MudButton>
+                                </MudButtonGroup>
+                            </MudStack>
+                        </MudGrid>
+                        <MudGrid Class="pt-4 ma-auto">
+                            <MudStack Row="true">
+                                <MudText Class="my-auto" Typo="Typo.body1" Color=Color.Secondary>Porsion:</MudText>
+                                <MudButtonGroup Color="Color.Secondary" Variant="Variant.Text">
+                                    <MudButton>Yarım</MudButton>
+                                    <MudButton>1 Prs</MudButton>
+                                    <MudButton>1,5 Prs</MudButton>
+                                    <MudButton>Duble</MudButton>
+                                </MudButtonGroup>
+                            </MudStack>
+                        </MudGrid>
+                    </MudStack>
+            </MudGrid>
+            </MudStack>
+            
+        </MudItem>
+        @*------------/Bill Details-----------*@
+
+
+    </MudGrid>
+
+</MudContainer>
+
+@code {
+    public List<QuickSaleBillDTO>? GridData { get; set; }
+}

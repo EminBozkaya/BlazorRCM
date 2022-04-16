@@ -36,10 +36,9 @@
 
     </MudDrawer>
 
-    <MudMainContent>
-        <MudContainer MaxWidth="MaxWidth.ExtraExtraLarge">
+    <MudMainContent Class="pt-12">
+        <MudContainer Class="ps-2" MaxWidth="MaxWidth.ExtraExtraLarge">
             @Body
-
         </MudContainer>
     </MudMainContent>
 </MudLayout>
@@ -52,8 +51,8 @@
     private bool _isDarkMode;
     private List<MudBlazor.BreadcrumbItem> _items = new List<MudBlazor.BreadcrumbItem>
     {
-        new MudBlazor.BreadcrumbItem("Hızlı Satış", href: null, icon: @Icons.Filled.Restaurant),
-        new MudBlazor.BreadcrumbItem("Paket Satışı", href: null, icon: @Icons.Filled.DeliveryDining),
+        new MudBlazor.BreadcrumbItem("Hızlı Satış", href:"/hizlisatis", icon: @Icons.Filled.Restaurant),
+        new MudBlazor.BreadcrumbItem("Telefon Satışları", href:"/telefonsatis", icon: @Icons.Filled.Phone),
     };
 
     bool _drawerOpen = true;

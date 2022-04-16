@@ -40,6 +40,7 @@
 
   <ItemGroup>
     <Folder Include="CustomComponents\" />
+    <Folder Include="Pages\Sales\Process\" />
     <Folder Include="Pages\UserManagement\" />
   </ItemGroup>
 
