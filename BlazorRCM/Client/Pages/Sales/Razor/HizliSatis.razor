@@ -58,95 +58,83 @@
 
 
         @*------------Bill Details-----------*@
-        <MudItem xs="12" sm="12" md="5" lg="5">
-            <MudStack>
-                <MudCard Style="height:300px">
+        <MudItem Class="justify-center" xs="12" sm="12" md="5" lg="5">
+            <MudCard>
                 <MudCardHeader Class="pa-0">
                     <MudText Class="pb-0" Typo="Typo.body2">Adiston İçerik</MudText>
                 </MudCardHeader>
-                <MudCardContent Class="pa-2">
-                    @*<MudSimpleTable Hover="true" Dense="true" FixedHeader="true">
-                        <thead>
-                        <tr>
-                        <th>Sıra</th>
-                        <th>Not</th>
-                        <th>Ürün</th>
-                        <th>Porsiyon</th>
-                        <th>Fiyat</th>
-                        <th>Miktar</th>
-                        <th>Tutar</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                        </MudSimpleTable>*@
-                    <SfGrid DataSource="@GridData">
-                        <GridColumns>
-                            <GridColumn Field=@nameof(QuickSaleBillDTO.LineNo) HeaderText="Sıra No"></GridColumn>
-                            <GridColumn Field=@nameof(QuickSaleBillDTO.HasNote) HeaderText="Not" DisplayAsCheckBox="true" DefaultValue="false"></GridColumn>
-                            <GridColumn Field=@nameof(QuickSaleBillDTO.ProductName) HeaderText="Ürün"></GridColumn>
-                            <GridColumn Field=@nameof(QuickSaleBillDTO.Portion) HeaderText="Prs"></GridColumn>
-                            <GridColumn Field=@nameof(QuickSaleBillDTO.Quantity) HeaderText="Adet"></GridColumn>
-                            <GridColumn Field=@nameof(QuickSaleBillDTO.TotalPrice) HeaderText="Tutar"></GridColumn>
-                        </GridColumns>
-                        <GridAggregate>
-                            <GridAggregateColumns>
-                                <GridAggregateColumn Field=@nameof(QuickSaleBillDTO.TotalPrice) Type="Syncfusion.Blazor.Grids.AggregateType.Sum" Format="C2">
-                                    <FooterTemplate>
-                                        @{
-                                            var aggregate = (context as AggregateTemplateContext);
-                                            <div>
-                                                <p>Sum: @aggregate!.Sum</p>
-                                            </div>
-                                        }
-                                    </FooterTemplate>
-                                </GridAggregateColumn>
-                            </GridAggregateColumns>
-                        </GridAggregate>
-                    </SfGrid>
+                <MudCardContent Class="pa-2 px-0 justify-center">
+                    <MudItem Style="px-auto">
+                        <MudStack>
+                            <MudGrid Style="height:350px" Class="pt-3 px-1 justify-center">
+                                <SfGrid DataSource="@GridData">
+                                    <GridColumns>
+                                        <GridColumn Field=@nameof(QuickSaleBillDTO.LineNo) HeaderText="Sıra No"></GridColumn>
+                                        <GridColumn Field=@nameof(QuickSaleBillDTO.HasNote) HeaderText="Not" DisplayAsCheckBox="true" DefaultValue="false"></GridColumn>
+                                        <GridColumn Field=@nameof(QuickSaleBillDTO.ProductName) HeaderText="Ürün"></GridColumn>
+                                        <GridColumn Field=@nameof(QuickSaleBillDTO.Portion) HeaderText="Prs"></GridColumn>
+                                        <GridColumn Field=@nameof(QuickSaleBillDTO.Quantity) HeaderText="Adet"></GridColumn>
+                                        <GridColumn Field=@nameof(QuickSaleBillDTO.TotalPrice) HeaderText="Tutar"></GridColumn>
+                                    </GridColumns>
+                                    <GridAggregate>
+                                        <GridAggregateColumns>
+                                            <GridAggregateColumn Field=@nameof(QuickSaleBillDTO.TotalPrice) Type="Syncfusion.Blazor.Grids.AggregateType.Sum" Format="C2">
+                                                <FooterTemplate>
+                                                    @{
+                                                        var aggregate = (context as AggregateTemplateContext);
+                                                        <div>
+                                                            <p>Sum: @aggregate!.Sum</p>
+                                                        </div>
+                                                    }
+                                                </FooterTemplate>
+                                            </GridAggregateColumn>
+                                        </GridAggregateColumns>
+                                    </GridAggregate>
+                                </SfGrid>
+                            </MudGrid>
+                            <MudGrid Class="pt-8 px-auto justify-center">
+                                <MudStack Row="true">
+                                    <MudFab StartIcon="@Icons.Filled.Bookmark" Style="@($"color:{Colors.Grey.Darken4};background:{Colors.Lime.Accent3};")" Label="Ürün Notu Gir" />
+                                    <MudFab StartIcon="@Icons.Filled.Delete" Color="Color.Secondary" Label="Ürün Sil" />
+                                    <MudFab StartIcon="@Icons.Filled.DeleteSweep" Color="Color.Error" Label="Temizle" />
+                                </MudStack>
+                            </MudGrid>
+                            <MudGrid Class="pt-8 px-auto justify-center">
+                                <MudStack Row="true">
+                                    <MudText Class="my-auto" Typo="Typo.body1" Color=Color.Primary>Adet:</MudText>
+                                    <MudButtonGroup Color="Color.Primary"  Variant="Variant.Filled">
+                                        <MudButton Style="height:80px;width:70px;font-size:large">+</MudButton>
+                                        <MudButton Style="height:80px;width:70px;font-size:large">-</MudButton>
+                                        <MudButton Style="height:80px;width:70px;font-size:large">3</MudButton>
+                                        <MudButton Style="height:80px;width:70px;font-size:large">4</MudButton>
+                                        <MudButton Style="height:80px;width:70px;font-size:large">5</MudButton>
+                                        <MudButton Style="height:80px;width:70px;font-size:small" Variant="Variant.Filled">Diğer</MudButton>
+                                    </MudButtonGroup>
+                                </MudStack>
+                            </MudGrid>
+                            <MudGrid Class="pt-8 px-auto justify-center">
+                                <MudStack Row="true">
+                                    <MudText Class="my-auto" Typo="Typo.body1" Color=Color.Secondary>Porsion:</MudText>
+                                    <MudButtonGroup Color="Color.Secondary" Variant="Variant.Text">
+                                        <MudButton>Yarım</MudButton>
+                                        <MudButton>1 Prs</MudButton>
+                                        <MudButton>1,5 Prs</MudButton>
+                                        <MudButton>Duble</MudButton>
+                                    </MudButtonGroup>
+                                    <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Save" IconColor="Color.Secondary" Size="Size.Small">Kaydet</MudButton>
+                                </MudStack>
+                            </MudGrid>
+                            <MudGrid Class="pt-8 px-auto justify-center">
+                                <MudButton Variant="Variant.Filled" Style="height:70px" Color="Color.Warning" FullWidth="true">-Kaydet/Yazdır-</MudButton>
+                            </MudGrid>
+                        </MudStack>
+                    </MudItem>
                 </MudCardContent>
             </MudCard>
-            <MudGrid Class="ma-auto ms-auto">
-                    <MudStack>
-                        <MudGrid Class="pt-4 ma-auto">
-                            <MudStack Row="true">
-                                <MudFab StartIcon="@Icons.Filled.Bookmark" Color="Color.Primary" Label="Ürün Notu Gir" />
-                                <MudFab StartIcon="@Icons.Filled.Delete" Color="Color.Secondary" Label="Ürün Sil" />
-                                <MudFab StartIcon="@Icons.Filled.DeleteSweep" Color="Color.Error" Label="Temizle" />
-                            </MudStack>
-                        </MudGrid>
-                        <MudGrid Class="pt-4 ma-auto">
-                            <MudStack Row="true">
-                                <MudText Class="my-auto" Typo="Typo.body1" Color=Color.Primary>Adet:</MudText>
-                                <MudButtonGroup Color="Color.Primary" Variant="Variant.Filled">
-                                    <MudButton>+</MudButton>
-                                    <MudButton>-</MudButton>
-                                    <MudButton>3</MudButton>
-                                    <MudButton>4</MudButton>
-                                    <MudButton>5</MudButton>
-                                    <MudButton Variant="Variant.Filled">Diğer</MudButton>
-                                </MudButtonGroup>
-                            </MudStack>
-                        </MudGrid>
-                        <MudGrid Class="pt-4 ma-auto">
-                            <MudStack Row="true">
-                                <MudText Class="my-auto" Typo="Typo.body1" Color=Color.Secondary>Porsion:</MudText>
-                                <MudButtonGroup Color="Color.Secondary" Variant="Variant.Text">
-                                    <MudButton>Yarım</MudButton>
-                                    <MudButton>1 Prs</MudButton>
-                                    <MudButton>1,5 Prs</MudButton>
-                                    <MudButton>Duble</MudButton>
-                                </MudButtonGroup>
-                            </MudStack>
-                        </MudGrid>
-                    </MudStack>
-            </MudGrid>
-            </MudStack>
-            
         </MudItem>
         @*------------/Bill Details-----------*@
 
-
+       
     </MudGrid>
 
 </MudContainer>
