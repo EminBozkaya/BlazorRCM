@@ -5,22 +5,29 @@ namespace RCMServerData.Models
 {
     public class SaleDetail : BaseDomain
     {
-        public long Id { get; set; }
+        public SaleDetail()
+        {
+            this.Users = new HashSet<User>();
+            this.Products = new HashSet<Product>();
+        }
 
-        public int SId { get; set; }
+        public Guid Id { get; set; }
+        public long SId { get; set; }
         public short PId { get; set; }
         public decimal Price { get; set; }
-        public byte Qty { get; set; }
-        public double Portion { get; set; }
+        public short Qty { get; set; }
+        public decimal Portion { get; set; }
         public decimal Total { get; set; }
         public string? Note { get; set; }
-        public Nullable<decimal> CutOff { get; set; }
+        public decimal? CutOff { get; set; }
         public bool IsActive { get; set; }
-        public Nullable<int> ModifiedBy { get; set; }
-        public Nullable<System.DateTime> ModifiedTime { get; set; }
 
-        public virtual Product? Product { get; set; }
-        public virtual Sale? Sale { get; set; }
-        public virtual User? User { get; set; }
+        public int? ModifiedBy { get; set; }
+        public DateTime? ModifiedTime { get; set; }
+
+
+        public Sale? Sale { get; set; }
+        public ICollection<Product> Products { get; set; }
+        public ICollection<User> Users { get; set; }
     }
 }

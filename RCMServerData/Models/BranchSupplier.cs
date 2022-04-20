@@ -30,7 +30,8 @@ namespace RCMServerData.Models
 
         public Supplier? Supplier { get; set; }        
         public Branch? Branch { get; set; }
-        public User? User { get; set; }
+        public User? UserCB { get; set; }
+        public User? UserMB { get; set; }
         //public virtual FirmType? FirmType { get; set; }
         //public virtual ICollection<RawMaterialOfSupplier> RawMaterialOfSuppliers { get; set; }
         //public virtual ICollection<SupplierMoneyFlow> SupplierMoneyFlows { get; set; }

@@ -60,28 +60,14 @@
         @*------------Bill Details-----------*@
         <MudItem Class="justify-center" xs="12" sm="12" md="5" lg="5">
             <MudCard>
-
-
                 <MudCardHeader Class="pa-0">
                     <MudText Align="Align.Center" Class="pb-0" Typo="Typo.body2">Adiston İçerik</MudText>
                 </MudCardHeader>
                 <MudCardContent Class="pa-2 px-0 justify-center">
                     <MudStack>
                         <MudStack Row="true">
-
                             <MudGrid Class="pt-3 justify-center pl-2 pr-3">
                                 <MudStack>
-                                    @*<MudChip Variant="Variant.Filled" Style="@($"color:{Colors.Grey.Darken4};background:{Colors.Blue.Lighten5};")">Adet</MudChip>*@
-                                    @*<MudChip Variant="Variant.Filled" Color="Color.Info">Adet</MudChip>
-                                        <MudButton Variant="Variant.Filled"Color="Color.Info"  Size="Size.Small">+</MudButton>
-                                        <MudButton Variant="Variant.Filled"Color="Color.Info"  Size="Size.Small">-</MudButton>
-                                        <MudButton Variant="Variant.Filled"Color="Color.Info"  Size="Size.Small">1</MudButton>
-                                        <MudButton Variant="Variant.Filled"Color="Color.Info"  Size="Size.Small">2</MudButton>
-                                        <MudButton Variant="Variant.Filled"Color="Color.Info"  Size="Size.Small">3</MudButton>
-                                        <MudButton Variant="Variant.Filled"Color="Color.Info"  Size="Size.Small">4</MudButton>
-                                        <MudButton Variant="Variant.Filled"Color="Color.Info"  Size="Size.Small">5</MudButton>
-                                        <MudButton Variant="Variant.Filled"Color="Color.Info"  Size="Size.Small">Diğer</MudButton>*@
-
                                     <MudChip Variant="Variant.Filled">Adet</MudChip>
                                     <MudButtonGroup Variant="Variant.Filled" VerticalAlign="true">
                                         <MudButton Style="height:52px;width:50px;font-size:xx-large">+</MudButton>
@@ -93,15 +79,7 @@
                                         <MudButton Style="height:52px;width:50px;font-size:x-large">5</MudButton>
                                         <MudButton Style="height:52px;width:50px">Diğer</MudButton>
                                     </MudButtonGroup>
-                                    @*<MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" Size="Size.Large" />
-                                        <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Remove" Size="Size.Large" />
-                                        <MudFab Style="width: 56px;height: 56px;border-radius: 50%;" Color="Color.Primary" Label="1" Size="Size.Large" />
-                                        <MudFab Style="width: 56px;height: 56px;border-radius: 50%;" Color="Color.Primary" Label="2" Size="Size.Large" />
-                                        <MudFab Style="width: 56px;height: 56px;border-radius: 50%;" Color="Color.Primary" Label="3" Size="Size.Large" />
-                                        <MudFab Style="width: 56px;height: 56px;border-radius: 50%;" Color="Color.Primary" Label="4" Size="Size.Large" />
-                                        <MudFab Style="width: 56px;height: 56px;border-radius: 50%;" Color="Color.Primary" Label="5" Size="Size.Large" />
-                                        <MudChip Style="width: 56px;height: 56px;border-radius: 50%;" Variant="Variant.Filled" Color="Color.Primary">Diğer</MudChip>*@
-                                </MudStack>
+                                   </MudStack>
                             </MudGrid>
                             <MudItem Style="px-auto">
                                 <MudStack>
@@ -131,10 +109,8 @@
                                                 </GridAggregate>*@
                                         </SfGrid>
                                     </MudGrid>
-                                    <MudTextField Class="mx-5 pt-2" @bind-Value="Amount" Label="Toplam" Variant="Variant.Outlined" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.AttachMoney" AdornmentColor="Color.Warning" />
+                                    <MudTextField Class="mx-5 pt-2" ReadOnly="true" @bind-Value="Amount" Label="Toplam" Variant="Variant.Outlined" Adornment="Adornment.Start" AdornmentIcon="fas fa-lira-sign" AdornmentColor="Color.Warning" />
                                     <MudGrid Class="pt-2 px-auto justify-center">
-                                        @*<MudStack Row="true">*@
-                                            
                                         <MudText Class="my-auto" Typo="Typo.body1" Color=Color.Secondary>Porsion:</MudText>
                                         <MudButtonGroup Color="Color.Secondary" Variant="Variant.Text">
                                             <MudButton>Yarım</MudButton>
@@ -142,29 +118,19 @@
                                             <MudButton>1,5 Prs</MudButton>
                                             <MudButton>Duble</MudButton>
                                         </MudButtonGroup>
-                                        
-                                        @*</MudStack>*@
                                     </MudGrid>
                                 </MudStack>
                             </MudItem>
                         </MudStack>
                         <MudGrid Class="pt-8 px-auto justify-center">
-                            @*<MudStack Row="true">*@
                             <MudFab StartIcon="@Icons.Filled.Bookmark" Style="@($"color:{Colors.Grey.Darken4};background:{Colors.Lime.Accent3};")" Label="Ürün Notu Gir" />
                             <MudFab StartIcon="@Icons.Filled.Delete" Color="Color.Secondary" Label="Ürün Sil" />
                             <MudFab StartIcon="@Icons.Filled.DeleteSweep" Color="Color.Error" Label="Temizle" />
-                            @*<MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Save" IconColor="Color.Secondary">Kaydet</MudButton>*@
-                            @*</MudStack>*@
                         </MudGrid>
                         <MudGrid Class="pt-8 px-auto justify-center">
                             <MudButton Variant="Variant.Filled" Style="height:70px;font-size:x-large;color:black" Color="Color.Warning" FullWidth="true">- Kaydet/Yazdır -</MudButton>
                         </MudGrid>
                     </MudStack>
-
-
-
-
-
 
                 </MudCardContent>
 
@@ -172,7 +138,6 @@
             </MudCard>
         </MudItem>
         @*------------/Bill Details-----------*@
-
 
     </MudGrid>
 

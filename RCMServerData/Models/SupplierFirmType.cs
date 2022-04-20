@@ -17,7 +17,8 @@ namespace RCMServerData.Models
 
         public Supplier? Supplier { get; set; }
         public FirmType? FirmType { get; set; }
-        public User? User { get; set; }
+        public User? UserCB { get; set; }
+        public User? UserMB { get; set; }
         
     }
 }

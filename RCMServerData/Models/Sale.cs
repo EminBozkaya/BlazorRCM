@@ -11,24 +11,24 @@ namespace RCMServerData.Models
             this.SaleDetails = new HashSet<SaleDetail>();
         }
 
-        public int SId { get; set; }
+        public long Id { get; set; }
         public short BId { get; set; }
-        public byte STId { get; set; }
-        public System.DateTime Date { get; set; }
-        public Nullable<byte> CTId { get; set; }
+        public short STId { get; set; }
+        public DateTime DateTime { get; set; }
+        public short? CTId { get; set; }
         public int UId { get; set; }
-        public Nullable<int> CId { get; set; }
+        public int? CId { get; set; }
         public string? SaleNote { get; set; }
-        public string? IpAdress { get; set; }
+        //public string? IpAdress { get; set; }
         public bool IsEOD { get; set; }
-        public Nullable<System.DateTime> EOD { get; set; }
+        public DateTime? EOD { get; set; }
         public bool IsActive { get; set; }
 
-        public virtual Branch? Branch { get; set; }
-        public virtual CaseType? CaseType { get; set; }
-        public virtual Customer? Customer { get; set; }
-        public virtual User? User { get; set; }
-        public virtual SaleType? SaleType { get; set; }
-        public virtual ICollection<SaleDetail> SaleDetails { get; set; }
+        public Branch? Branch { get; set; }
+        //public CaseType? CaseType { get; set; }
+        //public Customer? Customer { get; set; }
+        public User? User { get; set; }
+        //public SaleType? SaleType { get; set; }
+        public ICollection<SaleDetail> SaleDetails { get; set; }
     }
 }

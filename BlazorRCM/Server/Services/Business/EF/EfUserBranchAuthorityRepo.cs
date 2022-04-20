@@ -23,7 +23,7 @@ namespace BlazorRCM.Server.Services.Business.EF
         public async Task<List<UserBranchAuthorityDTO>> MyList()
         {
             using RCMBlazorContext ctx = new();
-            var query = ctx.UserBranchAuthorities!.AsQueryable();
+            var query = ctx.Set<UserBranchAuthority>().AsQueryable();
 
                 var list = await query
                       .ProjectTo<UserBranchAuthorityDTO>(mapper.ConfigurationProvider).ToListAsync();

@@ -22,11 +22,14 @@ namespace RCMServerData.Models
             //this.ExpenseFlows1 = new HashSet<ExpenseFlow>();
             //this.Sales = new HashSet<Sale>();
             //this.SaleDetails = new HashSet<SaleDetail>();
-            this.Suppliers = new HashSet<Supplier>();
+            this.SuppliersCB = new HashSet<Supplier>();
+            this.SuppliersMB = new HashSet<Supplier>();
             //this.SupplierMoneyFlows = new HashSet<SupplierMoneyFlow>();
             this.UserBranchAuthorities = new HashSet<UserBranchAuthority>();
-            this.BranchSuppliers = new HashSet<BranchSupplier>();
-            this.SupplierFirmTypes = new HashSet<SupplierFirmType>();
+            this.BranchSuppliersCB = new HashSet<BranchSupplier>();
+            this.BranchSuppliersMB = new HashSet<BranchSupplier>();
+            this.SupplierFirmTypesCB = new HashSet<SupplierFirmType>();
+            this.SupplierFirmTypesMB = new HashSet<SupplierFirmType>();
         }
 
         public int Id { get; set; }        
@@ -61,12 +64,15 @@ namespace RCMServerData.Models
         //public virtual ICollection<ExpenseFlow> ExpenseFlows { get; set; }
         //public virtual ICollection<ExpenseFlow> ExpenseFlows1 { get; set; }
 
-        //public virtual ICollection<Sale> Sales { get; set; }
-        //public virtual ICollection<SaleDetail> SaleDetails { get; set; }
-        public ICollection<Supplier> Suppliers { get; set; }
+        //public ICollection<Sale> Sales { get; set; }
+        //public ICollection<SaleDetail> SaleDetails { get; set; }
+        public ICollection<Supplier> SuppliersCB { get; set; }
+        public ICollection<Supplier> SuppliersMB { get; set; }
         //public virtual ICollection<SupplierMoneyFlow> SupplierMoneyFlows { get; set; }
         public ICollection<UserBranchAuthority> UserBranchAuthorities { get; set; }
-        public ICollection<BranchSupplier> BranchSuppliers { get; set; }
-        public ICollection<SupplierFirmType> SupplierFirmTypes { get; set; }
+        public ICollection<BranchSupplier> BranchSuppliersCB { get; set; }
+        public ICollection<BranchSupplier> BranchSuppliersMB { get; set; }
+        public ICollection<SupplierFirmType> SupplierFirmTypesCB { get; set; }
+        public ICollection<SupplierFirmType> SupplierFirmTypesMB { get; set; }
     }
 }

@@ -8,11 +8,17 @@ namespace RCMServerData.Models
         public ProductCategory()
         {
             this.Products = new HashSet<Product>();
+            this.SubProductCategories = new HashSet<ProductCategory>();
         }
 
-        public byte CatId { get; set; }
+        public short Id { get; set; }
         public string? Name { get; set; }
+        public short? TopCatId { get; set; }
+        public bool IsActive { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+
+        public ProductCategory? TopProductCategory { get; set; }
+        public ICollection<ProductCategory> SubProductCategories { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }

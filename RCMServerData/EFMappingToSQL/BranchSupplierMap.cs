@@ -70,15 +70,15 @@ namespace RCMServerData.EFMappingToSQL
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder
-                .HasOne(e => e.User)
-                .WithMany(e => e.BranchSuppliers)
+                .HasOne(e => e.UserCB)
+                .WithMany(e => e.BranchSuppliersCB)
                 .HasForeignKey(f => f.CreatedBy)
                 .HasConstraintName("FK_BranchSupplier_User_CreatedBy")
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder
-                .HasOne(e => e.User)
-                .WithMany(e => e.BranchSuppliers)
+                .HasOne(e => e.UserMB)
+                .WithMany(e => e.BranchSuppliersMB)
                 .HasForeignKey(f => f.ModifiedBy)
                 .HasConstraintName("FK_BranchSupplier_User_ModifiedBy")
                 .OnDelete(DeleteBehavior.Cascade);

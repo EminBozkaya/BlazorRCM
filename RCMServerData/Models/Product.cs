@@ -8,29 +8,30 @@ namespace RCMServerData.Models
     {
         public Product()
         {
-            this.BranchProductPrices = new HashSet<BranchProductPrice>();
-            this.Product1 = new HashSet<Product>();
-            this.ProductPhotoes = new HashSet<ProductPhoto>();
-            this.RawMaterialOfProducts = new HashSet<RawMaterialOfProduct>();
-            this.SaleDetails = new HashSet<SaleDetail>();
-            this.SaleNoteOfProducts = new HashSet<SaleNoteOfProduct>();
+            //this.BranchProductPrices = new HashSet<BranchProductPrice>();
+            //this.Products = new HashSet<Product>();
+            //this.ProductPhotos = new HashSet<ProductPhoto>();
+            //this.RawMaterialOfProducts = new HashSet<RawMaterialOfProduct>();
+            //this.SaleDetails = new HashSet<SaleDetail>();
+            //this.SaleNoteOfProducts = new HashSet<SaleNoteOfProduct>();
         }
 
-        public short PId { get; set; }
+        public short Id { get; set; }
         public string? Name { get; set; }
-        public byte CatId { get; set; }
-        public Nullable<decimal> Price { get; set; }
-        public Nullable<double> VATpercent { get; set; }
-        public Nullable<short> TopPId { get; set; }
+        public short CatId { get; set; }
+        public decimal? Price { get; set; }
+        public decimal? VATpercent { get; set; }
+        //public short? TopPId { get; set; }
         public bool IsActive { get; set; }
 
-        public virtual ICollection<BranchProductPrice> BranchProductPrices { get; set; }
-        public virtual ICollection<Product> Product1 { get; set; }
-        public virtual Product? Product2 { get; set; }
-        public virtual ProductCategory? ProductCategory { get; set; }
-        public virtual ICollection<ProductPhoto> ProductPhotoes { get; set; }
-        public virtual ICollection<RawMaterialOfProduct> RawMaterialOfProducts { get; set; }
-        public virtual ICollection<SaleDetail> SaleDetails { get; set; }
-        public virtual ICollection<SaleNoteOfProduct> SaleNoteOfProducts { get; set; }
+        //public ICollection<BranchProductPrice> BranchProductPrices { get; set; }
+        //public ICollection<Product> Products { get; set; }
+        //public Product? TopProduct { get; set; }
+        //public ICollection<Product> SubProducts { get; set; }
+        public ProductCategory? ProductCategory { get; set; }
+        //public ICollection<ProductPhoto> ProductPhotos { get; set; }
+        //public ICollection<RawMaterialOfProduct> RawMaterialOfProducts { get; set; }
+        //public ICollection<SaleDetail> SaleDetails { get; set; }
+        //public ICollection<SaleNoteOfProduct> SaleNoteOfProducts { get; set; }
     }
 }

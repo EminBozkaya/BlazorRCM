@@ -30,7 +30,8 @@ namespace RCMServerData.Models
         public bool IsActive { get; set; }
 
         //public virtual Branch? Branch { get; set; }
-        public User? User { get; set; }
+        public User? UserCB { get; set; }
+        public User? UserMB { get; set; }
         //public virtual FirmType? FirmType { get; set; }
         public ICollection<BranchSupplier> BranchSuppliers { get; set; }
         public ICollection<SupplierFirmType> SupplierFirmTypes { get; set; }
