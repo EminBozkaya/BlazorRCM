@@ -14,14 +14,14 @@ namespace RCMServerData.Models
             //this.BranchCreditCards = new HashSet<BranchCreditCard>();
             //this.BranchCreditCardFlows = new HashSet<BranchCreditCardFlow>();
             //this.BranchDailyRevenues = new HashSet<BranchDailyRevenue>();
-            //this.BranchProductPrices = new HashSet<BranchProductPrice>();
+            this.BranchProductPrices = new HashSet<BranchProductPrice>();
             //this.BranchRevenueDistributions = new HashSet<BranchRevenueDistribution>();
             //this.BranchStocks = new HashSet<BranchStock>();
             //this.BranchStockEntries = new HashSet<BranchStockEntry>();
             //this.EmployeeMoneyFlows = new HashSet<EmployeeMoneyFlow>();
             //this.EmployeeRollCalls = new HashSet<EmployeeRollCall>();
             //this.ExpenseFlows = new HashSet<ExpenseFlow>();
-            //this.Sales = new HashSet<Sale>();
+            this.Sales = new HashSet<Sale>();
             this.BranchSuppliers = new HashSet<BranchSupplier>();
             //this.SupplierMoneyFlows = new HashSet<SupplierMoneyFlow>();
             this.UserBranchAuthorities = new HashSet<UserBranchAuthority>();
@@ -42,14 +42,14 @@ namespace RCMServerData.Models
         //public virtual ICollection<BranchCreditCard> BranchCreditCards { get; set; }
         //public virtual ICollection<BranchCreditCardFlow> BranchCreditCardFlows { get; set; }
         //public virtual ICollection<BranchDailyRevenue> BranchDailyRevenues { get; set; }
-        //public virtual ICollection<BranchProductPrice> BranchProductPrices { get; set; }
+        public ICollection<BranchProductPrice> BranchProductPrices { get; set; }
         //public virtual ICollection<BranchRevenueDistribution> BranchRevenueDistributions { get; set; }
         //public virtual ICollection<BranchStock> BranchStocks { get; set; }
         //public virtual ICollection<BranchStockEntry> BranchStockEntries { get; set; }
         //public virtual ICollection<EmployeeMoneyFlow> EmployeeMoneyFlows { get; set; }
         //public virtual ICollection<EmployeeRollCall> EmployeeRollCalls { get; set; }
         //public virtual ICollection<ExpenseFlow> ExpenseFlows { get; set; }
-        //public virtual ICollection<Sale> Sales { get; set; }
+        public ICollection<Sale> Sales { get; set; }
         public ICollection<BranchSupplier> BranchSuppliers { get; set; }
         //public virtual ICollection<SupplierMoneyFlow> SupplierMoneyFlows { get; set; }
         public ICollection<UserBranchAuthority> UserBranchAuthorities { get; set; }

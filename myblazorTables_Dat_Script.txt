@@ -1,0 +1,125 @@
+
+
+INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('emin', 'bozkaya', 'memin', '5489587456', 'e@boz.com', '1111', true, '2022-04-01', '2022-04-11');
+INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('emirim', 'demir', 'dede', '5485698547', 'e@boz.com', '1111', true, '2022-04-04', '2022-04-11');
+INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('fluent', 'validation', 'fluval', '4569854521', 'f@val.com', '1111', true, '2022-04-11', '2022-04-11');
+INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('dfhgghg', 'fgh', 'sdfg', '1234567895', 'e@boz.com', 'sdfk', true, '2022-04-08', '2022-04-11');
+INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('sfdffsd', 'dfgdfgd', 'jhjljhljlk', '2584715698', 's@v.com', 'ghfdhgf', true, '2022-04-11', '2022-04-11');
+INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('memin', 'boz', 'bozki', '1234567891', 'e@boz.com', '22227', true, '2022-04-01', '2022-04-11');
+INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('deneme', 'dedem', 'ddgh', '1236985478', 'e@boz.com', '1213', false, '2022-04-07', '2022-04-16');
+
+
+
+
+INSERT INTO public."AuthorityType" ("Type") VALUES('Marka Sahibi');
+INSERT INTO public."AuthorityType" ("Type") VALUES('CEO');
+INSERT INTO public."AuthorityType" ("Type") VALUES('MYK');
+INSERT INTO public."AuthorityType" ("Type") VALUES('Reklam/Ajans');
+INSERT INTO public."AuthorityType" ("Type") VALUES('Bölge Müdürü');
+INSERT INTO public."AuthorityType" ("Type") VALUES('Kasiyer');
+INSERT INTO public."AuthorityType" ("Type") VALUES('Kurye');
+INSERT INTO public."AuthorityType" ("Type") VALUES('Şube Müdürü');
+
+
+
+
+
+
+INSERT INTO public."Branch" ("Name", "Adress", "IsActive", "CreatedTime", "ModifiedTime") VALUES('avm', 'amasya', true, '2022-04-01', '2022-04-01');
+INSERT INTO public."Branch" ("Name", "Adress", "IsActive", "CreatedTime", "ModifiedTime") VALUES('merkez', 'amasya', true, '2022-04-01', '2022-04-01');
+INSERT INTO public."Branch" ("Name", "Adress", "IsActive", "CreatedTime", "ModifiedTime") VALUES('Erzurum', 'doğu', true, '2022-04-08', '2022-04-08');
+INSERT INTO public."Branch" ("Name", "Adress", "IsActive", "CreatedTime", "ModifiedTime") VALUES('erba', 'tokat', true, '2022-04-09', '2022-04-09');
+INSERT INTO public."Branch" ("Name", "Adress", "IsActive", "CreatedTime", "ModifiedTime") VALUES('merzifon', 'AMAS', true, '2022-04-01', '2022-04-09');
+INSERT INTO public."Branch" ("Name", "Adress", "IsActive", "CreatedTime", "ModifiedTime") VALUES('fatsa', 'Ordu', true, '2022-04-09', '2022-04-09');
+
+
+
+
+
+
+INSERT INTO public."UserBranchAuthority" ("UId", "BId", "ATId", "IsActive") VALUES(1, 2, 3, true);
+INSERT INTO public."UserBranchAuthority" ("UId", "BId", "ATId", "IsActive") VALUES(1, 5, 4, true);
+INSERT INTO public."UserBranchAuthority" ("UId", "BId", "ATId", "IsActive") VALUES(2, 3, 6, true);
+INSERT INTO public."UserBranchAuthority" ("UId", "BId", "ATId", "IsActive") VALUES(5, 4, 2, true);
+INSERT INTO public."UserBranchAuthority" ("UId", "BId", "ATId", "IsActive") VALUES(3, 4, 1, true);
+INSERT INTO public."UserBranchAuthority" ("UId", "BId", "ATId", "IsActive") VALUES(4, 1, 5, true);
+
+
+
+
+
+
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Yiyecek', NULL, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('İçecek', NULL, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Tatlı', NULL, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Tavuk', 1, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Et', 1, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Diğer Yiyecek', 1, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Yan Ürün', 1, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Menü', NULL, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Tavuk Menü', 8, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Et Menü', 8, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Ramazan Menü', 8, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Ramazan Tavuk Menü', 11, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Ramazan Et Menü', 11, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('2,5 LT İçecek', 2, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('2 LT İçecek', 2, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('1,5 LT İçecek', 2, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('1 LT İçecek', 2, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('0,5 LT İçecek', 2, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Kutu İçecek', 2, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Cam Şişe', 2, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Tavuk Servis/Tabak', 4, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Et Servis/Tabak', 5, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Kutu Pepsi', 19, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Kutu Lipton', 19, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Kutu Lipton Tropicana', 24, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Kutu Lipton Ice Tea', 24, true);
+
+
+
+
+
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Tavuk Dürüm', 4, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Tavuk Ekmek', 4, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Tavuk Servis', 21, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Tavuk İskender', 21, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Tavuk Zurna', 4, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Tavuk Dürüm Çift Lvş', 4, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Et Dürüm', 5, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Et Ekmek', 5, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Et Servis', 22, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Et İskender', 22, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Et Zurna', 5, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Et Dürüm Çift Lvş', 5, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Tavuk Combo', 9, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Tavuk Avantaj', 9, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Tavuk Zurna Combo', 9, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Tavuk Zurna Avantaj', 9, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Et Combo', 10, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Et Avantaj', 10, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Et Zurna Combo', 10, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Et Zurna Avantaj', 10, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Vejetaryen Dürüm', 6, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Vejetaryen Ekmek', 6, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Patates', 7, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Yarım Lavaş', 7, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('1 Lavaş', 7, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Kutu Pepsi', 23, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Kutu Pepsi Max', 23, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Kutu Pepsi Twist', 23, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Kutu Yedigün', 19, NULL, NULL, true);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Kutu Lipton IceTea Şeftali', 26, NULL, NULL, true);
+
+
+
+
+
+
+
+
+
+
+
+
+

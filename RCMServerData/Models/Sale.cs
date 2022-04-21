@@ -11,17 +11,17 @@ namespace RCMServerData.Models
             this.SaleDetails = new HashSet<SaleDetail>();
         }
 
-        public long Id { get; set; }
+        public int Id { get; set; }
         public short BId { get; set; }
-        public short STId { get; set; }
+        //public short STId { get; set; }
         public DateTime DateTime { get; set; }
-        public short? CTId { get; set; }
         public int UId { get; set; }
-        public int? CId { get; set; }
+        //public short? CTId { get; set; }
+        //public int? CId { get; set; }
         public string? SaleNote { get; set; }
         //public string? IpAdress { get; set; }
         public bool IsEOD { get; set; }
-        public DateTime? EOD { get; set; }
+        public DateOnly? EOD { get; set; }
         public bool IsActive { get; set; }
 
         public Branch? Branch { get; set; }

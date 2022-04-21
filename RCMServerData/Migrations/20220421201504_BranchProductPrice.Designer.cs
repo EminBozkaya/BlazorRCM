@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RCMServerData.EFContext;
@@ -11,9 +12,10 @@ using RCMServerData.EFContext;
 namespace RCMServerData.Migrations
 {
     [DbContext(typeof(RCMBlazorContext))]
-    partial class RCMBlazorContextModelSnapshot : ModelSnapshot
+    [Migration("20220421201504_BranchProductPrice")]
+    partial class BranchProductPrice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -251,97 +253,6 @@ namespace RCMServerData.Migrations
                     b.HasIndex("TopCatId");
 
                     b.ToTable("ProductCategory");
-                });
-
-            modelBuilder.Entity("RCMServerData.Models.Sale", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<int>("Id"));
-
-                    b.Property<short>("BId")
-                        .HasColumnType("smallint");
-
-                    b.Property<DateTime>("DateTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
-                        .HasColumnName("DateTime")
-                        .HasDefaultValueSql("NOW()");
-
-                    b.Property<DateOnly?>("EOD")
-                        .HasColumnType("date");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsEOD")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("SaleNote")
-                        .HasColumnType("text");
-
-                    b.Property<int>("UId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BId");
-
-                    b.HasIndex("UId");
-
-                    b.ToTable("Sale");
-                });
-
-            modelBuilder.Entity("RCMServerData.Models.SaleDetail", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("Id")
-                        .HasDefaultValueSql("UUID_GENERATE_V4()");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
-
-                    b.Property<int?>("ModifiedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModifiedTime")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("text");
-
-                    b.Property<short>("PId")
-                        .HasColumnType("smallint");
-
-                    b.Property<decimal>("Portion")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
-
-                    b.Property<short>("Qty")
-                        .HasColumnType("smallint");
-
-                    b.Property<int>("SId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Total")
-                        .HasColumnType("numeric");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ModifiedBy");
-
-                    b.HasIndex("PId");
-
-                    b.HasIndex("SId");
-
-                    b.ToTable("SaleDetail");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.Supplier", b =>
@@ -633,51 +544,6 @@ namespace RCMServerData.Migrations
                     b.Navigation("TopProductCategory");
                 });
 
-            modelBuilder.Entity("RCMServerData.Models.Sale", b =>
-                {
-                    b.HasOne("RCMServerData.Models.Branch", "Branch")
-                        .WithMany("Sales")
-                        .HasForeignKey("BId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RCMServerData.Models.User", "User")
-                        .WithMany("Sales")
-                        .HasForeignKey("UId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Branch");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("RCMServerData.Models.SaleDetail", b =>
-                {
-                    b.HasOne("RCMServerData.Models.User", "UserMB")
-                        .WithMany("SaleDetailsMB")
-                        .HasForeignKey("ModifiedBy")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("RCMServerData.Models.Product", "Product")
-                        .WithMany("SaleDetails")
-                        .HasForeignKey("PId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RCMServerData.Models.Sale", "Sale")
-                        .WithMany("SaleDetails")
-                        .HasForeignKey("SId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Sale");
-
-                    b.Navigation("UserMB");
-                });
-
             modelBuilder.Entity("RCMServerData.Models.Supplier", b =>
                 {
                     b.HasOne("RCMServerData.Models.User", "UserCB")
@@ -779,8 +645,6 @@ namespace RCMServerData.Migrations
 
                     b.Navigation("BranchSuppliers");
 
-                    b.Navigation("Sales");
-
                     b.Navigation("UserBranchAuthorities");
                 });
 
@@ -792,8 +656,6 @@ namespace RCMServerData.Migrations
             modelBuilder.Entity("RCMServerData.Models.Product", b =>
                 {
                     b.Navigation("BranchProductPrices");
-
-                    b.Navigation("SaleDetails");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.ProductCategory", b =>
@@ -801,11 +663,6 @@ namespace RCMServerData.Migrations
                     b.Navigation("Products");
 
                     b.Navigation("SubProductCategories");
-                });
-
-            modelBuilder.Entity("RCMServerData.Models.Sale", b =>
-                {
-                    b.Navigation("SaleDetails");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.Supplier", b =>
@@ -820,10 +677,6 @@ namespace RCMServerData.Migrations
                     b.Navigation("BranchSuppliersCB");
 
                     b.Navigation("BranchSuppliersMB");
-
-                    b.Navigation("SaleDetailsMB");
-
-                    b.Navigation("Sales");
 
                     b.Navigation("SupplierFirmTypesCB");
 
