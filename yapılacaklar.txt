@@ -1,6 +1,14 @@
 -login procedürü derinlemesine kont edilecek
+
 -yeni kull. oluşturulurken mevcut mu kont. edilecek
+
 -şifemi unuttum/mail gönderimi
--Client/server val.
+
+-----Client/server val.(kısmen yapıldı fakat domain classlarınki de yapılmalı - son kayıt/değişiklik safahasında-)
+
+-----Şubelerin menülerinin yüklenmesi hızlı satış ekranında değil de sisteme login yapıldığında local storage a
+kayıt yapılarak sayfaya yüklenmesi mantıklı, yoksa her defasında client server gidip gelmesi sistem perf düşürür
+
 -try/catch heryere(gerekli olan)
+
 -logging

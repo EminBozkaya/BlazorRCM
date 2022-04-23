@@ -75,44 +75,83 @@ INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Ku
 INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Kutu Lipton', 19, true);
 INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Kutu Lipton Tropicana', 24, true);
 INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Kutu Lipton Ice Tea', 24, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Ayran', 2, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Soda', 20, true);
+INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Meyveli Soda', 28, true);
 
 
 
 
 
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Tavuk Dürüm', 4, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Tavuk Ekmek', 4, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Tavuk Servis', 21, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Tavuk İskender', 21, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Tavuk Zurna', 4, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Tavuk Dürüm Çift Lvş', 4, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Et Dürüm', 5, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Et Ekmek', 5, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Et Servis', 22, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Et İskender', 22, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Et Zurna', 5, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Et Dürüm Çift Lvş', 5, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Tavuk Combo', 9, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Tavuk Avantaj', 9, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Tavuk Zurna Combo', 9, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Tavuk Zurna Avantaj', 9, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Et Combo', 10, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Et Avantaj', 10, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Et Zurna Combo', 10, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Et Zurna Avantaj', 10, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Vejetaryen Dürüm', 6, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Vejetaryen Ekmek', 6, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Patates', 7, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Yarım Lavaş', 7, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('1 Lavaş', 7, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Kutu Pepsi', 23, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Kutu Pepsi Max', 23, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Kutu Pepsi Twist', 23, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Kutu Yedigün', 19, NULL, NULL, true);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive") VALUES('Kutu Lipton IceTea Şeftali', 26, NULL, NULL, true);
 
 
 
+
+
+
+INSERT INTO public."ProductMenuList" ("ListName", "IsActive") VALUES('Dürüm ve Servis', true);
+INSERT INTO public."ProductMenuList" ("ListName", "IsActive") VALUES('Menüler', true);
+INSERT INTO public."ProductMenuList" ("ListName", "IsActive") VALUES('İçecekler', true);
+INSERT INTO public."ProductMenuList" ("ListName", "IsActive") VALUES('Yan Ürün ve Diğer', true);
+
+
+
+
+
+
+
+
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Dürüm', 4, NULL, NULL, true, 5, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Ekmek', 4, NULL, NULL, true, 5, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Servis', 21, NULL, NULL, true, 5, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk İskender', 21, NULL, NULL, true, 5, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Zurna', 4, NULL, NULL, true, 5, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Dürüm Çift Lvş', 4, NULL, NULL, true, 5, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et Dürüm', 5, NULL, NULL, true, 7, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et Ekmek', 5, NULL, NULL, true, 7, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et Servis', 22, NULL, NULL, true, 7, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et İskender', 22, NULL, NULL, true, 7, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et Zurna', 5, NULL, NULL, true, 7, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et Dürüm Çift Lvş', 5, NULL, NULL, true, 7, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Combo', 9, NULL, NULL, true, 5, 2);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Avantaj', 9, NULL, NULL, true, 5, 2);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Zurna Combo', 9, NULL, NULL, true, 5, 2);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Zurna Avantaj', 9, NULL, NULL, true, 5, 2);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et Combo', 10, NULL, NULL, true, 7, 2);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et Avantaj', 10, NULL, NULL, true, 7, 2);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et Zurna Combo', 10, NULL, NULL, true, 7, 2);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et Zurna Avantaj', 10, NULL, NULL, true, 7, 2);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Vejetaryen Dürüm', 6, NULL, NULL, true, 2, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Vejetaryen Ekmek', 6, NULL, NULL, true, 2, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Patates', 7, NULL, NULL, true, 6, 4);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Yarım Lavaş', 7, NULL, NULL, true, 9, 4);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('1 Lavaş', 7, NULL, NULL, true, 9, 4);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Pepsi', 23, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Pepsi Max', 23, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Pepsi Twist', 23, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Yedigün', 19, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('IceTea Şeftali', 26, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('IceTea Limon', 26, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('IceTea Mango', 26, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('IceTea Karpuz', 26, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('M.Suyu Karışık', 25, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('M.Suyu Şeftali', 25, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('M.Suyu Portakal', 25, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('M.Suyu Vişne', 25, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('M.Suyu Kayısı', 25, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Fruko Gazoz', 19, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Fruko 7UP', 19, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Küçük Su', 18, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Büyük Ayran', 27, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Küçük Ayran', 27, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Sade Soda', 28, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Limonlu Soda', 29, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Elmalı Soda', 29, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Karpuzlu Soda', 29, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Vişneli Soda', 29, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Çilekli Soda', 29, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Personel Tavuk', 4, NULL, NULL, true, 8, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Personel Et', 5, NULL, NULL, true, 8, 1);
 
 
 

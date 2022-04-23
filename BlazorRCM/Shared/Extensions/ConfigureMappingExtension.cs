@@ -74,7 +74,12 @@ namespace BlazorRCM.Shared.Extensions
             //CreateMap<UserDTO, User>()
             //    .ForMember(x => x.Password, y => y.MapFrom(z => PasswordEncrypter.Encrypt(z.Password!)));
 
-
+            CreateMap<BranchProductPrice, BranchProductPriceDTO>()
+                //.Include<User, UserDTO>()
+                .ForMember(x => x.ProductName, y => y.MapFrom(z => z.Product!.Name))
+                .ForMember(x => x.ColorCode, y => y.MapFrom(z => z.Product!.ColorCode))
+                .ForMember(x => x.MenuListId, y => y.MapFrom(z => z.Product!.MenuListId))
+                .ReverseMap();
 
         }
     }

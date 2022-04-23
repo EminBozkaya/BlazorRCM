@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RCMServerData.EFContext;
@@ -11,9 +12,10 @@ using RCMServerData.EFContext;
 namespace RCMServerData.Migrations
 {
     [DbContext(typeof(RCMBlazorContext))]
-    partial class RCMBlazorContextModelSnapshot : ModelSnapshot
+    [Migration("20220422123802_AddColorCodeToProduct")]
+    partial class AddColorCodeToProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -203,9 +205,6 @@ namespace RCMServerData.Migrations
                         .HasColumnType("boolean")
                         .HasColumnName("IsActive");
 
-                    b.Property<short?>("MenuListId")
-                        .HasColumnType("smallint");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -225,8 +224,6 @@ namespace RCMServerData.Migrations
                         .HasName("pk_Product_id");
 
                     b.HasIndex("CatId");
-
-                    b.HasIndex("MenuListId");
 
                     b.ToTable("Product");
                 });
@@ -259,27 +256,6 @@ namespace RCMServerData.Migrations
                     b.HasIndex("TopCatId");
 
                     b.ToTable("ProductCategory");
-                });
-
-            modelBuilder.Entity("RCMServerData.Models.ProductMenuList", b =>
-                {
-                    b.Property<short>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("smallint")
-                        .HasColumnName("Id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<short>("Id"));
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("ListName")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id")
-                        .HasName("pk_Product_id");
-
-                    b.ToTable("ProductMenuList");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.Sale", b =>
@@ -648,14 +624,7 @@ namespace RCMServerData.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_Product_ProductCategory_CatId");
 
-                    b.HasOne("RCMServerData.Models.ProductMenuList", "ProductMenuList")
-                        .WithMany("Products")
-                        .HasForeignKey("MenuListId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.Navigation("ProductCategory");
-
-                    b.Navigation("ProductMenuList");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.ProductCategory", b =>
@@ -837,11 +806,6 @@ namespace RCMServerData.Migrations
                     b.Navigation("Products");
 
                     b.Navigation("SubProductCategories");
-                });
-
-            modelBuilder.Entity("RCMServerData.Models.ProductMenuList", b =>
-                {
-                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.Sale", b =>

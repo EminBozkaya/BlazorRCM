@@ -60,7 +60,13 @@ namespace RCMServerData.EFMappingToSQL
                 .HasConstraintName("FK_Product_ProductCategory_CatId")
                 .OnDelete(DeleteBehavior.Cascade);
 
-            
+            builder
+                .HasOne(e => e.ProductMenuList)
+                .WithMany(e => e.Products)
+                .HasForeignKey(f => f.MenuListId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
         }
                 
     }

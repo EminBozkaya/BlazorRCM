@@ -1,0 +1,245 @@
+﻿@page "/instoresale"
+
+@inherits BlazorRCM.Client.Pages.Sales.InStoreSales.InStoreSaleProcess
+
+<MudContainer Class="ps-2" MaxWidth="MaxWidth.ExtraExtraLarge">
+    <MudGrid>
+        @*------------Quick Sale MenuList-----------*@
+        <MudItem xs="12" sm="12" md="7" lg="7">
+            <MudCard>
+                <MudCardHeader Class="pa-0">
+                    <MudText Align="Align.Center" Class="pb-0" Typo="Typo.body2">Hızlı Satış Menü</MudText>
+                </MudCardHeader>
+                <MudCardContent Class="pa-2">
+                    <SpinLoader IsLoading="@_elementIsLoading">
+                        <LoadingTemplate>
+                            <div class="col-12" style="vertical-align:middle; margin-top:100px">
+                                <Chase Center="true" Size="40px" Color="#F44336"></Chase>
+                            </div>
+                        </LoadingTemplate>
+                        <ContentTemplate>
+                            <MudTabs Elevation="0" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-0">
+                                <MudTabPanel Text="Favori Liste">
+                                    <MudStack>
+                                        <MudGrid Class="ma-auto">
+                                            @foreach (BranchProductPriceDTO item in FavList)
+                                            {
+                                                if (item.ColorCode == 5)
+                                                {
+                                                    <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                                }
+                                            }
+                                            @foreach (BranchProductPriceDTO item in FavList)
+                                            {
+                                                if (item.ColorCode == 7)
+                                                {
+                                                    <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                                }
+                                            }
+                                        </MudGrid>
+                                        <MudGrid Class="ma-auto">
+                                            @foreach (BranchProductPriceDTO item in FavList)
+                                            {
+                                                if (item.ColorCode == 1)
+                                                {
+                                                    <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                                }
+                                            }
+                                            @foreach (BranchProductPriceDTO item in FavList)
+                                            {
+                                                if (item.ColorCode == 2 || item.ColorCode == 6 || item.ColorCode == 9)
+                                                {
+                                                    <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                                }
+
+                                            }
+                                        </MudGrid>
+                                    </MudStack>
+                                </MudTabPanel>
+                                <MudTabPanel Text="Dürüm/Ekmek/Servis">
+                                    <MudStack>
+                                        <MudGrid Class="ma-auto">
+                                            @foreach (BranchProductPriceDTO item in FoodList)
+                                            {
+                                                if (item.ColorCode == 5)
+                                                {
+                                                    <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                                }
+                                            }
+                                        </MudGrid>
+                                        <MudGrid Class="ma-auto">
+                                            @foreach (BranchProductPriceDTO item in FoodList)
+                                            {
+                                                if (item.ColorCode == 7)
+                                                {
+                                                    <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                                }
+                                            }
+                                        </MudGrid>
+                                        <MudGrid Class="ma-auto">
+                                            @foreach (BranchProductPriceDTO item in FoodList)
+                                            {
+                                                if (item.ColorCode == 2 || item.ColorCode == 8)
+                                                {
+                                                    <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                                }
+                                            }
+                                        </MudGrid>
+                                    </MudStack>
+                                </MudTabPanel>
+                                <MudTabPanel Text="Menüler">
+                                    <MudStack>
+                                        <MudGrid Class="ma-auto">
+                                            @foreach (BranchProductPriceDTO item in MenuList)
+                                            {
+                                                if (item.ColorCode == 5 || item.ColorCode == 3)
+                                                {
+                                                    <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                                }
+                                            }
+                                        </MudGrid>
+                                        <MudGrid Class="ma-auto">
+                                            @foreach (BranchProductPriceDTO item in MenuList)
+                                            {
+                                                if (item.ColorCode == 7 || item.ColorCode == 2)
+                                                {
+                                                    <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                                }
+                                            }
+                                        </MudGrid>
+                                        <MudGrid Class="ma-auto">
+                                            @foreach (BranchProductPriceDTO item in MenuList)
+                                            {
+                                                if (item.ColorCode != 5 && item.ColorCode != 3 && item.ColorCode != 7 && item.ColorCode != 2)
+                                                {
+                                                    <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                                }
+                                            }
+                                        </MudGrid>
+                                    </MudStack>
+                                </MudTabPanel>
+                                <MudTabPanel Text="İçecekler">
+                                    <MudGrid Class="ma-auto">
+                                        @foreach (BranchProductPriceDTO item in DrinkList)
+                                        {
+                                            <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                        }
+                                    </MudGrid>
+                                </MudTabPanel>
+                                <MudTabPanel Text="Yan Ürünler ve Diğer">
+                                    <MudGrid Class="ma-auto">
+                                        @foreach (BranchProductPriceDTO item in OtherList)
+                                        {
+                                            <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                        }
+                                    </MudGrid>
+                                </MudTabPanel>
+                            </MudTabs>
+                        </ContentTemplate>
+                    </SpinLoader>
+
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+        @*-----------/Quick Sale MenuList-----------*@
+
+
+
+        @*------------Bill Details-----------*@
+        <MudItem Class="justify-center" xs="12" sm="12" md="5" lg="5">
+            <MudCard>
+                <MudCardHeader Class="pa-0">
+                    <MudText Align="Align.Center" Class="pb-0" Typo="Typo.body2">Adiston İçerik</MudText>
+                </MudCardHeader>
+                <MudCardContent Class="pa-2 px-0 justify-center">
+                    <MudStack>
+                        <MudStack Row="true">
+                            <MudGrid Class="pt-3 justify-center pl-2 pr-3">
+                                <MudStack>
+                                    <MudChip Variant="Variant.Filled">Adet</MudChip>
+                                    <MudButtonGroup Variant="Variant.Filled" VerticalAlign="true">
+                                        <MudButton Style="height:49px;width:48px;font-size:xx-large">+</MudButton>
+                                        <MudButton Style="height:49px;width:48px;font-size:xx-large">-</MudButton>
+                                        <MudButton Style="height:49px;width:48px;font-size:x-large">1</MudButton>
+                                        <MudButton Style="height:49px;width:48px;font-size:x-large">2</MudButton>
+                                        <MudButton Style="height:49px;width:48px;font-size:x-large">3</MudButton>
+                                        <MudButton Style="height:49px;width:48px;font-size:x-large">4</MudButton>
+                                        <MudButton Style="height:49px;width:48px;font-size:x-large">5</MudButton>
+                                        <MudButton Style="height:49px;width:48px">Diğer</MudButton>
+                                    </MudButtonGroup>
+                                </MudStack>
+                            </MudGrid>
+                            <MudItem Style="px-auto">
+                                <MudStack>
+                                    <MudGrid Class="pt-3 px-1 justify-center">
+                                        <SfGrid DataSource="@GridBillData" @ref="Grid" Height="330">
+                                            <GridEvents TValue="InStoreSaleBillDTO" OnActionBegin="ActionBegin"></GridEvents> 
+                                            <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" AllowEditOnDblClick= "false" NewRowPosition="NewRowPosition.Bottom"/>
+                                            <GridColumns>
+                                                @*<GridColumn Field=@nameof(InStoreSaleBillDTO.LineNo) HeaderText="Sıra No"></GridColumn>*@
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.Id) IsPrimaryKey="true" Visible="false"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.HasNote) HeaderText="Not" DisplayAsCheckBox="true" DefaultValue="false" Width="10%"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.ProductName) HeaderText="Ürün" Width="40%"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.Portion) HeaderText="Prs" Width="15%"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.Quantity) HeaderText="Adet" Width="15%"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.TotalPrice) HeaderText="Tutar" Width="20%"></GridColumn>
+                                            </GridColumns>
+                                            @*<GridAggregate>
+                                                <GridAggregateColumns>
+                                                <GridAggregateColumn Field=@nameof(QuickSaleBillDTO.TotalPrice) Type="Syncfusion.Blazor.Grids.AggregateType.Sum" Format="C2">
+                                                <FooterTemplate>
+                                                @{
+                                                var aggregate = (context as AggregateTemplateContext);
+                                                <div>
+                                                <p>Sum: @aggregate!.Sum</p>
+                                                </div>
+                                                }
+                                                </FooterTemplate>
+                                                </GridAggregateColumn>
+                                                </GridAggregateColumns>
+                                                </GridAggregate>*@
+                                        </SfGrid>
+                                    </MudGrid>
+                                    <MudTextField Class="mx-5 pt-2" ReadOnly="true" @bind-Value="Amount" Label="Toplam" Variant="Variant.Outlined" Adornment="Adornment.Start" AdornmentIcon="fas fa-lira-sign" AdornmentColor="Color.Warning" />
+                                    <MudGrid Class="pt-2 px-auto justify-center">
+                                        <MudText Class="my-auto" Typo="Typo.body1" Color=Color.Secondary>Porsion:</MudText>
+                                        <MudButtonGroup Color="Color.Secondary" Variant="Variant.Text">
+                                            <MudButton>Yarım</MudButton>
+                                            <MudButton>1 Prs</MudButton>
+                                            <MudButton>1,5 Prs</MudButton>
+                                            <MudButton>Duble</MudButton>
+                                        </MudButtonGroup>
+                                    </MudGrid>
+                                </MudStack>
+                            </MudItem>
+                        </MudStack>
+                        <MudGrid Class="pt-6 px-auto justify-center">
+                            <MudFab StartIcon="@Icons.Filled.Bookmark" Style="@($"color:{Colors.Grey.Darken4};background:{Colors.Lime.Accent3};")" Label="Ürün Notu Gir" />
+                            <MudFab OnClick="() => RemoveFromBill()" StartIcon="@Icons.Filled.Delete" Color="Color.Secondary" Label="Ürün Sil" />
+                            <MudFab StartIcon="@Icons.Filled.DeleteSweep" Color="Color.Error" Label="Temizle" />
+                        </MudGrid>
+                        <MudGrid Class="pt-3 px-auto justify-center">
+                            <MudButton Class="ma-3" Variant="Variant.Filled" Style="height:70px;font-size:x-large;color:black;border-radius:15px" Color="Color.Warning" FullWidth="true">- Kaydet/Yazdır -</MudButton>
+                        </MudGrid>
+                    </MudStack>
+
+                </MudCardContent>
+
+
+            </MudCard>
+        </MudItem>
+        @*------------/Bill Details-----------*@
+
+    </MudGrid>
+
+</MudContainer>
+
+@code {
+    //[Parameter]
+    //public string sc = "Success";
+    protected short sc = 5;
+
+
+
+
+}

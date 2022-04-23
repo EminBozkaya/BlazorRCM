@@ -22,6 +22,8 @@ namespace RCMServerData.Models
         public decimal? Price { get; set; }
         public decimal? VATpercent { get; set; }
         //public short? TopPId { get; set; }
+        public short? ColorCode { get; set; }
+        public short? MenuListId { get; set; }
         public bool IsActive { get; set; }
 
         public ICollection<BranchProductPrice> BranchProductPrices { get; set; }
@@ -29,6 +31,7 @@ namespace RCMServerData.Models
         //public Product? TopProduct { get; set; }
         //public ICollection<Product> SubProducts { get; set; }
         public ProductCategory? ProductCategory { get; set; }
+        public ProductMenuList? ProductMenuList { get; set; }
         //public ICollection<ProductPhoto> ProductPhotos { get; set; }
         //public ICollection<RawMaterialOfProduct> RawMaterialOfProducts { get; set; }
         public ICollection<SaleDetail> SaleDetails { get; set; }
