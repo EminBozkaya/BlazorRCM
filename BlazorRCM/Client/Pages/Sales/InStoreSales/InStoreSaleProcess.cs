@@ -10,12 +10,13 @@ using Newtonsoft.Json;
 using FluentValidation;
 using BlazorRCM.Shared.ValidationRules.FluentValidation.DTOs.ModelDTOs;
 using BlazorRCM.Shared.DTOs.ViewDTOs;
+using MudBlazor;
+using BlazorRCM.Client.CustomComponents.ModalComponents;
 
 namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 {
     public class InStoreSaleProcess : ComponentBase
     {
-
         [Inject]
         public HttpClient? Client { get; set; }
 
@@ -26,13 +27,11 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         IJSRuntime? JSRuntime { get; set; }
 
         [Inject]
-        SweetAlertService? Swal { get; set; }
+        public IDialogService? DialogService { get; set; }
 
-        //BranchProductPriceDTOValidator validator=new();
+        [CascadingParameter]
+        public int IntValue { get; set; }
 
-        //protected AddNewBranchProductPriceDTO AddNewBranchProductPriceDTO = new();
-        //protected List<BranchDTO> BranchList = new();
-        //protected List<AuthorityTypeDTO> AuthorityTypeList = new();
         protected List<BranchProductPriceDTO> BranchProductPriceList = new();
         protected List<BranchProductPriceDTO> FavList = new();
         protected List<BranchProductPriceDTO> FoodList = new();
@@ -40,8 +39,9 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         protected List<BranchProductPriceDTO> DrinkList = new();
         protected List<BranchProductPriceDTO> OtherList = new();
 
-        protected double? Amount = 0;
-        //protected int LineNo = 0;
+        //protected double? Amount = 0;
+        protected decimal totalPrice = 0;
+        protected bool skipLastIndex = true;
         protected List<InStoreSaleBillDTO>? GridBillData = new();
 
         protected short BranchId = 1;//şimdilik
@@ -50,61 +50,30 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         protected bool _elementIsLoading = true;
         protected SfGrid<InStoreSaleBillDTO>? Grid;
         protected ActionEventArgs<InStoreSaleBillDTO>? Args;
+        public static Guid Pkey { get; set; }
+
+
         //protected DialogSettings DialogParams = new DialogSettings { MinHeight = "400px", Width = "750px" };
         protected Syncfusion.Blazor.Navigations.ClickEventArgs? clickevent;
 
-        //public List<ExpandoObject> BranchProductPrices { get; set; } = new List<ExpandoObject>();
         protected async override Task OnInitializedAsync()
         {
-
             await LoadList();
-
-            //AddNewBranchProductPriceDTO.BranchProductPriceDTOList = BranchProductPriceList;
-            //AddNewBranchProductPriceDTO.BranchDTOList = BranchList;
-            //AddNewBranchProductPriceDTO.AuthorityTypeDTOList = AuthorityTypeList;
-
-            //BranchProductPrices = Enumerable.Range(1, BranchProductPriceList.Count()).Select((x) => 
-            //{
-            //    dynamic d = new ExpandoObject();
-            //    dynamic BranchProductPrice = new ExpandoObject();
-            //    dynamic branch = new ExpandoObject();
-            //    dynamic authorityType = new ExpandoObject();
-
-
-            //    return d;
-            //}).Cast<ExpandoObject>().ToList<ExpandoObject>();
-
-
-
-            //await JSRuntime!.InvokeAsync<object>("TestDataTablesAdd", ".mud-table-root");
-
-            //StateHasChanged();
         }
-
         protected async Task LoadList()
         {
             try
             {
-                //await Task.Delay(2000);
+                BranchProductPriceList = await Client!.PostGetServiceResponseAsync<List<BranchProductPriceDTO>, short>("api/ManageBranchProductPrice/GetBranchList", BranchId, true);
 
-                
-                //BranchProductPriceList = await Client!.GetServiceResponseAsync<List<BranchProductPriceDTO>>("api/ManageBranchProductPrice/GetList", true);
-
-
-                BranchProductPriceList = await Client!.PostGetServiceResponseAsync<List<BranchProductPriceDTO>,short>("api/ManageBranchProductPrice/GetBranchList", BranchId, true);
-
-                foreach(BranchProductPriceDTO item in BranchProductPriceList)
+                foreach (BranchProductPriceDTO item in BranchProductPriceList)
                 {
                     if (item.IsFavorite == true) FavList.Add(item);
-                    if(item.MenuListId==1) FoodList.Add(item);  
-                    if(item.MenuListId==2) MenuList.Add(item);  
-                    if(item.MenuListId==3) DrinkList.Add(item);  
-                    if(item.MenuListId==4) OtherList.Add(item);  
+                    if (item.MenuListId == 1) FoodList.Add(item);
+                    if (item.MenuListId == 2) MenuList.Add(item);
+                    if (item.MenuListId == 3) DrinkList.Add(item);
+                    if (item.MenuListId == 4) OtherList.Add(item);
                 }
-                //BranchList = await Client!.GetServiceResponseAsync<List<BranchDTO>>("api/ManageBranch/Branches", true);
-                //AuthorityTypeList = await Client!.GetServiceResponseAsync<List<AuthorityTypeDTO>>("api/ManageAuthorityType/AuthorityTypes", true);
-
-
             }
             catch (ApiException ex)
             {
@@ -120,23 +89,32 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                 _elementIsLoading = false;
                 StateHasChanged();
             }
-
         }
-
         public void ActionBegin(ActionEventArgs<InStoreSaleBillDTO> args)
         {
-            //Args = args;
             if ((args.RequestType.Equals(Syncfusion.Blazor.Grids.Action.Save) && args.Action == "Add"))
-            //if ((args.RequestType.Equals(Syncfusion.Blazor.Grids.Action.Save) && args.Action == "Add"))
             {
                 args.Index = GridBillData!.Count();
-                //args.Index = (Grid.PageSettings.CurrentPage * Grid.PageSettings.PageSize) - 1; 
+                //args.Index = (Grid!.PageSettings.CurrentPage * Grid.PageSettings.PageSize) - 1;
             }
+            if (args.RequestType.ToString() == "Save")
+            {
+                Pkey = args.Data.Id;           //get primary key value of newly added record 
+            }
+        }
+        public async void DataBoundHandler(BeforeDataBoundArgs<InStoreSaleBillDTO> args)
+        {
+            if (skipLastIndex)
+            {
+                await Task.Delay(50);
+                var Idx = this.Grid!.TotalItemCount - 1;   //get last index value 
+                //var Idx = await this.Grid!.GetRowIndexByPrimaryKey(Convert.ToDouble(Pkey));   //get index value
+                await this.Grid.SelectRowAsync(Convert.ToDouble(Idx));       //select the added or after deleting - last row by using index value of the record 
+            }
+
         }
         public async Task AddToBill(BranchProductPriceDTO item)
         {
-            
-            //LineNo++;
             InStoreSaleBillDTO dto = new();
             dto.Id = Guid.NewGuid();
             dto.Quantity = 1;
@@ -146,29 +124,77 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
             dto.TotalPrice = dto.ProductPrice * dto.Portion * dto.Quantity;
 
             await this.Grid!.AddRecord(dto);
-
-            //GridBillData!.Add(dto);
         }
-
-        
-            public async Task RemoveFromBill()
+        public void ClearBill()
         {
-            //InStoreSaleBillDTO dto = Grid!.SelectedRecords[0];
-            //if (dto != null)
-            //GridBillData!.Remove(Args.Data);
-            await this.Grid!.DeleteRecordAsync();
-            //await this.Grid!.DeleteRecordAsync((Grid!.SelectedRecords[0]);
+            GridBillData = new List<InStoreSaleBillDTO>();
+            totalPrice = 0;
         }
-        
+        public async Task RemoveFromBill()
+        {
+            await this.Grid!.DeleteRecordAsync();
+        }
+        public async Task ChangeQtyOfProduct(int q)
+        {
+            
+            var temp = await Grid!.GetSelectedRecordsAsync();
+            //double index = Grid.SelectedRowIndexes[0];
+            if (temp.Count != 0)
+            {
+                skipLastIndex = false;
+                var rowData = temp[0];
 
-        //public async Task AddToBill()
-        //{
-        //    int s = 0;
-        //    await Task.Delay(100);
-        //    s = 3;
-        //}
+                if ((q == -2 && rowData.Quantity > 1) || q == 0)
+                {
+                    rowData.Quantity = rowData.Quantity + (q + 1);
+                }
+                if (q > 0)
+                {
+                    rowData.Quantity = q;
+                }
+
+                if(q==-1)
+                {
+                    DialogOptions closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true };
+                    //DialogParameters params= new DialogParameters();
+                    var parameters = new DialogParameters();
+                    parameters.Add("IntValue", rowData.Quantity);
+                    parameters.Add("Max", 100);
+
+                    var dialog =DialogService!.Show<BaseMudDialogNumeric>("Adet Girin:", parameters, closeOnEscapeKey);
+                    var result = await dialog.Result;
+                    if(!result.Cancelled)
+                    rowData.Quantity = Convert.ToInt32(result.Data.ToString());
+                }
 
 
+                rowData.TotalPrice = rowData.ProductPrice * rowData.Portion * rowData.Quantity;
+                double index = Grid.SelectedRowIndexes[0];
+                await this.Grid.UpdateRow(index, rowData);
+                await this.Grid.SelectRowAsync(index);
+                skipLastIndex = true;
+            }
+        }
+
+        public async Task ChangePrsOfProduct(decimal p)
+        {
+
+            var temp = await Grid!.GetSelectedRecordsAsync();
+            //double index = Grid.SelectedRowIndexes[0];
+            if (temp.Count != 0)
+            {
+                skipLastIndex = false;
+                var rowData = temp[0];
+
+                rowData.Portion = p;
+
+                rowData.TotalPrice = rowData.ProductPrice * rowData.Portion * rowData.Quantity;
+                double index = Grid.SelectedRowIndexes[0];
+                await this.Grid.UpdateRow(index, rowData);
+                await this.Grid.SelectRowAsync(index);
+                skipLastIndex = true;
+            }
+        }
         //public async Task ActionBeginHandler(ActionEventArgs<BranchProductPriceDTO> args)
         //{
         //    if (args.RequestType == Syncfusion.Blazor.Grids.Action.Save)

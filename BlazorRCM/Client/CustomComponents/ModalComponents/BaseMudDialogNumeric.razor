@@ -1,0 +1,33 @@
+﻿<MudDialog>
+    <DialogContent>
+        <MudNumericField @bind-Value="IntValue" Label="Standard" Variant="Variant.Text" Max=@Max OnKeyUp="SubmitEnter" />
+    </DialogContent>
+    <DialogActions>
+        <MudButton Color="Color.Primary" OnClick="Submit">Onayla</MudButton>
+        <MudButton Color="Color.Secondary" OnClick="Cancel">Vazgeç</MudButton>
+    </DialogActions>
+</MudDialog>
+@code {
+    [CascadingParameter]
+    MudDialogInstance? MudDialog { get; set; }
+
+    [Parameter]
+    public int IntValue { get; set; }
+
+    [Parameter]
+    public int Max { get; set; } = 200;
+
+    void SubmitEnter(KeyboardEventArgs args)
+    {
+        var code = args.Code;
+        if ((code == "NumpadEnter"|| code=="Enter") && IntValue != 0)
+            MudDialog!.Close(DialogResult.Ok(IntValue));
+    }
+
+    void Submit()
+    {
+        if (IntValue != 0)
+            MudDialog!.Close(DialogResult.Ok(IntValue));
+    }
+    void Cancel() => MudDialog!.Cancel();
+}

@@ -2,6 +2,26 @@
 
 @inherits BlazorRCM.Client.Pages.Sales.InStoreSales.InStoreSaleProcess
 
+
+<style>
+    .e-grid .e-headercelldiv {
+        font-size: 17px;
+    }
+
+    .e-grid .e-rowcell {
+        font-size: 17px;
+    }
+
+    .e-grid .e-spinner-pane {
+        display: none;
+    }
+
+    .e-grid .e-gridfooter{
+        display: none;
+    }
+</style>
+
+
 <MudContainer Class="ps-2" MaxWidth="MaxWidth.ExtraExtraLarge">
     <MudGrid>
         @*------------Quick Sale MenuList-----------*@
@@ -158,56 +178,59 @@
                                 <MudStack>
                                     <MudChip Variant="Variant.Filled">Adet</MudChip>
                                     <MudButtonGroup Variant="Variant.Filled" VerticalAlign="true">
-                                        <MudButton Style="height:49px;width:48px;font-size:xx-large">+</MudButton>
-                                        <MudButton Style="height:49px;width:48px;font-size:xx-large">-</MudButton>
-                                        <MudButton Style="height:49px;width:48px;font-size:x-large">1</MudButton>
-                                        <MudButton Style="height:49px;width:48px;font-size:x-large">2</MudButton>
-                                        <MudButton Style="height:49px;width:48px;font-size:x-large">3</MudButton>
-                                        <MudButton Style="height:49px;width:48px;font-size:x-large">4</MudButton>
-                                        <MudButton Style="height:49px;width:48px;font-size:x-large">5</MudButton>
-                                        <MudButton Style="height:49px;width:48px">Diğer</MudButton>
+                                        <MudButton OnClick="() => ChangeQtyOfProduct(0)" Style="height:49px;width:48px;font-size:xx-large">+</MudButton>
+                                        <MudButton OnClick="() => ChangeQtyOfProduct(-2)" Style="height:49px;width:48px;font-size:xx-large">-</MudButton>
+                                        <MudButton OnClick="() => ChangeQtyOfProduct(1)" Style="height:49px;width:48px;font-size:x-large">1</MudButton>
+                                        <MudButton OnClick="() => ChangeQtyOfProduct(2)" Style="height:49px;width:48px;font-size:x-large">2</MudButton>
+                                        <MudButton OnClick="() => ChangeQtyOfProduct(3)" Style="height:49px;width:48px;font-size:x-large">3</MudButton>
+                                        <MudButton OnClick="() => ChangeQtyOfProduct(4)" Style="height:49px;width:48px;font-size:x-large">4</MudButton>
+                                        <MudButton OnClick="() => ChangeQtyOfProduct(5)" Style="height:49px;width:48px;font-size:x-large">5</MudButton>
+                                        <MudButton OnClick="() => ChangeQtyOfProduct(-1)" Style="height:49px;width:48px">Diğer</MudButton>
                                     </MudButtonGroup>
                                 </MudStack>
                             </MudGrid>
                             <MudItem Style="px-auto">
                                 <MudStack>
                                     <MudGrid Class="pt-3 px-1 justify-center">
-                                        <SfGrid DataSource="@GridBillData" @ref="Grid" Height="330">
-                                            <GridEvents TValue="InStoreSaleBillDTO" OnActionBegin="ActionBegin"></GridEvents> 
-                                            <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" AllowEditOnDblClick= "false" NewRowPosition="NewRowPosition.Bottom"/>
+                                        <SfGrid DataSource="@GridBillData" @ref="Grid" Height="304" AllowSelection="true">
+                                            <GridSelectionSettings Type="Syncfusion.Blazor.Grids.SelectionType.Multiple"></GridSelectionSettings>
+                                            <GridEvents TValue="InStoreSaleBillDTO" OnActionBegin="ActionBegin" OnDataBound="DataBoundHandler"></GridEvents>
+                                            <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" AllowEditOnDblClick="false" NewRowPosition="NewRowPosition.Bottom" />
                                             <GridColumns>
                                                 @*<GridColumn Field=@nameof(InStoreSaleBillDTO.LineNo) HeaderText="Sıra No"></GridColumn>*@
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.Id) IsPrimaryKey="true" Visible="false"></GridColumn>
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.HasNote) HeaderText="Not" DisplayAsCheckBox="true" DefaultValue="false" Width="10%"></GridColumn>
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.ProductName) HeaderText="Ürün" Width="40%"></GridColumn>
-                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.Portion) HeaderText="Prs" Width="15%"></GridColumn>
-                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.Quantity) HeaderText="Adet" Width="15%"></GridColumn>
-                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.TotalPrice) HeaderText="Tutar" Width="20%"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.Portion) HeaderText="Prs" Width="15%" TextAlign="TextAlign.Right"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.Quantity) HeaderText="Adet" Width="15%" TextAlign="TextAlign.Right"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.TotalPrice) HeaderText="Tutar" Width="20%" TextAlign="TextAlign.Right"></GridColumn>
                                             </GridColumns>
-                                            @*<GridAggregate>
-                                                <GridAggregateColumns>
-                                                <GridAggregateColumn Field=@nameof(QuickSaleBillDTO.TotalPrice) Type="Syncfusion.Blazor.Grids.AggregateType.Sum" Format="C2">
-                                                <FooterTemplate>
-                                                @{
-                                                var aggregate = (context as AggregateTemplateContext);
-                                                <div>
-                                                <p>Sum: @aggregate!.Sum</p>
-                                                </div>
-                                                }
-                                                </FooterTemplate>
-                                                </GridAggregateColumn>
-                                                </GridAggregateColumns>
-                                                </GridAggregate>*@
+                                            <GridAggregates>
+                                                <GridAggregate>
+                                                    <GridAggregateColumns>
+                                                        <GridAggregateColumn Field=@nameof(InStoreSaleBillDTO.TotalPrice) Type="Syncfusion.Blazor.Grids.AggregateType.Sum">
+                                                            <FooterTemplate>
+                                                                @{
+                                                                    var aggregate = (context as AggregateTemplateContext);
+                                                                    totalPrice = Convert.ToDecimal(aggregate!.Sum);
+                                                                }
+                                                            </FooterTemplate>
+                                                        </GridAggregateColumn>
+                                                    </GridAggregateColumns>
+                                                </GridAggregate>
+                                            </GridAggregates>
+
+                                            <SfSpinner @bind-Visible="@VisibleProperty"></SfSpinner>
                                         </SfGrid>
                                     </MudGrid>
-                                    <MudTextField Class="mx-5 pt-2" ReadOnly="true" @bind-Value="Amount" Label="Toplam" Variant="Variant.Outlined" Adornment="Adornment.Start" AdornmentIcon="fas fa-lira-sign" AdornmentColor="Color.Warning" />
+                                    <MudTextField Style="font-size:x-large;font-weight: bolder" Class="mx-5 pt-2" ReadOnly="true" @bind-Value="totalPrice" Label="Toplam" Variant="Variant.Outlined" Adornment="Adornment.Start" AdornmentIcon="fas fa-lira-sign" AdornmentColor="Color.Warning" />
                                     <MudGrid Class="pt-2 px-auto justify-center">
                                         <MudText Class="my-auto" Typo="Typo.body1" Color=Color.Secondary>Porsion:</MudText>
                                         <MudButtonGroup Color="Color.Secondary" Variant="Variant.Text">
-                                            <MudButton>Yarım</MudButton>
-                                            <MudButton>1 Prs</MudButton>
-                                            <MudButton>1,5 Prs</MudButton>
-                                            <MudButton>Duble</MudButton>
+                                            <MudButton OnClick="() => ChangePrsOfProduct(0.5m)">Yarım</MudButton>
+                                            <MudButton OnClick="() => ChangePrsOfProduct(1)">1 Prs</MudButton>
+                                            <MudButton OnClick="() => ChangePrsOfProduct(1.5m)">1,5 Prs</MudButton>
+                                            <MudButton OnClick="() => ChangePrsOfProduct(2)">Duble</MudButton>
                                         </MudButtonGroup>
                                     </MudGrid>
                                 </MudStack>
@@ -216,7 +239,7 @@
                         <MudGrid Class="pt-6 px-auto justify-center">
                             <MudFab StartIcon="@Icons.Filled.Bookmark" Style="@($"color:{Colors.Grey.Darken4};background:{Colors.Lime.Accent3};")" Label="Ürün Notu Gir" />
                             <MudFab OnClick="() => RemoveFromBill()" StartIcon="@Icons.Filled.Delete" Color="Color.Secondary" Label="Ürün Sil" />
-                            <MudFab StartIcon="@Icons.Filled.DeleteSweep" Color="Color.Error" Label="Temizle" />
+                            <MudFab OnClick="() => ClearBill()" StartIcon="@Icons.Filled.DeleteSweep" Color="Color.Error" Label="Temizle" />
                         </MudGrid>
                         <MudGrid Class="pt-3 px-auto justify-center">
                             <MudButton Class="ma-3" Variant="Variant.Filled" Style="height:70px;font-size:x-large;color:black;border-radius:15px" Color="Color.Warning" FullWidth="true">- Kaydet/Yazdır -</MudButton>
@@ -235,11 +258,8 @@
 </MudContainer>
 
 @code {
-    //[Parameter]
-    //public string sc = "Success";
-    protected short sc = 5;
+    private bool VisibleProperty { get; set; } = false;
+    private bool VisibleAggregate { get; set; } = false;
 
-
-
-
+    
 }
