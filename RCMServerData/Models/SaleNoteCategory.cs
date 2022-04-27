@@ -7,12 +7,12 @@ namespace RCMServerData.Models
     {
         public SaleNoteCategory()
         {
-            this.SaleNotes = new HashSet<SaleNote>();
+            this.SaleNotes = new HashSet<ProductSaleNote>();
         }
 
         public byte Id { get; set; }
         public string? NotCat { get; set; }
 
-        public virtual ICollection<SaleNote> SaleNotes { get; set; }
+        public virtual ICollection<ProductSaleNote> SaleNotes { get; set; }
     }
 }

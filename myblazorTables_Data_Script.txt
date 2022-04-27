@@ -162,3 +162,100 @@ INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive"
 
 
 
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 1, 22, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 2, 22, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 3, 32, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 4, 35, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 5, 27, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 6, 24, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 7, 30, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 8, 30, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 9, 42, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 10, 45, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 11, 37, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 12, 32, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 13, 37, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 14, 34, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 15, 41, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 16, 38, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 17, 45, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 18, 42, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 19, 52, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 20, 49, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 21, 20, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 22, 20, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 23, 9, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 24, 2, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 25, 4, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 26, 9, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 27, 9, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 28, 9, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 29, 9, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 30, 9, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 31, 9, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 32, 9, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 33, 9, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 34, 9, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 35, 9, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 36, 9, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 37, 9, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 38, 9, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 39, 9, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 40, 9, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 41, 2, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 42, 6, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 43, 4.5, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 44, 4, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 45, 5, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 46, 5, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 47, 5, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 48, 5, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 49, 5, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 50, 0, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 51, 0, NULL, false, true);
+
+
+
+
+
+
+
+
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Bol Sos');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Bol Mayonez');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Bol Turşu');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Bol Patates');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Bol Domates');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Bol Yeşillik');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Bol Soğan');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Sossuz');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Mayonezsiz');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Turşusuz');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Patatessiz');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Domatessiz');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Yeşilliksiz');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Soğansız');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Acısız');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Az Sos');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Az Mayonez');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Az Turşu');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Az Patates');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Az Domates');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Az Yeşillik');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Az Soğan');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Az Lavaş');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Yarım Lavaş');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Kızarmış Lavaş');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Yumuşak Lavaş');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Kızarmış Tavuk');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Az Tavuk');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('İlave Marul');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('İlave Domates');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('İlave Soğan');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('İlave Patates');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('İlave Mayonez');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('İlave Acı');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Paket Olacak');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Ayrı Poşet');
+INSERT INTO public."ProductSaleNote" ("Definition") VALUES('İkiye Bölünsün');
+

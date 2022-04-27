@@ -1,25 +1,9 @@
 ﻿@page "/instoresale"
 
-@inherits BlazorRCM.Client.Pages.Sales.InStoreSales.InStoreSaleProcess
+@*@inherits BlazorRCM.Client.Pages.Sales.InStoreSales.InStoreSaleProcess*@
 
 
-<style>
-    .e-grid .e-headercelldiv {
-        font-size: 17px;
-    }
 
-    .e-grid .e-rowcell {
-        font-size: 17px;
-    }
-
-    .e-grid .e-spinner-pane {
-        display: none;
-    }
-
-    .e-grid .e-gridfooter{
-        display: none;
-    }
-</style>
 
 
 <MudContainer Class="ps-2" MaxWidth="MaxWidth.ExtraExtraLarge">
@@ -201,18 +185,18 @@
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.Id) IsPrimaryKey="true" Visible="false"></GridColumn>
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.HasNote) HeaderText="Not" DisplayAsCheckBox="true" DefaultValue="false" Width="10%"></GridColumn>
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.ProductName) HeaderText="Ürün" Width="40%"></GridColumn>
-                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.Portion) HeaderText="Prs" Width="15%" TextAlign="TextAlign.Right"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.Portion) HeaderText="Prs" Width="15%" TextAlign="TextAlign.Right" CustomAttributes="@(new Dictionary<string, object>(){ { "class", "e-attr" }})"></GridColumn>
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.Quantity) HeaderText="Adet" Width="15%" TextAlign="TextAlign.Right"></GridColumn>
-                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.TotalPrice) HeaderText="Tutar" Width="20%" TextAlign="TextAlign.Right"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.TotalPrice) HeaderText="Tutar" Width="20%" TextAlign="TextAlign.Right" Format="N2"></GridColumn>
                                             </GridColumns>
                                             <GridAggregates>
                                                 <GridAggregate>
                                                     <GridAggregateColumns>
-                                                        <GridAggregateColumn Field=@nameof(InStoreSaleBillDTO.TotalPrice) Type="Syncfusion.Blazor.Grids.AggregateType.Sum">
+                                                        <GridAggregateColumn Field=@nameof(InStoreSaleBillDTO.TotalPrice) Type="Syncfusion.Blazor.Grids.AggregateType.Custom">
                                                             <FooterTemplate>
                                                                 @{
                                                                     var aggregate = (context as AggregateTemplateContext);
-                                                                    totalPrice = Convert.ToDecimal(aggregate!.Sum);
+                                                                    totalPrice=@GetTotalPrice();
                                                                 }
                                                             </FooterTemplate>
                                                         </GridAggregateColumn>
@@ -223,7 +207,7 @@
                                             <SfSpinner @bind-Visible="@VisibleProperty"></SfSpinner>
                                         </SfGrid>
                                     </MudGrid>
-                                    <MudTextField Style="font-size:x-large;font-weight: bolder" Class="mx-5 pt-2" ReadOnly="true" @bind-Value="totalPrice" Label="Toplam" Variant="Variant.Outlined" Adornment="Adornment.Start" AdornmentIcon="fas fa-lira-sign" AdornmentColor="Color.Warning" />
+                                    <MudTextField Style="max-width:400px;font-size:x-large;font-family: cursive;font-weight: bolder;text-align:center" Class="ma-auto pt-2" ReadOnly="true" @bind-Value="totalPrice" Format="N2" Label="Toplam" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentIcon="fas fa-lira-sign" AdornmentColor="Color.Info" />
                                     <MudGrid Class="pt-2 px-auto justify-center">
                                         <MudText Class="my-auto" Typo="Typo.body1" Color=Color.Secondary>Porsion:</MudText>
                                         <MudButtonGroup Color="Color.Secondary" Variant="Variant.Text">
@@ -256,6 +240,39 @@
     </MudGrid>
 
 </MudContainer>
+
+
+<style>
+    .e-grid .e-headercelldiv {
+        font-size: 17px;
+    }
+
+    .e-grid .e-rowcell {
+        font-size: 17px;
+    }
+
+    .e-grid .e-spinner-pane {
+        display: none;
+    }
+
+    .e-grid .e-gridfooter{
+        display: none;
+    }
+
+    /*.e-headercell.e-attr{
+        color: black;
+    }*/
+    .e-rowcell.e-attr{
+        color: red;
+        font-size: 15px;
+        /*background-color: lightgrey;*/
+    }
+    .mud-input>input.mud-input-root-outlined.mud-input-root-adorned-end, div.mud-input-slot.mud-input-root-outlined.mud-input-root-adorned-end{
+        text-align: center;
+    }
+</style>
+
+
 
 @code {
     private bool VisibleProperty { get; set; } = false;

@@ -2,15 +2,15 @@
 @inject IJSRuntime _jsRuntime
 
 
-<MudThemeProvider @bind-IsDarkMode="@_isDarkMode"/>
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" />
 @*<MudThemeProvider Theme="MyCustomTheme"/>*@
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 
 @*<SfDashboardLayout>*@
-<MudLayout>
-@*<MudLayout Class="@visibility">*@
+<MudLayout id="fullScrn">
+    @*<MudLayout Class="@visibility">*@
     <MudAppBar Elevation="0">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
         <div Style="color:white"><MudBreadcrumbs Items="_items"></MudBreadcrumbs></div>
@@ -18,11 +18,13 @@
         <MudIconButton><MudAvatar id="getir" Image="MyImages/Layout/Getir_icon.ico" /></MudIconButton>
         <MudIconButton><MudAvatar id="yemekSepeti" Image="MyImages/Layout/yemekSepeti.ico" /></MudIconButton>
         <MudIconButton Icon="fas fa-solid fa-user" Color="Color.Inherit"></MudIconButton>
-        @*<MudSwitch CheckedChanged="UpdateTheme" Color="Color.Primary" Class="ma-4" T="bool" Label="Koyu Mod" />*@
         <MudToggleIconButton ToggledChanged="UpdateTheme"
-                     Icon="@Icons.TwoTone.DarkMode" Color="@Color.Inherit"
-                     ToggledIcon="@Icons.Material.Filled.LightMode" ToggledColor="@Color.Inherit"/>
-        @*<MudSwitch @bind-Checked="_isDarkMode" Color="Color.Primary" Class="ma-4" T="bool" Label="Koyu Mod"/>*@
+                             Icon="@Icons.TwoTone.DarkMode" Color="@Color.Inherit"
+                             ToggledIcon="@Icons.Material.Filled.LightMode" ToggledColor="@Color.Inherit" />
+        <MudToggleIconButton ToggledChanged="ToggleFullScreen"
+                             Icon="@Icons.Filled.Fullscreen" Color="@Color.Inherit"
+                             ToggledIcon="@Icons.Filled.FullscreenExit" ToggledColor="@Color.Inherit" />
+
     </MudAppBar>
 
 
@@ -47,22 +49,22 @@
     [Inject]
     ILocalStorageService? localStorageService { get; set; }
 
+    [Inject]
+    public IJSRuntime? JSRuntime { get; set; }
+
+    private IJSObjectReference? _jsModule;
+
     //private string visibility = "invisible";
-    private bool _isDarkMode;
     private List<MudBlazor.BreadcrumbItem> _items = new List<MudBlazor.BreadcrumbItem>
     {
         new MudBlazor.BreadcrumbItem("Hızlı Satış", href:"/instoresale", icon: @Icons.Filled.Restaurant),
         new MudBlazor.BreadcrumbItem("Telefon Satışları", href:"/phonesale", icon: @Icons.Filled.Phone),
     };
 
-    bool _drawerOpen = true;
-
-    void DrawerToggle()
-    {
-        _drawerOpen = !_drawerOpen;
-    }
-
-
+    private bool _drawerOpen = false;
+    private bool fullScreen = true;
+    private bool _isDarkMode = false;
+    private bool themeModeSwitch = false;
 
     [CascadingParameter]
     public Task<AuthenticationState>? AuthState { get; set; }
@@ -81,42 +83,45 @@
 
         //if (authState.User.Identity!.IsAuthenticated)
         //{
-            //authState.User.Claims.FirstOrDefault(i => i.ValueType == ClaimTypes.EMail);
+        //authState.User.Claims.FirstOrDefault(i => i.ValueType == ClaimTypes.EMail);
 
-            //logingUserName = await LocalStorageService!.GetItemAsStringAsync("fullname");
-            //visibility = "visible";
+        //logingUserName = await LocalStorageService!.GetItemAsStringAsync("fullname");
+        //visibility = "visible";
 
-            //var themeName = "5";
+        //var themeName = "5";
 
-            //var module = await _jsRuntime.InvokeAsync<IJSObjectReference>("import","./MyScripts/site.js");
-            //await module.InvokeVoidAsync("setTheme", themeName);
-            await localStorageService!.SetItemAsync("themeModeSwitch", false);
-            //await _jsRuntime!.InvokeAsync<object>("setTheme", themeName);
-            //StateHasChanged();
+        //var module = await _jsRuntime.InvokeAsync<IJSObjectReference>("import","./MyScripts/site.js");
+        //await module.InvokeVoidAsync("setTheme", themeName);
+
+
+        //await _jsRuntime!.InvokeAsync<object>("setTheme", themeName);
+        //StateHasChanged();
         //}
         //else
         //{
         //    NavigationManager!.NavigateTo("/login");
         //}
+
+        _jsModule = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", "./MyScripts/site.js");
     }
 
-    private async Task  UpdateTheme()
+
+    void DrawerToggle()
     {
-        bool themeModeSwitch = await localStorageService!.GetItemAsync<bool>("themeModeSwitch");
+        _drawerOpen = !_drawerOpen;
+    }
+    private async Task UpdateTheme()
+    {
         string themeName = themeModeSwitch ? "5" : "5-dark";
-        //themeModeSwitch= true ? false : true;
+        await _jsModule!.InvokeVoidAsync("setTheme", themeName);
+        _isDarkMode = !_isDarkMode;
+        themeModeSwitch = !themeModeSwitch;
+    }
 
-        if (themeModeSwitch == false) themeModeSwitch = true;
-        else themeModeSwitch = false;
-        _isDarkMode = themeModeSwitch;
-
-        await localStorageService!.SetItemAsync("themeModeSwitch", themeModeSwitch);
-
-        //await _jsRuntime!.InvokeAsync<object>("setTheme", themeName);
-        //StateHasChanged();
-
-        var module = await _jsRuntime.InvokeAsync<IJSObjectReference>("import","./MyScripts/site.js");
-        await module.InvokeVoidAsync("setTheme", themeName);
-        
+    public async Task ToggleFullScreen()
+    {
+        string invokeJS = fullScreen ? "openFullscreen" : "closeFullscreen";
+        await JSRuntime!.InvokeVoidAsync(invokeJS);
+        fullScreen = !fullScreen;
     }
 }

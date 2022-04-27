@@ -60,92 +60,37 @@
     <script src="_content/CurrieTechnologies.Razor.SweetAlert2/sweetAlert2.min.js"></script>
 
 
-    
+
+    <!--fullscreen script-->
+    <script>
+        /* Get the documentElement (<html>) to display the page in fullscreen */
+        var elem = document.documentElement;
+
+        /* View in fullscreen */
+        function openFullscreen() {
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
+            }
+        }
+
+        /* Close fullscreen */
+        function closeFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) { /* Safari */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE11 */
+                document.msExitFullscreen();
+            }
+        }
+    </script>
+
+
 </body>
 
 </html>
 
-
-
-
-
-
-
-
-<!--<link rel="stylesheet" href="Content/DataTable/css/all.min.css">-->
-<!-- Ionicons -->
-<!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">-->
-<!-- Tempusdominus Bootstrap 4 -->
-<!--<link rel="stylesheet" href="Content/DataTable/css/tempusdominus-bootstrap-4.min.css">
-<link href="Content/DataTable/css/select2.min.css" rel="stylesheet" />
-<link href="Content/DataTable/css/select2-bootstrap4.min.css" rel="stylesheet" />-->
-<!-- Toastr -->
-<!--<link href="Content/DataTable/css/toastr.min.css" rel="stylesheet" />-->
-<!-- iCheck -->
-<!--<link rel="stylesheet" href="Content/DataTable/css/icheck-bootstrap.min.css">-->
-<!-- JQVMap -->
-<!-- Theme style -->
-<!--<link rel="stylesheet" href="Content/DataTable/css/adminlte.min.css">-->
-<!-- overlayScrollbars -->
-<!--<link rel="stylesheet" href="Content/DataTable/css/OverlayScrollbars.min.css">-->
-<!-- Daterange picker -->
-<!--<link rel="stylesheet" href="Content/DataTable/css/daterangepicker.css">-->
-<!-- summernote -->
-<!--<link rel="stylesheet" href="Content/DataTable/css/summernote-bs4.min.css">-->
-<!--@*----------------------AdminLte data table--------------------*@-->
-<!--<link rel="stylesheet" href="Content/DataTable/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="Content/DataTable/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="Content/DataTable/css/buttons.bootstrap4.min.css">
-<link href="Content/DataTable/css/datatables.min.css" rel="stylesheet" />-->
-<!--@*------------------------------------------------------------*@-->
-<!--@*-----adminLte table-------My datatable version : 1.10.24--------*@-->
-<!--<script src="Content/DataTable/js/jquery.min.js"></script>-->
-<!--@*DataTables  & Plugins*@-->
-<!--<script src="Content/DataTable/js/pdfmake.min.js"></script>
-<script src="Content/DataTable/js/datatables.min.js"></script>
-<script src="Content/DataTable/js/jquery.dataTables.min.js"></script>
-<script src="Content/DataTable/js/dataTables.bootstrap4.min.js"></script>
-<script src="Content/DataTable/js/dataTables.responsive.min.js"></script>
-<script src="Content/DataTable/js/responsive.bootstrap4.min.js"></script>
-<script src="Content/DataTable/js/dataTables.buttons.min.js"></script>
-<script src="Content/DataTable/js/buttons.bootstrap4.min.js"></script>
-<script src="Content/DataTable/js/jszip.min.js"></script>
-<script src="Content/DataTable/js/vfs_fonts.js"></script>
-<script src="Content/DataTable/js/buttons.html5.min.js"></script>
-<script src="Content/DataTable/js/buttons.print.min.js"></script>
-<script src="Content/DataTable/js/buttons.colVis.min.js"></script>-->
-<!--<script src="MyScripts/DataTable.js"></script>-->
-<!--<script>
-    function TestDataTablesAdd(table) {
-        $(document).ready(function () {
-            $('#tblUsers').DataTable({
-
-                "columnDefs": [{
-                    "targets": [-1],
-                    "orderable": false
-                }],
-                "language": {
-                    "sDecimal": ",",
-                    "sEmptyTable": "Tabloda herhangi bir veri mevcut değil",
-                    "sInfo": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
-                    "sInfoEmpty": "Kayıt yok",
-                    "sInfoFiltered": "(_MAX_ kayıt içerisinden bulunan)",
-                    "sInfoPostFix": "",
-                    "sInfoThousands": ".",
-                    "sLengthMenu": "Sayfada _MENU_ kayıt göster",
-                    "sLoadingRecords": "Yükleniyor...",
-                    "sProcessing": "İşleniyor...",
-                    "sSearch": "Ara:",
-                    "sZeroRecords": "Eşleşen kayıt bulunamadı",
-                    "oPaginate": {
-                        "sFirst": "İlk",
-                        "sLast": "Son",
-                        "sNext": "Sonraki",
-                        "sPrevious": "Önceki"
-                    }
-                },
-                "buttons": ["copy", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#tblUsers_wrapper .col-md-6:eq(0)');
-        })
-    }
-</script>-->

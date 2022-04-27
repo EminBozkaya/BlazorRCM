@@ -12,10 +12,11 @@ using BlazorRCM.Shared.ValidationRules.FluentValidation.DTOs.ModelDTOs;
 using BlazorRCM.Shared.DTOs.ViewDTOs;
 using MudBlazor;
 using BlazorRCM.Client.CustomComponents.ModalComponents;
+using System.Globalization;
 
 namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 {
-    public class InStoreSaleProcess : ComponentBase
+    public partial class InStoreSale
     {
         [Inject]
         public HttpClient? Client { get; set; }
@@ -39,22 +40,22 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         protected List<BranchProductPriceDTO> DrinkList = new();
         protected List<BranchProductPriceDTO> OtherList = new();
 
-        //protected double? Amount = 0;
         protected decimal totalPrice = 0;
         protected bool skipLastIndex = true;
         protected List<InStoreSaleBillDTO>? GridBillData = new();
 
         protected short BranchId = 1;//şimdilik
-        //protected string BranchId = "1";//şimdilik
 
         protected bool _elementIsLoading = true;
         protected SfGrid<InStoreSaleBillDTO>? Grid;
         protected ActionEventArgs<InStoreSaleBillDTO>? Args;
         public static Guid Pkey { get; set; }
 
-
-        //protected DialogSettings DialogParams = new DialogSettings { MinHeight = "400px", Width = "750px" };
+        protected bool setAggregate = true;
         protected Syncfusion.Blazor.Navigations.ClickEventArgs? clickevent;
+
+
+
 
         protected async override Task OnInitializedAsync()
         {
@@ -121,14 +122,16 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
             dto.Portion = 1;
             dto.ProductPrice = item.BranchPrice;
             dto.ProductName = item.ProductName;
-            dto.TotalPrice = dto.ProductPrice * dto.Portion * dto.Quantity;
+            dto.TotalPrice = decimal.Round((dto.ProductPrice * dto.Portion * dto.Quantity), 2, MidpointRounding.AwayFromZero);
+            
 
             await this.Grid!.AddRecord(dto);
         }
         public void ClearBill()
         {
+            setAggregate = false;
             GridBillData = new List<InStoreSaleBillDTO>();
-            totalPrice = 0;
+            setAggregate = true;
         }
         public async Task RemoveFromBill()
         {
@@ -136,7 +139,6 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         }
         public async Task ChangeQtyOfProduct(int q)
         {
-            
             var temp = await Grid!.GetSelectedRecordsAsync();
             //double index = Grid.SelectedRowIndexes[0];
             if (temp.Count != 0)
@@ -168,17 +170,15 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                 }
 
 
-                rowData.TotalPrice = rowData.ProductPrice * rowData.Portion * rowData.Quantity;
+                rowData.TotalPrice = decimal.Round((rowData.ProductPrice * rowData.Portion * rowData.Quantity),2, MidpointRounding.AwayFromZero);
                 double index = Grid.SelectedRowIndexes[0];
                 await this.Grid.UpdateRow(index, rowData);
                 await this.Grid.SelectRowAsync(index);
                 skipLastIndex = true;
             }
         }
-
         public async Task ChangePrsOfProduct(decimal p)
         {
-
             var temp = await Grid!.GetSelectedRecordsAsync();
             //double index = Grid.SelectedRowIndexes[0];
             if (temp.Count != 0)
@@ -188,13 +188,26 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 
                 rowData.Portion = p;
 
-                rowData.TotalPrice = rowData.ProductPrice * rowData.Portion * rowData.Quantity;
+                rowData.TotalPrice = decimal.Round((rowData.ProductPrice * rowData.Portion * rowData.Quantity),2, MidpointRounding.AwayFromZero);
                 double index = Grid.SelectedRowIndexes[0];
                 await this.Grid.UpdateRow(index, rowData);
                 await this.Grid.SelectRowAsync(index);
                 skipLastIndex = true;
             }
         }
+        public decimal GetTotalPrice()
+        {
+            decimal total = 0;
+            decimal zero = 0;
+            foreach (InStoreSaleBillDTO item in GridBillData!)
+            {
+                total = total + item.TotalPrice;
+            }
+            return setAggregate ? decimal.Round(total,2,MidpointRounding.AwayFromZero) : zero;
+            
+        }
+
+
         //public async Task ActionBeginHandler(ActionEventArgs<BranchProductPriceDTO> args)
         //{
         //    if (args.RequestType == Syncfusion.Blazor.Grids.Action.Save)
