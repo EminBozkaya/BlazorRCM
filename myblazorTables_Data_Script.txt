@@ -216,6 +216,12 @@ INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercen
 
 
 
+INSERT INTO public."ProductSaleNoteCategory" ("NotCat") VALUES('Bol');
+INSERT INTO public."ProductSaleNoteCategory" ("NotCat") VALUES('Az');
+INSERT INTO public."ProductSaleNoteCategory" ("NotCat") VALUES('Çıkar');
+INSERT INTO public."ProductSaleNoteCategory" ("NotCat") VALUES('İlave');
+INSERT INTO public."ProductSaleNoteCategory" ("NotCat") VALUES('Lavaş');
+INSERT INTO public."ProductSaleNoteCategory" ("NotCat") VALUES('Diğer');
 
 
 
@@ -258,4 +264,45 @@ INSERT INTO public."ProductSaleNote" ("Definition") VALUES('İlave Acı');
 INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Paket Olacak');
 INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Ayrı Poşet');
 INSERT INTO public."ProductSaleNote" ("Definition") VALUES('İkiye Bölünsün');
+
+
+
+
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Bol Sos', 1);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Bol Mayonez', 1);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Bol Turşu', 1);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Bol Patates', 1);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Bol Domates', 1);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Bol Yeşillik', 1);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Bol Soğan', 1);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Sossuz', 3);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Mayonezsiz', 3);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Turşusuz', 3);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Patatessiz', 3);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Domatessiz', 3);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Yeşilliksiz', 3);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Soğansız', 3);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Acısız', 3);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Az Sos', 2);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Az Mayonez', 2);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Az Turşu', 2);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Az Patates', 2);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Az Domates', 2);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Az Yeşillik', 2);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Az Soğan', 2);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Az Lavaş', 2);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Yarım Lavaş', 5);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Kızarmış Lavaş', 5);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Yumuşak Lavaş', 5);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Kızarmış Tavuk', 6);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Az Tavuk', 6);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('İlave Marul', 4);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('İlave Domates', 4);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('İlave Soğan', 4);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('İlave Patates', 4);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('İlave Mayonez', 4);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('İlave Acı', 4);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Paket Olacak', 6);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Ayrı Poşet', 6);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('İkiye Bölünsün', 6);
 

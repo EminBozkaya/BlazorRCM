@@ -13,22 +13,20 @@ using BlazorRCM.Shared.DTOs.ViewDTOs;
 using MudBlazor;
 using BlazorRCM.Client.CustomComponents.ModalComponents;
 using System.Globalization;
+using Blazored.LocalStorage;
 
 namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 {
     public partial class InStoreSale
     {
         [Inject]
-        public HttpClient? Client { get; set; }
+        public IDialogService? DialogService { get; set; }
+
+        [Inject]
+        ILocalStorageService? LocalStorageService { get; set; }
 
         [Inject]
         public SweetAlertService? Sw { get; set; }
-
-        [Inject]
-        IJSRuntime? JSRuntime { get; set; }
-
-        [Inject]
-        public IDialogService? DialogService { get; set; }
 
         [CascadingParameter]
         public int IntValue { get; set; }
@@ -39,6 +37,14 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         protected List<BranchProductPriceDTO> MenuList = new();
         protected List<BranchProductPriceDTO> DrinkList = new();
         protected List<BranchProductPriceDTO> OtherList = new();
+
+        protected List<ProductSaleNoteDTO> ProductSaleNoteList = new();
+        //protected List<ProductSaleNoteDTO> LittleList = new();
+        //protected List<ProductSaleNoteDTO> LotsOfList = new();
+        //protected List<ProductSaleNoteDTO> RemoveList = new();
+        //protected List<ProductSaleNoteDTO> IncludeList = new();
+        //protected List<ProductSaleNoteDTO> LavashList = new();
+        //protected List<ProductSaleNoteDTO> OtherNoteList = new();
 
         protected decimal totalPrice = 0;
         protected bool skipLastIndex = true;
@@ -55,41 +61,33 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         protected Syncfusion.Blazor.Navigations.ClickEventArgs? clickevent;
 
 
-
-
         protected async override Task OnInitializedAsync()
         {
             await LoadList();
         }
         protected async Task LoadList()
         {
-            try
+            BranchProductPriceList = await LocalStorageExtension.BranchProductPriceList(LocalStorageService!);
+            foreach (BranchProductPriceDTO item in BranchProductPriceList)
             {
-                BranchProductPriceList = await Client!.PostGetServiceResponseAsync<List<BranchProductPriceDTO>, short>("api/ManageBranchProductPrice/GetBranchList", BranchId, true);
+                if (item.IsFavorite == true) FavList.Add(item);
+                if (item.MenuListId == 1) FoodList.Add(item);
+                if (item.MenuListId == 2) MenuList.Add(item);
+                if (item.MenuListId == 3) DrinkList.Add(item);
+                if (item.MenuListId == 4) OtherList.Add(item);
+            }
+            ProductSaleNoteList = await LocalStorageExtension.ProductSaleNoteList(LocalStorageService!);
+            //foreach (ProductSaleNoteDTO item in ProductSaleNoteList!)
+            //{
+            //    if (item.NoteCat == 1) LotsOfList.Add(item);
+            //    if (item.NoteCat == 2) LittleList.Add(item);
+            //    if (item.NoteCat == 3) RemoveList.Add(item);
+            //    if (item.NoteCat == 4) IncludeList.Add(item);
+            //    if (item.NoteCat == 5) LavashList.Add(item);
+            //    if (item.NoteCat == 6) OtherNoteList.Add(item);
+            //}
 
-                foreach (BranchProductPriceDTO item in BranchProductPriceList)
-                {
-                    if (item.IsFavorite == true) FavList.Add(item);
-                    if (item.MenuListId == 1) FoodList.Add(item);
-                    if (item.MenuListId == 2) MenuList.Add(item);
-                    if (item.MenuListId == 3) DrinkList.Add(item);
-                    if (item.MenuListId == 4) OtherList.Add(item);
-                }
-            }
-            catch (ApiException ex)
-            {
-                await Sw!.FireAsync("Api Exception", ex.Message, "error");
-            }
-            catch (Exception ex)
-            {
-                await Sw!.FireAsync("Exception", ex.Message, "error");
-
-            }
-            finally
-            {
-                _elementIsLoading = false;
-                StateHasChanged();
-            }
+            _elementIsLoading = false;
         }
         public void ActionBegin(ActionEventArgs<InStoreSaleBillDTO> args)
         {
@@ -123,7 +121,7 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
             dto.ProductPrice = item.BranchPrice;
             dto.ProductName = item.ProductName;
             dto.TotalPrice = decimal.Round((dto.ProductPrice * dto.Portion * dto.Quantity), 2, MidpointRounding.AwayFromZero);
-            
+
 
             await this.Grid!.AddRecord(dto);
         }
@@ -155,7 +153,7 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                     rowData.Quantity = q;
                 }
 
-                if(q==-1)
+                if (q == -1)
                 {
                     DialogOptions closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true };
                     //DialogParameters params= new DialogParameters();
@@ -163,19 +161,49 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                     parameters.Add("IntValue", rowData.Quantity);
                     parameters.Add("Max", 100);
 
-                    var dialog =DialogService!.Show<BaseMudDialogNumeric>("Adet Girin:", parameters, closeOnEscapeKey);
+                    var dialog = DialogService!.Show<BaseMudDialogNumeric>("Adet Girin:", parameters, closeOnEscapeKey);
                     var result = await dialog.Result;
-                    if(!result.Cancelled)
-                    rowData.Quantity = Convert.ToInt32(result.Data.ToString());
+                    if (!result.Cancelled)
+                        rowData.Quantity = Convert.ToInt32(result.Data.ToString());
                 }
 
 
-                rowData.TotalPrice = decimal.Round((rowData.ProductPrice * rowData.Portion * rowData.Quantity),2, MidpointRounding.AwayFromZero);
+                rowData.TotalPrice = decimal.Round((rowData.ProductPrice * rowData.Portion * rowData.Quantity), 2, MidpointRounding.AwayFromZero);
                 double index = Grid.SelectedRowIndexes[0];
                 await this.Grid.UpdateRow(index, rowData);
                 await this.Grid.SelectRowAsync(index);
                 skipLastIndex = true;
             }
+        }
+        public async Task SetProductNote()
+        {
+            var temp = await Grid!.GetSelectedRecordsAsync();
+
+            if (temp.Count != 0)
+            {
+                skipLastIndex = false;
+                var rowData = temp[0];
+                string product = rowData.ProductName!;
+                int qty = rowData.Quantity;
+
+                DialogOptions ProductNoteOptions = new DialogOptions() { CloseOnEscapeKey = true, FullScreen = true, CloseButton = true, NoHeader = true };
+                var parameters = new DialogParameters();
+                //parameters.Add("ProductSaleNoteList", ProductSaleNoteList);
+                //parameters.Add("LittleList", LittleList);
+                //parameters.Add("LotsOfList", LotsOfList);
+                //parameters.Add("RemoveList", RemoveList);
+                //parameters.Add("IncludeList", IncludeList);
+                //parameters.Add("LavashList", LavashList);
+                //parameters.Add("OtherNoteList", OtherNoteList);
+                parameters.Add("product", product);
+                parameters.Add("qty", qty);
+
+
+                var dialog = DialogService!.Show<ProductNoteList>("Not Girin:", parameters, ProductNoteOptions);
+                var result = await dialog.Result;
+            }
+                
+
         }
         public async Task ChangePrsOfProduct(decimal p)
         {
@@ -188,7 +216,7 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 
                 rowData.Portion = p;
 
-                rowData.TotalPrice = decimal.Round((rowData.ProductPrice * rowData.Portion * rowData.Quantity),2, MidpointRounding.AwayFromZero);
+                rowData.TotalPrice = decimal.Round((rowData.ProductPrice * rowData.Portion * rowData.Quantity), 2, MidpointRounding.AwayFromZero);
                 double index = Grid.SelectedRowIndexes[0];
                 await this.Grid.UpdateRow(index, rowData);
                 await this.Grid.SelectRowAsync(index);
@@ -203,10 +231,11 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
             {
                 total = total + item.TotalPrice;
             }
-            return setAggregate ? decimal.Round(total,2,MidpointRounding.AwayFromZero) : zero;
-            
+            return setAggregate ? decimal.Round(total, 2, MidpointRounding.AwayFromZero) : zero;
+
         }
 
+        
 
         //public async Task ActionBeginHandler(ActionEventArgs<BranchProductPriceDTO> args)
         //{

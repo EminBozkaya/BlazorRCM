@@ -17,6 +17,7 @@ namespace BlazorRCM.Shared.DTOs.ViewDTOs
         public decimal Portion { get; set; }
         public decimal ProductPrice { get; set; }
         public int Quantity { get; set; }
+        public string? ProductNote { get; set; }
         public decimal TotalPrice { get; set; }
         
     }

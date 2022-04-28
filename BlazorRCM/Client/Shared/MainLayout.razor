@@ -8,9 +8,7 @@
 <MudSnackbarProvider />
 
 
-@*<SfDashboardLayout>*@
-<MudLayout id="fullScrn">
-    @*<MudLayout Class="@visibility">*@
+<MudLayout>
     <MudAppBar Elevation="0">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
         <div Style="color:white"><MudBreadcrumbs Items="_items"></MudBreadcrumbs></div>
@@ -22,7 +20,7 @@
                              Icon="@Icons.TwoTone.DarkMode" Color="@Color.Inherit"
                              ToggledIcon="@Icons.Material.Filled.LightMode" ToggledColor="@Color.Inherit" />
         <MudToggleIconButton ToggledChanged="ToggleFullScreen"
-                             Icon="@Icons.Filled.Fullscreen" Color="@Color.Inherit"
+                             Icon="@Icons.Filled.Fullscreen" Color="@Color.Inherit" Size="Size.Large"
                              ToggledIcon="@Icons.Filled.FullscreenExit" ToggledColor="@Color.Inherit" />
 
     </MudAppBar>
@@ -44,8 +42,21 @@
         </MudContainer>
     </MudMainContent>
 </MudLayout>
-@*</SfDashboardLayout>*@
+
+
+
 @code {
+
+    private List<MudBlazor.BreadcrumbItem> _items = new List<MudBlazor.BreadcrumbItem>
+    {
+        new MudBlazor.BreadcrumbItem("Hızlı Satış", href:"/instoresale", icon: @Icons.Filled.Restaurant),
+        new MudBlazor.BreadcrumbItem("Telefon Satışları", href:"/phonesale", icon: @Icons.Filled.Phone),
+    };
+
+
+
+    [Inject]
+    public HttpClient? Client { get; set; }
     [Inject]
     ILocalStorageService? localStorageService { get; set; }
 
@@ -53,18 +64,6 @@
     public IJSRuntime? JSRuntime { get; set; }
 
     private IJSObjectReference? _jsModule;
-
-    //private string visibility = "invisible";
-    private List<MudBlazor.BreadcrumbItem> _items = new List<MudBlazor.BreadcrumbItem>
-    {
-        new MudBlazor.BreadcrumbItem("Hızlı Satış", href:"/instoresale", icon: @Icons.Filled.Restaurant),
-        new MudBlazor.BreadcrumbItem("Telefon Satışları", href:"/phonesale", icon: @Icons.Filled.Phone),
-    };
-
-    private bool _drawerOpen = false;
-    private bool fullScreen = true;
-    private bool _isDarkMode = false;
-    private bool themeModeSwitch = false;
 
     [CascadingParameter]
     public Task<AuthenticationState>? AuthState { get; set; }
@@ -75,7 +74,22 @@
     [Inject]
     NavigationManager? NavigationManager { get; set; }
 
+    [Inject]
+    public SweetAlertService? Sw { get; set; }
 
+
+    private bool _drawerOpen = false;
+    private bool fullScreen = true;
+    private bool _isDarkMode = false;
+    private bool themeModeSwitch = false;
+
+
+    protected List<BranchProductPriceDTO> BranchProductPriceList = new();
+    protected List<ProductSaleNoteDTO> ProductSaleNoteList = new();
+
+    protected short BranchId = 1;//şimdilik
+
+    
 
     protected async override Task OnInitializedAsync()
     {
@@ -102,14 +116,47 @@
         //    NavigationManager!.NavigateTo("/login");
         //}
 
+        await LoadList();
         _jsModule = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", "./MyScripts/site.js");
+
+
     }
 
+    protected async Task LoadList()
+    {
+        try
+        {
+            BranchProductPriceList = await Client!.PostGetServiceResponseAsync<List<BranchProductPriceDTO>, short>("api/BranchProductPrice/GetBranchList", BranchId, true);
+
+            await LocalStorageService!.SetItemAsync<List<BranchProductPriceDTO>>("activeBranchProductPriceList", BranchProductPriceList);
+
+            ProductSaleNoteList = await Client!.GetServiceResponseAsync<List<ProductSaleNoteDTO>>("api/ProductSaleNote/GetList", true);
+
+            await LocalStorageService!.SetItemAsync<List<ProductSaleNoteDTO>>("ProductSaleNoteList", ProductSaleNoteList);
+            
+
+        }
+        catch (ApiException ex)
+        {
+            await Sw!.FireAsync("Api Exception", ex.Message, "error");
+        }
+        catch (Exception ex)
+        {
+            await Sw!.FireAsync("Exception", ex.Message, "error");
+
+        }
+        finally
+        {
+            //_elementIsLoading = false;
+            //StateHasChanged();
+        }
+    }
 
     void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;
     }
+
     private async Task UpdateTheme()
     {
         string themeName = themeModeSwitch ? "5" : "5-dark";

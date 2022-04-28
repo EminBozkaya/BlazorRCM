@@ -1,10 +1,5 @@
 ﻿@page "/instoresale"
 
-@*@inherits BlazorRCM.Client.Pages.Sales.InStoreSales.InStoreSaleProcess*@
-
-
-
-
 
 <MudContainer Class="ps-2" MaxWidth="MaxWidth.ExtraExtraLarge">
     <MudGrid>
@@ -221,7 +216,7 @@
                             </MudItem>
                         </MudStack>
                         <MudGrid Class="pt-6 px-auto justify-center">
-                            <MudFab StartIcon="@Icons.Filled.Bookmark" Style="@($"color:{Colors.Grey.Darken4};background:{Colors.Lime.Accent3};")" Label="Ürün Notu Gir" />
+                            <MudFab StartIcon="@Icons.Filled.Bookmark" Style="@($"color:{Colors.Grey.Darken4};background:{Colors.Lime.Accent3};")" OnClick="@((e) => SetProductNote())" Label="Ürün Notu Gir" />
                             <MudFab OnClick="() => RemoveFromBill()" StartIcon="@Icons.Filled.Delete" Color="Color.Secondary" Label="Ürün Sil" />
                             <MudFab OnClick="() => ClearBill()" StartIcon="@Icons.Filled.DeleteSweep" Color="Color.Error" Label="Temizle" />
                         </MudGrid>

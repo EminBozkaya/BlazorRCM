@@ -13,12 +13,12 @@ namespace BlazorRCM.Server.Controllers
     [Route("api/[controller]")]
     [ApiController]
     //[Authorize]
-    public class ManageUserController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly IUserRepo Repo;
         private readonly IValidator<UserDTO> validator;
 
-        public ManageUserController(IUserRepo repo, IValidator<UserDTO> validator)
+        public UserController(IUserRepo repo, IValidator<UserDTO> validator)
         {
             Repo = repo;
             this.validator = validator;

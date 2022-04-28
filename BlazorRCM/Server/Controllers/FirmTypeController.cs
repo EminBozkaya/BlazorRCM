@@ -7,45 +7,45 @@ namespace BlazorRCM.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ManageBranchController : Controller
+    public class FirmTypeController : Controller
     {
-        private readonly IBranchRepo Repo;
+        private readonly IFirmTypeRepo Repo;
 
-        public ManageBranchController(IBranchRepo repo)
+        public FirmTypeController(IFirmTypeRepo repo)
         {
             Repo = repo;
         }
 
         [HttpGet("GetList")]
-        public async Task<ServiceResponse<List<BranchDTO>>> GetAll()
+        public async Task<ServiceResponse<List<FirmTypeDTO>>> GetAll()
         {
-            return new ServiceResponse<List<BranchDTO>>()
+            return new ServiceResponse<List<FirmTypeDTO>>()
             {
-                Value = (await Repo.GetAll() as List<BranchDTO>)!
+                Value = (await Repo.GetAll() as List<FirmTypeDTO>)!
             };
         }
 
 
         [HttpPost("Create")]
-        public async Task<ServiceResponse<BranchDTO>> Create([FromBody] BranchDTO dto)
+        public async Task<ServiceResponse<FirmTypeDTO>> Create([FromBody] FirmTypeDTO dto)
         {
-            return new ServiceResponse<BranchDTO>()
+            return new ServiceResponse<FirmTypeDTO>()
             {
                 Value = await Repo.Create(dto)
             };
         }
 
         [HttpPost("Update")]
-        public async Task<ServiceResponse<BranchDTO>> Update([FromBody] BranchDTO dto)
+        public async Task<ServiceResponse<FirmTypeDTO>> Update([FromBody] FirmTypeDTO dto)
         {
-            return new ServiceResponse<BranchDTO>()
+            return new ServiceResponse<FirmTypeDTO>()
             {
                 Value = await Repo.Update(dto)
             };
         }
 
         [HttpPost("Delete")]
-        public async Task<ServiceResponse<bool>> Delete([FromBody] BranchDTO dto)
+        public async Task<ServiceResponse<bool>> Delete([FromBody] FirmTypeDTO dto)
         {
             return new ServiceResponse<bool>()
             {

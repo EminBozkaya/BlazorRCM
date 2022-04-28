@@ -8,11 +8,11 @@ namespace BlazorRCM.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ManageAuthorityTypeController : Controller
+    public class AuthorityTypeController : Controller
     {
         private readonly IAuthorityTypeRepo Repo;
 
-        public ManageAuthorityTypeController(IAuthorityTypeRepo repo)
+        public AuthorityTypeController(IAuthorityTypeRepo repo)
         {
             Repo = repo;
         }

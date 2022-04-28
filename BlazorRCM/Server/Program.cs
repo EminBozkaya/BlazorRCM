@@ -55,6 +55,7 @@ builder.Services.AddScoped<IUserBranchAuthorityRepo, EfUserBranchAuthorityRepo>(
 builder.Services.AddScoped<IUserRepo, EfUserRepo>();
 builder.Services.AddScoped<IFirmTypeRepo, EfFirmTypeRepo>();
 builder.Services.AddScoped<IBranchProductPriceRepo, EfBranchProductPriceRepo>();
+builder.Services.AddScoped<IProductSaleNoteRepo, EfProductSaleNoteRepo>();
 
 #endregion
 

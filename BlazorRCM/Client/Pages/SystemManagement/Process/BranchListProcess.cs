@@ -39,7 +39,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
         {
             try
             {
-                BranchList = await Client!.GetServiceResponseAsync<List<BranchDTO>>("api/ManageBranch/GetList", true);
+                BranchList = await Client!.GetServiceResponseAsync<List<BranchDTO>>("api/Branch/GetList", true);
             }
             catch (ApiException ex)
             {
@@ -64,7 +64,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                 {
                     try
                     {
-                        newdto = await Client!.PostGetServiceResponseAsync<BranchDTO, BranchDTO>("api/ManageBranch/Create", newdto, true);
+                        newdto = await Client!.PostGetServiceResponseAsync<BranchDTO, BranchDTO>("api/Branch/Create", newdto, true);
 
 
                         args.Cancel = true;
@@ -89,7 +89,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                 {
                     try
                     {
-                        newdto = await Client!.PostGetServiceResponseAsync<BranchDTO, BranchDTO>("api/ManageBranch/Update", newdto, true);
+                        newdto = await Client!.PostGetServiceResponseAsync<BranchDTO, BranchDTO>("api/Branch/Update", newdto, true);
                         args.Cancel = true;
                         await Grid!.CloseEditAsync();
                         await Swal!.FireAsync("Başarılı", "Kayıt başarıyla güncellendi", "success");
@@ -136,7 +136,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                     {
                         try
                         {
-                            bool deleted = await Client!.PostGetServiceResponseAsync<bool, BranchDTO>("api/ManageBranch/Delete", dto, true);
+                            bool deleted = await Client!.PostGetServiceResponseAsync<bool, BranchDTO>("api/Branch/Delete", dto, true);
 
                             args.Cancel = true;
                             await Grid!.CloseEditAsync();

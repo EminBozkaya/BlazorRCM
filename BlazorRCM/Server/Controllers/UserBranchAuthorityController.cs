@@ -9,11 +9,11 @@ namespace BlazorRCM.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ManageUserBranchAuthorityController : Controller
+    public class UserBranchAuthorityController : Controller
     {
         private readonly IUserBranchAuthorityRepo Repo;
 
-        public ManageUserBranchAuthorityController(IUserBranchAuthorityRepo repo)
+        public UserBranchAuthorityController(IUserBranchAuthorityRepo repo)
         {
             Repo = repo;
         }

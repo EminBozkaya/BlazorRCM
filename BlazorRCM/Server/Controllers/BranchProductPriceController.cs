@@ -7,11 +7,11 @@ namespace BlazorRCM.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ManageBranchProductPriceController : Controller
+    public class BranchProductPriceController : Controller
     {
         private readonly IBranchProductPriceRepo Repo;
 
-        public ManageBranchProductPriceController(IBranchProductPriceRepo repo)
+        public BranchProductPriceController(IBranchProductPriceRepo repo)
         {
             Repo = repo;
         }

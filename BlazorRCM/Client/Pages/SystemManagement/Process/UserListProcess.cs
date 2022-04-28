@@ -74,7 +74,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
             {
                 //await Task.Delay(2000);
 
-                UserList = await Client!.GetServiceResponseAsync<List<UserDTO>>("api/ManageUser/GetList", true);
+                UserList = await Client!.GetServiceResponseAsync<List<UserDTO>>("api/User/GetList", true);
                 //BranchList = await Client!.GetServiceResponseAsync<List<BranchDTO>>("api/ManageBranch/Branches", true);
                 //AuthorityTypeList = await Client!.GetServiceResponseAsync<List<AuthorityTypeDTO>>("api/ManageAuthorityType/AuthorityTypes", true);
 
@@ -109,7 +109,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                 {
                     try
                     {
-                        newdto = await Client!.PostGetServiceResponseAsync<UserDTO, UserDTO>("api/ManageUser/Create", newdto, true);
+                        newdto = await Client!.PostGetServiceResponseAsync<UserDTO, UserDTO>("api/User/Create", newdto, true);
 
 
                         args.Cancel = true;
@@ -139,7 +139,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                 {
                     try
                     {
-                        newdto = await Client!.PostGetServiceResponseAsync<UserDTO, UserDTO>("api/ManageUser/Update", newdto, true);
+                        newdto = await Client!.PostGetServiceResponseAsync<UserDTO, UserDTO>("api/User/Update", newdto, true);
                         args.Cancel = true;
                         await Grid!.CloseEditAsync();
                         await Swal!.FireAsync("Başarılı", "Kayıt başarıyla güncellendi", "success");
@@ -186,7 +186,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                     {
                         try
                         {
-                            bool deleted = await Client!.PostGetServiceResponseAsync<bool, UserDTO>("api/ManageUser/Delete", dto, true);
+                            bool deleted = await Client!.PostGetServiceResponseAsync<bool, UserDTO>("api/User/Delete", dto, true);
 
                             args.Cancel = true;
                             await Grid!.CloseEditAsync();

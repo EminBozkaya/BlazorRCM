@@ -1,0 +1,130 @@
+﻿<MudDialog>
+    <DialogContent>
+        <MudStack>
+            <MudItem xs="12" sm="12" md="12" lg="12">
+                <MudTextField @bind-Value="@note" Label=" Ürün Not" Variant="Variant.Outlined" />
+            </MudItem>
+            <MudItem xs="12" sm="12" md="12" lg="12">
+                <MudStack Row="true">
+                    @for (int i = 0; i < 6; i++)
+                    {
+                        <MudCard>
+                            <MudStack>
+                                <MudChip Label="true" Color="Color.Info">@product</MudChip>
+                                @*<MudTextField T="string" Variant="Variant.Outlined" Label="@product" Disabled="true" />*@
+                                <MudTextField T="string" Label="Notlar" Variant="Variant.Outlined" Text="" Lines="5" />
+                            </MudStack>
+                        </MudCard>
+                    }
+                </MudStack>
+            </MudItem>
+            <MudItem>
+                <MudCard>
+                    @foreach (ProductSaleNoteDTO item in RemoveList!)
+                    {
+                        <MudButton Variant="Variant.Outlined" OnClick="() => AddToNote(item)" Class="ma-1" StartIcon="@Icons.Custom.Uncategorized.Radioactive" Color="Color.Warning" Style="width: 165px; height: 50px;">@item.Definition</MudButton>
+                    }
+                </MudCard>
+                <MudCard>
+                    @foreach (ProductSaleNoteDTO item in LotsOfList!)
+                    {
+                        <MudButton Variant="Variant.Outlined" OnClick="() => AddToNote(item)" Class="ma-1" Color="Color.Primary" Style="width: 165px; height: 50px;">@item.Definition</MudButton>
+                    }
+                </MudCard>
+                <MudCard>
+                    @foreach (ProductSaleNoteDTO item in LittleList!)
+                    {
+                        <MudButton Variant="Variant.Outlined" OnClick="() => AddToNote(item)" Class="ma-1" Color="Color.Error" Style="width: 165px; height: 50px;">@item.Definition</MudButton>
+                    }
+                </MudCard>
+                <MudCard>
+                    @foreach (ProductSaleNoteDTO item in IncludeList!)
+                    {
+                        <MudButton Variant="Variant.Outlined" OnClick="() => AddToNote(item)" StartIcon="@Icons.Filled.Add" Class="ma-1" Color="Color.Tertiary" Style="width: 165px; height: 50px;">@item.Definition</MudButton>
+                    }
+                </MudCard>
+                    <MudCard>
+                        @foreach (ProductSaleNoteDTO item in LavashList!)
+                        {
+                            <MudButton Variant="Variant.Text" OnClick="() => AddToNote(item)" StartIcon="@Icons.Filled.AutoFixNormal" Class="ma-1" Style="width: 120px; height: 60px;">@item.Definition</MudButton>
+                        }
+                        @foreach (ProductSaleNoteDTO item in OtherNoteList!)
+                        {
+                            <MudButton Variant="Variant.Outlined" OnClick="() => AddToNote(item)" Class="ma-1" Color="Color.Surface" Style="width: 120px; height: 60px;">@item.Definition</MudButton>
+                        }
+                    </MudCard>
+            </MudItem>
+
+            
+
+        </MudStack>
+
+        @*<MudTextField @bind-Value="note" Label="Max Length" Variant="Variant.Text" OnKeyUp="SubmitEnter" />*@
+    </DialogContent>
+    <DialogActions>
+        <MudButton Color="Color.Primary" OnClick="Submit">Onayla</MudButton>
+            <MudButton Color="Color.Secondary" OnClick="Cancel">Vazgeç</MudButton>
+    </DialogActions>
+</MudDialog>
+@code {
+    [CascadingParameter]
+    MudDialogInstance? MudDialog { get; set; }
+
+    [Inject]
+    ILocalStorageService? LocalStorageService { get; set; }
+
+    [Parameter]
+    public string? note { get; set; }
+
+    [Parameter]
+    public List<ProductSaleNoteDTO>? ProductSaleNoteList { get; set; }
+
+    [Parameter]
+    public int qty { get; set; }
+
+    [Parameter]
+    public string? product { get; set; }
+
+    public List<ProductSaleNoteDTO> LittleList = new();
+    public List<ProductSaleNoteDTO> LotsOfList = new();
+    public List<ProductSaleNoteDTO> RemoveList = new();
+    public List<ProductSaleNoteDTO> IncludeList = new();
+    public List<ProductSaleNoteDTO> LavashList = new();
+    public List<ProductSaleNoteDTO> OtherNoteList = new();
+
+    protected async override Task OnInitializedAsync()
+    {
+        ProductSaleNoteList = await LocalStorageExtension.ProductSaleNoteList(LocalStorageService!);
+        foreach (ProductSaleNoteDTO item in ProductSaleNoteList!)
+        {
+            if (item.NoteCat == 1) LotsOfList!.Add(item);
+            if (item.NoteCat == 2) LittleList!.Add(item);
+            if (item.NoteCat == 3) RemoveList!.Add(item);
+            if (item.NoteCat == 4) IncludeList!.Add(item);
+            if (item.NoteCat == 5) LavashList!.Add(item);
+            if (item.NoteCat == 6) OtherNoteList!.Add(item);
+        }
+    }
+
+    public void AddToNote(ProductSaleNoteDTO item)
+    {
+
+    }
+    void SubmitEnter(KeyboardEventArgs args)
+    {
+        //var code = args.Code;
+        //if ((code == "NumpadEnter"|| code=="Enter") && IntValue > 0)
+            MudDialog!.Close(DialogResult.Ok(true));
+    }
+
+    void Submit()
+    {
+        //if (IntValue > 0)
+            MudDialog!.Close(DialogResult.Ok(true));
+    }
+    void Cancel() => MudDialog!.Cancel();
+
+
+
+
+}

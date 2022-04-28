@@ -39,7 +39,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
         {
             try
             {
-                FirmTypeList = await Client!.GetServiceResponseAsync<List<FirmTypeDTO>>("api/ManageFirmType/GetList", true);
+                FirmTypeList = await Client!.GetServiceResponseAsync<List<FirmTypeDTO>>("api/FirmType/GetList", true);
             }
             catch (ApiException ex)
             {
@@ -64,7 +64,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                 {
                     try
                     {
-                        newdto = await Client!.PostGetServiceResponseAsync<FirmTypeDTO, FirmTypeDTO>("api/ManageFirmType/Create", newdto, true);
+                        newdto = await Client!.PostGetServiceResponseAsync<FirmTypeDTO, FirmTypeDTO>("api/FirmType/Create", newdto, true);
 
 
                         args.Cancel = true;
@@ -94,7 +94,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                 {
                     try
                     {
-                        newdto = await Client!.PostGetServiceResponseAsync<FirmTypeDTO, FirmTypeDTO>("api/ManageFirmType/Update", newdto, true);
+                        newdto = await Client!.PostGetServiceResponseAsync<FirmTypeDTO, FirmTypeDTO>("api/FirmType/Update", newdto, true);
                         args.Cancel = true;
                         await Grid!.CloseEditAsync();
                         await Swal!.FireAsync("Başarılı", "Kayıt başarıyla güncellendi", "success");
@@ -141,7 +141,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                     {
                         try
                         {
-                            bool deleted = await Client!.PostGetServiceResponseAsync<bool, FirmTypeDTO>("api/ManageFirmType/Delete", dto, true);
+                            bool deleted = await Client!.PostGetServiceResponseAsync<bool, FirmTypeDTO>("api/FirmType/Delete", dto, true);
 
                             args.Cancel = true;
                             await Grid!.CloseEditAsync();

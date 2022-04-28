@@ -81,6 +81,10 @@ namespace BlazorRCM.Shared.Extensions
                 .ForMember(x => x.MenuListId, y => y.MapFrom(z => z.Product!.MenuListId))
                 .ReverseMap();
 
+            CreateMap<ProductSaleNote, ProductSaleNoteDTO>()
+                .ReverseMap();
+
+           
         }
     }
 }

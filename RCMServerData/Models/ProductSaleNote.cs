@@ -12,7 +12,8 @@ namespace RCMServerData.Models
 
         public short Id { get; set; }
         public string? Definition { get; set; }
-        //    public virtual SaleNoteCategory? SaleNoteCategory { get; set; }
+        public short? NoteCat { get; set; }
+        public ProductSaleNoteCategory? ProductSaleNoteCategory { get; set; }
         //    public virtual ICollection<SaleNoteOfProduct> SaleNoteOfProducts { get; set; }
     }
 }

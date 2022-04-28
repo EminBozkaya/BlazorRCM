@@ -44,26 +44,26 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                 //model.filter = "x => x.ATId<4";
                 //model.includeList = null;
                 //string[] includeList = { "UserDTO", "BranchDTO", "AuthorityTypeDTO" };
-                ////AuthorityTypeList = await Client!.PostGetServiceResponseAsync<List<AuthorityTypeDTO>>("api/ManageAuthorityType/AuthorityTypes", true);
+                ////AuthorityTypeList = await Client!.PostGetServiceResponseAsync<List<AuthorityTypeDTO>>("api/AuthorityType/AuthorityTypes", true);
 
                 //Expression <Func<AuthorityTypeDTO, bool>> filter=x => x.Id<4;
 
 
-                //AuthorityTypeList = (await Client!.GetFromJsonAsync<List<AuthorityTypeDTO>>("api/ManageAuthorityType/AuthorityTypes"))!;
+                //AuthorityTypeList = (await Client!.GetFromJsonAsync<List<AuthorityTypeDTO>>("api/AuthorityType/AuthorityTypes"))!;
                 //AuthorityTypeList = response;
                 //string deneme = "hey";
 
-                //var response = await Client!.PostAsJsonAsync("api/ManageAuthorityType/AuthorityTypess", includeList);
+                //var response = await Client!.PostAsJsonAsync("api/AuthorityType/AuthorityTypess", includeList);
 
                 //var value = await response.Content.ReadFromJsonAsync<List<AuthorityTypeDTO>>();
                 //AuthorityTypeList = value;
 
                 //AuthorityTypeList = await response.Content.ReadFromJsonAsync<List<AuthorityTypeDTO>>();
 
-                //AuthorityTypeList = await Client!.PostGetBaseResponseAsync<AuthorityTypeDTO>("api/ManageAuthorityType/AuthorityTypes", model, true);
+                //AuthorityTypeList = await Client!.PostGetBaseResponseAsync<AuthorityTypeDTO>("api/AuthorityType/AuthorityTypes", model, true);
 
 
-                AuthorityTypeList = await Client!.GetServiceResponseAsync<List<AuthorityTypeDTO>>("api/ManageAuthorityType/GetList", true);
+                AuthorityTypeList = await Client!.GetServiceResponseAsync<List<AuthorityTypeDTO>>("api/AuthorityType/GetList", true);
             }
             catch (ApiException ex)
             {
@@ -90,7 +90,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                 {
                     try
                     {
-                        newdto = await Client!.PostGetServiceResponseAsync<AuthorityTypeDTO, AuthorityTypeDTO>("api/ManageAuthorityType/Create", newdto, true);
+                        newdto = await Client!.PostGetServiceResponseAsync<AuthorityTypeDTO, AuthorityTypeDTO>("api/AuthorityType/Create", newdto, true);
 
 
                         args.Cancel = true;
@@ -120,7 +120,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                 {
                     try
                     {
-                        newdto = await Client!.PostGetServiceResponseAsync<AuthorityTypeDTO, AuthorityTypeDTO>("api/ManageAuthorityType/Update", newdto, true);
+                        newdto = await Client!.PostGetServiceResponseAsync<AuthorityTypeDTO, AuthorityTypeDTO>("api/AuthorityType/Update", newdto, true);
                         args.Cancel = true;
                         await Grid!.CloseEditAsync();
                         await Swal!.FireAsync("Başarılı", "Kayıt başarıyla güncellendi", "success");
@@ -167,7 +167,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                     {
                         try
                         {
-                            bool deleted = await Client!.PostGetServiceResponseAsync<bool, AuthorityTypeDTO>("api/ManageAuthorityType/Delete", dto, true);
+                            bool deleted = await Client!.PostGetServiceResponseAsync<bool, AuthorityTypeDTO>("api/AuthorityType/Delete", dto, true);
 
                             args.Cancel = true;
                             await Grid!.CloseEditAsync();

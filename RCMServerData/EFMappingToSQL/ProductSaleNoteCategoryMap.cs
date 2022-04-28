@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace RCMServerData.EFMappingToSQL
 {
-    public class ProductSaleNoteMap : IEntityTypeConfiguration<ProductSaleNote>
+    public class ProductSaleNoteCategoryMap : IEntityTypeConfiguration<ProductSaleNoteCategory>
     {
-        public void Configure(EntityTypeBuilder<ProductSaleNote> builder)
+        public void Configure(EntityTypeBuilder<ProductSaleNoteCategory> builder)
         {
             builder.HasKey(x => x.Id);
                 
@@ -22,16 +22,7 @@ namespace RCMServerData.EFMappingToSQL
                 .ValueGeneratedOnAdd()
                 .UseIdentityAlwaysColumn();
 
-
-
-
-
-            builder.HasOne(e=>e.ProductSaleNoteCategory)
-                .WithMany(f=>f.ProductSaleNotes)
-                .HasForeignKey(e=>e.NoteCat)
-                .OnDelete(DeleteBehavior.Cascade);
-
-
+            
         }
     }
 }

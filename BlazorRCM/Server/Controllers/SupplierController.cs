@@ -10,11 +10,11 @@ namespace BlazorRCM.Server.Controllers
     [Route("api/[controller]")]
     [ApiController]
     //[Authorize]
-    public class ManageSupplierController : ControllerBase
+    public class SupplierController : ControllerBase
     {
         private readonly ISupplierRepo Repo;
 
-        public ManageSupplierController(ISupplierRepo repo)
+        public SupplierController(ISupplierRepo repo)
         {
             Repo = repo;
         }

@@ -76,9 +76,9 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                 //model.includeList=new string[]{ "User", "Branch", "AuthorityType" };
                 //string[] includeList = {"UserDTO","BranchDTO","AuthorityTypeDTO"}
 
-                UserBranchAuthorityList = await Client!.GetServiceResponseAsync<List<UserBranchAuthorityDTO>>("api/ManageUserBranchAuthority/GetList", true);
+                UserBranchAuthorityList = await Client!.GetServiceResponseAsync<List<UserBranchAuthorityDTO>>("api/UserBranchAuthority/GetList", true);
 
-                //UserBranchAuthorityList = await Client!.PostGetServiceResponseAsync<List<UserBranchAuthorityDTO>, FiltersAndIncludesModel<UserBranchAuthorityDTO>>("api/ManageUserBranchAuthority/UserBranchAuthorities", model, true);
+                //UserBranchAuthorityList = await Client!.PostGetServiceResponseAsync<List<UserBranchAuthorityDTO>, FiltersAndIncludesModel<UserBranchAuthorityDTO>>("api/UserBranchAuthority/UserBranchAuthorities", model, true);
 
                 UserList = await Client!.GetServiceResponseAsync<List<UserDTO>>("api/ManageUser/GetList", true);
                 BranchList = await Client!.GetServiceResponseAsync<List<BranchDTO>>("api/ManageBranch/GetList", true);
@@ -109,7 +109,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                 {
                     try
                     {
-                        newdto = await Client!.PostGetServiceResponseAsync<UserBranchAuthorityDTO, UserBranchAuthorityDTO>("api/ManageUserBranchAuthority/Create", newdto, true);
+                        newdto = await Client!.PostGetServiceResponseAsync<UserBranchAuthorityDTO, UserBranchAuthorityDTO>("api/UserBranchAuthority/Create", newdto, true);
 
 
                         args.Cancel = true;
@@ -139,7 +139,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                 {
                     try
                     {
-                        newdto = await Client!.PostGetServiceResponseAsync<UserBranchAuthorityDTO, UserBranchAuthorityDTO>("api/ManageUserBranchAuthority/Update", newdto, true);
+                        newdto = await Client!.PostGetServiceResponseAsync<UserBranchAuthorityDTO, UserBranchAuthorityDTO>("api/UserBranchAuthority/Update", newdto, true);
                         args.Cancel = true;
                         await Grid!.CloseEditAsync();
                         await Swal!.FireAsync("Başarılı", "Kayıt başarıyla güncellendi", "success");
@@ -186,7 +186,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                     {
                         try
                         {
-                            bool deleted = await Client!.PostGetServiceResponseAsync<bool, UserBranchAuthorityDTO>("api/ManageUserBranchAuthority/Delete", dto, true);
+                            bool deleted = await Client!.PostGetServiceResponseAsync<bool, UserBranchAuthorityDTO>("api/UserBranchAuthority/Delete", dto, true);
 
                             args.Cancel = true;
                             await Grid!.CloseEditAsync();
