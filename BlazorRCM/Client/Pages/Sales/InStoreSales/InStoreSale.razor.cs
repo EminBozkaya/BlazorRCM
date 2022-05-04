@@ -14,6 +14,7 @@ using MudBlazor;
 using BlazorRCM.Client.CustomComponents.ModalComponents;
 using System.Globalization;
 using Blazored.LocalStorage;
+using System.Text;
 
 namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 {
@@ -63,6 +64,9 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 
         protected async override Task OnInitializedAsync()
         {
+            //StringBuilder sb = new();
+            //sb.
+
             await LoadList();
         }
         protected async Task LoadList()
@@ -183,9 +187,9 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
             {
                 skipLastIndex = false;
                 var rowData = temp[0];
-                string product = rowData.ProductName!;
-                int qty = rowData.Quantity;
-
+                //string product = rowData.ProductName!;
+                //int qty = rowData.Quantity;
+                ProductNoteModalResultDTO resultDTO = rowData.ResultDTO;
                 DialogOptions ProductNoteOptions = new DialogOptions() { CloseOnEscapeKey = true, FullScreen = true, CloseButton = true, NoHeader = true };
                 var parameters = new DialogParameters();
                 //parameters.Add("ProductSaleNoteList", ProductSaleNoteList);
@@ -195,12 +199,19 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                 //parameters.Add("IncludeList", IncludeList);
                 //parameters.Add("LavashList", LavashList);
                 //parameters.Add("OtherNoteList", OtherNoteList);
-                parameters.Add("product", product);
-                parameters.Add("qty", qty);
+                parameters.Add("productName", rowData.ProductName!);
+
+                //parameters.Add("ResultDTO", rowData.ResultDTO);
+                parameters.Add("generalProductNote", resultDTO!.generalProductNote);
+                parameters.Add("firstProductNote", resultDTO!.firstProductNote);
+                parameters.Add("secondProductNote", resultDTO!.secondProductNote);
+                parameters.Add("thirdProductNote", resultDTO!.thirdProductNote);
 
 
                 var dialog = DialogService!.Show<ProductNoteList>("Not Girin:", parameters, ProductNoteOptions);
                 var result = await dialog.Result;
+                if (!result.Cancelled)
+                    rowData.ResultDTO = (result.Data) as ProductNoteModalResultDTO;
             }
                 
 

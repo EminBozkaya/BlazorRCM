@@ -80,9 +80,9 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
 
                 //UserBranchAuthorityList = await Client!.PostGetServiceResponseAsync<List<UserBranchAuthorityDTO>, FiltersAndIncludesModel<UserBranchAuthorityDTO>>("api/UserBranchAuthority/UserBranchAuthorities", model, true);
 
-                UserList = await Client!.GetServiceResponseAsync<List<UserDTO>>("api/ManageUser/GetList", true);
-                BranchList = await Client!.GetServiceResponseAsync<List<BranchDTO>>("api/ManageBranch/GetList", true);
-                AuthorityTypeList = await Client!.GetServiceResponseAsync<List<AuthorityTypeDTO>>("api/ManageAuthorityType/GetList", true);
+                UserList = await Client!.GetServiceResponseAsync<List<UserDTO>>("api/User/GetList", true);
+                BranchList = await Client!.GetServiceResponseAsync<List<BranchDTO>>("api/Branch/GetList", true);
+                AuthorityTypeList = await Client!.GetServiceResponseAsync<List<AuthorityTypeDTO>>("api/AuthorityType/GetList", true);
             }
             catch (ApiException ex)
             {

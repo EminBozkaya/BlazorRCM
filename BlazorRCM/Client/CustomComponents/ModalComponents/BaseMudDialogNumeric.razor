@@ -1,6 +1,6 @@
-﻿<MudDialog>
+﻿<MudDialog DisableSidePadding="true">
     <DialogContent>
-        <MudNumericField @bind-Value="IntValue" Label="Standard" Variant="Variant.Text" Max=@Max OnKeyUp="SubmitEnter" />
+        <MudNumericField @bind-Value="IntValue" Label="Standard" Variant="Variant.Text" Max=@Max OnKeyUp="SubmitEnter" AutoFocus="true" />
     </DialogContent>
     <DialogActions>
         <MudButton Color="Color.Primary" OnClick="Submit">Onayla</MudButton>

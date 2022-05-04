@@ -1,70 +1,130 @@
-﻿<MudDialog>
+﻿@using System.Text
+<MudDialog DisableSidePadding="true">
     <DialogContent>
-        <MudStack>
-            <MudItem xs="12" sm="12" md="12" lg="12">
-                <MudTextField @bind-Value="@note" Label=" Ürün Not" Variant="Variant.Outlined" />
-            </MudItem>
-            <MudItem xs="12" sm="12" md="12" lg="12">
-                <MudStack Row="true">
-                    @for (int i = 0; i < 6; i++)
-                    {
-                        <MudCard>
-                            <MudStack>
-                                <MudChip Label="true" Color="Color.Info">@product</MudChip>
-                                @*<MudTextField T="string" Variant="Variant.Outlined" Label="@product" Disabled="true" />*@
-                                <MudTextField T="string" Label="Notlar" Variant="Variant.Outlined" Text="" Lines="5" />
+        <MudContainer Style="height: 600px;max-width:none;overflow-y: scroll;overflow-x: scroll">
+            <MudStack>
+                <MudItem Class="ma-auto">
+                    <MudGrid Class="py-4">
+
+
+                        <MudCard Class="mx-4 my-2">
+                            <MudStack Row="true">
+                                <MudStack>
+                                    <MudFab StartIcon="@Icons.Filled.TouchApp" Style="@($"color:{Colors.Grey.Darken4};background:{Colors.Lime.Accent3};width:350px;height:60px")" OnClick="@((e) => ClickToChange(0))" Label="Ürün Genel" />
+                                    <MudTextField @ref="generalNoteReference" Style="margin-top:-5px" T="string" Label="Ürün Genel Not" Variant="Variant.Outlined" @bind-Value="@generalPrdctNote" Lines="5" AutoFocus="true" />
+                                </MudStack>
+                                <MudStack>
+                                    <MudButton Style="width:60px;height:99px;margin-left:-8px" OnClick="RemoveNote" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Delete" IconColor="Color.Secondary" Size="Size.Large" />
+                                    <MudButton Style="width:60px;height:99px;margin-left:-8px;margin-top:-5px" OnClick="ClearList" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.DeleteSweep" IconColor="Color.Secondary" Size="Size.Large" />
+                                </MudStack>
                             </MudStack>
                         </MudCard>
-                    }
-                </MudStack>
-            </MudItem>
-            <MudItem>
-                <MudCard>
-                    @foreach (ProductSaleNoteDTO item in RemoveList!)
-                    {
-                        <MudButton Variant="Variant.Outlined" OnClick="() => AddToNote(item)" Class="ma-1" StartIcon="@Icons.Custom.Uncategorized.Radioactive" Color="Color.Warning" Style="width: 165px; height: 50px;">@item.Definition</MudButton>
-                    }
-                </MudCard>
-                <MudCard>
-                    @foreach (ProductSaleNoteDTO item in LotsOfList!)
-                    {
-                        <MudButton Variant="Variant.Outlined" OnClick="() => AddToNote(item)" Class="ma-1" Color="Color.Primary" Style="width: 165px; height: 50px;">@item.Definition</MudButton>
-                    }
-                </MudCard>
-                <MudCard>
-                    @foreach (ProductSaleNoteDTO item in LittleList!)
-                    {
-                        <MudButton Variant="Variant.Outlined" OnClick="() => AddToNote(item)" Class="ma-1" Color="Color.Error" Style="width: 165px; height: 50px;">@item.Definition</MudButton>
-                    }
-                </MudCard>
-                <MudCard>
-                    @foreach (ProductSaleNoteDTO item in IncludeList!)
-                    {
-                        <MudButton Variant="Variant.Outlined" OnClick="() => AddToNote(item)" StartIcon="@Icons.Filled.Add" Class="ma-1" Color="Color.Tertiary" Style="width: 165px; height: 50px;">@item.Definition</MudButton>
-                    }
-                </MudCard>
+
+
+                        <MudCard Class="mx-3 my-2">
+                            <MudStack Row="true">
+                                <MudStack>
+                                    <MudFab StartIcon="@Icons.Filled.TouchApp" Style="@($"color:{Colors.LightGreen.Accent3}; background:{Colors.BlueGrey.Darken4};height:55px")" OnClick="@((e) => ClickToChange(1))" Label="@productName" />
+                                    <MudTextField @ref="firstNoteReference" T="string" Label="Ürün Not" Variant="Variant.Outlined" @bind-Value="@firstPrdctNote" Lines="5" />
+                                </MudStack>
+                                <MudStack>
+                                    <MudButton Style="width:60px;height:99px;margin-left:-8px" OnClick="RemoveNote" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Delete" IconColor="Color.Secondary" Size="Size.Large" />
+                                    <MudButton Style="width:60px;height:99px;margin-left:-8px;margin-top:-5px" OnClick="ClearList" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.DeleteSweep" IconColor="Color.Secondary" Size="Size.Large" />
+                                </MudStack>
+                            </MudStack>
+                        </MudCard>
+
+
+                        <MudCard Class="mx-3 my-2">
+                            <MudStack Row="true">
+                                <MudStack>
+                                    <MudFab StartIcon="@Icons.Filled.TouchApp" Style="@($"color:{Colors.LightGreen.Accent3}; background:{Colors.BlueGrey.Darken4};height:55px")" OnClick="@((e) => ClickToChange(2))" Label="@productName" />
+                                    <MudTextField @ref="secondNoteReference" T="string" Label="Ürün Not" Variant="Variant.Outlined" @bind-Value="@secondPrdctNote" Lines="5" />
+                                </MudStack>
+                                <MudStack>
+                                    <MudButton Style="width:60px;height:99px;margin-left:-8px" OnClick="RemoveNote" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Delete" IconColor="Color.Secondary" Size="Size.Large" />
+                                    <MudButton Style="width:60px;height:99px;margin-left:-8px;margin-top:-5px" OnClick="ClearList" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.DeleteSweep" IconColor="Color.Secondary" Size="Size.Large" />
+                                </MudStack>
+                            </MudStack>
+                        </MudCard>
+
+
+                        <MudCard Class="mx-3 my-2">
+                            <MudStack Row="true">
+                                <MudStack>
+                                    <MudFab StartIcon="@Icons.Filled.TouchApp" Style="@($"color:{Colors.LightGreen.Accent3}; background:{Colors.BlueGrey.Darken4};height:55px")" OnClick="@((e) => ClickToChange(3))" Label="@productName" />
+                                    <MudTextField @ref="thirdNoteReference" T="string" Label="Ürün Not" Variant="Variant.Outlined" @bind-Value="@thirdPrdctNote" Lines="5" />
+                                </MudStack>
+                                <MudStack>
+                                    <MudButton Style="width:60px;height:99px;margin-left:-8px" OnClick="RemoveNote" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Delete" IconColor="Color.Secondary" Size="Size.Large" />
+                                    <MudButton Style="width:60px;height:99px;margin-left:-8px;margin-top:-5px" OnClick="ClearList" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.DeleteSweep" IconColor="Color.Secondary" Size="Size.Large" />
+                                </MudStack>
+                            </MudStack>
+                        </MudCard>
+                        @*<MudCard>
+                            <MudStack>
+                            <MudFab StartIcon="@Icons.Filled.TouchApp" Style="@($"color:{Colors.LightGreen.Accent3}; background:{Colors.BlueGrey.Darken4};")" OnClick="@((e) => ClickToChange(4))" Label="@product" />
+                            <MudTextField @ref="fourthNoteReference" T="string" Label="Ürün Not" Variant="Variant.Outlined" Text="@fourthProductNote" Lines="5" />
+                            </MudStack>
+                            </MudCard>*@
+                    </MudGrid>
+                </MudItem>
+                <MudItem Class="ma-auto">
                     <MudCard>
-                        @foreach (ProductSaleNoteDTO item in LavashList!)
+                        @foreach (ProductSaleNoteDTO item in RemoveList!)
                         {
-                            <MudButton Variant="Variant.Text" OnClick="() => AddToNote(item)" StartIcon="@Icons.Filled.AutoFixNormal" Class="ma-1" Style="width: 120px; height: 60px;">@item.Definition</MudButton>
-                        }
-                        @foreach (ProductSaleNoteDTO item in OtherNoteList!)
-                        {
-                            <MudButton Variant="Variant.Outlined" OnClick="() => AddToNote(item)" Class="ma-1" Color="Color.Surface" Style="width: 120px; height: 60px;">@item.Definition</MudButton>
+                            <MudButton Variant="Variant.Outlined" OnClick="() => AddToNote(item)" Class="ma-1" StartIcon="@Icons.Custom.Uncategorized.Radioactive" Color="Color.Warning" Style="width: 165px; height: 50px;">@item.Definition</MudButton>
                         }
                     </MudCard>
-            </MudItem>
+                    <MudCard>
+                        @foreach (ProductSaleNoteDTO item in LotsOfList!)
+                        {
+                            <MudButton Variant="Variant.Outlined" OnClick="() => AddToNote(item)" Class="ma-1" Color="Color.Primary" Style="width: 165px; height: 50px;">@item.Definition</MudButton>
+                        }
+                    </MudCard>
+                    <MudCard>
+                        @foreach (ProductSaleNoteDTO item in LittleList!)
+                        {
+                            <MudButton Variant="Variant.Outlined" OnClick="() => AddToNote(item)" Class="ma-1" Color="Color.Error" Style="width: 165px; height: 50px;">@item.Definition</MudButton>
+                        }
+                    </MudCard>
+                    <MudCard>
+                        <MudStack Row="true">
+                            <MudCard>
+                                <MudCard>
+                                    @foreach (ProductSaleNoteDTO item in IncludeList!)
+                                    {
+                                        <MudButton Variant="Variant.Outlined" OnClick="() => AddToNote(item)" StartIcon="@Icons.Filled.Add" Class="ma-1" Color="Color.Tertiary" Style="width: 165px; height: 50px;">@item.Definition</MudButton>
+                                    }
+                                </MudCard>
+                                <MudCard>
+                                    @foreach (ProductSaleNoteDTO item in LavashList!)
+                                    {
+                                        <MudButton Variant="Variant.Text" OnClick="() => AddToNote(item)" StartIcon="@Icons.Filled.AutoFixNormal" Class="ma-1" Style="width: 120px; height: 60px;">@item.Definition</MudButton>
+                                    }
+                                    @foreach (ProductSaleNoteDTO item in OtherNoteList!)
+                                    {
+                                        <MudButton Variant="Variant.Outlined" OnClick="() => AddToNote(item)" Class="ma-1" Color="Color.Surface" Style="width: 120px; height: 60px;">@item.Definition</MudButton>
+                                    }
+                                </MudCard>
+                            </MudCard>
+                            <MudCard>
+                                <MudButton Color="Color.Success" OnClick="Submit" Style="width: 160px; height: 125px;" Variant="Variant.Filled">Onayla</MudButton>
+                                <MudButton Color="Color.Error" OnClick="Cancel" Style="width: 160px; height: 125px;" Variant="Variant.Filled">Vazgeç</MudButton>
 
-            
+                            </MudCard>
+                        </MudStack>
+                    </MudCard>
+                </MudItem>
+            </MudStack>
+        </MudContainer>
 
-        </MudStack>
 
         @*<MudTextField @bind-Value="note" Label="Max Length" Variant="Variant.Text" OnKeyUp="SubmitEnter" />*@
     </DialogContent>
-    <DialogActions>
-        <MudButton Color="Color.Primary" OnClick="Submit">Onayla</MudButton>
-            <MudButton Color="Color.Secondary" OnClick="Cancel">Vazgeç</MudButton>
-    </DialogActions>
+    @*<DialogActions>
+
+        </DialogActions>*@
 </MudDialog>
 @code {
     [CascadingParameter]
@@ -73,17 +133,34 @@
     [Inject]
     ILocalStorageService? LocalStorageService { get; set; }
 
-    [Parameter]
-    public string? note { get; set; }
+    //[Parameter]
+    //public string? note { get; set; }
 
     [Parameter]
     public List<ProductSaleNoteDTO>? ProductSaleNoteList { get; set; }
 
     [Parameter]
-    public int qty { get; set; }
+    public string? productName { get; set; }
+
+    //[Parameter]
+    //public ProductNoteModalResultDTO? ResultDTO { get; set; }
 
     [Parameter]
-    public string? product { get; set; }
+    public string? generalProductNote { get; set; }
+
+    [Parameter]
+    public string? firstProductNote { get; set; }
+
+    [Parameter]
+    public string? secondProductNote { get; set; }
+
+    [Parameter]
+    public string? thirdProductNote { get; set; }
+
+    public string? generalPrdctNote;
+    public string? firstPrdctNote;
+    public string? secondPrdctNote;
+    public string? thirdPrdctNote;
 
     public List<ProductSaleNoteDTO> LittleList = new();
     public List<ProductSaleNoteDTO> LotsOfList = new();
@@ -92,6 +169,36 @@
     public List<ProductSaleNoteDTO> LavashList = new();
     public List<ProductSaleNoteDTO> OtherNoteList = new();
 
+    public int activeNote;
+
+    private MudTextField<string>? generalNoteReference;
+    private MudTextField<string>? firstNoteReference;
+    private MudTextField<string>? secondNoteReference;
+    private MudTextField<string>? thirdNoteReference;
+    //private MudTextField<string>? fourthNoteReference;
+    //private MudTextField<string>? fifthNoteReference;
+    //private MudTextField<string>? sixthNoteReference;
+
+
+    //public string? fourthProductNote;
+    //public string? fifthProductNote;
+    //public string? sixthProductNote;
+
+    public StringBuilder sb0 = new();
+    public StringBuilder sb1 = new();
+    public StringBuilder sb2 = new();
+    public StringBuilder sb3 = new();
+    //public StringBuilder sb4 = new();
+    //public StringBuilder sb5 = new();
+    //public StringBuilder sb6 = new();
+
+    //public bool autoFocusGen;
+    //public bool autoFocus1;
+    //public bool autoFocus2;
+    //public bool autoFocus3;
+    //public bool autoFocus4;
+    //public bool autoFocus5;
+    //public bool autoFocus6;
     protected async override Task OnInitializedAsync()
     {
         ProductSaleNoteList = await LocalStorageExtension.ProductSaleNoteList(LocalStorageService!);
@@ -104,26 +211,143 @@
             if (item.NoteCat == 5) LavashList!.Add(item);
             if (item.NoteCat == 6) OtherNoteList!.Add(item);
         }
+
+        if (generalProductNote != null)
+            generalPrdctNote = StringToStringBuilder(generalProductNote);
+        if (firstProductNote != null)
+            firstPrdctNote = StringToStringBuilder(firstProductNote);
+        if (secondProductNote != null)
+            secondPrdctNote = StringToStringBuilder(secondProductNote);
+        if (thirdProductNote != null)
+            thirdPrdctNote = StringToStringBuilder(thirdProductNote);
+
+        //if (ResultDTO.generalProductNote != null)
+        //    generalPrdctNote = StringToStringBuilder(ResultDTO.generalProductNote);
+        //if (ResultDTO.firstProductNote != null)
+        //    firstPrdctNote = StringToStringBuilder(ResultDTO.firstProductNote);
+        //if (ResultDTO.secondProductNote != null)
+        //    secondPrdctNote = StringToStringBuilder(ResultDTO.secondProductNote);
+        //if (ResultDTO.thirdProductNote != null)
+        //    thirdPrdctNote = StringToStringBuilder(ResultDTO.thirdProductNote);
+
     }
+
+    public string StringToStringBuilder(string line)
+    {
+        StringBuilder sbuilt = new();
+        String[] lines = line.Split("\\n");
+        foreach (string item in lines)
+        {
+            sbuilt.AppendLine(item);
+        }
+        string nameOfVariable = nameof(line);
+        switch (nameOfVariable)
+        {
+            case "generalProductNote":
+                sb0 = sbuilt;
+                break;
+            case "firstProductNote":
+                sb1 = sbuilt;
+                break;
+            case "secondProductNote":
+                sb2 = sbuilt;
+                break;
+            case "thirdProductNote":
+                sb3 = sbuilt;
+                break;
+
+        }
+        return sbuilt.ToString();
+    }
+
+
 
     public void AddToNote(ProductSaleNoteDTO item)
     {
+        switch (activeNote)
+        {
+            case 0:
+                sb0.AppendLine(item.Definition);
+                generalPrdctNote = sb0.ToString();
+                //ResultDTO.generalProductNote = sb0!.ToString();
+                break;
+            case 1:
+                sb1.AppendLine(item.Definition);
+                firstPrdctNote = sb1.ToString();
+                //ResultDTO.firstProductNote = sb1!.ToString();
+                break;
+            case 2:
+                sb2.AppendLine(item.Definition);
+                secondPrdctNote = sb2.ToString();
+                //ResultDTO.secondProductNote = sb2!.ToString();
+                break;
+            case 3:
+                sb3.AppendLine(item.Definition);
+                thirdPrdctNote = sb3.ToString();
+                //ResultDTO.thirdProductNote = sb3!.ToString();
+                break;
+        }
+    }
+
+    public void RemoveNote()
+    {
 
     }
+
+    public void ClearList()
+    {
+
+    }
+
+    public async Task ClickToChange(int i)
+    {
+        activeNote = i;
+        switch (activeNote)
+        {
+            case 0:
+                await generalNoteReference!.FocusAsync();
+                break;
+            case 1:
+                await firstNoteReference!.FocusAsync();
+                break;
+            case 2:
+                await secondNoteReference!.FocusAsync();
+                break;
+            case 3:
+                await thirdNoteReference!.FocusAsync();
+                break;
+
+        }
+    }
+
+
     void SubmitEnter(KeyboardEventArgs args)
     {
-        //var code = args.Code;
-        //if ((code == "NumpadEnter"|| code=="Enter") && IntValue > 0)
-            MudDialog!.Close(DialogResult.Ok(true));
+        var code = args.Code;
+        if (code == "NumpadEnter" || code == "Enter")
+        {
+            ProductNoteModalResultDTO ResultDTO = new();
+            ResultDTO.generalProductNote = generalPrdctNote;
+            ResultDTO.firstProductNote = firstPrdctNote;
+            ResultDTO.secondProductNote = secondPrdctNote;
+            ResultDTO.thirdProductNote = thirdPrdctNote;
+
+            MudDialog!.Close(DialogResult.Ok(ResultDTO));
+        }
+
+        
     }
 
     void Submit()
     {
-        //if (IntValue > 0)
-            MudDialog!.Close(DialogResult.Ok(true));
+        ProductNoteModalResultDTO ResultDTO = new();
+        ResultDTO.generalProductNote = generalPrdctNote;
+        ResultDTO.firstProductNote = firstPrdctNote;
+        ResultDTO.secondProductNote = secondPrdctNote;
+        ResultDTO.thirdProductNote = thirdPrdctNote;
+        MudDialog!.Close(DialogResult.Ok(ResultDTO));
     }
     void Cancel() => MudDialog!.Cancel();
-
 
 
 

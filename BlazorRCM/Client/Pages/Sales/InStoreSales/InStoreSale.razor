@@ -191,7 +191,7 @@
                                                             <FooterTemplate>
                                                                 @{
                                                                     var aggregate = (context as AggregateTemplateContext);
-                                                                    totalPrice=@GetTotalPrice();
+                                                                    totalPrice = @GetTotalPrice();
                                                                 }
                                                             </FooterTemplate>
                                                         </GridAggregateColumn>
@@ -250,19 +250,20 @@
         display: none;
     }
 
-    .e-grid .e-gridfooter{
+    .e-grid .e-gridfooter {
         display: none;
     }
 
     /*.e-headercell.e-attr{
-        color: black;
-    }*/
-    .e-rowcell.e-attr{
+            color: black;
+        }*/
+    .e-rowcell.e-attr {
         color: red;
         font-size: 15px;
         /*background-color: lightgrey;*/
     }
-    .mud-input>input.mud-input-root-outlined.mud-input-root-adorned-end, div.mud-input-slot.mud-input-root-outlined.mud-input-root-adorned-end{
+
+    .mud-input > input.mud-input-root-outlined.mud-input-root-adorned-end, div.mud-input-slot.mud-input-root-outlined.mud-input-root-adorned-end {
         text-align: center;
     }
 </style>
@@ -272,6 +273,6 @@
 @code {
     private bool VisibleProperty { get; set; } = false;
     private bool VisibleAggregate { get; set; } = false;
-
     
+   
 }
