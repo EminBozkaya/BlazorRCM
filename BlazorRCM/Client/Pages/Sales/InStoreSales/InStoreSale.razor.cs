@@ -125,6 +125,7 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
             dto.ProductPrice = item.BranchPrice;
             dto.ProductName = item.ProductName;
             dto.TotalPrice = decimal.Round((dto.ProductPrice * dto.Portion * dto.Quantity), 2, MidpointRounding.AwayFromZero);
+            dto.ResultDTO = new ProductNoteModalResultDTO();
 
 
             await this.Grid!.AddRecord(dto);
