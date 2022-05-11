@@ -105,17 +105,17 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                 Pkey = args.Data.Id;           //get primary key value of newly added record 
             }
         }
-        public async void DataBoundHandler(BeforeDataBoundArgs<InStoreSaleBillDTO> args)
-        {
-            if (skipLastIndex)
-            {
-                await Task.Delay(50);
-                var Idx = this.Grid!.TotalItemCount - 1;   //get last index value 
-                //var Idx = await this.Grid!.GetRowIndexByPrimaryKey(Convert.ToDouble(Pkey));   //get index value
-                await this.Grid.SelectRowAsync(Convert.ToDouble(Idx));       //select the added or after deleting - last row by using index value of the record 
-            }
+        //public async void DataBoundHandler(BeforeDataBoundArgs<InStoreSaleBillDTO> args)
+        //{
+        //    if (skipLastIndex)
+        //    {
+        //        //await Task.Delay(50);
+        //        var Idx = this.Grid!.TotalItemCount - 1;   //get last index value 
+        //        //var Idx = await this.Grid!.GetRowIndexByPrimaryKey(Convert.ToDouble(Pkey));   //get index value
+        //        await this.Grid.SelectRowAsync(Convert.ToDouble(Idx));       //select the added or after deleting - last row by using index value of the record 
+        //    }
 
-        }
+        //}
         public async Task AddToBill(BranchProductPriceDTO item)
         {
             InStoreSaleBillDTO dto = new();
@@ -127,8 +127,9 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
             dto.TotalPrice = decimal.Round((dto.ProductPrice * dto.Portion * dto.Quantity), 2, MidpointRounding.AwayFromZero);
             dto.ResultDTO = new ProductNoteModalResultDTO();
 
-
             await this.Grid!.AddRecord(dto);
+            var Idx = this.Grid!.TotalItemCount - 1;
+            await this.Grid.SelectRowAsync(Convert.ToDouble(Idx));
         }
         public void ClearBill()
         {
@@ -138,7 +139,14 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         }
         public async Task RemoveFromBill()
         {
-            await this.Grid!.DeleteRecordAsync();
+            var temp = await Grid!.GetSelectedRecordsAsync();
+
+            if (temp.Count != 0)
+            {
+                await this.Grid!.DeleteRecordAsync();
+                var Idx = this.Grid!.TotalItemCount - 1;
+                await this.Grid.SelectRowAsync(Convert.ToDouble(Idx));
+            }
         }
         public async Task ChangeQtyOfProduct(int q)
         {
@@ -177,7 +185,6 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                 double index = Grid.SelectedRowIndexes[0];
                 await this.Grid.UpdateRow(index, rowData);
                 await this.Grid.SelectRowAsync(index);
-                skipLastIndex = true;
             }
         }
         public async Task SetProductNote()
@@ -186,11 +193,10 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 
             if (temp.Count != 0)
             {
-                skipLastIndex = false;
                 var rowData = temp[0];
                 //string product = rowData.ProductName!;
                 //int qty = rowData.Quantity;
-                ProductNoteModalResultDTO resultDTO = rowData.ResultDTO;
+                ProductNoteModalResultDTO? resultDTO = rowData.ResultDTO;
                 DialogOptions ProductNoteOptions = new DialogOptions() { CloseOnEscapeKey = true, FullScreen = true, CloseButton = true, NoHeader = true };
                 var parameters = new DialogParameters();
                 //parameters.Add("ProductSaleNoteList", ProductSaleNoteList);
@@ -213,6 +219,15 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                 var result = await dialog.Result;
                 if (!result.Cancelled)
                     rowData.ResultDTO = (result.Data) as ProductNoteModalResultDTO;
+
+                if (rowData.ResultDTO!.generalProductNote != null || rowData.ResultDTO!.firstProductNote != null || rowData.ResultDTO!.secondProductNote != null || rowData.ResultDTO!.thirdProductNote != null)
+                    rowData.HasNote = true;
+                else
+                    rowData.HasNote = false;
+
+                double index = Grid.SelectedRowIndexes[0];
+                await this.Grid.UpdateRow(index, rowData);
+                await this.Grid.SelectRowAsync(index);
             }
                 
 
@@ -223,7 +238,6 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
             //double index = Grid.SelectedRowIndexes[0];
             if (temp.Count != 0)
             {
-                skipLastIndex = false;
                 var rowData = temp[0];
 
                 rowData.Portion = p;
@@ -232,7 +246,6 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                 double index = Grid.SelectedRowIndexes[0];
                 await this.Grid.UpdateRow(index, rowData);
                 await this.Grid.SelectRowAsync(index);
-                skipLastIndex = true;
             }
         }
         public decimal GetTotalPrice()
@@ -247,8 +260,8 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 
         }
 
-        
 
+        #region other datagrid func
         //public async Task ActionBeginHandler(ActionEventArgs<BranchProductPriceDTO> args)
         //{
         //    if (args.RequestType == Syncfusion.Blazor.Grids.Action.Save)
@@ -429,5 +442,8 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         //        else args.Cell.Value = "Pasif";
         //    }
         //}
+        #endregion
+
+
     }
 }

@@ -4,7 +4,7 @@
 <MudContainer Class="ps-2" MaxWidth="MaxWidth.ExtraExtraLarge">
     <MudGrid>
         @*------------Quick Sale MenuList-----------*@
-        <MudItem xs="12" sm="12" md="7" lg="7">
+        <MudItem xs="12" sm="12" md="4" lg="7">
             <MudCard>
                 <MudCardHeader Class="pa-0">
                     <MudText Align="Align.Center" Class="pb-0" Typo="Typo.body2">Hızlı Satış Menü</MudText>
@@ -145,7 +145,7 @@
 
 
         @*------------Bill Details-----------*@
-        <MudItem Class="justify-center" xs="12" sm="12" md="5" lg="5">
+        <MudItem Class="justify-center" xs="12" sm="12" md="8" lg="5">
             <MudCard>
                 <MudCardHeader Class="pa-0">
                     <MudText Align="Align.Center" Class="pb-0" Typo="Typo.body2">Adiston İçerik</MudText>
@@ -173,16 +173,17 @@
                                     <MudGrid Class="pt-3 px-1 justify-center">
                                         <SfGrid DataSource="@GridBillData" @ref="Grid" Height="304" AllowSelection="true">
                                             <GridSelectionSettings Type="Syncfusion.Blazor.Grids.SelectionType.Multiple"></GridSelectionSettings>
-                                            <GridEvents TValue="InStoreSaleBillDTO" OnActionBegin="ActionBegin" OnDataBound="DataBoundHandler"></GridEvents>
+                                            <GridEvents TValue="InStoreSaleBillDTO" OnActionBegin="ActionBegin" ></GridEvents>
                                             <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" AllowEditOnDblClick="false" NewRowPosition="NewRowPosition.Bottom" />
                                             <GridColumns>
                                                 @*<GridColumn Field=@nameof(InStoreSaleBillDTO.LineNo) HeaderText="Sıra No"></GridColumn>*@
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.Id) IsPrimaryKey="true" Visible="false"></GridColumn>
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.HasNote) HeaderText="Not" DisplayAsCheckBox="true" DefaultValue="false" Width="10%"></GridColumn>
-                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.ProductName) HeaderText="Ürün" Width="40%"></GridColumn>
-                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.Portion) HeaderText="Prs" Width="15%" TextAlign="TextAlign.Right" CustomAttributes="@(new Dictionary<string, object>(){ { "class", "e-attr" }})"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.ProductName) HeaderText="Ürün" Width="35%"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.ProductPrice) HeaderText="Fiyat" Width="15%" TextAlign="TextAlign.Right"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.Portion) HeaderText="Prs" Width="10%" TextAlign="TextAlign.Right" CustomAttributes="@(new Dictionary<string, object>(){ { "class", "e-attr" }})"></GridColumn>
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.Quantity) HeaderText="Adet" Width="15%" TextAlign="TextAlign.Right"></GridColumn>
-                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.TotalPrice) HeaderText="Tutar" Width="20%" TextAlign="TextAlign.Right" Format="N2"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.TotalPrice) HeaderText="Tutar" Width="15%" TextAlign="TextAlign.Right" Format="N2"></GridColumn>
                                             </GridColumns>
                                             <GridAggregates>
                                                 <GridAggregate>
