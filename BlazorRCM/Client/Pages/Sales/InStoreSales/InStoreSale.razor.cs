@@ -15,6 +15,7 @@ using BlazorRCM.Client.CustomComponents.ModalComponents;
 using System.Globalization;
 using Blazored.LocalStorage;
 using System.Text;
+using Append.Blazor.Printing;
 
 namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 {
@@ -29,8 +30,12 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         [Inject]
         public SweetAlertService? Sw { get; set; }
 
+
         [CascadingParameter]
         public int IntValue { get; set; }
+
+        [Inject]
+        IPrintingService? PrintingService { get; set; }
 
         protected List<BranchProductPriceDTO> BranchProductPriceList = new();
         protected List<BranchProductPriceDTO> FavList = new();
@@ -122,7 +127,7 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
             dto.Id = Guid.NewGuid();
             dto.Quantity = 1;
             dto.Portion = 1;
-            dto.ProductPrice = item.BranchPrice;
+            dto.ProductPrice = decimal.Round((item.BranchPrice), 2, MidpointRounding.AwayFromZero);
             dto.ProductName = item.ProductName;
             dto.TotalPrice = decimal.Round((dto.ProductPrice * dto.Portion * dto.Quantity), 2, MidpointRounding.AwayFromZero);
             dto.ResultDTO = new ProductNoteModalResultDTO();
@@ -242,7 +247,7 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 
                 rowData.Portion = p;
 
-                rowData.TotalPrice = decimal.Round((rowData.ProductPrice * rowData.Portion * rowData.Quantity), 2, MidpointRounding.AwayFromZero);
+                rowData.TotalPrice = decimal.Round((rowData.ProductPrice * rowData.Portion * Convert.ToDecimal(rowData.Quantity)), 2, MidpointRounding.AwayFromZero);
                 double index = Grid.SelectedRowIndexes[0];
                 await this.Grid.UpdateRow(index, rowData);
                 await this.Grid.SelectRowAsync(index);
@@ -260,6 +265,11 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 
         }
 
+        public void SaveAndPrint()
+        {
+            //PrintingService!.Print("printable-form", PrintType.Html);
+            this.Grid!.Print();
+        }
 
         #region other datagrid func
         //public async Task ActionBeginHandler(ActionEventArgs<BranchProductPriceDTO> args)

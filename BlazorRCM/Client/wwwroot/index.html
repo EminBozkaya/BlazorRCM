@@ -45,20 +45,17 @@
     </div>
 
     <script src="_framework/blazor.webassembly.js" autostart="false"></script>
-    <script>
-        Blazor.start({
+    <script>Blazor.start({
             applicationCulture: 'tr'
-        });
-    </script>
+        });</script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>
     <script src="_content/CurrieTechnologies.Razor.SweetAlert2/sweetAlert2.min.js"></script>
-
+    <script src="css/interop.js"></script>
 
 
     <!--fullscreen script-->
-    <script>
-        /* Get the documentElement (<html>) to display the page in fullscreen */
+    <script>/* Get the documentElement (<html>) to display the page in fullscreen */
         var elem = document.documentElement;
 
         /* View in fullscreen */
@@ -81,8 +78,7 @@
             } else if (document.msExitFullscreen) { /* IE11 */
                 document.msExitFullscreen();
             }
-        }
-    </script>
+        }</script>
 
 
 </body>

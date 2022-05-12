@@ -10,6 +10,7 @@ using MudBlazor.Services;
 using Syncfusion.Blazor;
 using System.Globalization;
 using BlazorRCM.Client.Shared;
+using Append.Blazor.Printing;
 
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjAwNzYzQDMxMzkyZTM0MmUzMGdJb002aVRNbU0zRkNiaithUFF6azFyU2VvYVZWK1FXekNlcjJlYzl0MjA9");
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -32,7 +33,7 @@ CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("tr");
 
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
-
+builder.Services.AddScoped<IPrintingService, PrintingService>();
 
 await builder.Build().RunAsync();
 

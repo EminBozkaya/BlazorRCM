@@ -173,17 +173,17 @@
                                     <MudGrid Class="pt-3 px-1 justify-center">
                                         <SfGrid DataSource="@GridBillData" @ref="Grid" Height="304" AllowSelection="true">
                                             <GridSelectionSettings Type="Syncfusion.Blazor.Grids.SelectionType.Multiple"></GridSelectionSettings>
-                                            <GridEvents TValue="InStoreSaleBillDTO" OnActionBegin="ActionBegin" ></GridEvents>
+                                            <GridEvents TValue="InStoreSaleBillDTO" OnActionBegin="ActionBegin"></GridEvents>
                                             <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" AllowEditOnDblClick="false" NewRowPosition="NewRowPosition.Bottom" />
                                             <GridColumns>
                                                 @*<GridColumn Field=@nameof(InStoreSaleBillDTO.LineNo) HeaderText="Sıra No"></GridColumn>*@
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.Id) IsPrimaryKey="true" Visible="false"></GridColumn>
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.HasNote) HeaderText="Not" DisplayAsCheckBox="true" DefaultValue="false" Width="10%"></GridColumn>
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.ProductName) HeaderText="Ürün" Width="35%"></GridColumn>
-                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.ProductPrice) HeaderText="Fiyat" Width="15%" TextAlign="TextAlign.Right"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.ProductPrice) HeaderText="Fiyat" Width="15%" TextAlign="TextAlign.Right" ></GridColumn>
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.Portion) HeaderText="Prs" Width="10%" TextAlign="TextAlign.Right" CustomAttributes="@(new Dictionary<string, object>(){ { "class", "e-attr" }})"></GridColumn>
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.Quantity) HeaderText="Adet" Width="15%" TextAlign="TextAlign.Right"></GridColumn>
-                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.TotalPrice) HeaderText="Tutar" Width="15%" TextAlign="TextAlign.Right" Format="N2"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.TotalPrice) HeaderText="Tutar" Width="15%" TextAlign="TextAlign.Right" ></GridColumn>
                                             </GridColumns>
                                             <GridAggregates>
                                                 <GridAggregate>
@@ -222,7 +222,7 @@
                             <MudFab OnClick="() => ClearBill()" StartIcon="@Icons.Filled.DeleteSweep" Color="Color.Error" Label="Temizle" />
                         </MudGrid>
                         <MudGrid Class="pt-3 px-auto justify-center">
-                            <MudButton Class="ma-3" Variant="Variant.Filled" Style="height:70px;font-size:x-large;color:black;border-radius:15px" Color="Color.Warning" FullWidth="true">- Kaydet/Yazdır -</MudButton>
+                            <MudButton Class="ma-3" Variant="Variant.Filled" Style="height:70px;font-size:x-large;color:black;border-radius:15px" Color="Color.Warning" FullWidth="true" OnClick="SaveAndPrint">- Kaydet/Yazdır -</MudButton>
                         </MudGrid>
                     </MudStack>
 
@@ -256,8 +256,8 @@
     }
 
     /*.e-headercell.e-attr{
-            color: black;
-        }*/
+                color: black;
+            }*/
     .e-rowcell.e-attr {
         color: red;
         font-size: 15px;
@@ -269,11 +269,25 @@
     }
 </style>
 
+@*<form id="printable-form" style="display:none">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+</form>*@
 
 
 @code {
     private bool VisibleProperty { get; set; } = false;
     private bool VisibleAggregate { get; set; } = false;
-    
-   
+
 }
