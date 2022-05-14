@@ -68,7 +68,13 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         protected decimal totalPrice = 0;
         protected bool skipLastIndex = true;
         protected List<InStoreSaleBillDTO>? GridBillData = new();
-        protected List<InStoreSaleBillDTO>? PrintGridBillData = new();
+        protected List<InStoreSaleBillDTO>? PrintGridBillData = null;
+        protected string searchKey = @"\n";
+        //protected List<ProductNoteModalResultDTO>? ProductNoteModalResultDTOs = new();
+        //protected string? generalProductNote;
+        //protected string? firstProductNote;
+        //protected string? secondProductNote;
+        //protected string? thirdProductNote;
 
         protected short BranchId = 1;//şimdilik
 
@@ -287,6 +293,10 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
             if(GridBillData!.Count != 0)
             {
                 PrintGridBillData = GridBillData;
+                //string? g=PrintGridBillData[0].ResultDTO!.generalProductNote;
+                //int i = PrintGridBillData[0].ResultDTO!.generalProductNote!.IndexOf("\n");
+                //string? d = PrintGridBillData[0].ResultDTO!.generalProductNote!.Replace("\n",", ");
+
                 await _jsPrintModule!.InvokeVoidAsync("setPrintElementDisplay", "block");
 
 
@@ -307,6 +317,7 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 
 
                 await _jsPrintModule!.InvokeVoidAsync("setPrintElementDisplay", "none");
+                PrintGridBillData = null;
             }
             
 

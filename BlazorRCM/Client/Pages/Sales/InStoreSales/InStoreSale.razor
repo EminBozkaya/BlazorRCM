@@ -545,8 +545,9 @@
 
                                                                         </thead>
                                                                         <tbody>
-
-                                                                            @foreach (InStoreSaleBillDTO rowItem in PrintGridBillData!)
+                                                                            @if(PrintGridBillData != null)
+                                                                            {
+                                                                              @foreach (InStoreSaleBillDTO rowItem in PrintGridBillData!)
                                                                             {
                                                                                 <tr>
                                                                                     <td>@rowItem.ProductName</td>
@@ -554,94 +555,96 @@
                                                                                     <td class="alignright">@rowItem.Portion</td>
                                                                                     <td class="alignright">@rowItem.TotalPrice</td>
                                                                                 </tr>
-                                                                                @if (@rowItem.ResultDTO!.generalProductNote != null || @rowItem.ResultDTO.generalProductNote != "")
+                                                                                @if (rowItem.ResultDTO!.generalProductNote != null && @rowItem.ResultDTO.generalProductNote != "")
                                                                                 {
-                                                                                    @if (@rowItem.ResultDTO!.generalProductNote!.IndexOf('\n') != -1)
+                                                                                    @if (rowItem.ResultDTO!.generalProductNote.IndexOf("\n") != -1)
                                                                                     {
-                                                                                        <tr style="border:none">
-                                                                                            <td colspan="4">
-                                                                                                -- @rowItem.ResultDTO!.generalProductNote!.Replace('\n',',')
+                                                                                        <tr>
+                                                                                            <td style="border:none" colspan="4">
+                                                                                                 - @(rowItem.ResultDTO!.generalProductNote.Trim().Replace("\n",", "))
                                                                                             </td>
                                                                                         </tr>
                                                                                     }
                                                                                     else
                                                                                     {
-                                                                                        <tr style="border:none">
-                                                                                            <td colspan="4">
-                                                                                                -- @rowItem.ResultDTO!.generalProductNote!
+                                                                                        <tr>
+                                                                                            <td style="border:none" colspan="4">
+                                                                                                   --- 1 x  @rowItem.ResultDTO!.generalProductNote
                                                                                             </td>
                                                                                         </tr>
                                                                                     }
 
                                                                                 }
-                                                                                @if (@rowItem.ResultDTO!.firstProductNote != null || @rowItem.ResultDTO.firstProductNote != "")
+                                                                                @if (rowItem.ResultDTO!.firstProductNote != null && @rowItem.ResultDTO.firstProductNote != "")
                                                                                 {
-                                                                                    @if (@rowItem.ResultDTO!.firstProductNote!.IndexOf('\n') != -1)
+                                                                                    @if (rowItem.ResultDTO!.firstProductNote.IndexOf("\n") != -1)
                                                                                     {
-                                                                                        <tr style="border:none">
-                                                                                            <td colspan="4">
-                                                                                                --- 1 x  @rowItem.ResultDTO!.firstProductNote!.Replace('\n',',')
+                                                                                        <tr>
+                                                                                            <td style="border:none" colspan="4">
+                                                                                                   --- 1 x  @(rowItem.ResultDTO!.firstProductNote.Trim().Replace("\n",", "))
                                                                                             </td>
                                                                                         </tr>
                                                                                     }
                                                                                     else
                                                                                     {
-                                                                                        <tr style="border:none">
-                                                                                            <td colspan="4">
-                                                                                                --- 1 x  @rowItem.ResultDTO!.firstProductNote!
+                                                                                        <tr>
+                                                                                            <td style="border:none" colspan="4">
+                                                                                                   --- 1 x  @rowItem.ResultDTO!.firstProductNote
                                                                                             </td>
                                                                                         </tr>
                                                                                     }
 
                                                                                 }
-                                                                                @if (@rowItem.ResultDTO!.secondProductNote != null || @rowItem.ResultDTO.secondProductNote != "")
+                                                                                @if (@rowItem.ResultDTO!.secondProductNote != null && @rowItem.ResultDTO.secondProductNote != "")
                                                                                 {
-                                                                                    @if (@rowItem.ResultDTO!.secondProductNote!.IndexOf('\n') != -1)
+                                                                                    @if (@rowItem.ResultDTO!.secondProductNote.IndexOf("\n") != -1)
                                                                                     {
-                                                                                        <tr style="border:none">
-                                                                                            <td colspan="4">
-                                                                                                --- 1 x  @rowItem.ResultDTO!.secondProductNote!.Replace('\n',',')
+                                                                                        <tr>
+                                                                                            <td style="border:none" colspan="4">
+                                                                                                   --- 1 x  @rowItem.ResultDTO!.secondProductNote.Replace("\n",", ")
                                                                                             </td>
                                                                                         </tr>
                                                                                     }
                                                                                     else
                                                                                     {
-                                                                                        <tr style="border:none">
-                                                                                            <td colspan="4">
-                                                                                                --- 1 x  @rowItem.ResultDTO!.secondProductNote!
+                                                                                        <tr>
+                                                                                            <td style="border:none" colspan="4">
+                                                                                                   --- 1 x  @rowItem.ResultDTO!.secondProductNote
                                                                                             </td>
                                                                                         </tr>
                                                                                     }
 
                                                                                 }
-                                                                                @if (@rowItem.ResultDTO!.thirdProductNote != null || @rowItem.ResultDTO.thirdProductNote != "")
+                                                                                @if (@rowItem.ResultDTO!.thirdProductNote != null && @rowItem.ResultDTO.thirdProductNote != "")
                                                                                 {
-                                                                                    @if (@rowItem.ResultDTO!.thirdProductNote!.IndexOf('\n') != -1)
+                                                                                    @if (@rowItem.ResultDTO!.thirdProductNote.IndexOf("\n") != -1)
                                                                                     {
-                                                                                        <tr style="border:none">
-                                                                                            <td colspan="4">
-                                                                                                --- 1 x  @rowItem.ResultDTO!.thirdProductNote!.Replace('\n',',')
+                                                                                        <tr>
+                                                                                            <td style="border:none" colspan="4">
+                                                                                                   --- 1 x  @rowItem.ResultDTO!.thirdProductNote.Replace("\n",", ")
                                                                                             </td>
                                                                                         </tr>
                                                                                     }
                                                                                     else
                                                                                     {
-                                                                                        <tr style="border:none">
-                                                                                            <td colspan="4">
-                                                                                                --- 1 x  @rowItem.ResultDTO!.thirdProductNote!
+                                                                                        <tr>
+                                                                                            <td style="border:none" colspan="4">
+                                                                                                   --- 1 x  @rowItem.ResultDTO!.thirdProductNote
                                                                                             </td>
                                                                                         </tr>
                                                                                     }
 
                                                                                 }
+                                                                            }  
                                                                             }
+                                                                            
                                                                         </tbody>
                                                                     </table>
                                                                 </td>
                                                             </tr>
                                                             <tr class="total">
 
-                                                                <td class="alignright" style="font-size:25px">Toplam:  36.00</td>
+                                                                <td class="alignright" style="font-size:25px">Toplam:  @totalPrice</td>
 
                                                             </tr>
                                                         </tbody>
