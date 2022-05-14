@@ -16,6 +16,7 @@ using System.Globalization;
 using Blazored.LocalStorage;
 using System.Text;
 using Append.Blazor.Printing;
+using System.Drawing.Printing;
 
 namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 {
@@ -37,6 +38,18 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         [Inject]
         IPrintingService? PrintingService { get; set; }
 
+        [Inject]
+        public IJSRuntime? _jsPrintRuntime { get; set; }
+
+        [Inject]
+        public IJSRuntime? IJS { get; set; }
+
+        [Inject]
+        public IJSRuntime? IJSInStoreSale { get; set; }
+
+        private IJSObjectReference? _jsPrintModule;
+        private IJSObjectReference? _jsInStoreSalePrintModule;
+
         protected List<BranchProductPriceDTO> BranchProductPriceList = new();
         protected List<BranchProductPriceDTO> FavList = new();
         protected List<BranchProductPriceDTO> FoodList = new();
@@ -55,6 +68,7 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         protected decimal totalPrice = 0;
         protected bool skipLastIndex = true;
         protected List<InStoreSaleBillDTO>? GridBillData = new();
+        protected List<InStoreSaleBillDTO>? PrintGridBillData = new();
 
         protected short BranchId = 1;//şimdilik
 
@@ -73,6 +87,9 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
             //sb.
 
             await LoadList();
+            _jsPrintModule = await _jsPrintRuntime!.InvokeAsync<IJSObjectReference>("import", "./MyScripts/printDisplay.js");
+            _jsInStoreSalePrintModule = await IJSInStoreSale!.InvokeAsync<IJSObjectReference>("import", "./MyScripts/PrintInStoreSaleBill.js");
+
         }
         protected async Task LoadList()
         {
@@ -265,10 +282,34 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 
         }
 
-        public void SaveAndPrint()
+        public async Task SaveAndPrint()
         {
-            //PrintingService!.Print("printable-form", PrintType.Html);
-            this.Grid!.Print();
+            if(GridBillData!.Count != 0)
+            {
+                PrintGridBillData = GridBillData;
+                await _jsPrintModule!.InvokeVoidAsync("setPrintElementDisplay", "block");
+
+
+
+                //await PrintingService!.Print("billPrintView", PrintType.Html);
+                //this.Grid!.Print();
+                //await Task.Delay(1000);
+
+
+
+                //await IJS!.InvokeAsync<object>("open", new object[] { "/BillPrint", "_blank" });
+
+
+
+                _jsInStoreSalePrintModule = await IJSInStoreSale!.InvokeAsync<IJSObjectReference>("import", "./MyScripts/PrintInStoreSaleBill.js");
+                await _jsInStoreSalePrintModule!.InvokeVoidAsync("print");
+
+
+
+                await _jsPrintModule!.InvokeVoidAsync("setPrintElementDisplay", "none");
+            }
+            
+
         }
 
         #region other datagrid func

@@ -148,7 +148,7 @@
         <MudItem Class="justify-center" xs="12" sm="12" md="8" lg="5">
             <MudCard>
                 <MudCardHeader Class="pa-0">
-                    <MudText Align="Align.Center" Class="pb-0" Typo="Typo.body2">Adiston İçerik</MudText>
+                    <MudText Align="Align.Center" Class="pb-0" Typo="Typo.body2">Adisyon İçerik</MudText>
                 </MudCardHeader>
                 <MudCardContent Class="pa-2 px-0 justify-center">
                     <MudStack>
@@ -180,10 +180,10 @@
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.Id) IsPrimaryKey="true" Visible="false"></GridColumn>
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.HasNote) HeaderText="Not" DisplayAsCheckBox="true" DefaultValue="false" Width="10%"></GridColumn>
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.ProductName) HeaderText="Ürün" Width="35%"></GridColumn>
-                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.ProductPrice) HeaderText="Fiyat" Width="15%" TextAlign="TextAlign.Right" ></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.ProductPrice) HeaderText="Fiyat" Width="15%" TextAlign="TextAlign.Right"></GridColumn>
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.Portion) HeaderText="Prs" Width="10%" TextAlign="TextAlign.Right" CustomAttributes="@(new Dictionary<string, object>(){ { "class", "e-attr" }})"></GridColumn>
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.Quantity) HeaderText="Adet" Width="15%" TextAlign="TextAlign.Right"></GridColumn>
-                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.TotalPrice) HeaderText="Tutar" Width="15%" TextAlign="TextAlign.Right" ></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.TotalPrice) HeaderText="Tutar" Width="15%" TextAlign="TextAlign.Right"></GridColumn>
                                             </GridColumns>
                                             <GridAggregates>
                                                 <GridAggregate>
@@ -256,8 +256,8 @@
     }
 
     /*.e-headercell.e-attr{
-                color: black;
-            }*/
+                                                    color: black;
+                                                }*/
     .e-rowcell.e-attr {
         color: red;
         font-size: 15px;
@@ -269,21 +269,419 @@
     }
 </style>
 
-@*<form id="printable-form" style="display:none">
-    <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-</form>*@
+@*<style>
+    /* -------------------------------------
+    GLOBAL
+    A very basic CSS reset
+    ------------------------------------- */
+    * {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+    font-size: 14px;
+    }
+
+    img {
+    max-width: 100%;
+    }
+
+    body {
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none;
+    width: 100% !important;
+    height: 100%;
+    line-height: 1.6;
+    }
+
+    /* Let's make sure all tables have defaults */
+    table td {
+    vertical-align: top;
+    }
+
+    /* -----------------------------------BODY & CONTAINER------------------------------ */
+    body {
+    background-color: #f6f6f6;
+    }
+
+    .body-wrap {
+    background-color: #f6f6f6;
+    width: 100%;
+    }
+
+    .container {
+    display: block !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+    /* makes it centered */
+    clear: both !important;
+    }
+
+    .content {
+    max-width: 600px;
+    margin: 0 auto;
+    display: block;
+    /*padding: 20px;*/
+    }
+
+    /* -------------------------------------HEADER, FOOTER, MAIN----------------------------------- */
+    .main {
+    background: #fff;
+    border: 1px solid #e9e9e9;
+    border-radius: 3px;
+    }
+
+    .content-wrap {
+    /*padding: 20px;*/
+    }
+
+    .content-block {
+    padding: 0 0 2px;
+    }
+
+    .header {
+    width: 100%;
+    margin-bottom: 10px;
+    }
+
+    .footer {
+    width: 100%;
+    clear: both;
+    color: #999;
+    padding: 10px;
+    }
+
+    .footer a {
+    color: #999;
+    }
+
+    .footer p, .footer a, .footer unsubscribe, .footer td {
+    font-size: 12px;
+    }
+
+    /* ---------------------------------TYPOGRAPHY----------------------------------- */
+    h1, h2, h3 {
+    font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    color: #000;
+    margin: 40px 0 0;
+    line-height: 1.2;
+    font-weight: 400;
+    }
+
+    h1 {
+    font-size: 32px;
+    font-weight: 500;
+    }
+
+    h2 {
+    font-size: 24px;
+    }
+
+    h3 {
+    font-size: 18px;
+    }
+
+    h4 {
+    font-size: 14px;
+    font-weight: 600;
+    }
+
+    p, ul, ol {
+    margin-bottom: 10px;
+    font-weight: normal;
+    }
+
+    p li, ul li, ol li {
+    margin-left: 5px;
+    list-style-position: inside;
+    }
+
+    /* ------------------------------------LINKS & BUTTONS------------------------------------ */
+    a {
+    color: #1ab394;
+    text-decoration: underline;
+    }
+
+    .btn-primary {
+    text-decoration: none;
+    color: #FFF;
+    background-color: #1ab394;
+    border: solid #1ab394;
+    border-width: 5px 10px;
+    line-height: 2;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 5px;
+    text-transform: capitalize;
+    }
+
+    /* -------------------------------------OTHER STYLES THAT MIGHT BE USEFUL------------------------ */
+    .last {
+    margin-bottom: 0;
+    }
+
+    .first {
+    margin-top: 0;
+    }
+
+    .aligncenter {
+    text-align: center;
+    }
+
+    .alignright {
+    text-align: right;
+    }
+
+    .alignleft {
+    text-align: left;
+    }
+
+    .clear {
+    clear: both;
+    }
+
+    /* ----ALERTS Change the class depending on warning email, good email or bad email------- */
+    .alert {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+    padding: 20px;
+    text-align: center;
+    border-radius: 3px 3px 0 0;
+    }
+
+    .alert a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    }
+
+    .alert.alert-warning {
+    background: #f8ac59;
+    }
+
+    .alert.alert-bad {
+    background: #ed5565;
+    }
+
+    .alert.alert-good {
+    background: #1ab394;
+    }
+
+    /* ---------------------------------INVOICE Styles for the billing table--------------------- */
+    .invoice {
+    margin: auto;
+    text-align: left;
+    width: 95%;
+    }
+
+    .invoice td {
+    padding: 5px 0;
+    }
+
+    .invoice .invoice-items {
+    width: 100%;
+    }
+
+    .invoice .invoice-items td {
+    border-top: #eee 1px solid;
+    /*border-bottom: #eee 1px solid;*/
+    }
+
+    .invoice .total td {
+    border-top: 1px solid #333;
+    /*border-bottom: 2px solid #333;*/
+    font-weight: 700;
+    }
+
+    </style>*@
+
+<table class="body-wrap" id="billPrintView" style="display:none">
+    <tbody>
+        <tr>
+            <td></td>
+            <td class="container" width="600">
+                <div class="content">
+                    <table class="main" width="100%" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td class="content-wrap aligncenter">
+                                    <table width="100%" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="content-block">
+                                                    <h2 style="margin-top:10px;text-align:center">ÖNCÜ DÖNER</h2>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="content-block">
+                                                    <table class="invoice">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <table width="100%" cellpadding="0" cellspacing="0">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="alignleft">Hızlı Satış Fişi</td>
+                                                                                <td class="alignright">No:1453</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table class="invoice-items" cellpadding="0" cellspacing="0">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="alignleft">Ürün</th>
+                                                                                <th class="alignright">Adet</th>
+                                                                                <th class="alignright">Prs</th>
+                                                                                <th class="alignright">Tutar</th>
+                                                                            </tr>
+
+                                                                        </thead>
+                                                                        <tbody>
+
+                                                                            @foreach (InStoreSaleBillDTO rowItem in PrintGridBillData!)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td>@rowItem.ProductName</td>
+                                                                                    <td class="alignright">@rowItem.Quantity</td>
+                                                                                    <td class="alignright">@rowItem.Portion</td>
+                                                                                    <td class="alignright">@rowItem.TotalPrice</td>
+                                                                                </tr>
+                                                                                @if (@rowItem.ResultDTO!.generalProductNote != null || @rowItem.ResultDTO.generalProductNote != "")
+                                                                                {
+                                                                                    @if (@rowItem.ResultDTO!.generalProductNote!.IndexOf('\n') != -1)
+                                                                                    {
+                                                                                        <tr style="border:none">
+                                                                                            <td colspan="4">
+                                                                                                -- @rowItem.ResultDTO!.generalProductNote!.Replace('\n',',')
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <tr style="border:none">
+                                                                                            <td colspan="4">
+                                                                                                -- @rowItem.ResultDTO!.generalProductNote!
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+
+                                                                                }
+                                                                                @if (@rowItem.ResultDTO!.firstProductNote != null || @rowItem.ResultDTO.firstProductNote != "")
+                                                                                {
+                                                                                    @if (@rowItem.ResultDTO!.firstProductNote!.IndexOf('\n') != -1)
+                                                                                    {
+                                                                                        <tr style="border:none">
+                                                                                            <td colspan="4">
+                                                                                                --- 1 x  @rowItem.ResultDTO!.firstProductNote!.Replace('\n',',')
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <tr style="border:none">
+                                                                                            <td colspan="4">
+                                                                                                --- 1 x  @rowItem.ResultDTO!.firstProductNote!
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+
+                                                                                }
+                                                                                @if (@rowItem.ResultDTO!.secondProductNote != null || @rowItem.ResultDTO.secondProductNote != "")
+                                                                                {
+                                                                                    @if (@rowItem.ResultDTO!.secondProductNote!.IndexOf('\n') != -1)
+                                                                                    {
+                                                                                        <tr style="border:none">
+                                                                                            <td colspan="4">
+                                                                                                --- 1 x  @rowItem.ResultDTO!.secondProductNote!.Replace('\n',',')
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <tr style="border:none">
+                                                                                            <td colspan="4">
+                                                                                                --- 1 x  @rowItem.ResultDTO!.secondProductNote!
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+
+                                                                                }
+                                                                                @if (@rowItem.ResultDTO!.thirdProductNote != null || @rowItem.ResultDTO.thirdProductNote != "")
+                                                                                {
+                                                                                    @if (@rowItem.ResultDTO!.thirdProductNote!.IndexOf('\n') != -1)
+                                                                                    {
+                                                                                        <tr style="border:none">
+                                                                                            <td colspan="4">
+                                                                                                --- 1 x  @rowItem.ResultDTO!.thirdProductNote!.Replace('\n',',')
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <tr style="border:none">
+                                                                                            <td colspan="4">
+                                                                                                --- 1 x  @rowItem.ResultDTO!.thirdProductNote!
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+
+                                                                                }
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="total">
+
+                                                                <td class="alignright" style="font-size:25px">Toplam:  36.00</td>
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="content-block">
+                                                    <a href="#">Afiyet Olsun..</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="content-block">
+                                                   @* Company Inc. 123 Van Ness, San Francisco 94102*@
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="footer">
+                        <table width="100%">
+                            <tbody>
+                                <tr>
+                                    <td class="aligncenter content-block"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
 
 
 @code {

@@ -30,7 +30,7 @@ namespace BlazorRCM.Server.Controllers
         {
             return new ServiceResponse<List<BranchProductPriceDTO>>()
             {
-                Value = (await Repo.GetAll(i=>i.BId==BranchId) as List<BranchProductPriceDTO>)!
+                Value = (await Repo.GetAll(i=>i.BId==BranchId) as List<BranchProductPriceDTO>)!.OrderBy(x => x.PId).ToList()
                 //Value = (await Repo.GetAll(i=>i.BId==short.Parse(BranchId)) as List<BranchProductPriceDTO>)!
             };
         }

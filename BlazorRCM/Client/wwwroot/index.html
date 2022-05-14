@@ -8,8 +8,7 @@
     <link rel="icon" type="image/png" href="MyImages/Layout/oncu.ico" />
     <base href="/" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-
-   
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
 
     <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
     <link href="MyCSS/Layout/Layout.css" rel="stylesheet" />
@@ -29,14 +28,14 @@
 <body>
     <!--<div id="app">Loading...</div>-->
     <div id="app">
-        <div class="modal-overlay">
+        <!--<div class="modal-overlay">
             <div class="sk-fold">
                 <div class="sk-fold-cube"></div>
                 <div class="sk-fold-cube"></div>
                 <div class="sk-fold-cube"></div>
                 <div class="sk-fold-cube"></div>
             </div>
-        </div>
+        </div>-->
     </div>
     <div id="blazor-error-ui">
         An unhandled error has occurred.
@@ -45,7 +44,8 @@
     </div>
 
     <script src="_framework/blazor.webassembly.js" autostart="false"></script>
-    <script>Blazor.start({
+    <script>
+    Blazor.start({
             applicationCulture: 'tr'
         });</script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>
@@ -55,7 +55,8 @@
 
 
     <!--fullscreen script-->
-    <script>/* Get the documentElement (<html>) to display the page in fullscreen */
+    <script>
+    /* Get the documentElement (<html>) to display the page in fullscreen */
         var elem = document.documentElement;
 
         /* View in fullscreen */
@@ -79,7 +80,7 @@
                 document.msExitFullscreen();
             }
         }</script>
-
+    <link href="MyCSS/Layout/MudBlazorTextTransform.css" rel="stylesheet" />
 
 </body>
 
