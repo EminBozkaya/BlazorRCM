@@ -1,7 +1,7 @@
 ﻿export function print() {
     let printContents, popupWin;
     printContents = document.getElementById('billPrintView').innerHTML;
-    popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+    popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=100px');
     popupWin.document.open();
     popupWin.document.write(`
           <html>
@@ -223,6 +223,8 @@
             padding: 5px 0;
         }
 
+        
+
         .invoice .invoice-items {
             width: 100%;
         }
@@ -231,6 +233,10 @@
                 border-top: #eee 1px solid;
                 /*border-bottom: #eee 1px solid;*/
             }
+
+            .invoice .invoice-items th {
+                font-size: 16px;
+        }
 
         .invoice .total td {
             border-top: 1px solid #333;

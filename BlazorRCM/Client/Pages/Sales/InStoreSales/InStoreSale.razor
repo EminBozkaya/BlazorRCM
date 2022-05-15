@@ -513,7 +513,7 @@
                                         <tbody>
                                             <tr>
                                                 <td class="content-block">
-                                                    <h2 style="margin-top:10px;text-align:center">ÖNCÜ DÖNER</h2>
+                                                    <h2 style="margin-top:10px;text-align:center;font-size:18px">ÖNCÜ DÖNER</h2>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -537,10 +537,10 @@
                                                                     <table class="invoice-items" cellpadding="0" cellspacing="0">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th class="alignleft">Ürün</th>
-                                                                                <th class="alignright">Adet</th>
-                                                                                <th class="alignright">Prs</th>
-                                                                                <th class="alignright">Tutar</th>
+                                                                                <th style="font-size:14px" class="alignleft">Ürün</th>
+                                                                                <th style="font-size:14px" class="alignright">Adet</th>
+                                                                                <th style="font-size:14px" class="alignright">Prs</th>
+                                                                                <th style="font-size:14px" class="alignright">Tutar</th>
                                                                             </tr>
 
                                                                         </thead>
@@ -550,17 +550,26 @@
                                                                               @foreach (InStoreSaleBillDTO rowItem in PrintGridBillData!)
                                                                             {
                                                                                 <tr>
-                                                                                    <td>@rowItem.ProductName</td>
-                                                                                    <td class="alignright">@rowItem.Quantity</td>
-                                                                                    <td class="alignright">@rowItem.Portion</td>
-                                                                                    <td class="alignright">@rowItem.TotalPrice</td>
+                                                                                    <td style="font-size:15px">@rowItem.ProductName</td>
+                                                                                    <td style="font-size:15px" class="alignright">@rowItem.Quantity</td>
+                                                                                    <td style="font-size:14px" class="alignright">
+                                                                                            @if (rowItem.Portion != Convert.ToDecimal(1))
+                                                                                            {
+                                                                                                <u>@rowItem.Portion</u>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <i>&nbsp</i>
+                                                                                            }
+                                                                                        </td>
+                                                                                        <td style="font-size:15px" class="alignright">@rowItem.TotalPrice</td>
                                                                                 </tr>
                                                                                 @if (rowItem.ResultDTO!.generalProductNote != null && @rowItem.ResultDTO.generalProductNote != "")
                                                                                 {
                                                                                     @if (rowItem.ResultDTO!.generalProductNote.IndexOf("\n") != -1)
                                                                                     {
                                                                                         <tr>
-                                                                                            <td style="border:none" colspan="4">
+                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
                                                                                                  - @(rowItem.ResultDTO!.generalProductNote.Trim().Replace("\n",", "))
                                                                                             </td>
                                                                                         </tr>
@@ -568,8 +577,8 @@
                                                                                     else
                                                                                     {
                                                                                         <tr>
-                                                                                            <td style="border:none" colspan="4">
-                                                                                                   --- 1 x  @rowItem.ResultDTO!.generalProductNote
+                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
+                                                                                                   - @rowItem.ResultDTO!.generalProductNote
                                                                                             </td>
                                                                                         </tr>
                                                                                     }
@@ -580,7 +589,7 @@
                                                                                     @if (rowItem.ResultDTO!.firstProductNote.IndexOf("\n") != -1)
                                                                                     {
                                                                                         <tr>
-                                                                                            <td style="border:none" colspan="4">
+                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
                                                                                                    --- 1 x  @(rowItem.ResultDTO!.firstProductNote.Trim().Replace("\n",", "))
                                                                                             </td>
                                                                                         </tr>
@@ -588,7 +597,7 @@
                                                                                     else
                                                                                     {
                                                                                         <tr>
-                                                                                            <td style="border:none" colspan="4">
+                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
                                                                                                    --- 1 x  @rowItem.ResultDTO!.firstProductNote
                                                                                             </td>
                                                                                         </tr>
@@ -600,7 +609,7 @@
                                                                                     @if (@rowItem.ResultDTO!.secondProductNote.IndexOf("\n") != -1)
                                                                                     {
                                                                                         <tr>
-                                                                                            <td style="border:none" colspan="4">
+                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
                                                                                                    --- 1 x  @rowItem.ResultDTO!.secondProductNote.Replace("\n",", ")
                                                                                             </td>
                                                                                         </tr>
@@ -608,7 +617,7 @@
                                                                                     else
                                                                                     {
                                                                                         <tr>
-                                                                                            <td style="border:none" colspan="4">
+                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
                                                                                                    --- 1 x  @rowItem.ResultDTO!.secondProductNote
                                                                                             </td>
                                                                                         </tr>
@@ -620,7 +629,7 @@
                                                                                     @if (@rowItem.ResultDTO!.thirdProductNote.IndexOf("\n") != -1)
                                                                                     {
                                                                                         <tr>
-                                                                                            <td style="border:none" colspan="4">
+                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
                                                                                                    --- 1 x  @rowItem.ResultDTO!.thirdProductNote.Replace("\n",", ")
                                                                                             </td>
                                                                                         </tr>
@@ -628,7 +637,7 @@
                                                                                     else
                                                                                     {
                                                                                         <tr>
-                                                                                            <td style="border:none" colspan="4">
+                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
                                                                                                    --- 1 x  @rowItem.ResultDTO!.thirdProductNote
                                                                                             </td>
                                                                                         </tr>
@@ -644,7 +653,7 @@
                                                             </tr>
                                                             <tr class="total">
 
-                                                                <td class="alignright" style="font-size:25px">Toplam:  @totalPrice</td>
+                                                                <td class="alignright" style="font-size:18px">Toplam:  @totalPrice</td>
 
                                                             </tr>
                                                         </tbody>
@@ -652,15 +661,14 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="content-block">
+                                                <td class="content-block" style="text-align:center">
                                                     <a href="#">Afiyet Olsun..</a>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                           @* <tr>
                                                 <td class="content-block">
-                                                   @* Company Inc. 123 Van Ness, San Francisco 94102*@
                                                 </td>
-                                            </tr>
+                                            </tr>*@
                                         </tbody>
                                     </table>
                                 </td>
