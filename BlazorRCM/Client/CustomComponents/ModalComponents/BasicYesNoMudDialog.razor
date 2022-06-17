@@ -1,0 +1,59 @@
+﻿<MudDialog DisableSidePadding="true">
+    <TitleContent>
+        <MudText id="title">
+            @title
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudText id="txtContent">@ContentText</MudText>
+    </DialogContent>
+    <DialogActions>
+        <MudButton class="btnReply" Color="Color.Primary" OnClick="Submit" Size="Size.Large">Onayla</MudButton>
+        <MudButton class="btnReply" Color="Color.Secondary" OnClick="Cancel" Size="Size.Large">Vazgeç</MudButton>
+    </DialogActions>
+</MudDialog>
+
+<style>
+    .mud-dialog-width-md {
+        width: 500px;
+        height: 250px;
+    }
+
+    #title {
+        font-size: xx-large;
+    }
+
+    #txtContent {
+        font-size: x-large;
+        text-align: center;
+    }
+
+    
+</style>
+@code {
+    [CascadingParameter]
+    MudDialogInstance? MudDialog { get; set; }
+
+    [Parameter]
+    public string? title { get; set; }
+
+    [Parameter]
+    public string? ContentText { get; set; }
+
+
+    public MudTextField<string>? singleLineReference;
+
+
+    void SubmitEnter(KeyboardEventArgs args)
+    {
+        var code = args.Code;
+        if (code == "NumpadEnter" || code == "Enter")
+            MudDialog!.Close(DialogResult.Ok(true));
+    }
+
+    void Submit()
+    {
+            MudDialog!.Close(DialogResult.Ok(true));
+    }
+    void Cancel() => MudDialog!.Cancel();
+}

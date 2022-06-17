@@ -1,6 +1,6 @@
 using Blazored.LocalStorage;
-using BlazorRCM.Server.Infrasructures;
 using BlazorRCM.Server.Services.Business.EF;
+using BlazorRCM.Server.Services.Infrastructures;
 using BlazorRCM.Shared.DTOs.ModelDTOs;
 using BlazorRCM.Shared.Extensions;
 using BlazorRCM.Shared.ValidationRules.FluentValidation.DTOs.ModelDTOs;
@@ -56,6 +56,8 @@ builder.Services.AddScoped<IUserRepo, EfUserRepo>();
 builder.Services.AddScoped<IFirmTypeRepo, EfFirmTypeRepo>();
 builder.Services.AddScoped<IBranchProductPriceRepo, EfBranchProductPriceRepo>();
 builder.Services.AddScoped<IProductSaleNoteRepo, EfProductSaleNoteRepo>();
+builder.Services.AddScoped<ISaleRepo, EfSaleRepo>();
+builder.Services.AddScoped<ISaleDetailRepo, EfSaleDetailRepo>();
 
 #endregion
 

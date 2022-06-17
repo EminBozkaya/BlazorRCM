@@ -1,18 +1,18 @@
 ﻿using AutoMapper;
+using BlazorRCM.Server.Services.BaseServices.BaseService.EF;
 using BlazorRCM.Server.Services.Infrastructures;
 using BlazorRCM.Shared.DTOs.ModelDTOs;
-using BlazorRCM.Server.Services.BaseServices.BaseService.EF;
 using RCMServerData.EFContext;
 using RCMServerData.Models;
 
 namespace BlazorRCM.Server.Services.Business.EF
 {
-    public class EfBranchProductPriceRepo : EfRepositoryBase<RCMBlazorContext, BranchProductPrice, BranchProductPriceDTO>, IBranchProductPriceRepo
+    public class EfSaleRepo : EfRepositoryBase<RCMBlazorContext, Sale, SaleDTO>, ISaleRepo
 
     {
         private IConfiguration configuration;
         private IMapper mapper;
-        public EfBranchProductPriceRepo(IMapper Mapper, IConfiguration Configuration) : base(Mapper, Configuration)
+        public EfSaleRepo(IMapper Mapper, IConfiguration Configuration) : base(Mapper, Configuration)
         {
             configuration = Configuration;
             mapper = Mapper;

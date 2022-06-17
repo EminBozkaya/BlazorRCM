@@ -1,4 +1,4 @@
-﻿using BlazorRCM.Server.Infrasructures;
+﻿using BlazorRCM.Server.Services.Infrastructures;
 using BlazorRCM.Shared.CustomExceptions;
 using BlazorRCM.Shared.DTOs.ModelDTOs;
 using BlazorRCM.Shared.DTOs.ViewDTOs;

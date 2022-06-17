@@ -84,7 +84,14 @@ namespace BlazorRCM.Shared.Extensions
             CreateMap<ProductSaleNote, ProductSaleNoteDTO>()
                 .ReverseMap();
 
-           
+            CreateMap<Sale, SaleDTO>()
+                 .ReverseMap();
+
+            CreateMap<SaleDetail, SaleDetailDTO>()
+                .ForMember(x => x.ProductName, y => y.MapFrom(z => z.Product!.Name));
+
+            CreateMap<SaleDetailDTO, SaleDetail>();
+
         }
     }
 }

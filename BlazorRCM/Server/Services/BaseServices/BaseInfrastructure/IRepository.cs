@@ -16,6 +16,7 @@ namespace BlazorRCM.Server.Services.BaseServices.BaseInfrastructure
         Task<T> Update(T entity);
 
         Task<bool> Delete(T entity);
+        Task DeleteByFilter(Expression<Func<T, bool>> filter);
 
     }
 }

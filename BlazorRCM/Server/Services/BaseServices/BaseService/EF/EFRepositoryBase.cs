@@ -327,6 +327,32 @@ namespace BlazorRCM.Server.Services.BaseServices.BaseService.EF
             }
         }
 
-        
+
+        async Task IRepository<TEntityDTO>.DeleteByFilter(Expression<Func<TEntityDTO, bool>> filter)
+        {
+            using TContext ctx = new();
+            var query = ctx.Set<TEntity>().AsQueryable();
+            IQueryable<TEntityDTO> queryDTO = filter == null
+                    ? query.ProjectTo<TEntityDTO>(mapper.ConfigurationProvider)
+                    : query.ProjectTo<TEntityDTO>(mapper.ConfigurationProvider).Where(filter);
+            if (queryDTO != null)
+            {
+                foreach (TEntityDTO dto in queryDTO)
+                {
+                    bool result = await Delete(dto);
+                }
+            }
+            
+        }
+
+        //Task IRepository<TEntityDTO>.DeleteByFilter(Expression<Func<TEntityDTO, bool>> filter)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //void IRepository<TEntityDTO>.DeleteByFilter(Expression<Func<TEntityDTO, bool>> filter)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

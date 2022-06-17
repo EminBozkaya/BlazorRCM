@@ -2,7 +2,7 @@
 using BlazorRCM.Server.Services.BaseServices.BaseInfrastructure;
 
 
-namespace BlazorRCM.Server.Infrasructures
+namespace BlazorRCM.Server.Services.Infrastructures
 {
     public interface IProductSaleNoteRepo : IRepository<ProductSaleNoteDTO>
     {

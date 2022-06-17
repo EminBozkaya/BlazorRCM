@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using BlazorRCM.Server.Infrasructures;
 using BlazorRCM.Shared.DTOs.ModelDTOs;
 using BlazorRCM.Shared.Utils;
 using BlazorRCM.Server.Services.BaseServices.BaseService.EF;
@@ -10,6 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using BlazorRCM.Shared.DTOs.ViewDTOs;
+using BlazorRCM.Server.Services.Infrastructures;
 
 namespace BlazorRCM.Server.Services.Business.EF
 {

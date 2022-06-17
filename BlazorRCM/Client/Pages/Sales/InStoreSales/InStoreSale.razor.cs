@@ -31,6 +31,8 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         [Inject]
         public SweetAlertService? Sw { get; set; }
 
+        [Inject]
+        public HttpClient? Client { get; set; }
 
         [CascadingParameter]
         public int IntValue { get; set; }
@@ -130,7 +132,7 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
             }
             if (args.RequestType.ToString() == "Save")
             {
-                Pkey = args.Data.Id;           //get primary key value of newly added record 
+                Pkey = args.Data.GuId;           //get primary key value of newly added record 
             }
         }
         //public async void DataBoundHandler(BeforeDataBoundArgs<InStoreSaleBillDTO> args)
@@ -147,7 +149,8 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         public async Task AddToBill(BranchProductPriceDTO item)
         {
             InStoreSaleBillDTO dto = new();
-            dto.Id = Guid.NewGuid();
+            dto.GuId = Guid.NewGuid();
+            dto.PId = item.PId;
             dto.Quantity = 1;
             dto.Portion = 1;
             dto.ProductPrice = decimal.Round((item.BranchPrice), 2, MidpointRounding.AwayFromZero);
@@ -187,25 +190,26 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 
                 if ((q == -2 && rowData.Quantity > 1) || q == 0)
                 {
-                    rowData.Quantity = rowData.Quantity + (q + 1);
+                    rowData.Quantity = Convert.ToInt16(rowData.Quantity + (q + 1));
                 }
                 if (q > 0)
                 {
-                    rowData.Quantity = q;
+                    rowData.Quantity = Convert.ToInt16(q);
                 }
 
                 if (q == -1)
                 {
-                    DialogOptions closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true };
-                    //DialogParameters params= new DialogParameters();
+                    DialogOptions closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true, MaxWidth = MaxWidth.Medium };
+                    string? title = "Ürün Adeti Girin:";
                     var parameters = new DialogParameters();
                     parameters.Add("IntValue", rowData.Quantity);
                     parameters.Add("Max", 100);
+                    parameters.Add("title", title);
 
-                    var dialog = DialogService!.Show<BaseMudDialogNumeric>("Adet Girin:", parameters, closeOnEscapeKey);
+                    var dialog = DialogService!.Show<BaseMudDialogNumeric>(title, parameters, closeOnEscapeKey);
                     var result = await dialog.Result;
                     if (!result.Cancelled)
-                        rowData.Quantity = Convert.ToInt32(result.Data.ToString());
+                        rowData.Quantity = Convert.ToInt16(result.Data.ToString());
                 }
 
 
@@ -257,7 +261,7 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                 await this.Grid.UpdateRow(index, rowData);
                 await this.Grid.SelectRowAsync(index);
             }
-                
+
 
         }
         public async Task ChangePrsOfProduct(decimal p)
@@ -290,36 +294,119 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 
         public async Task SaveAndPrint()
         {
-            if(GridBillData!.Count != 0)
+            if (GridBillData!.Count != 0)
             {
                 PrintGridBillData = GridBillData;
-                //string? g=PrintGridBillData[0].ResultDTO!.generalProductNote;
-                //int i = PrintGridBillData[0].ResultDTO!.generalProductNote!.IndexOf("\n");
-                //string? d = PrintGridBillData[0].ResultDTO!.generalProductNote!.Replace("\n",", ");
+                //DialogOptions closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true, MaxWidth = MaxWidth.Medium, NoHeader = true };
+                //string? title = "Adisyon Onayı!";
+                //var parameters = new DialogParameters();
+                //parameters.Add("title", title);
+                //parameters.Add("ContentText", "Adisyon sisteme kaydedilsin mi?");
+                //var dialog = DialogService!.Show<BasicYesNoMudDialog>(title, parameters, closeOnEscapeKey);
+                //var result = await dialog.Result;
+                //if (!result.Cancelled)
+                //{}
 
-                await _jsPrintModule!.InvokeVoidAsync("setPrintElementDisplay", "block");
+                SweetAlertResult result = await Sw!.FireAsync(new SweetAlertOptions
+                {
+                    Title = "Emin misiniz",
+                    Text = "Adisyon sisteme kaydedilsin mi?",
+                    Icon = SweetAlertIcon.Warning,
+                    ShowCancelButton = true,
+                    ConfirmButtonColor = "#3085d6",
+                    CancelButtonColor = "#d33",
+                    ConfirmButtonText = "Kaydet ve Yazdır",
+                    CancelButtonText = "Vazgeç"
+                });
+                if (!string.IsNullOrEmpty(result.Value))
+                {
+                    await _jsPrintModule!.InvokeVoidAsync("setPrintElementDisplay", "block");
 
+                    //await PrintingService!.Print("billPrintView", PrintType.Html);
+                    //this.Grid!.Print();
+                    //await Task.Delay(1000);
 
+                    //await IJS!.InvokeAsync<object>("open", new object[] { "/BillPrint", "_blank" });
 
-                //await PrintingService!.Print("billPrintView", PrintType.Html);
-                //this.Grid!.Print();
-                //await Task.Delay(1000);
+                    _jsInStoreSalePrintModule = await IJSInStoreSale!.InvokeAsync<IJSObjectReference>("import", "./MyScripts/PrintInStoreSaleBill.js");
+                    await _jsInStoreSalePrintModule!.InvokeVoidAsync("print");
 
+                    await _jsPrintModule!.InvokeVoidAsync("setPrintElementDisplay", "none");
+                    PrintGridBillData = null;
 
+                    //--------saving database---------
+                    SaleDTO newSaleDTO = new();
 
-                //await IJS!.InvokeAsync<object>("open", new object[] { "/BillPrint", "_blank" });
+                    newSaleDTO.BId = 1;
+                    newSaleDTO.UId = 1;
+                    newSaleDTO.IsActive = true;
+                    newSaleDTO.TotalPrice = totalPrice;
 
+                    try
+                    {
+                        newSaleDTO = await Client!.PostGetServiceResponseAsync<SaleDTO, SaleDTO>("api/Sale/Create", newSaleDTO, true);
 
+                        
+                    }
+                    catch (ApiException ex)
+                    {
 
-                _jsInStoreSalePrintModule = await IJSInStoreSale!.InvokeAsync<IJSObjectReference>("import", "./MyScripts/PrintInStoreSaleBill.js");
-                await _jsInStoreSalePrintModule!.InvokeVoidAsync("print");
+                        await Sw!.FireAsync("Api Exception", "Adisyon Sisteme Kaydedilemedi: " + ex.Message, "error");
+                    }
+                    catch (Exception ex)
+                    {
 
+                        await Sw!.FireAsync("Exception", "Adisyon Sisteme Kaydedilemedi: " + ex.Message, "error");
+                    }
 
+                    try
+                    {
+                        foreach (InStoreSaleBillDTO bill in GridBillData)
+                        {
+                            SaleDetailDTO dto = new();
+                            dto.SId = newSaleDTO.Id;
+                            dto.PId = bill.PId;
+                            dto.ProductName = bill.ProductName;
+                            dto.Price = bill.ProductPrice;
+                            dto.Portion = bill.Portion;
+                            dto.Qty = bill.Quantity;
+                            dto.Total = bill.TotalPrice;
+                            dto.IsActive = true;
 
-                await _jsPrintModule!.InvokeVoidAsync("setPrintElementDisplay", "none");
-                PrintGridBillData = null;
+                            dto = await Client!.PostGetServiceResponseAsync<SaleDetailDTO, SaleDetailDTO>("api/SaleDetail/Create", dto, true);
+                        }
+
+                        setAggregate = false;
+                        GridBillData = new List<InStoreSaleBillDTO>();
+                        setAggregate = true;
+                    }
+                    catch (ApiException ex)
+                    {
+                        bool deleted = await Client!.PostGetServiceResponseAsync<bool, SaleDTO>("api/Sale/Delete", newSaleDTO, true);
+
+                        if (deleted)
+                        {
+                            var res = await Client!.PostGetBaseResponseAsync("api/SaleDetail/DeleteById", newSaleDTO.Id);
+                        }
+
+                        await Sw!.FireAsync("Api Exception", "Adisyon Sisteme Kaydedilemedi: " + ex.Message, "error");
+                    }
+                    catch (Exception ex)
+                    {
+                        bool deleted = await Client!.PostGetServiceResponseAsync<bool, SaleDTO>("api/Sale/Delete", newSaleDTO, true);
+
+                        if (deleted)
+                        {
+                            var res = await Client!.PostGetBaseResponseAsync("api/SaleDetail/DeleteById", newSaleDTO.Id);
+                        }
+
+                        await Sw!.FireAsync("Exception", "Adisyon Sisteme Kaydedilemedi: " +  ex.Message, "error");
+                    }
+
+                }
+
             }
-            
+
 
         }
 

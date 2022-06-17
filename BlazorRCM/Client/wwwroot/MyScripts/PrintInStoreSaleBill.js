@@ -1,7 +1,7 @@
 ﻿export function print() {
     let printContents, popupWin;
     printContents = document.getElementById('billPrintView').innerHTML;
-    popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=100px');
+    popupWin = window.open('', '_blank', 'top=0,left=0,height=500,width=330');
     popupWin.document.open();
     popupWin.document.write(`
           <html>

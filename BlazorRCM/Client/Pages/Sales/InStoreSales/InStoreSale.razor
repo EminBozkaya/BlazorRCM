@@ -177,7 +177,7 @@
                                             <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" AllowEditOnDblClick="false" NewRowPosition="NewRowPosition.Bottom" />
                                             <GridColumns>
                                                 @*<GridColumn Field=@nameof(InStoreSaleBillDTO.LineNo) HeaderText="Sıra No"></GridColumn>*@
-                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.Id) IsPrimaryKey="true" Visible="false"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.GuId) IsPrimaryKey="true" Visible="false"></GridColumn>
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.HasNote) HeaderText="Not" DisplayAsCheckBox="true" DefaultValue="false" Width="10%"></GridColumn>
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.ProductName) HeaderText="Ürün" Width="35%"></GridColumn>
                                                 <GridColumn Field=@nameof(InStoreSaleBillDTO.ProductPrice) HeaderText="Fiyat" Width="15%" TextAlign="TextAlign.Right"></GridColumn>
@@ -499,6 +499,8 @@
 
     </style>*@
 
+
+@*this table for bill to print*@    
 <table class="body-wrap" id="billPrintView" style="display:none">
     <tbody>
         <tr>
@@ -590,7 +592,7 @@
                                                                                     {
                                                                                         <tr>
                                                                                             <td style="border:none;font-size:14px;font-family:initial" colspan="4">
-                                                                                                   --- 1 x  @(rowItem.ResultDTO!.firstProductNote.Trim().Replace("\n",", "))
+                                                                                                   &nbsp&nbsp&nbsp&nbsp1 x @(rowItem.ResultDTO!.firstProductNote.Trim().Replace("\n",", "))
                                                                                             </td>
                                                                                         </tr>
                                                                                     }
@@ -598,7 +600,7 @@
                                                                                     {
                                                                                         <tr>
                                                                                             <td style="border:none;font-size:14px;font-family:initial" colspan="4">
-                                                                                                   --- 1 x  @rowItem.ResultDTO!.firstProductNote
+                                                                                                   &nbsp&nbsp&nbsp&nbsp1 x @rowItem.ResultDTO!.firstProductNote
                                                                                             </td>
                                                                                         </tr>
                                                                                     }
@@ -610,7 +612,7 @@
                                                                                     {
                                                                                         <tr>
                                                                                             <td style="border:none;font-size:14px;font-family:initial" colspan="4">
-                                                                                                   --- 1 x  @rowItem.ResultDTO!.secondProductNote.Replace("\n",", ")
+                                                                                                   &nbsp&nbsp&nbsp&nbsp1 x @rowItem.ResultDTO!.secondProductNote.Replace("\n",", ")
                                                                                             </td>
                                                                                         </tr>
                                                                                     }
@@ -618,7 +620,7 @@
                                                                                     {
                                                                                         <tr>
                                                                                             <td style="border:none;font-size:14px;font-family:initial" colspan="4">
-                                                                                                   --- 1 x  @rowItem.ResultDTO!.secondProductNote
+                                                                                                   &nbsp&nbsp&nbsp&nbsp1 x @rowItem.ResultDTO!.secondProductNote
                                                                                             </td>
                                                                                         </tr>
                                                                                     }
@@ -630,7 +632,7 @@
                                                                                     {
                                                                                         <tr>
                                                                                             <td style="border:none;font-size:14px;font-family:initial" colspan="4">
-                                                                                                   --- 1 x  @rowItem.ResultDTO!.thirdProductNote.Replace("\n",", ")
+                                                                                                   &nbsp&nbsp&nbsp&nbsp1 x @rowItem.ResultDTO!.thirdProductNote.Replace("\n",", ")
                                                                                             </td>
                                                                                         </tr>
                                                                                     }
@@ -638,7 +640,7 @@
                                                                                     {
                                                                                         <tr>
                                                                                             <td style="border:none;font-size:14px;font-family:initial" colspan="4">
-                                                                                                   --- 1 x  @rowItem.ResultDTO!.thirdProductNote
+                                                                                                   &nbsp&nbsp&nbsp&nbsp1 x @rowItem.ResultDTO!.thirdProductNote
                                                                                             </td>
                                                                                         </tr>
                                                                                     }

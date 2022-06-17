@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BlazorRCM.Server.Infrasructures;
+using BlazorRCM.Server.Services.Infrastructures;
 using BlazorRCM.Shared.DTOs.ModelDTOs;
 using BlazorRCM.Server.Services.BaseServices.BaseService.EF;
 using RCMServerData.EFContext;

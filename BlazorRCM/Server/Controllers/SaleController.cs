@@ -7,45 +7,45 @@ namespace BlazorRCM.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FirmTypeController : Controller
+    public class SaleController : Controller
     {
-        private readonly IFirmTypeRepo Repo;
+        private readonly ISaleRepo Repo;
 
-        public FirmTypeController(IFirmTypeRepo repo)
+        public SaleController(ISaleRepo repo)
         {
             Repo = repo;
         }
 
         [HttpGet("GetList")]
-        public async Task<ServiceResponse<List<FirmTypeDTO>>> GetAll()
+        public async Task<ServiceResponse<List<SaleDTO>>> GetAll()
         {
-            return new ServiceResponse<List<FirmTypeDTO>>()
+            return new ServiceResponse<List<SaleDTO>>()
             {
-                Value = (await Repo.GetAll() as List<FirmTypeDTO>)!
+                Value = (await Repo.GetAll() as List<SaleDTO>)!
             };
         }
 
 
         [HttpPost("Create")]
-        public async Task<ServiceResponse<FirmTypeDTO>> Create([FromBody] FirmTypeDTO dto)
+        public async Task<ServiceResponse<SaleDTO>> Create([FromBody] SaleDTO dto)
         {
-            return new ServiceResponse<FirmTypeDTO>()
+            return new ServiceResponse<SaleDTO>()
             {
                 Value = await Repo.Create(dto)
             };
         }
 
         [HttpPost("Update")]
-        public async Task<ServiceResponse<FirmTypeDTO>> Update([FromBody] FirmTypeDTO dto)
+        public async Task<ServiceResponse<SaleDTO>> Update([FromBody] SaleDTO dto)
         {
-            return new ServiceResponse<FirmTypeDTO>()
+            return new ServiceResponse<SaleDTO>()
             {
                 Value = await Repo.Update(dto)
             };
         }
 
         [HttpPost("Delete")]
-        public async Task<ServiceResponse<bool>> Delete([FromBody] FirmTypeDTO dto)
+        public async Task<ServiceResponse<bool>> Delete([FromBody] SaleDTO dto)
         {
             return new ServiceResponse<bool>()
             {

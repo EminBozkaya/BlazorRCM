@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using BlazorRCM.Server.Infrasructures;
+using BlazorRCM.Server.Services.Infrastructures;
 using BlazorRCM.Shared.DTOs.ModelDTOs;
 using BlazorRCM.Server.Services.BaseServices.BaseService.EF;
 using Microsoft.EntityFrameworkCore;

@@ -11,12 +11,13 @@ namespace BlazorRCM.Shared.DTOs.ViewDTOs
     {
         //public int LineNo { get; set; }
 
-        public Guid Id { get; set; }
+        public Guid GuId { get; set; }
+        public short PId { get; set; }
         public bool HasNote { get; set; }
         public string? ProductName { get; set; }
         public decimal Portion { get; set; }
         public decimal ProductPrice { get; set; }
-        public int Quantity { get; set; }
+        public short Quantity { get; set; }
         public decimal TotalPrice { get; set; }
         public ProductNoteModalResultDTO? ResultDTO { get; set; }
         

@@ -1,12 +1,33 @@
 ﻿<MudDialog DisableSidePadding="true">
+    <TitleContent>
+        <MudText id="title">
+            @title
+        </MudText>
+    </TitleContent>
     <DialogContent>
-        <MudNumericField @bind-Value="IntValue" Label="Standard" Variant="Variant.Text" Max=@Max OnKeyUp="SubmitEnter" AutoFocus="true" />
+        <MudNumericField id="numField" @ref="singleLineReference" @bind-Value="IntValue" Variant="Variant.Text" Max=@Max OnKeyUp="SubmitEnter" AutoFocus="true" />
     </DialogContent>
     <DialogActions>
-        <MudButton Color="Color.Primary" OnClick="Submit">Onayla</MudButton>
-        <MudButton Color="Color.Secondary" OnClick="Cancel">Vazgeç</MudButton>
+        <MudButton Color="Color.Primary" OnClick="Submit" Size="Size.Large">Onayla</MudButton>
+        <MudButton Color="Color.Secondary" OnClick="Cancel" Size="Size.Large">Vazgeç</MudButton>
     </DialogActions>
 </MudDialog>
+
+<style>
+    .mud-dialog-width-md {
+        width: 350px;
+        height: 250px;
+    }
+
+    #title {
+        font-size: xx-large;
+    }
+
+    #numField {
+        font-size: xx-large;
+        text-align: center;
+    }
+</style>
 @code {
     [CascadingParameter]
     MudDialogInstance? MudDialog { get; set; }
@@ -15,12 +36,24 @@
     public int IntValue { get; set; }
 
     [Parameter]
+    public string? title { get; set; }
+
+    [Parameter]
     public int Max { get; set; } = 200;
+
+    public MudNumericField<int>? singleLineReference;
+
+    protected async override Task OnInitializedAsync()
+    {
+        await Task.Delay(300);
+        if (singleLineReference!.Text != null)
+            await singleLineReference!.SelectAsync();
+    }
 
     void SubmitEnter(KeyboardEventArgs args)
     {
         var code = args.Code;
-        if ((code == "NumpadEnter"|| code=="Enter") && IntValue > 0)
+        if ((code == "NumpadEnter" || code == "Enter") && IntValue > 0)
             MudDialog!.Close(DialogResult.Ok(IntValue));
     }
 
