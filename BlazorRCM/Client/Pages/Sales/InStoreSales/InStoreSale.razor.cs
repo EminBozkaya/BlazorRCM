@@ -345,8 +345,6 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                     try
                     {
                         newSaleDTO = await Client!.PostGetServiceResponseAsync<SaleDTO, SaleDTO>("api/Sale/Create", newSaleDTO, true);
-
-                        
                     }
                     catch (ApiException ex)
                     {
@@ -372,6 +370,40 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                             dto.Qty = bill.Quantity;
                             dto.Total = bill.TotalPrice;
                             dto.IsActive = true;
+
+                            StringBuilder sb = new();
+
+                            if (bill.ResultDTO!.generalProductNote != null && bill.ResultDTO.generalProductNote != "")
+                            {
+                                if (bill.ResultDTO!.generalProductNote.IndexOf("\n") != -1)
+                                    sb.AppendLine("-" + bill.ResultDTO.generalProductNote.Trim().Replace("\n", ", "));
+                                else
+                                    sb.AppendLine("-" + bill.ResultDTO!.generalProductNote);
+                            }
+                            if (bill.ResultDTO!.firstProductNote != null && bill.ResultDTO.firstProductNote != "")
+                            {
+                                if (bill.ResultDTO!.firstProductNote.IndexOf("\n") != -1)
+                                    sb.AppendLine("  1 x " + bill.ResultDTO.firstProductNote.Trim().Replace("\n", ", "));
+                                else
+                                    sb.AppendLine("  1 x " + bill.ResultDTO!.firstProductNote);
+                            }
+                            if (bill.ResultDTO!.secondProductNote != null && bill.ResultDTO.secondProductNote != "")
+                            {
+                                if (bill.ResultDTO!.secondProductNote.IndexOf("\n") != -1)
+                                    sb.AppendLine("  1 x " + bill.ResultDTO.secondProductNote.Trim().Replace("\n", ", "));
+                                else
+                                    sb.AppendLine("  1 x " + bill.ResultDTO!.secondProductNote);
+                            }
+                            if (bill.ResultDTO!.thirdProductNote != null && bill.ResultDTO.thirdProductNote != "")
+                            {
+                                if (bill.ResultDTO!.thirdProductNote.IndexOf("\n") != -1)
+                                    sb.AppendLine("  1 x " + bill.ResultDTO.thirdProductNote.Trim().Replace("\n", ", "));
+                                else
+                                    sb.AppendLine("  1 x " + bill.ResultDTO!.thirdProductNote);
+                            }
+
+                            dto.Note = sb.ToString();
+
 
                             dto = await Client!.PostGetServiceResponseAsync<SaleDetailDTO, SaleDetailDTO>("api/SaleDetail/Create", dto, true);
                         }
