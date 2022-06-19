@@ -38,12 +38,12 @@ namespace BlazorRCM.Shared.Extensions
 
             CreateMap<Supplier, SupplierDTO>()
                 .ReverseMap();
-            
+
             CreateMap<SupplierFirmType, SupplierFirmTypeDTO>()
-                .ForMember(x=>x.SupplierName, y=>y.MapFrom(z=>z.Supplier!.CompanyName))
-                .ForMember(x=>x.FirmType, y=>y.MapFrom(z=>z.FirmType!.Name))
-                .ForMember(x=>x.CreatedBy, y=>y.MapFrom(z => z.UserCB!.FirstName + " " + z.UserCB.LastName))
-                .ForMember(x=>x.ModifiedBy, y=>y.MapFrom(z => z.UserMB!.FirstName + " " + z.UserMB.LastName))
+                .ForMember(x => x.SupplierName, y => y.MapFrom(z => z.Supplier!.CompanyName))
+                .ForMember(x => x.FirmType, y => y.MapFrom(z => z.FirmType!.Name))
+                .ForMember(x => x.CreatedBy, y => y.MapFrom(z => z.UserCB!.FirstName + " " + z.UserCB.LastName))
+                .ForMember(x => x.ModifiedBy, y => y.MapFrom(z => z.UserMB!.FirstName + " " + z.UserMB.LastName))
                 .ReverseMap();
 
             CreateMap<User, UserDTO>()
@@ -57,10 +57,10 @@ namespace BlazorRCM.Shared.Extensions
             //.ReverseMap();
 
             CreateMap<UserBranchAuthorityDTO, UserBranchAuthority>();
-                //.ForMember(x => x.Id, y => y.MapFrom(z => z.Id))
-                //.ForMember(x => x.UId, y => y.MapFrom(z => z.UId))
-                //.ForMember(x => x.BId, y => y.MapFrom(z => z.BId))
-                //.ForMember(x => x.ATId, y => y.MapFrom(z => z.ATId));
+            //.ForMember(x => x.Id, y => y.MapFrom(z => z.Id))
+            //.ForMember(x => x.UId, y => y.MapFrom(z => z.UId))
+            //.ForMember(x => x.BId, y => y.MapFrom(z => z.BId))
+            //.ForMember(x => x.ATId, y => y.MapFrom(z => z.ATId));
 
 
             CreateMap<FirmType, FirmTypeDTO>()
@@ -85,7 +85,8 @@ namespace BlazorRCM.Shared.Extensions
                 .ReverseMap();
 
             CreateMap<Sale, SaleDTO>()
-                 .ReverseMap();
+                .ForMember(x => x.UserFullName, y => y.MapFrom(z => z.User!.FirstName + " " + z.User.LastName));
+            CreateMap<SaleDTO, Sale>();
 
             CreateMap<SaleDetail, SaleDetailDTO>()
                 .ForMember(x => x.ProductName, y => y.MapFrom(z => z.Product!.Name));

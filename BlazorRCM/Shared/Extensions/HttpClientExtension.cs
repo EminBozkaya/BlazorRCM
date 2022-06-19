@@ -66,6 +66,13 @@ namespace BlazorRCM.Shared.Extensions
 
             return !httpRes!.Success && ThrowSuccessException ? throw new ApiException(httpRes.Message!) : httpRes.Value!;
         }
-        
+
+        //public async static Task<T> GetServiceResponseAsync<T>(this HttpClient Client, String Url, int id, bool ThrowSuccessException = false)
+        //{
+
+        //    var httpRes = await Client.GetFromJsonAsync<ServiceResponse<T>>(Url,id);
+
+        //    return !httpRes!.Success && ThrowSuccessException ? throw new ApiException(httpRes.Message!) : httpRes.Value!;
+        //}
     }
 }

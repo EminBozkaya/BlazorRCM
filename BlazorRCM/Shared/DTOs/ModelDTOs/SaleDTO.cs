@@ -14,6 +14,7 @@ namespace BlazorRCM.Shared.DTOs.ModelDTOs
         //public short STId { get; set; }
         public DateTime DateTime { get; set; }
         public int UId { get; set; }
+        public string? UserFullName { get; set; }
         //public short? CTId { get; set; }
         //public int? CId { get; set; }
         public decimal TotalPrice { get; set; }

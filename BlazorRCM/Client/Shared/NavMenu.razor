@@ -24,9 +24,13 @@
                 <MudNavLink Href="/trendyolyemeksale" Style="color:#ff841b">Trendyol Yemek</MudNavLink>
             </MudNavGroup>
 
-            <MudNavLink Href="/billing" Icon="fas fa-receipt" Disabled="true">Cari</MudNavLink>
+            <MudNavGroup Title="Adisyon Listesi" Icon="fas fa-receipt">
+                <MudNavLink Href="/dailyBillList">Günlük</MudNavLink>
+                <MudNavLink Href="/allBillList">Genel</MudNavLink>
+            </MudNavGroup>
+            <MudNavLink Href="/billing" Disabled="true" Icon="fas fa-lira-sign">Cari</MudNavLink>
 
-            <MudNavGroup Title="Sistem Yönetimi" Icon="fas fa-cogs" Expanded="true">
+            <MudNavGroup Title="Sistem Yönetimi" Icon="fas fa-cogs" Expanded="false">
                 <MudNavLink Href="/userlist" Icon="fas fa-users" IconColor="Color.Success">Kullanıcılar</MudNavLink>
                 <MudNavLink Href="/branchlist" Icon="fas fa-solid fa-store" IconColor="Color.Primary">Şubeler</MudNavLink>
                 <MudNavLink Href="/authoritytypelist" Icon=@Icons.Filled.Lock IconColor="Color.Warning">Yetki Tipleri</MudNavLink>

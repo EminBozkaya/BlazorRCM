@@ -25,6 +25,14 @@ namespace BlazorRCM.Server.Controllers
             };
         }
 
+        [HttpGet("GetListOfToday")]
+        public async Task<ServiceResponse<List<SaleDTO>>> GetAllToday()
+        {
+            return new ServiceResponse<List<SaleDTO>>()
+            {
+                Value = (await Repo.GetAll(x=>x.IsEOD==false) as List<SaleDTO>)!
+            };
+        }
 
         [HttpPost("Create")]
         public async Task<ServiceResponse<SaleDTO>> Create([FromBody] SaleDTO dto)

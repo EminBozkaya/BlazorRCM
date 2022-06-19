@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RCMServerData.EFContext;
@@ -11,9 +12,10 @@ using RCMServerData.EFContext;
 namespace RCMServerData.Migrations
 {
     [DbContext(typeof(RCMBlazorContext))]
-    partial class RCMBlazorContextModelSnapshot : ModelSnapshot
+    [Migration("20220619140843_AddingProductNotesToSaleDetailTable")]
+    partial class AddingProductNotesToSaleDetailTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

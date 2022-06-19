@@ -25,6 +25,14 @@ namespace BlazorRCM.Server.Controllers
             };
         }
 
+        [HttpPost("GetListBySaleId")]
+        public async Task<ServiceResponse<List<SaleDetailDTO>>> GetAllById([FromBody] int id)
+        {
+            return new ServiceResponse<List<SaleDetailDTO>>()
+            {
+                Value = (await Repo.GetAll(x=>x.SId==id) as List<SaleDetailDTO>)!
+            };
+        }
 
         [HttpPost("Create")]
         public async Task<ServiceResponse<SaleDetailDTO>> Create([FromBody] SaleDetailDTO dto)

@@ -370,6 +370,10 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                             dto.Qty = bill.Quantity;
                             dto.Total = bill.TotalPrice;
                             dto.IsActive = true;
+                            dto.generalProductNote = bill.ResultDTO!.generalProductNote;
+                            dto.generalProductNote = bill.ResultDTO.firstProductNote;
+                            dto.generalProductNote = bill.ResultDTO.secondProductNote;
+                            dto.generalProductNote = bill.ResultDTO.thirdProductNote;
 
                             StringBuilder sb = new();
 
@@ -418,7 +422,7 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 
                         if (deleted)
                         {
-                            var res = await Client!.PostGetBaseResponseAsync("api/SaleDetail/DeleteById", newSaleDTO.Id);
+                            var res = await Client!.PostGetBaseResponseAsync("api/SaleDetail/DeleteById", newSaleDTO.Id, true);
                         }
 
                         await Sw!.FireAsync("Api Exception", "Adisyon Sisteme Kaydedilemedi: " + ex.Message, "error");

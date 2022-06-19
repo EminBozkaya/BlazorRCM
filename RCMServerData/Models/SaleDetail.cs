@@ -19,6 +19,10 @@ namespace RCMServerData.Models
         public short Qty { get; set; }
         public decimal Total { get; set; }
         public string? Note { get; set; }
+        public string? generalProductNote { get; set; }
+        public string? firstProductNote { get; set; }
+        public string? secondProductNote { get; set; }
+        public string? thirdProductNote { get; set; }
         //public decimal? CutOff { get; set; }
         public bool IsActive { get; set; }
 
