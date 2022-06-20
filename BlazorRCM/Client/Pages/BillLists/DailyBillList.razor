@@ -3,7 +3,7 @@
 
 <MudContainer Class="ps-2" MaxWidth="MaxWidth.ExtraExtraLarge">
     <MudGrid>
-        <MudItem xs="12" sm="12" md="6" lg="7">
+        <MudItem xs="12" sm="12" md="8" lg="8">
             <MudCard>
                 <MudCardHeader Class="pa-0">
                     <MudText Align="Align.Center" Class="pb-0" Typo="Typo.body2">Günlük Adisyon Listesi</MudText>
@@ -18,7 +18,7 @@
                         <ContentTemplate>
 
                             <SfGrid ID="Grid" @ref="Grid" DataSource="@SaleList"
-                                    Toolbar="@(new List<string>() { "ExcelExport", "PdfExport", "Search"})"
+                                    Toolbar="@(new List<string>() { "ExcelExport", "PdfExport", "Delete", "Search"})"
                                     Height="400"
                                     EnableHeaderFocus="true"
                                     AllowExcelExport="true"
@@ -47,7 +47,7 @@
 
                                 <GridPageSettings PageSize="10" PageSizes="true"></GridPageSettings>
 
-                                <GridEditSettings AllowAdding="false" AllowDeleting="false" AllowEditing="false" Mode="EditMode.Normal">
+                                <GridEditSettings AllowAdding="false" AllowDeleting="true" AllowEditing="false" Mode="EditMode.Normal">
                                 </GridEditSettings>
 
                                 <GridColumns>
@@ -86,7 +86,7 @@
 
         </MudItem>
 
-        <MudItem Class="justify-center" xs="12" sm="12" md="6" lg="5">
+        <MudItem Class="justify-center" xs="12" sm="12" md="4" lg="4">
             <MudCard>
                 <MudCardHeader Class="pa-0">
                     <MudText Align="Align.Center" Class="pb-0" Typo="Typo.body2">Adisyon İçerik</MudText>
@@ -100,7 +100,7 @@
                                         <tbody>
                                             <tr>
                                                 <td></td>
-                                                <td class="container" width="600">
+                                                <td class="container" style="width:500px">
                                                     <div class="content">
                                                         <table class="main" width="100%" cellpadding="0" cellspacing="0">
                                                             <tbody>
@@ -265,7 +265,7 @@
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <td class="content-block" style="text-align:center">
-                                                                                        <a href="#">Afiyet Olsun..</a>
+                                                                                        <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Edit" IconColor="Color.Secondary" Size="Size.Large" OnClick="PassBilltoChangeBillPage">Değiştir</MudButton>
                                                                                     </td>
                                                                                 </tr>
                                                                                 @* <tr>
@@ -310,9 +310,10 @@
             </MudCard>
         </MudItem>
     </MudGrid>
-
-
 </MudContainer>
+
+
+@*For grid and mud blazor item*@
 <style>
     .mud-input > input.mud-input-root-outlined.mud-input-root-adorned-end, div.mud-input-slot.mud-input-root-outlined.mud-input-root-adorned-end {
         text-align: center;
@@ -324,6 +325,7 @@
     }
 </style>
 
+@*for bill view table*@
 <style>
     /* -------------------------------------
                         GLOBAL
@@ -356,16 +358,16 @@
 
     /* -----------------------------------BODY & CONTAINER------------------------------ */
     body {
-        background-color: #f6f6f6;
+        /*background-color: #f6f6f6;*/
     }
 
     .body-wrap {
-        background-color: #f6f6f6;
+        /*background-color: #f6f6f6;*/
         width: 100%;
     }
 
     .container {
-        display: block !important;
+        /*display: block !important;*/
         max-width: 600px !important;
         margin: 0 auto !important;
         /* makes it centered */
@@ -381,7 +383,7 @@
 
     /* -------------------------------------HEADER, FOOTER, MAIN----------------------------------- */
     .main {
-        background: #fff;
+        /*background: #fff;*/
         border: 1px solid #e9e9e9;
         border-radius: 3px;
     }
@@ -417,7 +419,7 @@
     /* ---------------------------------TYPOGRAPHY----------------------------------- */
     h1, h2, h3 {
         font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-        color: #000;
+        /*color: #000;*/
         margin: 40px 0 0;
         line-height: 1.2;
         font-weight: 400;
@@ -553,12 +555,15 @@
             }
 
         .invoice .total td {
-            border-top: 1px solid #333;
+            border-top: 1px solid;
             /*border-bottom: 2px solid #333;*/
             font-weight: 700;
         }
-
 </style>
+
+
+
 @code {
 
 }
+@*OnRecordDoubleClick="RecordDoubleClickHandler"*@

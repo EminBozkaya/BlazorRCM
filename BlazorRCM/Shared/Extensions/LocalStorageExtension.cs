@@ -1,5 +1,6 @@
 ﻿using Blazored.LocalStorage;
 using BlazorRCM.Shared.DTOs.ModelDTOs;
+using BlazorRCM.Shared.DTOs.TupleDTOs;
 
 namespace BlazorRCM.Shared.Extensions
 {
@@ -66,6 +67,11 @@ namespace BlazorRCM.Shared.Extensions
         public async static Task<List<BranchDTO>> GetUserBranches(this ILocalStorageService LocalStorage)
         {
             return await LocalStorage.GetItemAsync<List<BranchDTO>>("userBranches");
+        }
+
+        public async static Task<PassBillDataToChangeBillPageDTO> GetBillDataForChange(this ILocalStorageService LocalStorage)
+        {
+            return await LocalStorage.GetItemAsync<PassBillDataToChangeBillPageDTO>("billDataForChange");
         }
     }
 }

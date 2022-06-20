@@ -8,6 +8,8 @@ using BlazorRCM.Client.Utils;
 using Newtonsoft.Json;
 using BlazorRCM.Shared.DTOs.ModelDTOs;
 using BlazorRCM.Shared.DTOs.ViewDTOs;
+using BlazorRCM.Shared.DTOs.TupleDTOs;
+using Blazored.LocalStorage;
 
 namespace BlazorRCM.Client.Pages.BillLists
 {
@@ -22,6 +24,12 @@ namespace BlazorRCM.Client.Pages.BillLists
         [Inject]
         IJSRuntime? JSRuntime { get; set; }
 
+        [Inject]
+        NavigationManager? NavigationManager { get; set; }
+
+        [Inject]
+        ILocalStorageService? LocalStorageService { get; set; }
+
         protected List<SaleDTO> SaleList = new();
         protected List<InStoreSaleBillDTO> billDTOList = new();
 
@@ -33,6 +41,9 @@ namespace BlazorRCM.Client.Pages.BillLists
 
         protected decimal totalPrice = 0;
         protected decimal billTotalPrice = 0;
+        protected bool firstClicked;
+        protected int saleId;
+        protected DateTime saleTime;
         protected async override Task OnInitializedAsync()
         {
             await LoadList();
@@ -63,17 +74,20 @@ namespace BlazorRCM.Client.Pages.BillLists
         {
 
             billDTOList = new();
-            int saleId = args.Data.Id;
-            
-            List<SaleDetailDTO> saleDetailDTOList = new();
-            saleDetailDTOList = await Client!.PostGetServiceResponseAsync<List<SaleDetailDTO>,int>("api/SaleDetail/GetListBySaleId", saleId, true);
+            saleId = args.Data.Id;
+            saleTime = args.Data.DateTime;
 
-            foreach(SaleDetailDTO detail in saleDetailDTOList)
+            List<SaleDetailDTO> saleDetailDTOList = new();
+            saleDetailDTOList = await Client!.PostGetServiceResponseAsync<List<SaleDetailDTO>, int>("api/SaleDetail/GetListBySaleId", saleId, true);
+
+            foreach (SaleDetailDTO detail in saleDetailDTOList)
             {
                 InStoreSaleBillDTO newDTO = new();
                 ProductNoteModalResultDTO resultDTO = new();
 
+                newDTO.GuId= Guid.NewGuid();
                 newDTO.ProductName = detail.ProductName;
+                newDTO.ProductPrice = detail.Price;
                 newDTO.Quantity = detail.Qty;
                 newDTO.Portion = detail.Portion;
                 newDTO.TotalPrice = detail.Total;
@@ -87,13 +101,32 @@ namespace BlazorRCM.Client.Pages.BillLists
                 if (detail.thirdProductNote != null)
                     resultDTO.thirdProductNote = detail.thirdProductNote;
 
+
+                if (detail.generalProductNote != null || detail.firstProductNote != null || detail.secondProductNote != null || detail.thirdProductNote != null)
+                    newDTO.HasNote = true;
+                else
+                    newDTO.HasNote = false;
+
                 newDTO.ResultDTO = resultDTO;
 
                 billDTOList.Add(newDTO);
             }
             billTotalPrice = args.Data.TotalPrice;
 
-            await _jsPrintModule!.InvokeVoidAsync("setPrintElementDisplay", "block");
+            if (!firstClicked)
+                await _jsPrintModule!.InvokeVoidAsync("setPrintElementDisplay", "block");
+
+            firstClicked = true;
+        }
+        public async Task PassBilltoChangeBillPage()
+        {
+            PassBillDataToChangeBillPageDTO data = new();
+            data.SaleID = saleId;
+            data.SaleTime = saleTime;
+            data.BillTotalPrice = billTotalPrice;
+            data.InStoreSaleBillDTOList = billDTOList;
+            await LocalStorageService!.SetItemAsync<PassBillDataToChangeBillPageDTO>("billDataForChange", data);
+            NavigationManager!.NavigateTo("/changeBill/" + saleId);
         }
         public async Task ActionBeginHandler(ActionEventArgs<SaleDTO> args)
         {
@@ -177,6 +210,13 @@ namespace BlazorRCM.Client.Pages.BillLists
                         try
                         {
                             bool deleted = await Client!.PostGetServiceResponseAsync<bool, SaleDTO>("api/Sale/Delete", dto, true);
+
+                            var res = await Client!.PostGetBaseResponseAsync("api/SaleDetail/DeleteById", args.Data.Id, true);
+
+                            await _jsPrintModule!.InvokeVoidAsync("setPrintElementDisplay", "none");
+                            firstClicked = false;
+
+                            await LocalStorageService!.SetItemAsync<PassBillDataToChangeBillPageDTO>("billDataForChange", new());
 
                             args.Cancel = true;
                             await Grid!.CloseEditAsync();

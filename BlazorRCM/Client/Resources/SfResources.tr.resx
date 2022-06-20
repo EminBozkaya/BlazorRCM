@@ -820,7 +820,7 @@
     <value>Uygulamak</value>
   </data>
   <data name="ColorPicker_Cancel" xml:space="preserve">
-    <value>İptal etmek</value>
+    <value>İptal et</value>
   </data>
   <data name="ColorPicker_ModeSwitcher" xml:space="preserve">
     <value>Anahtar Modu</value>
@@ -1765,7 +1765,7 @@
     <value>Kayıt etmek</value>
   </data>
   <data name="InPlaceEditor_Cancel" xml:space="preserve">
-    <value>İptal etmek</value>
+    <value>İptal et</value>
   </data>
   <data name="InPlaceEditor_LoadingText" xml:space="preserve">
     <value>Yükleniyor...</value>
@@ -2299,13 +2299,13 @@
     <value>H</value>
   </data>
   <data name="Diagram_BringToFront" xml:space="preserve">
-    <value>Öne getirmek</value>
+    <value>Öne getir</value>
   </data>
   <data name="Diagram_Copy" xml:space="preserve">
     <value>kopya</value>
   </data>
   <data name="Diagram_Cut" xml:space="preserve">
-    <value>Kesmek</value>
+    <value>Kes</value>
   </data>
   <data name="Diagram_Group" xml:space="preserve">
     <value>grup</value>
@@ -2320,7 +2320,7 @@
     <value>Sipariş</value>
   </data>
   <data name="Diagram_Paste" xml:space="preserve">
-    <value>Yapıştırmak</value>
+    <value>Yapıştır</value>
   </data>
   <data name="Diagram_Redo" xml:space="preserve">
     <value>Yeniden</value>
@@ -2374,7 +2374,7 @@
     <value>Düzenle</value>
   </data>
   <data name="Grid_Cancel" xml:space="preserve">
-    <value>İptal etmek</value>
+    <value>İptal et</value>
   </data>
   <data name="Grid_Update" xml:space="preserve">
     <value>Güncelleme</value>
@@ -2404,7 +2404,7 @@
     <value>Sütunlar</value>
   </data>
   <data name="Grid_Save" xml:space="preserve">
-    <value>Kayıt etmek</value>
+    <value>Kaydet</value>
   </data>
   <data name="Grid_Item" xml:space="preserve">
     <value>madde</value>
@@ -4459,7 +4459,7 @@
     <value>İzlenemez</value>
   </data>
   <data name="DocumentEditor_Accept" xml:space="preserve">
-    <value>Kabul etmek</value>
+    <value>Kabul et</value>
   </data>
   <data name="DocumentEditor_Reject" xml:space="preserve">
     <value>reddetmek</value>

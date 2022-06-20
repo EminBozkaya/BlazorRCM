@@ -11,6 +11,7 @@ namespace BlazorRCM.Shared.DTOs.ModelDTOs
     {
         public Guid Id { get; set; }
         public int SId { get; set; }
+        public short BillOrder { get; set; }
         public short PId { get; set; }
         public string? ProductName { get; set; }
         public decimal Price { get; set; }

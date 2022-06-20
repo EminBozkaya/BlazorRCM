@@ -1,0 +1,478 @@
+﻿@page "/changeBill/{Id:int}"
+
+
+<MudContainer Class="ps-2" MaxWidth="MaxWidth.ExtraExtraLarge">
+    <MudGrid>
+        @*------------Bill Details-----------*@
+        <MudItem Class="justify-center" xs="12" sm="12" md="8" lg="5">
+            <MudCard>
+                <MudCardHeader Class="pa-0">
+                    <MudText Align="Align.Center" Class="pb-0" Typo="Typo.body2">Adisyon İçerik</MudText>
+                </MudCardHeader>
+                <MudCardContent Class="pa-2 px-0 justify-center">
+                    <MudStack>
+                        <MudStack Row="true">
+                            <MudGrid Class="pt-3 justify-center pl-2 pr-3">
+                                <MudStack>
+                                    <MudChip Variant="Variant.Filled">Adet</MudChip>
+                                    <MudButtonGroup Variant="Variant.Filled" VerticalAlign="true">
+                                        <MudButton OnClick="() => ChangeQtyOfProduct(0)" Style="height:49px;width:48px;font-size:xx-large">+</MudButton>
+                                        <MudButton OnClick="() => ChangeQtyOfProduct(-2)" Style="height:49px;width:48px;font-size:xx-large">-</MudButton>
+                                        <MudButton OnClick="() => ChangeQtyOfProduct(1)" Style="height:49px;width:48px;font-size:x-large">1</MudButton>
+                                        <MudButton OnClick="() => ChangeQtyOfProduct(2)" Style="height:49px;width:48px;font-size:x-large">2</MudButton>
+                                        <MudButton OnClick="() => ChangeQtyOfProduct(3)" Style="height:49px;width:48px;font-size:x-large">3</MudButton>
+                                        <MudButton OnClick="() => ChangeQtyOfProduct(4)" Style="height:49px;width:48px;font-size:x-large">4</MudButton>
+                                        <MudButton OnClick="() => ChangeQtyOfProduct(5)" Style="height:49px;width:48px;font-size:x-large">5</MudButton>
+                                        <MudButton OnClick="() => ChangeQtyOfProduct(-1)" Style="height:49px;width:48px">Diğer</MudButton>
+                                    </MudButtonGroup>
+                                </MudStack>
+                            </MudGrid>
+                            <MudItem Style="px-auto">
+                                <MudStack>
+                                    <MudGrid Class="pt-3 px-1 justify-center">
+                                        <SfGrid DataSource="@GridBillData" @ref="Grid" Height="304" AllowSelection="true">
+                                            <GridSelectionSettings Type="Syncfusion.Blazor.Grids.SelectionType.Multiple"></GridSelectionSettings>
+                                            <GridEvents TValue="InStoreSaleBillDTO" OnActionBegin="ActionBegin"></GridEvents>
+                                            <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" AllowEditOnDblClick="false" NewRowPosition="NewRowPosition.Bottom" />
+                                            <GridColumns>
+                                                @*<GridColumn Field=@nameof(InStoreSaleBillDTO.LineNo) HeaderText="Sıra No"></GridColumn>*@
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.GuId) IsPrimaryKey="true" Visible="false"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.HasNote) HeaderText="Not" DisplayAsCheckBox="true" DefaultValue="false" Width="10%"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.ProductName) HeaderText="Ürün" Width="35%"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.ProductPrice) HeaderText="Fiyat" Width="15%" TextAlign="TextAlign.Right"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.Portion) HeaderText="Prs" Width="10%" TextAlign="TextAlign.Right" CustomAttributes="@(new Dictionary<string, object>(){ { "class", "e-attr" }})"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.Quantity) HeaderText="Adet" Width="15%" TextAlign="TextAlign.Right"></GridColumn>
+                                                <GridColumn Field=@nameof(InStoreSaleBillDTO.TotalPrice) HeaderText="Tutar" Width="15%" TextAlign="TextAlign.Right"></GridColumn>
+                                            </GridColumns>
+                                            <GridAggregates>
+                                                <GridAggregate>
+                                                    <GridAggregateColumns>
+                                                        <GridAggregateColumn Field=@nameof(InStoreSaleBillDTO.TotalPrice) Type="Syncfusion.Blazor.Grids.AggregateType.Custom">
+                                                            <FooterTemplate>
+                                                                @{
+                                                                    var aggregate = (context as AggregateTemplateContext);
+                                                                    totalPrice = @GetTotalPrice();
+                                                                }
+                                                            </FooterTemplate>
+                                                        </GridAggregateColumn>
+                                                    </GridAggregateColumns>
+                                                </GridAggregate>
+                                            </GridAggregates>
+
+                                            <SfSpinner @bind-Visible="@VisibleProperty"></SfSpinner>
+                                        </SfGrid>
+                                    </MudGrid>
+                                    <MudTextField Style="max-width:400px;font-size:x-large;font-family: cursive;font-weight: bolder;text-align:center" Class="ma-auto pt-2" ReadOnly="true" @bind-Value="totalPrice" Format="N2" Label="Toplam" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentIcon="fas fa-lira-sign" AdornmentColor="Color.Info" />
+                                    <MudGrid Class="pt-2 px-auto justify-center">
+                                        <MudText Class="my-auto" Typo="Typo.body1" Color=Color.Secondary>Porsion:</MudText>
+                                        <MudButtonGroup Color="Color.Secondary" Variant="Variant.Text">
+                                            <MudButton OnClick="() => ChangePrsOfProduct(0.5m)">Yarım</MudButton>
+                                            <MudButton OnClick="() => ChangePrsOfProduct(1)">1 Prs</MudButton>
+                                            <MudButton OnClick="() => ChangePrsOfProduct(1.5m)">1,5 Prs</MudButton>
+                                            <MudButton OnClick="() => ChangePrsOfProduct(2)">Duble</MudButton>
+                                        </MudButtonGroup>
+                                    </MudGrid>
+                                </MudStack>
+                            </MudItem>
+                        </MudStack>
+                        <MudGrid Class="pt-6 px-auto justify-center">
+                            <MudFab StartIcon="@Icons.Filled.Bookmark" Style="@($"color:{Colors.Grey.Darken4};background:{Colors.Lime.Accent3};")" OnClick="@((e) => SetProductNote())" Label="Ürün Notu Gir" />
+                            <MudFab OnClick="() => RemoveFromBill()" StartIcon="@Icons.Filled.Delete" Color="Color.Secondary" Label="Ürün Sil" />
+                            <MudFab OnClick="() => ClearBill()" StartIcon="@Icons.Filled.DeleteSweep" Color="Color.Error" Label="Temizle" />
+                        </MudGrid>
+                        <MudGrid Class="pt-3 px-auto justify-center">
+                            <MudStack Row="true">
+                                <MudButton Class="ma-3" Variant="Variant.Filled" Style="height:70px;font-size:x-large;border-radius:15px" Color="Color.Info" FullWidth="true" OnClick="Cancel">VAZGEÇ</MudButton>
+                            <MudButton Class="ma-3" Variant="Variant.Filled" Style="height:70px;font-size:x-large;border-radius:15px" Color="Color.Dark" FullWidth="true" OnClick="ChangeAndPrint">!! Değiştir/Yazdır !!</MudButton>
+                            </MudStack>
+                            
+                        </MudGrid>
+                    </MudStack>
+
+                </MudCardContent>
+
+
+            </MudCard>
+        </MudItem>
+        @*------------/Bill Details-----------*@
+
+
+
+        @*------------Quick Sale MenuList-----------*@
+        <MudItem xs="12" sm="12" md="4" lg="7">
+            <MudCard>
+                <MudCardHeader Class="pa-0">
+                    <MudText Align="Align.Center" Class="pb-0" Typo="Typo.body2">Hızlı Satış Menü</MudText>
+                </MudCardHeader>
+                <MudCardContent Class="pa-2">
+                    <SpinLoader IsLoading="@_elementIsLoading">
+                        <LoadingTemplate>
+                            <div class="col-12" style="vertical-align:middle; margin-top:100px">
+                                <Chase Center="true" Size="40px" Color="#F44336"></Chase>
+                            </div>
+                        </LoadingTemplate>
+                        <ContentTemplate>
+                            <MudTabs Elevation="0" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-0">
+                                <MudTabPanel Text="Favori Liste">
+                                    <MudStack>
+                                        <MudGrid Class="ma-auto">
+                                            @foreach (BranchProductPriceDTO item in FavList)
+                                            {
+                                                if (item.ColorCode == 5)
+                                                {
+                                                    <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                                }
+                                            }
+                                            @foreach (BranchProductPriceDTO item in FavList)
+                                            {
+                                                if (item.ColorCode == 7)
+                                                {
+                                                    <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                                }
+                                            }
+                                        </MudGrid>
+                                        <MudGrid Class="ma-auto">
+                                            @foreach (BranchProductPriceDTO item in FavList)
+                                            {
+                                                if (item.ColorCode == 1)
+                                                {
+                                                    <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                                }
+                                            }
+                                            @foreach (BranchProductPriceDTO item in FavList)
+                                            {
+                                                if (item.ColorCode == 2 || item.ColorCode == 6 || item.ColorCode == 9)
+                                                {
+                                                    <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                                }
+
+                                            }
+                                        </MudGrid>
+                                    </MudStack>
+                                </MudTabPanel>
+                                <MudTabPanel Text="Dürüm/Ekmek/Servis">
+                                    <MudStack>
+                                        <MudGrid Class="ma-auto">
+                                            @foreach (BranchProductPriceDTO item in FoodList)
+                                            {
+                                                if (item.ColorCode == 5)
+                                                {
+                                                    <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                                }
+                                            }
+                                        </MudGrid>
+                                        <MudGrid Class="ma-auto">
+                                            @foreach (BranchProductPriceDTO item in FoodList)
+                                            {
+                                                if (item.ColorCode == 7)
+                                                {
+                                                    <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                                }
+                                            }
+                                        </MudGrid>
+                                        <MudGrid Class="ma-auto">
+                                            @foreach (BranchProductPriceDTO item in FoodList)
+                                            {
+                                                if (item.ColorCode == 2 || item.ColorCode == 8)
+                                                {
+                                                    <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                                }
+                                            }
+                                        </MudGrid>
+                                    </MudStack>
+                                </MudTabPanel>
+                                <MudTabPanel Text="Menüler">
+                                    <MudStack>
+                                        <MudGrid Class="ma-auto">
+                                            @foreach (BranchProductPriceDTO item in MenuList)
+                                            {
+                                                if (item.ColorCode == 5 || item.ColorCode == 3)
+                                                {
+                                                    <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                                }
+                                            }
+                                        </MudGrid>
+                                        <MudGrid Class="ma-auto">
+                                            @foreach (BranchProductPriceDTO item in MenuList)
+                                            {
+                                                if (item.ColorCode == 7 || item.ColorCode == 2)
+                                                {
+                                                    <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                                }
+                                            }
+                                        </MudGrid>
+                                        <MudGrid Class="ma-auto">
+                                            @foreach (BranchProductPriceDTO item in MenuList)
+                                            {
+                                                if (item.ColorCode != 5 && item.ColorCode != 3 && item.ColorCode != 7 && item.ColorCode != 2)
+                                                {
+                                                    <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                                }
+                                            }
+                                        </MudGrid>
+                                    </MudStack>
+                                </MudTabPanel>
+                                <MudTabPanel Text="İçecekler">
+                                    <MudGrid Class="ma-auto">
+                                        @foreach (BranchProductPriceDTO item in DrinkList)
+                                        {
+                                            <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                        }
+                                    </MudGrid>
+                                </MudTabPanel>
+                                <MudTabPanel Text="Yan Ürünler ve Diğer">
+                                    <MudGrid Class="ma-auto">
+                                        @foreach (BranchProductPriceDTO item in OtherList)
+                                        {
+                                            <MudButton OnClick="() => AddToBill(item)" Class="ma-1" Variant="Variant.Filled" Color="(MudBlazor.Color)item.ColorCode" Style="width: 110px; height: 100px;">@item.ProductName</MudButton>
+                                        }
+                                    </MudGrid>
+                                </MudTabPanel>
+                            </MudTabs>
+                        </ContentTemplate>
+                    </SpinLoader>
+
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+        @*-----------/Quick Sale MenuList-----------*@
+
+
+    </MudGrid>
+
+</MudContainer>
+
+@*for sncfusion grid and mud blazor item*@
+<style>
+    .e-grid .e-headercelldiv {
+        font-size: 17px;
+    }
+
+    .e-grid .e-rowcell {
+        font-size: 17px;
+    }
+
+    .e-grid .e-spinner-pane {
+        display: none;
+    }
+
+    .e-grid .e-gridfooter {
+        display: none;
+    }
+
+    /*.e-headercell.e-attr{
+                                                    color: black;
+                                                }*/
+    .e-rowcell.e-attr {
+        color: red;
+        font-size: 15px;
+        /*background-color: lightgrey;*/
+    }
+
+    .mud-input > input.mud-input-root-outlined.mud-input-root-adorned-end, div.mud-input-slot.mud-input-root-outlined.mud-input-root-adorned-end {
+        text-align: center;
+    }
+</style>
+
+
+
+@*this table for bill to print*@    
+<table class="body-wrap" id="billPrintView" style="display:none">
+    <tbody>
+        <tr>
+            <td></td>
+            <td class="container" width="600">
+                <div class="content">
+                    <table class="main" width="100%" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td class="content-wrap aligncenter">
+                                    <table width="100%" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="content-block">
+                                                    <h2 style="margin-top:10px;text-align:center;font-size:18px">ÖNCÜ DÖNER</h2>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="content-block">
+                                                    <table class="invoice">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <table width="100%" cellpadding="0" cellspacing="0">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="alignleft">Hızlı Satış Fişi</td>
+                                                                                <td class="alignright">No:1453</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table class="invoice-items" cellpadding="0" cellspacing="0">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th style="font-size:14px" class="alignleft">Ürün</th>
+                                                                                <th style="font-size:14px" class="alignright">Adet</th>
+                                                                                <th style="font-size:14px" class="alignright">Prs</th>
+                                                                                <th style="font-size:14px" class="alignright">Tutar</th>
+                                                                            </tr>
+
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            @if(PrintGridBillData != null)
+                                                                            {
+                                                                              @foreach (InStoreSaleBillDTO rowItem in PrintGridBillData!)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td style="font-size:15px">@rowItem.ProductName</td>
+                                                                                    <td style="font-size:15px" class="alignright">@rowItem.Quantity</td>
+                                                                                    <td style="font-size:14px" class="alignright">
+                                                                                            @if (rowItem.Portion != Convert.ToDecimal(1))
+                                                                                            {
+                                                                                                <u>@rowItem.Portion</u>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <i>&nbsp</i>
+                                                                                            }
+                                                                                        </td>
+                                                                                        <td style="font-size:15px" class="alignright">@rowItem.TotalPrice</td>
+                                                                                </tr>
+                                                                                @if (rowItem.ResultDTO!.generalProductNote != null && @rowItem.ResultDTO.generalProductNote != "")
+                                                                                {
+                                                                                    @if (rowItem.ResultDTO!.generalProductNote.IndexOf("\n") != -1)
+                                                                                    {
+                                                                                        <tr>
+                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
+                                                                                                 - @(rowItem.ResultDTO!.generalProductNote.Trim().Replace("\n",", "))
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <tr>
+                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
+                                                                                                   - @rowItem.ResultDTO!.generalProductNote
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+
+                                                                                }
+                                                                                @if (rowItem.ResultDTO!.firstProductNote != null && @rowItem.ResultDTO.firstProductNote != "")
+                                                                                {
+                                                                                    @if (rowItem.ResultDTO!.firstProductNote.IndexOf("\n") != -1)
+                                                                                    {
+                                                                                        <tr>
+                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
+                                                                                                   &nbsp&nbsp&nbsp&nbsp1 x @(rowItem.ResultDTO!.firstProductNote.Trim().Replace("\n",", "))
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <tr>
+                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
+                                                                                                   &nbsp&nbsp&nbsp&nbsp1 x @rowItem.ResultDTO!.firstProductNote
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+
+                                                                                }
+                                                                                @if (@rowItem.ResultDTO!.secondProductNote != null && @rowItem.ResultDTO.secondProductNote != "")
+                                                                                {
+                                                                                    @if (@rowItem.ResultDTO!.secondProductNote.IndexOf("\n") != -1)
+                                                                                    {
+                                                                                        <tr>
+                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
+                                                                                                   &nbsp&nbsp&nbsp&nbsp1 x @rowItem.ResultDTO!.secondProductNote.Replace("\n",", ")
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <tr>
+                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
+                                                                                                   &nbsp&nbsp&nbsp&nbsp1 x @rowItem.ResultDTO!.secondProductNote
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+
+                                                                                }
+                                                                                @if (@rowItem.ResultDTO!.thirdProductNote != null && @rowItem.ResultDTO.thirdProductNote != "")
+                                                                                {
+                                                                                    @if (@rowItem.ResultDTO!.thirdProductNote.IndexOf("\n") != -1)
+                                                                                    {
+                                                                                        <tr>
+                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
+                                                                                                   &nbsp&nbsp&nbsp&nbsp1 x @rowItem.ResultDTO!.thirdProductNote.Replace("\n",", ")
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <tr>
+                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
+                                                                                                   &nbsp&nbsp&nbsp&nbsp1 x @rowItem.ResultDTO!.thirdProductNote
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+
+                                                                                }
+                                                                            }  
+                                                                            }
+                                                                            
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="total">
+
+                                                                <td class="alignright" style="font-size:18px">Toplam:  @totalPrice</td>
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="content-block" style="text-align:center">
+                                                    <a href="#">Afiyet Olsun..</a>
+                                                </td>
+                                            </tr>
+                                           @* <tr>
+                                                <td class="content-block">
+                                                </td>
+                                            </tr>*@
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="footer">
+                        <table width="100%">
+                            <tbody>
+                                <tr>
+                                    <td class="aligncenter content-block"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+
+@code {
+    private bool VisibleProperty { get; set; } = false;
+    private bool VisibleAggregate { get; set; } = false;
+
+}
+

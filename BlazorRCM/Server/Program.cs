@@ -61,6 +61,7 @@ builder.Services.AddScoped<ISaleDetailRepo, EfSaleDetailRepo>();
 
 #endregion
 
+
 //builder.Services.AddScoped(typeof(ISyncfusionExportation<>), typeof(SyncfusionExportation<>));
 
 builder.Services.AddDbContext<RCMBlazorContext>();

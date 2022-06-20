@@ -17,10 +17,11 @@ using Blazored.LocalStorage;
 using System.Text;
 using Append.Blazor.Printing;
 using System.Drawing.Printing;
+using BlazorRCM.Shared.DTOs.TupleDTOs;
 
-namespace BlazorRCM.Client.Pages.Sales.InStoreSales
+namespace BlazorRCM.Client.Pages.BillLists
 {
-    public partial class InStoreSale
+    public partial class ChangeBillPage
     {
         [Inject]
         public IDialogService? DialogService { get; set; }
@@ -34,8 +35,6 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         [Inject]
         public HttpClient? Client { get; set; }
 
-        [CascadingParameter]
-        public int IntValue { get; set; }
 
         [Inject]
         IPrintingService? PrintingService { get; set; }
@@ -48,6 +47,15 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 
         [Inject]
         public IJSRuntime? IJSInStoreSale { get; set; }
+
+        [Inject]
+        NavigationManager? NavigationManager { get; set; }
+
+        [Parameter]
+        public int Id { get; set; }
+
+        [CascadingParameter]
+        public int IntValue { get; set; }
 
         private IJSObjectReference? _jsPrintModule;
         private IJSObjectReference? _jsInStoreSalePrintModule;
@@ -88,16 +96,24 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         protected bool setAggregate = true;
         protected Syncfusion.Blazor.Navigations.ClickEventArgs? clickevent;
 
+        protected PassBillDataToChangeBillPageDTO data = new();
+        protected DateTime saleTime;
 
         protected async override Task OnInitializedAsync()
         {
             //StringBuilder sb = new();
             //sb.
+            data = await LocalStorageService!.GetBillDataForChange();
+            if (data.SaleID != Id) NavigationManager!.NavigateTo("/dailyBillList");
 
             await LoadList();
             _jsPrintModule = await _jsPrintRuntime!.InvokeAsync<IJSObjectReference>("import", "./MyScripts/printDisplay.js");
             _jsInStoreSalePrintModule = await IJSInStoreSale!.InvokeAsync<IJSObjectReference>("import", "./MyScripts/PrintInStoreSaleBill.js");
 
+            GridBillData = data.InStoreSaleBillDTOList;
+            totalPrice = data.BillTotalPrice;
+            saleTime = data.SaleTime;
+            await LocalStorageService!.SetItemAsync<PassBillDataToChangeBillPageDTO>("billDataForChange", new());
         }
         protected async Task LoadList()
         {
@@ -135,17 +151,7 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                 Pkey = args.Data.GuId;           //get primary key value of newly added record 
             }
         }
-        //public async void DataBoundHandler(BeforeDataBoundArgs<InStoreSaleBillDTO> args)
-        //{
-        //    if (skipLastIndex)
-        //    {
-        //        //await Task.Delay(50);
-        //        var Idx = this.Grid!.TotalItemCount - 1;   //get last index value 
-        //        //var Idx = await this.Grid!.GetRowIndexByPrimaryKey(Convert.ToDouble(Pkey));   //get index value
-        //        await this.Grid.SelectRowAsync(Convert.ToDouble(Idx));       //select the added or after deleting - last row by using index value of the record 
-        //    }
-
-        //}
+        
         public async Task AddToBill(BranchProductPriceDTO item)
         {
             InStoreSaleBillDTO dto = new();
@@ -291,8 +297,11 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
             return setAggregate ? decimal.Round(total, 2, MidpointRounding.AwayFromZero) : zero;
 
         }
-
-        public async Task SaveAndPrint()
+        public void Cancel()
+        {
+            NavigationManager!.NavigateTo("/dailyBillList");
+        }
+        public async Task ChangeAndPrint()
         {
             if (GridBillData!.Count != 0)
             {
@@ -310,12 +319,12 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                 SweetAlertResult result = await Sw!.FireAsync(new SweetAlertOptions
                 {
                     Title = "Emin misiniz",
-                    Text = "Adisyon sisteme kaydedilsin mi?",
+                    Text = "Adisyon üzerindeki değişiklikler kaydedilsin mi?",
                     Icon = SweetAlertIcon.Warning,
                     ShowCancelButton = true,
                     ConfirmButtonColor = "#3085d6",
                     CancelButtonColor = "#d33",
-                    ConfirmButtonText = "Kaydet ve Yazdır",
+                    ConfirmButtonText = "Değiştir ve Yazdır",
                     CancelButtonText = "Vazgeç"
                 });
                 if (!string.IsNullOrEmpty(result.Value))
@@ -336,15 +345,16 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 
                     //--------saving database---------
                     SaleDTO newSaleDTO = new();
-
+                    newSaleDTO.Id = Id;
                     newSaleDTO.BId = 1;
                     newSaleDTO.UId = 1;
                     newSaleDTO.IsActive = true;
                     newSaleDTO.TotalPrice = totalPrice;
+                    newSaleDTO.DateTime = saleTime;
 
                     try
                     {
-                        newSaleDTO = await Client!.PostGetServiceResponseAsync<SaleDTO, SaleDTO>("api/Sale/Create", newSaleDTO, true);
+                        newSaleDTO = await Client!.PostGetServiceResponseAsync<SaleDTO, SaleDTO>("api/Sale/Update", newSaleDTO, true);
                     }
                     catch (ApiException ex)
                     {
@@ -359,64 +369,70 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 
                     try
                     {
-                        short order =0;
-                        foreach (InStoreSaleBillDTO bill in GridBillData)
+                        var res = await Client!.PostGetBaseResponseAsync("api/SaleDetail/DeleteById", newSaleDTO.Id, true);
+                        if (res != null)
                         {
-                            SaleDetailDTO dto = new();
-                            dto.SId = newSaleDTO.Id;
-                            dto.BillOrder = ++order;
-                            dto.PId = bill.PId;
-                            dto.ProductName = bill.ProductName;
-                            dto.Price = bill.ProductPrice;
-                            dto.Portion = bill.Portion;
-                            dto.Qty = bill.Quantity;
-                            dto.Total = bill.TotalPrice;
-                            dto.IsActive = true;
-                            dto.generalProductNote = bill.ResultDTO!.generalProductNote;
-                            dto.firstProductNote = bill.ResultDTO.firstProductNote;
-                            dto.secondProductNote = bill.ResultDTO.secondProductNote;
-                            dto.thirdProductNote = bill.ResultDTO.thirdProductNote;
-
-                            StringBuilder sb = new();
-
-                            if (bill.ResultDTO!.generalProductNote != null && bill.ResultDTO.generalProductNote != "")
+                            short order = 0;
+                            foreach (InStoreSaleBillDTO bill in GridBillData)
                             {
-                                if (bill.ResultDTO!.generalProductNote.IndexOf("\n") != -1)
-                                    sb.AppendLine("-" + bill.ResultDTO.generalProductNote.Trim().Replace("\n", ", "));
-                                else
-                                    sb.AppendLine("-" + bill.ResultDTO!.generalProductNote);
-                            }
-                            if (bill.ResultDTO!.firstProductNote != null && bill.ResultDTO.firstProductNote != "")
-                            {
-                                if (bill.ResultDTO!.firstProductNote.IndexOf("\n") != -1)
-                                    sb.AppendLine("  1 x " + bill.ResultDTO.firstProductNote.Trim().Replace("\n", ", "));
-                                else
-                                    sb.AppendLine("  1 x " + bill.ResultDTO!.firstProductNote);
-                            }
-                            if (bill.ResultDTO!.secondProductNote != null && bill.ResultDTO.secondProductNote != "")
-                            {
-                                if (bill.ResultDTO!.secondProductNote.IndexOf("\n") != -1)
-                                    sb.AppendLine("  1 x " + bill.ResultDTO.secondProductNote.Trim().Replace("\n", ", "));
-                                else
-                                    sb.AppendLine("  1 x " + bill.ResultDTO!.secondProductNote);
-                            }
-                            if (bill.ResultDTO!.thirdProductNote != null && bill.ResultDTO.thirdProductNote != "")
-                            {
-                                if (bill.ResultDTO!.thirdProductNote.IndexOf("\n") != -1)
-                                    sb.AppendLine("  1 x " + bill.ResultDTO.thirdProductNote.Trim().Replace("\n", ", "));
-                                else
-                                    sb.AppendLine("  1 x " + bill.ResultDTO!.thirdProductNote);
-                            }
+                                SaleDetailDTO dto = new();
+                                dto.SId = newSaleDTO.Id;
+                                dto.BillOrder = order++;
+                                dto.PId = bill.PId;
+                                dto.ProductName = bill.ProductName;
+                                dto.Price = bill.ProductPrice;
+                                dto.Portion = bill.Portion;
+                                dto.Qty = bill.Quantity;
+                                dto.Total = bill.TotalPrice;
+                                dto.IsActive = true;
+                                dto.generalProductNote = bill.ResultDTO!.generalProductNote;
+                                dto.firstProductNote = bill.ResultDTO.firstProductNote;
+                                dto.secondProductNote = bill.ResultDTO.secondProductNote;
+                                dto.thirdProductNote = bill.ResultDTO.thirdProductNote;
 
-                            dto.Note = sb.ToString();
+                                StringBuilder sb = new();
+
+                                if (bill.ResultDTO!.generalProductNote != null && bill.ResultDTO.generalProductNote != "")
+                                {
+                                    if (bill.ResultDTO!.generalProductNote.IndexOf("\n") != -1)
+                                        sb.AppendLine("-" + bill.ResultDTO.generalProductNote.Trim().Replace("\n", ", "));
+                                    else
+                                        sb.AppendLine("-" + bill.ResultDTO!.generalProductNote);
+                                }
+                                if (bill.ResultDTO!.firstProductNote != null && bill.ResultDTO.firstProductNote != "")
+                                {
+                                    if (bill.ResultDTO!.firstProductNote.IndexOf("\n") != -1)
+                                        sb.AppendLine("  1 x " + bill.ResultDTO.firstProductNote.Trim().Replace("\n", ", "));
+                                    else
+                                        sb.AppendLine("  1 x " + bill.ResultDTO!.firstProductNote);
+                                }
+                                if (bill.ResultDTO!.secondProductNote != null && bill.ResultDTO.secondProductNote != "")
+                                {
+                                    if (bill.ResultDTO!.secondProductNote.IndexOf("\n") != -1)
+                                        sb.AppendLine("  1 x " + bill.ResultDTO.secondProductNote.Trim().Replace("\n", ", "));
+                                    else
+                                        sb.AppendLine("  1 x " + bill.ResultDTO!.secondProductNote);
+                                }
+                                if (bill.ResultDTO!.thirdProductNote != null && bill.ResultDTO.thirdProductNote != "")
+                                {
+                                    if (bill.ResultDTO!.thirdProductNote.IndexOf("\n") != -1)
+                                        sb.AppendLine("  1 x " + bill.ResultDTO.thirdProductNote.Trim().Replace("\n", ", "));
+                                    else
+                                        sb.AppendLine("  1 x " + bill.ResultDTO!.thirdProductNote);
+                                }
+
+                                dto.Note = sb.ToString();
 
 
-                            dto = await Client!.PostGetServiceResponseAsync<SaleDetailDTO, SaleDetailDTO>("api/SaleDetail/Create", dto, true);
+                                dto = await Client!.PostGetServiceResponseAsync<SaleDetailDTO, SaleDetailDTO>("api/SaleDetail/Create", dto, true);
+                            }
+                            order = 0;
+                            setAggregate = false;
+                            GridBillData = new List<InStoreSaleBillDTO>();
+                            setAggregate = true;
+                            NavigationManager!.NavigateTo("/dailyBillList");
                         }
-                        order = 0;
-                        setAggregate = false;
-                        GridBillData = new List<InStoreSaleBillDTO>();
-                        setAggregate = true;
+                        
                     }
                     catch (ApiException ex)
                     {
@@ -438,7 +454,7 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                             var res = await Client!.PostGetBaseResponseAsync("api/SaleDetail/DeleteById", newSaleDTO.Id);
                         }
 
-                        await Sw!.FireAsync("Exception", "Adisyon Sisteme Kaydedilemedi: " +  ex.Message, "error");
+                        await Sw!.FireAsync("Exception", "Adisyon Sisteme Kaydedilemedi: " + ex.Message, "error");
                     }
 
                 }

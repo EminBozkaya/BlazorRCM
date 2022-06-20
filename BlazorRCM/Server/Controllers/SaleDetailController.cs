@@ -30,7 +30,7 @@ namespace BlazorRCM.Server.Controllers
         {
             return new ServiceResponse<List<SaleDetailDTO>>()
             {
-                Value = (await Repo.GetAll(x=>x.SId==id) as List<SaleDetailDTO>)!
+                Value = (await Repo.GetAll(x=>x.SId==id) as List<SaleDetailDTO>)!.OrderBy(x => x.BillOrder).ToList()
             };
         }
 
