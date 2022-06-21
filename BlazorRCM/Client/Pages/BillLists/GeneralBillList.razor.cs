@@ -13,7 +13,7 @@ using Blazored.LocalStorage;
 
 namespace BlazorRCM.Client.Pages.BillLists
 {
-    public partial class DailyBillList
+    public partial class GeneralBillList
     {
         [Inject]
         public HttpClient? Client { get; set; }
@@ -70,6 +70,14 @@ namespace BlazorRCM.Client.Pages.BillLists
                 StateHasChanged();
             }
         }
+        protected async Task GetListOfDate()
+        {
+            SaleList = await Client!.GetServiceResponseAsync<List<SaleDTO>>("api/Sale/GetListOfToday", true);
+        }
+        protected async Task GetListOfDateRange()
+        {
+            SaleList = await Client!.GetServiceResponseAsync<List<SaleDTO>>("api/Sale/GetListOfToday", true);
+        }
         public async Task RowSelectHandler(RowSelectEventArgs<SaleDTO> args)
         {
 
@@ -85,7 +93,7 @@ namespace BlazorRCM.Client.Pages.BillLists
                 InStoreSaleBillDTO newDTO = new();
                 ProductNoteModalResultDTO resultDTO = new();
 
-                newDTO.GuId= Guid.NewGuid();
+                newDTO.GuId = Guid.NewGuid();
                 newDTO.PId = detail.PId;
                 newDTO.ProductName = detail.ProductName;
                 newDTO.ProductPrice = detail.Price;

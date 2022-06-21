@@ -1,0 +1,596 @@
+﻿@page "/generalBillList"
+@using BlazorRCM.Shared.DTOs.ModelDTOs
+
+<MudContainer Class="ps-2" MaxWidth="MaxWidth.ExtraExtraLarge">
+    <MudStack>
+        <MudGrid>
+            @*------------Date Picker-----------*@
+            <MudItem Class="justify-center" xs="12" sm="4" md="4" lg="4">
+                <MudCard>
+                    <MudCardHeader Class="pa-0">
+                        <MudText Align="Align.Center" Class="pb-0" Typo="Typo.h6">Günlük Satış Listesi</MudText>
+                    </MudCardHeader>
+                    <MudCardContent Class="pa-2">
+                        <MudStack Class="justify-content-center" Style="align-items:center">
+                            <MudDatePicker Label="İlgili Tarihi Seçiniz" Style="width:100%" Editable="true" @bind-Date="date" Placeholder="Gün Seçin" />
+                            <MudButton Class="ma-3" Variant="Variant.Filled" Style="height:40px;font-size:20px;border-radius:15px" Color="Color.Primary" FullWidth="true" OnClick="GetListOfDate">Listeyi Getir</MudButton>
+                        </MudStack>
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+            @*-----------/Date Picker-----------*@
+
+
+            @*------------Date Range Picker-----------*@
+            <MudItem Class="justify-center" xs="12" sm="8" md="8" lg="8">
+                <MudCard>
+                    <MudCardHeader Class="pa-0">
+                        <MudText Align="Align.Center" Class="pb-0" Typo="Typo.h6">Tarih Aralığı Satış Listesi</MudText>
+                    </MudCardHeader>
+                    <MudCardContent Class="pa-2 px-0 justify-center">
+                        <MudStack Class="justify-content-center" Style="align-items:center">
+                            <MudDateRangePicker Label="Tarih Aralığını Seçiniz" Style="width:100%" Color="Color.Success" Editable="true" @bind-DateRange="_dateRange" />
+                            <MudButton Class="ma-3" Variant="Variant.Filled" Style="height:40px;font-size:20px;border-radius:15px" Color="Color.Success" FullWidth="true" OnClick="GetListOfDateRange">Listeyi Getir</MudButton>
+                        </MudStack>
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+            @*------------/Date Range Picker-----------*@
+        </MudGrid>
+
+        <MudDivider />
+
+
+        <MudGrid>
+            @*------------Bill List-----------*@
+            <MudItem Class="justify-center" xs="12" sm="12" md="8" lg="8">
+                <MudCard>
+                    <MudCardHeader Class="pa-0">
+                        <MudText Align="Align.Center" Class="pb-0" Typo="Typo.h6">Günlük Adisyon Listesi</MudText>
+                    </MudCardHeader>
+                    <MudCardContent Class="pa-2 px-0 justify-center">
+                        <SpinLoader IsLoading="@_elementIsLoading">
+                            <LoadingTemplate>
+                                <div class="col-12" style="vertical-align:middle; margin-top:100px">
+                                    <Chase Center="true" Size="40px" Color="#F44336"></Chase>
+                                </div>
+                            </LoadingTemplate>
+                            <ContentTemplate>
+
+                                <SfGrid ID="Grid" @ref="Grid" DataSource="@SaleList"
+                                        Toolbar="@(new List<string>() { "ExcelExport", "PdfExport", "Search"})"
+                                        Height="250"
+                                        EnableHeaderFocus="true"
+                                        AllowExcelExport="true"
+                                        AllowPdfExport="true"
+                                        AllowSorting="true"
+                                        AllowFiltering="true"
+                                        AllowGrouping="true"
+                                        AllowTextWrap="true"
+                                        AllowReordering="true"
+                                        AllowResizing="true">
+
+
+                                    @*<GridPageSettings PageSize="13"></GridPageSettings>*@
+
+                                    <GridEvents RowSelected="RowSelectHandler"
+                                                OnToolbarClick="ToolbarClick"
+                                                OnActionBegin="ActionBeginHandler"
+                                                OnActionComplete="ActionCompleteHandler"
+                                                OnActionFailure="ActionFailureHandler"
+                                                ExcelQueryCellInfoEvent="ExcelQueryCellInfoHandler"
+                                                PdfQueryCellInfoEvent="PdfQueryCellInfoHandler"
+                                                TValue="SaleDTO"></GridEvents>
+
+
+                                    <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
+
+                                    <GridPageSettings PageSize="10" PageSizes="true"></GridPageSettings>
+
+                                    <GridEditSettings AllowAdding="false" AllowDeleting="false" AllowEditing="false" Mode="EditMode.Normal">
+                                    </GridEditSettings>
+
+                                    <GridColumns>
+                                        <GridColumn Field=@nameof(SaleDTO.Id) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Width="15%"></GridColumn>
+
+                                        <GridColumn Field=@nameof(SaleDTO.DateTime) HeaderText="Zaman" TextAlign="TextAlign.Left" Width="15%" Type="ColumnType.Date" Format="hh:mm:ss"></GridColumn>
+                                        <GridColumn Field=@nameof(SaleDTO.TotalPrice) HeaderText="Tutar" TextAlign="TextAlign.Left" Width="30%"></GridColumn>
+                                        <GridColumn Field=@nameof(SaleDTO.UserFullName) HeaderText="Kullanıcı" TextAlign="TextAlign.Left" Width="40%"></GridColumn>
+                                    </GridColumns>
+
+                                    <GridAggregates>
+                                        <GridAggregate>
+                                            <GridAggregateColumns>
+                                                <GridAggregateColumn Field=@nameof(SaleDTO.TotalPrice) Type="Syncfusion.Blazor.Grids.AggregateType.Sum">
+                                                    <FooterTemplate>
+                                                        @{
+                                                            var aggregate = (context as AggregateTemplateContext);
+                                                            totalPrice = Decimal.Parse(aggregate == null ? $"0" : aggregate!.Sum);
+                                                            <div>
+                                                                <p style="font-size: x-large;">Ciro:@(aggregate==null?$"0":aggregate!.Sum)</p>
+                                                            </div>
+                                                        }
+                                                    </FooterTemplate>
+                                                </GridAggregateColumn>
+                                            </GridAggregateColumns>
+                                        </GridAggregate>
+                                    </GridAggregates>
+
+                                </SfGrid>
+                                <MudTextField Style="font-size:x-large;font-family: cursive;font-weight: bolder;tealign:center" Class="ma-auto pt-2" ReadOnly="true" @bind-Value="totalPrice" Format="N2" Label="Ciro" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentIcon="fas fa-lira-sign" AdornmentColor="Color.Dark" />
+                            </ContentTemplate>
+                        </SpinLoader>
+
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+            @*------------/Bill List-----------*@
+
+            @*------------Bill Detail-----------*@
+            <MudItem Class="justify-center" xs="12" sm="12" md="4" lg="4">
+                <MudCard>
+                    <MudCardHeader Class="pa-0">
+                        <MudText Align="Align.Center" Class="pb-0" Typo="Typo.h6">Adisyon İçerik</MudText>
+                    </MudCardHeader>
+                    <MudCardContent Class="pa-2 px-0 justify-center">
+                        <MudStack>
+                            <MudItem Style="px-auto">
+                                <MudStack>
+                                    <MudGrid Class="pt-3 px-1 justify-center">
+                                        <table class="body-wrap" id="billPrintView" style="display:none">
+                                            <tbody>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="container" style="width:500px">
+                                                        <div class="content">
+                                                            <table class="main" width="100%" cellpadding="0" cellspacing="0">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="content-wrap aligncenter">
+                                                                            <table width="100%" cellpadding="0" cellspacing="0">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td class="content-block">
+                                                                                            <h2 style="margin-top:10px;text-align:center;font-size:18px">ÖNCÜ DÖNER</h2>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="content-block">
+                                                                                            <table class="invoice">
+                                                                                                <tbody>
+                                                                                                    <tr>
+                                                                                                        <td>
+                                                                                                            <table width="100%" cellpadding="0" cellspacing="0">
+                                                                                                                <tbody>
+                                                                                                                    <tr>
+                                                                                                                        <td class="alignleft">Hızlı Satış Fişi</td>
+                                                                                                                        <td class="alignright">No:1453</td>
+                                                                                                                    </tr>
+                                                                                                                </tbody>
+                                                                                                            </table>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <td>
+                                                                                                            <table class="invoice-items" cellpadding="0" cellspacing="0">
+                                                                                                                <thead>
+                                                                                                                    <tr>
+                                                                                                                        <th style="font-size:14px" class="alignleft">Ürün</th>
+                                                                                                                        <th style="font-size:14px" class="alignright">Adet</th>
+                                                                                                                        <th style="font-size:14px" class="alignright">Prs</th>
+                                                                                                                        <th style="font-size:14px" class="alignright">Tutar</th>
+                                                                                                                    </tr>
+
+                                                                                                                </thead>
+                                                                                                                <tbody>
+                                                                                                                    @if (billDTOList != null)
+                                                                                                                    {
+                                                                                                                        @foreach (InStoreSaleBillDTO rowItem in billDTOList!)
+                                                                                                                        {
+                                                                                                                            <tr>
+                                                                                                                                <td style="font-size:15px">@rowItem.ProductName</td>
+                                                                                                                                <td style="font-size:15px" class="alignright">@rowItem.Quantity</td>
+                                                                                                                                <td style="font-size:14px" class="alignright">
+                                                                                                                                    @if (rowItem.Portion != Convert.ToDecimal(1))
+                                                                                                                                    {
+                                                                                                                                        <u>@rowItem.Portion</u>
+                                                                                                                                    }
+                                                                                                                                    else
+                                                                                                                                    {
+                                                                                                                                        <i>&nbsp</i>
+                                                                                                                                    }
+                                                                                                                                </td>
+                                                                                                                                <td style="font-size:15px" class="alignright">@rowItem.TotalPrice</td>
+                                                                                                                            </tr>
+
+
+                                                                                                                            @if (rowItem.ResultDTO != null)
+                                                                                                                            {
+                                                                                                                                @if (rowItem.ResultDTO!.generalProductNote != null && @rowItem.ResultDTO.generalProductNote != "")
+                                                                                                                                {
+                                                                                                                                    @if (rowItem.ResultDTO!.generalProductNote.IndexOf("\n") != -1)
+                                                                                                                                    {
+                                                                                                                                        <tr>
+                                                                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
+                                                                                                                                                - @(rowItem.ResultDTO!.generalProductNote.Trim().Replace("\n",", "))
+                                                                                                                                            </td>
+                                                                                                                                        </tr>
+                                                                                                                                    }
+                                                                                                                                    else
+                                                                                                                                    {
+                                                                                                                                        <tr>
+                                                                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
+                                                                                                                                                - @rowItem.ResultDTO!.generalProductNote
+                                                                                                                                            </td>
+                                                                                                                                        </tr>
+                                                                                                                                    }
+
+                                                                                                                                }
+                                                                                                                                @if (rowItem.ResultDTO!.firstProductNote != null && @rowItem.ResultDTO.firstProductNote != "")
+                                                                                                                                {
+                                                                                                                                    @if (rowItem.ResultDTO!.firstProductNote.IndexOf("\n") != -1)
+                                                                                                                                    {
+                                                                                                                                        <tr>
+                                                                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
+                                                                                                                                                &nbsp&nbsp&nbsp&nbsp1 x @(rowItem.ResultDTO!.firstProductNote.Trim().Replace("\n",", "))
+                                                                                                                                            </td>
+                                                                                                                                        </tr>
+                                                                                                                                    }
+                                                                                                                                    else
+                                                                                                                                    {
+                                                                                                                                        <tr>
+                                                                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
+                                                                                                                                                &nbsp&nbsp&nbsp&nbsp1 x @rowItem.ResultDTO!.firstProductNote
+                                                                                                                                            </td>
+                                                                                                                                        </tr>
+                                                                                                                                    }
+
+                                                                                                                                }
+                                                                                                                                @if (@rowItem.ResultDTO!.secondProductNote != null && @rowItem.ResultDTO.secondProductNote != "")
+                                                                                                                                {
+                                                                                                                                    @if (@rowItem.ResultDTO!.secondProductNote.IndexOf("\n") != -1)
+                                                                                                                                    {
+                                                                                                                                        <tr>
+                                                                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
+                                                                                                                                                &nbsp&nbsp&nbsp&nbsp1 x @rowItem.ResultDTO!.secondProductNote.Replace("\n",", ")
+                                                                                                                                            </td>
+                                                                                                                                        </tr>
+                                                                                                                                    }
+                                                                                                                                    else
+                                                                                                                                    {
+                                                                                                                                        <tr>
+                                                                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
+                                                                                                                                                &nbsp&nbsp&nbsp&nbsp1 x @rowItem.ResultDTO!.secondProductNote
+                                                                                                                                            </td>
+                                                                                                                                        </tr>
+                                                                                                                                    }
+
+                                                                                                                                }
+                                                                                                                                @if (@rowItem.ResultDTO!.thirdProductNote != null && @rowItem.ResultDTO.thirdProductNote != "")
+                                                                                                                                {
+                                                                                                                                    @if (@rowItem.ResultDTO!.thirdProductNote.IndexOf("\n") != -1)
+                                                                                                                                    {
+                                                                                                                                        <tr>
+                                                                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
+                                                                                                                                                &nbsp&nbsp&nbsp&nbsp1 x @rowItem.ResultDTO!.thirdProductNote.Replace("\n",", ")
+                                                                                                                                            </td>
+                                                                                                                                        </tr>
+                                                                                                                                    }
+                                                                                                                                    else
+                                                                                                                                    {
+                                                                                                                                        <tr>
+                                                                                                                                            <td style="border:none;font-size:14px;font-family:initial" colspan="4">
+                                                                                                                                                &nbsp&nbsp&nbsp&nbsp1 x @rowItem.ResultDTO!.thirdProductNote
+                                                                                                                                            </td>
+                                                                                                                                        </tr>
+                                                                                                                                    }
+
+                                                                                                                                }
+                                                                                                                            }
+
+                                                                                                                        }
+                                                                                                                    }
+
+                                                                                                                </tbody>
+                                                                                                            </table>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                    <tr class="total">
+
+                                                                                                        <td class="alignright" style="font-size:18px">Toplam:  @billTotalPrice</td>
+
+                                                                                                    </tr>
+                                                                                                </tbody>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <div class="footer">
+                                                                <table width="100%">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="aligncenter content-block"></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </MudGrid>
+                                </MudStack>
+                            </MudItem>
+                            <MudGrid Class="pt-3 px-auto justify-center">
+                            </MudGrid>
+                        </MudStack>
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+            @*------------/Bill Detail-----------*@
+        </MudGrid>
+    </MudStack>
+</MudContainer>
+
+@*For grid and mud blazor item*@
+<style>
+    .mud-input > input.mud-input-root-outlined.mud-input-root-adorned-end, div.mud-input-slot.mud-input-root-outlined.mud-input-root-adorned-end {
+        text-align: center;
+    }
+
+    .e-grid .e-gridfooter {
+        visibility: hidden;
+        height: 0px;
+    }
+    .mud-picker-inline.mud-picker-input-text{
+        width:100%;
+    }
+</style>
+
+@*for bill view table*@
+<style>
+    /* -------------------------------------
+                            GLOBAL
+                            A very basic CSS reset
+                        ------------------------------------- */
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    body {
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-size-adjust: none;
+        width: 100% !important;
+        height: 100%;
+        line-height: 1.6;
+    }
+
+    /* Let's make sure all tables have defaults */
+    table td {
+        vertical-align: top;
+    }
+
+    /* -----------------------------------BODY & CONTAINER------------------------------ */
+    body {
+        /*background-color: #f6f6f6;*/
+    }
+
+    .body-wrap {
+        /*background-color: #f6f6f6;*/
+        width: 100%;
+    }
+
+    .container {
+        /*display: block !important;*/
+        max-width: 600px !important;
+        margin: 0 auto !important;
+        /* makes it centered */
+        clear: both !important;
+    }
+
+    .content {
+        max-width: 600px;
+        margin: 0 auto;
+        display: block;
+        /*padding: 20px;*/
+    }
+
+    /* -------------------------------------HEADER, FOOTER, MAIN----------------------------------- */
+    .main {
+        /*background: #fff;*/
+        border: 1px solid #e9e9e9;
+        border-radius: 3px;
+    }
+
+    .content-wrap {
+        /*padding: 20px;*/
+    }
+
+    .content-block {
+        padding: 0 0 2px;
+    }
+
+    .header {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .footer {
+        width: 100%;
+        clear: both;
+        color: #999;
+        padding: 10px;
+    }
+
+        .footer a {
+            color: #999;
+        }
+
+        .footer p, .footer a, .footer unsubscribe, .footer td {
+            font-size: 12px;
+        }
+
+    /* ---------------------------------TYPOGRAPHY----------------------------------- */
+    h1, h2, h3 {
+        font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        /*color: #000;*/
+        margin: 40px 0 0;
+        line-height: 1.2;
+        font-weight: 400;
+    }
+
+    h1 {
+        font-size: 32px;
+        font-weight: 500;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    h4 {
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    p, ul, ol {
+        margin-bottom: 10px;
+        font-weight: normal;
+    }
+
+        p li, ul li, ol li {
+            margin-left: 5px;
+            list-style-position: inside;
+        }
+
+    /* ------------------------------------LINKS & BUTTONS------------------------------------ */
+    a {
+        color: #1ab394;
+        text-decoration: underline;
+    }
+
+    .btn-primary {
+        text-decoration: none;
+        color: #FFF;
+        background-color: #1ab394;
+        border: solid #1ab394;
+        border-width: 5px 10px;
+        line-height: 2;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+        display: inline-block;
+        border-radius: 5px;
+        text-transform: capitalize;
+    }
+
+    /* -------------------------------------OTHER STYLES THAT MIGHT BE USEFUL------------------------ */
+    .last {
+        margin-bottom: 0;
+    }
+
+    .first {
+        margin-top: 0;
+    }
+
+    .aligncenter {
+        text-align: center;
+    }
+
+    .alignright {
+        text-align: right;
+    }
+
+    .alignleft {
+        text-align: left;
+    }
+
+    .clear {
+        clear: both;
+    }
+
+    /* ----ALERTS Change the class depending on warning email, good email or bad email------- */
+    .alert {
+        font-size: 16px;
+        color: #fff;
+        font-weight: 500;
+        padding: 20px;
+        text-align: center;
+        border-radius: 3px 3px 0 0;
+    }
+
+        .alert a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .alert.alert-warning {
+            background: #f8ac59;
+        }
+
+        .alert.alert-bad {
+            background: #ed5565;
+        }
+
+        .alert.alert-good {
+            background: #1ab394;
+        }
+
+    /* ---------------------------------INVOICE Styles for the billing table--------------------- */
+    .invoice {
+        margin: auto;
+        text-align: left;
+        width: 95%;
+    }
+
+        .invoice td {
+            padding: 5px 0;
+        }
+
+
+
+        .invoice .invoice-items {
+            width: 100%;
+        }
+
+            .invoice .invoice-items td {
+                border-top: #eee 1px solid;
+                /*border-bottom: #eee 1px solid;*/
+            }
+
+            .invoice .invoice-items th {
+                font-size: 16px;
+            }
+
+        .invoice .total td {
+            border-top: 1px solid;
+            /*border-bottom: 2px solid #333;*/
+            font-weight: 700;
+        }
+</style>
+
+@code {
+    DateTime? date = DateTime.Today;
+    DateRange _dateRange = new DateRange(DateTime.Now.Date, DateTime.Now.AddDays(5).Date);
+}

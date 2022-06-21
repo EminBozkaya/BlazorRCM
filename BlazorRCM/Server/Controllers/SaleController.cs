@@ -21,7 +21,7 @@ namespace BlazorRCM.Server.Controllers
         {
             return new ServiceResponse<List<SaleDTO>>()
             {
-                Value = (await Repo.GetAll() as List<SaleDTO>)!
+                Value = (await Repo.GetAll() as List<SaleDTO>)!.OrderBy(x=>x.Id).ToList()
             };
         }
 
@@ -30,7 +30,7 @@ namespace BlazorRCM.Server.Controllers
         {
             return new ServiceResponse<List<SaleDTO>>()
             {
-                Value = (await Repo.GetAll(x=>x.IsEOD==false) as List<SaleDTO>)!
+                Value = (await Repo.GetAll(x=>x.IsEOD==false) as List<SaleDTO>)!.OrderBy(x => x.Id).ToList()
             };
         }
 
