@@ -10,6 +10,7 @@ using BlazorRCM.Shared.DTOs.ModelDTOs;
 using BlazorRCM.Shared.DTOs.ViewDTOs;
 using BlazorRCM.Shared.DTOs.TupleDTOs;
 using Blazored.LocalStorage;
+using MudBlazor;
 
 namespace BlazorRCM.Client.Pages.BillLists
 {
@@ -34,7 +35,7 @@ namespace BlazorRCM.Client.Pages.BillLists
         protected List<InStoreSaleBillDTO> billDTOList = new();
 
         private IJSObjectReference? _jsPrintModule;
-        protected bool _elementIsLoading = true;
+        protected bool _elementIsLoading = false;
         protected SfGrid<SaleDTO>? Grid;
         protected DialogSettings DialogParams = new DialogSettings { MinHeight = "400px", Width = "750px" };
         protected Syncfusion.Blazor.Navigations.ClickEventArgs? clickevent;
@@ -44,39 +45,48 @@ namespace BlazorRCM.Client.Pages.BillLists
         protected bool firstClicked;
         protected int saleId;
         protected DateTime saleTime;
+
+        protected DateTime? date;
+        
+        protected DateRange dateRange = new DateRange();
+        protected List<DateTime> rangeList = new();
+        //protected DateRange _dateRange = new DateRange(DateTime.Now.Date, DateTime.Now.AddDays(5).Date);
         protected async override Task OnInitializedAsync()
         {
-            await LoadList();
             _jsPrintModule = await JSRuntime!.InvokeAsync<IJSObjectReference>("import", "./MyScripts/printDisplay.js");
             //_jsInStoreSalePrintModule = await IJSInStoreSale!.InvokeAsync<IJSObjectReference>("import", "./MyScripts/PrintInStoreSaleBill.js");
+            //StateHasChanged();
         }
-        protected async Task LoadList()
+        protected async Task GetListOfDate()
         {
-            try
+            SaleList = new();
+            billDTOList = new();
+            totalPrice = 0;
+            billTotalPrice = 0;
+            if (date != null)
             {
-                SaleList = await Client!.GetServiceResponseAsync<List<SaleDTO>>("api/Sale/GetListOfToday", true);
-            }
-            catch (ApiException ex)
-            {
-                await Sw!.FireAsync("Api Exception", ex.Message, "error");
-            }
-            catch (Exception ex)
-            {
-                await Sw!.FireAsync("Exception", ex.Message, "error");
-            }
-            finally
-            {
+                _elementIsLoading = true;
+                SaleList = await Client!.PostGetServiceResponseAsync<List<SaleDTO>, DateTime>("api/Sale/GetListOfAnyDay", (DateTime)date, true);
                 _elementIsLoading = false;
                 StateHasChanged();
             }
         }
-        protected async Task GetListOfDate()
-        {
-            SaleList = await Client!.GetServiceResponseAsync<List<SaleDTO>>("api/Sale/GetListOfToday", true);
-        }
         protected async Task GetListOfDateRange()
         {
-            SaleList = await Client!.GetServiceResponseAsync<List<SaleDTO>>("api/Sale/GetListOfToday", true);
+            SaleList = new();
+            rangeList = new();
+            billDTOList = new();
+            totalPrice = 0;
+            billTotalPrice = 0;
+            if (dateRange.Start != null && dateRange.End != null)
+            {
+                _elementIsLoading = true;
+                rangeList.Add((DateTime)dateRange.Start);
+                rangeList.Add((DateTime)dateRange.End);
+                SaleList = await Client!.PostGetServiceResponseAsync<List<SaleDTO>, List<DateTime>>("api/Sale/GetListOfDateRange", rangeList, true);
+                _elementIsLoading = false;
+                StateHasChanged();
+            }
         }
         public async Task RowSelectHandler(RowSelectEventArgs<SaleDTO> args)
         {
@@ -137,160 +147,7 @@ namespace BlazorRCM.Client.Pages.BillLists
             await LocalStorageService!.SetItemAsync<PassBillDataToChangeBillPageDTO>("billDataForChange", data);
             NavigationManager!.NavigateTo("/changeBill/" + saleId);
         }
-        public async Task ActionBeginHandler(ActionEventArgs<SaleDTO> args)
-        {
-            if (args.RequestType == Syncfusion.Blazor.Grids.Action.Save)
-            {
-                SaleDTO newdto = args.Data;
-                if (args.Action == "Add")
-                {
-                    try
-                    {
-                        newdto = await Client!.PostGetServiceResponseAsync<SaleDTO, SaleDTO>("api/Sale/Create", newdto, true);
 
-
-                        args.Cancel = true;
-                        await Grid!.CloseEditAsync();
-                        await Sw!.FireAsync("Başarılı", "Kayıt başarıyla oluşturuldu", "success");
-                        await LoadList();
-                    }
-                    catch (ApiException ex)
-                    {
-                        args.Cancel = true;
-                        await Grid!.CloseEditAsync();
-                        await Sw!.FireAsync("Api Exception", ex.Message, "error");
-                    }
-                    catch (Exception ex)
-                    {
-                        args.Cancel = true;
-                        await Grid!.CloseEditAsync();
-                        await Sw!.FireAsync("Exception", ex.Message, "error");
-                    }
-                }
-                else
-                {
-                    try
-                    {
-                        newdto = await Client!.PostGetServiceResponseAsync<SaleDTO, SaleDTO>("api/Sale/Update", newdto, true);
-                        args.Cancel = true;
-                        await Grid!.CloseEditAsync();
-                        await Sw!.FireAsync("Başarılı", "Kayıt başarıyla güncellendi", "success");
-                        await LoadList();
-                    }
-                    catch (ApiException ex)
-                    {
-                        args.Cancel = true;
-                        await Grid!.CloseEditAsync();
-                        await Sw!.FireAsync("Api Exception", ex.Message, "error");
-                    }
-                    catch (Exception ex)
-                    {
-                        args.Cancel = true;
-                        await Grid!.CloseEditAsync();
-                        await Sw!.FireAsync("Exception", ex.Message, "error");
-                    }
-                    finally
-                    {
-                        args.Cancel = true;
-                        await Grid!.CloseEditAsync();
-                    }
-                }
-            }
-            if (args.RequestType == Syncfusion.Blazor.Grids.Action.Delete)
-            {
-                SweetAlertResult result = await Sw!.FireAsync(new SweetAlertOptions
-                {
-                    Title = "DİKKAT",
-                    Text = "Emin misiniz, Sildiğiniz takdirde işlemi geri alamazsınız!",
-                    Icon = SweetAlertIcon.Warning,
-                    ShowCancelButton = true,
-                    ConfirmButtonColor = "#3085d6",
-                    CancelButtonColor = "#d33",
-                    ConfirmButtonText = "Evet sil!",
-                    CancelButtonText = "Vazgeç"
-                });
-
-                if (!string.IsNullOrEmpty(result.Value))
-                {
-                    SaleDTO dto = args.Data;
-                    if (dto == null) await Sw.FireAsync(null, "Silmek için kayıt seçmelisiniz!", "danger");
-                    else
-                    {
-                        try
-                        {
-                            bool deleted = await Client!.PostGetServiceResponseAsync<bool, SaleDTO>("api/Sale/Delete", dto, true);
-
-                            var res = await Client!.PostGetBaseResponseAsync("api/SaleDetail/DeleteById", args.Data.Id, true);
-
-                            await _jsPrintModule!.InvokeVoidAsync("setPrintElementDisplay", "none");
-                            firstClicked = false;
-
-                            await LocalStorageService!.SetItemAsync<PassBillDataToChangeBillPageDTO>("billDataForChange", new());
-
-                            args.Cancel = true;
-                            await Grid!.CloseEditAsync();
-                            await Sw!.FireAsync(
-                                              "İşlem başarılı",
-                                              "Kayıt silindi",
-                                              SweetAlertIcon.Success
-                                              );
-                            await LoadList();
-                        }
-                        catch (ApiException ex)
-                        {
-                            args.Cancel = true;
-                            await Grid!.CloseEditAsync();
-                            await Sw!.FireAsync("Api Exception", ex.Message, "error");
-                        }
-                        catch (Exception ex)
-                        {
-                            args.Cancel = true;
-                            await Grid!.CloseEditAsync();
-                            await Sw!.FireAsync("Exception", ex.Message, "error");
-                        }
-                        finally
-                        {
-                            args.Cancel = true;
-                            await Grid!.CloseEditAsync();
-                        }
-                    }
-                }
-                else if (result.Dismiss == DismissReason.Cancel)
-                {
-                    args.Cancel = true;
-                    await Grid!.CloseEditAsync();
-                }
-            }
-        }
-        public async Task ActionCompleteHandler(ActionEventArgs<SaleDTO> args)
-        {
-            if (args.RequestType.Equals(Syncfusion.Blazor.Grids.Action.Save))
-            {
-                //if (args.Action == "Add") await Sw!.FireAsync("Başarılı", "Yeni kayıt başarıyla oluşturuldu", "success");
-                //else await Sw!.FireAsync("Başarılı", "Kayıt başarıyla güncelleştirildi", "success");
-
-                args.Cancel = true;
-                await Grid!.CloseEditAsync();
-                //await LoadList();
-            }
-
-            if (args.RequestType.Equals(Syncfusion.Blazor.Grids.Action.Delete))
-            {
-                args.Cancel = true;
-                await Grid!.CloseEditAsync();
-                //await Sw!.FireAsync(
-                //                  "İşlem başarılı",
-                //                  "Kayıt başarıyla silindi",
-                //                  SweetAlertIcon.Success
-                //                  );
-            }
-        }
-        public async Task ActionFailureHandler(FailureEventArgs args)
-        {
-            var s = JsonConvert.DeserializeObject<Dictionary<string, object>>(JsonConvert.SerializeObject(args.Error));  //get details 
-            await Sw!.FireAsync("??", "Tabloda bilinmeyen bir hata oluştu", "error");
-            await LoadList();
-        }
         public async Task ToolbarClick(Syncfusion.Blazor.Navigations.ClickEventArgs args)
         {
             SyncfusionExportation<SaleDTO> syfExp = new();

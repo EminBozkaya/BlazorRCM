@@ -29,7 +29,7 @@
                     </MudCardHeader>
                     <MudCardContent Class="pa-2 px-0 justify-center">
                         <MudStack Class="justify-content-center" Style="align-items:center">
-                            <MudDateRangePicker Label="Tarih Aralığını Seçiniz" Style="width:100%" Color="Color.Success" Editable="true" @bind-DateRange="_dateRange" />
+                            <MudDateRangePicker Label="Tarih Aralığını Seçiniz" Style="width:100%" Color="Color.Success" Editable="true" @bind-DateRange="dateRange" />
                             <MudButton Class="ma-3" Variant="Variant.Filled" Style="height:40px;font-size:20px;border-radius:15px" Color="Color.Success" FullWidth="true" OnClick="GetListOfDateRange">Listeyi Getir</MudButton>
                         </MudStack>
                     </MudCardContent>
@@ -59,7 +59,7 @@
 
                                 <SfGrid ID="Grid" @ref="Grid" DataSource="@SaleList"
                                         Toolbar="@(new List<string>() { "ExcelExport", "PdfExport", "Search"})"
-                                        Height="250"
+                                        Height="200"
                                         EnableHeaderFocus="true"
                                         AllowExcelExport="true"
                                         AllowPdfExport="true"
@@ -75,9 +75,6 @@
 
                                     <GridEvents RowSelected="RowSelectHandler"
                                                 OnToolbarClick="ToolbarClick"
-                                                OnActionBegin="ActionBeginHandler"
-                                                OnActionComplete="ActionCompleteHandler"
-                                                OnActionFailure="ActionFailureHandler"
                                                 ExcelQueryCellInfoEvent="ExcelQueryCellInfoHandler"
                                                 PdfQueryCellInfoEvent="PdfQueryCellInfoHandler"
                                                 TValue="SaleDTO"></GridEvents>
@@ -92,10 +89,10 @@
 
                                     <GridColumns>
                                         <GridColumn Field=@nameof(SaleDTO.Id) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Width="15%"></GridColumn>
-
+                                        <GridColumn Field=@nameof(SaleDTO.UserFullName) HeaderText="Kullanıcı" TextAlign="TextAlign.Left" Width="35%"></GridColumn>
+                                        <GridColumn Field=@nameof(SaleDTO.TotalPrice) HeaderText="Tutar" TextAlign="TextAlign.Left" Width="20%"></GridColumn>
                                         <GridColumn Field=@nameof(SaleDTO.DateTime) HeaderText="Zaman" TextAlign="TextAlign.Left" Width="15%" Type="ColumnType.Date" Format="hh:mm:ss"></GridColumn>
-                                        <GridColumn Field=@nameof(SaleDTO.TotalPrice) HeaderText="Tutar" TextAlign="TextAlign.Left" Width="30%"></GridColumn>
-                                        <GridColumn Field=@nameof(SaleDTO.UserFullName) HeaderText="Kullanıcı" TextAlign="TextAlign.Left" Width="40%"></GridColumn>
+                                        <GridColumn Field=@nameof(SaleDTO.EOD) HeaderText="Günsonu Tarihi" TextAlign="TextAlign.Left" Width="15%" Type="ColumnType.Date"></GridColumn>
                                     </GridColumns>
 
                                     <GridAggregates>
@@ -591,6 +588,5 @@
 </style>
 
 @code {
-    DateTime? date = DateTime.Today;
-    DateRange _dateRange = new DateRange(DateTime.Now.Date, DateTime.Now.AddDays(5).Date);
+    
 }

@@ -34,6 +34,24 @@ namespace BlazorRCM.Server.Controllers
             };
         }
 
+        [HttpPost("GetListOfAnyDay")]
+        public async Task<ServiceResponse<List<SaleDTO>>> GetListByDate([FromBody] DateTime date)
+        {
+            return new ServiceResponse<List<SaleDTO>>()
+            {
+                Value = (await Repo.GetAll(x => x.EOD == (DateTime)date) as List<SaleDTO>)!.OrderBy(x => x.Id).ToList()
+            };
+        }
+
+        [HttpPost("GetListOfDateRange")]
+        public async Task<ServiceResponse<List<SaleDTO>>> GetListByRange([FromBody] List<DateTime> rangeList)
+        {
+            return new ServiceResponse<List<SaleDTO>>()
+            {
+                Value = (await Repo.GetAll(x => x.EOD >= rangeList[0] && x.EOD<= rangeList[1]) as List<SaleDTO>)!.OrderBy(x => x.Id).ToList()
+            };
+        }
+
         [HttpPost("Create")]
         public async Task<ServiceResponse<SaleDTO>> Create([FromBody] SaleDTO dto)
         {

@@ -22,7 +22,7 @@ namespace RCMServerData.Models
         public string? SaleNote { get; set; }
         //public string? IpAdress { get; set; }
         public bool IsEOD { get; set; }
-        public DateOnly? EOD { get; set; }
+        public DateTime? EOD { get; set; }
         public bool IsActive { get; set; }
 
         public Branch? Branch { get; set; }

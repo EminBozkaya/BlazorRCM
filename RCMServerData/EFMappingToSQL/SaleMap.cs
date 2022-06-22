@@ -28,7 +28,9 @@ namespace RCMServerData.EFMappingToSQL
                .HasDefaultValueSql("NOW()")
                .IsRequired();
 
-            
+            builder.Property(x => x.EOD)
+               .HasColumnName("EOD")
+               .HasColumnType("Date");
 
 
 
