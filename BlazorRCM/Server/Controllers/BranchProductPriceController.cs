@@ -1,12 +1,14 @@
 ﻿using BlazorRCM.Server.Services.Infrastructures;
 using BlazorRCM.Shared.DTOs.ModelDTOs;
 using BlazorRCM.Shared.ResponseModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorRCM.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BranchProductPriceController : Controller
     {
         private readonly IBranchProductPriceRepo Repo;

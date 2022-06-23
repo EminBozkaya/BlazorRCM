@@ -67,7 +67,7 @@ namespace BlazorRCM.Client.Pages.BillLists
             finally
             {
                 _elementIsLoading = false;
-                StateHasChanged();
+                //StateHasChanged();
             }
         }
         public async Task RowSelectHandler(RowSelectEventArgs<SaleDTO> args)

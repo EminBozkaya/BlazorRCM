@@ -1,7 +1,6 @@
 ﻿@inherits LayoutComponentBase
 @inject IJSRuntime _jsRuntime
 
-
 <MudThemeProvider @bind-IsDarkMode="@_isDarkMode" />
 @*<MudThemeProvider Theme="MyCustomTheme"/>*@
 <MudDialogProvider />
@@ -53,102 +52,47 @@
         new MudBlazor.BreadcrumbItem("Telefon Satışları", href:"/phonesale", icon: @Icons.Filled.Phone),
     };
 
-
-
-    [Inject]
-    public HttpClient? Client { get; set; }
-    [Inject]
-    ILocalStorageService? localStorageService { get; set; }
-
-    [Inject]
-    public IJSRuntime? JSRuntime { get; set; }
-
     private IJSObjectReference? _jsModule;
 
     [CascadingParameter]
     public Task<AuthenticationState>? AuthState { get; set; }
 
     [Inject]
-    ILocalStorageService? LocalStorageService { get; set; }
-
-    [Inject]
     NavigationManager? NavigationManager { get; set; }
 
     [Inject]
-    public SweetAlertService? Sw { get; set; }
-
+    IJSRuntime? JSRuntime { get; set;  }
 
     private bool _drawerOpen = false;
     private bool fullScreen = true;
     private bool _isDarkMode = false;
     private bool themeModeSwitch = false;
 
-
-    protected List<BranchProductPriceDTO> BranchProductPriceList = new();
-    protected List<ProductSaleNoteDTO> ProductSaleNoteList = new();
-
-    protected short BranchId = 1;//şimdilik
-
-    
-
     protected async override Task OnInitializedAsync()
     {
-        //var authState = await AuthState!;
+        var authState = await AuthState!;
 
-        //if (authState.User.Identity!.IsAuthenticated)
-        //{
-        //authState.User.Claims.FirstOrDefault(i => i.ValueType == ClaimTypes.EMail);
-
-        //logingUserName = await LocalStorageService!.GetItemAsStringAsync("fullname");
-        //visibility = "visible";
-
-        //var themeName = "5";
-
-        //var module = await _jsRuntime.InvokeAsync<IJSObjectReference>("import","./MyScripts/site.js");
-        //await module.InvokeVoidAsync("setTheme", themeName);
-
-
-        //await _jsRuntime!.InvokeAsync<object>("setTheme", themeName);
-        //StateHasChanged();
-        //}
-        //else
-        //{
-        //    NavigationManager!.NavigateTo("/login");
-        //}
-
-        await LoadList();
-        _jsModule = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", "./MyScripts/site.js");
-
-
-    }
-
-    protected async Task LoadList()
-    {
-        try
+        if (authState.User.Identity!.IsAuthenticated)
         {
-            BranchProductPriceList = await Client!.PostGetServiceResponseAsync<List<BranchProductPriceDTO>, short>("api/BranchProductPrice/GetBranchList", BranchId, true);
+            //authState.User.Claims.FirstOrDefault(i => i.ValueType == ClaimTypes.EMail);
 
-            await LocalStorageService!.SetItemAsync<List<BranchProductPriceDTO>>("activeBranchProductPriceList", BranchProductPriceList);
+            //logingUserName = await LocalStorageService!.GetItemAsStringAsync("fullname");
+            //visibility = "visible";
 
-            ProductSaleNoteList = await Client!.GetServiceResponseAsync<List<ProductSaleNoteDTO>>("api/ProductSaleNote/GetList", true);
+            //var themeName = "5";
 
-            await LocalStorageService!.SetItemAsync<List<ProductSaleNoteDTO>>("ProductSaleNoteList", ProductSaleNoteList);
-            
+            //var module = await _jsRuntime.InvokeAsync<IJSObjectReference>("import","./MyScripts/site.js");
+            //await module.InvokeVoidAsync("setTheme", themeName);
 
-        }
-        catch (ApiException ex)
-        {
-            await Sw!.FireAsync("Api Exception", ex.Message, "error");
-        }
-        catch (Exception ex)
-        {
-            await Sw!.FireAsync("Exception", ex.Message, "error");
 
-        }
-        finally
-        {
-            //_elementIsLoading = false;
+            //await _jsRuntime!.InvokeAsync<object>("setTheme", themeName);
             //StateHasChanged();
+
+            _jsModule = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", "./MyScripts/site.js");
+        }
+        else
+        {
+            NavigationManager!.NavigateTo("/login");
         }
     }
 

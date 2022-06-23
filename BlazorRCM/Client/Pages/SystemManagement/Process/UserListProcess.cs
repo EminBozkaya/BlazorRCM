@@ -9,6 +9,7 @@ using BlazorRCM.Client.Utils;
 using Newtonsoft.Json;
 using FluentValidation;
 using BlazorRCM.Shared.ValidationRules.FluentValidation.DTOs.ModelDTOs;
+using BlazorRCM.Shared.Utils;
 
 namespace BlazorRCM.Client.Pages.SystemManagement.Process
 {
@@ -107,6 +108,7 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                 //else { }
                     if (args.Action == "Add")
                 {
+                    newdto.Password= PasswordEncrypter.Encrypt(newdto.Password!);
                     try
                     {
                         newdto = await Client!.PostGetServiceResponseAsync<UserDTO, UserDTO>("api/User/Create", newdto, true);

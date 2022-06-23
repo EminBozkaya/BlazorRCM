@@ -430,7 +430,7 @@ namespace BlazorRCM.Client.Pages.BillLists
                             setAggregate = false;
                             GridBillData = new List<InStoreSaleBillDTO>();
                             setAggregate = true;
-                            NavigationManager!.NavigateTo("/dailyBillList");
+                            NavigationManager!.NavigateTo("/dailybilllist");
                         }
                         
                     }

@@ -12,7 +12,7 @@ namespace BlazorRCM.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IUserRepo Repo;
@@ -25,7 +25,7 @@ namespace BlazorRCM.Server.Controllers
         }
 
         [HttpPost("Login")]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public async Task<ServiceResponse<UserLoginResponseDTO>> Login(UserLoginRequestDTO dto)
         {
             //ServiceResponse<UserLoginResponseDTO> result = new();

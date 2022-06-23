@@ -5,9 +5,9 @@
 
     <MudDivider Class="my-2" />
 
-    @*<AuthorizeView>
+    <AuthorizeView>
 
-        <Authorized>*@
+        <Authorized>
 
 
             @*<MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
@@ -25,8 +25,8 @@
             </MudNavGroup>
 
             <MudNavGroup Title="Adisyon Listesi" Icon="fas fa-receipt">
-                <MudNavLink Href="/dailyBillList">Günlük</MudNavLink>
-                <MudNavLink Href="/generalBillList">Genel</MudNavLink>
+                <MudNavLink Href="/dailybilllist">Günlük</MudNavLink>
+                <MudNavLink Href="/generalbilllist">Genel</MudNavLink>
             </MudNavGroup>
             <MudNavLink Href="/billing" Disabled="true" Icon="fas fa-lira-sign">Cari</MudNavLink>
 
@@ -46,14 +46,14 @@
 
             <MudNavLink Href="/logout" Icon="fas fa-logout">Çıkış</MudNavLink>
 
-        @*</Authorized>
+        </Authorized>
 
-        <NotAuthorized>*@
+        <NotAuthorized>
             <MudNavLink Href="/login" Icon="fas fa-login">Giriş</MudNavLink>
-        @*</NotAuthorized>
+        </NotAuthorized>
 
 
-    </AuthorizeView>*@
+    </AuthorizeView>
 </MudNavMenu>
 
 @code {

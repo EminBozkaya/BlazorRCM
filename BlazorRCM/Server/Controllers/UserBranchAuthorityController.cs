@@ -1,6 +1,7 @@
 ﻿using BlazorRCM.Server.Services.Infrastructures;
 using BlazorRCM.Shared.DTOs.ModelDTOs;
 using BlazorRCM.Shared.ResponseModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RCMServerData.EFContext;
 using System.Linq.Expressions;
@@ -9,6 +10,7 @@ namespace BlazorRCM.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserBranchAuthorityController : Controller
     {
         private readonly IUserBranchAuthorityRepo Repo;

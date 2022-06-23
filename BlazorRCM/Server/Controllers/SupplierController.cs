@@ -9,7 +9,7 @@ namespace BlazorRCM.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class SupplierController : ControllerBase
     {
         private readonly ISupplierRepo Repo;
