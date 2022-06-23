@@ -33,6 +33,15 @@ namespace BlazorRCM.Server.Controllers
             };
         }
 
+        [HttpPost("GetListByUserId")]
+        public async Task<ServiceResponse<List<UserBranchAuthorityDTO>>> GetListById([FromBody] int id)
+        {
+            return new ServiceResponse<List<UserBranchAuthorityDTO>>()
+            {
+                Value = (await Repo.GetAll(x => x.UId == id && x.IsActive==true) as List<UserBranchAuthorityDTO>)!
+            };
+        }
+
         //[HttpPost("UserBranchAuthorities")]
         //public async Task<ServiceResponse<List<UserBranchAuthorityDTO>>> Get([FromBody] FiltersAndIncludesModel<UserBranchAuthorityDTO> model)
         //{

@@ -1,4 +1,5 @@
 ﻿@page "/login"
+@using BlazorRCM.Client.CustomComponents.ModalComponents
 @using BlazorRCM.Shared.DTOs.ViewDTOs
 @using BlazorRCM.Shared.Extensions
 @layout BlazorRCM.Client.Shared.LoginLayout
@@ -48,6 +49,12 @@
     [Inject]
     AuthenticationStateProvider? AuthenticationStateProvider { get; set; }
 
+    [Inject]
+    public IDialogService? DialogService { get; set; }
+
+    [Inject]
+    public ISnackbar? Snackbar { get; set; }
+
     private UserLoginRequestDTO userLoginRequest = new UserLoginRequestDTO();
 
     protected List<BranchProductPriceDTO> BranchProductPriceList = new();
@@ -69,6 +76,7 @@
                 {
                     await localStorageService!.SetItemAsync("token", res.Value!.ApiToken);
                     await localStorageService.SetItemAsync("email", res.Value.User!.Email);
+                    await localStorageService.SetItemAsync("activeUserId", res.Value.User!.Id);
                     //LocalStorageExtension.EMail = res.Value.User!.Email!;
                     //string email = LocalStorageExtension.EMail;
                     await localStorageService.SetItemAsync("fullname", res.Value.User!.FullName);
@@ -78,9 +86,42 @@
 
                     Client!.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", res.Value.ApiToken);
 
-                    await LoadList();
 
-                    NavManeger!.NavigateTo("/");
+                    //--------To Get and Set Active Users Other Info----------
+                    List<UserBranchAuthorityDTO> UBAs = new();
+                    List<short> userBranchIds = new();
+                    List<string> userBranchNames = new();
+                    List<short> userAuthorityTypeIds = new();
+
+                    UBAs = await Client!.PostGetServiceResponseAsync<List<UserBranchAuthorityDTO>, int>("api/UserBranchAuthority/GetListByUserId", res.Value.User.Id, true);
+
+                    for (int i = 0; i < UBAs.Count; i++)
+                    {
+                        userAuthorityTypeIds.Add(UBAs[i].ATId);
+                        userBranchIds.Add(UBAs[i].BId);
+                        userBranchNames.Add(UBAs[i].BranchName!);
+                    }
+                    await localStorageService!.SetItemAsync("userAuthorityTypeIds", userAuthorityTypeIds);
+                    await localStorageService.SetItemAsync("userBranchIds", userBranchIds);
+                    await localStorageService.SetItemAsync("userBranchNames", userBranchNames);
+
+                    DialogOptions Options = new DialogOptions() { CloseOnEscapeKey = true, CloseButton = true };
+                    var dialog = DialogService!.Show<UsersBranchSelection>("ŞUBE SEÇİMİ", Options);
+                    var result = await dialog.Result;
+                    if (!result.Cancelled)
+                    {
+                        int index = userBranchNames!.IndexOf((result.Data.ToString())!);
+                        Console.WriteLine(index.ToString());
+
+                        BranchId = userBranchIds[index];
+                        await localStorageService!.SetItemAsync("activeBranchId", BranchId);
+                        await localStorageService!.SetItemAsync("activeBranchName", userBranchNames[index]);
+                        await localStorageService.SetItemAsync("activeAuthorityTypeId", userAuthorityTypeIds[index]);
+                        await LoadList();
+                        NavManeger!.NavigateTo("/");
+                    }
+                    else Snackbar!.Add("Devam edebilmek için şube seçmelisiniz", Severity.Warning);
+
                 }
                 else
                 {

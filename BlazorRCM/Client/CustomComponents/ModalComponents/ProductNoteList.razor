@@ -145,15 +145,6 @@
         if (thirdProductNote != null)
             thirdPrdctNote = StringToStringBuilder(thirdProductNote, 3);
 
-        //if (ResultDTO.generalProductNote != null)
-        //    generalPrdctNote = StringToStringBuilder(ResultDTO.generalProductNote);
-        //if (ResultDTO.firstProductNote != null)
-        //    firstPrdctNote = StringToStringBuilder(ResultDTO.firstProductNote);
-        //if (ResultDTO.secondProductNote != null)
-        //    secondPrdctNote = StringToStringBuilder(ResultDTO.secondProductNote);
-        //if (ResultDTO.thirdProductNote != null)
-        //    thirdPrdctNote = StringToStringBuilder(ResultDTO.thirdProductNote);
-
     }
 
     public string StringToStringBuilder(string line, int i)
@@ -389,52 +380,6 @@
     }
     void Cancel() => MudDialog!.Cancel();
 
-    //public void WhenTextChange(int i)
-    //{
-    //    switch (i)
-    //    {
-    //        case 0:
-    //            //generalPrdctNote = sb0.ToString();
-    //            //await generalNoteReference!.FocusAsync();
-
-    //            generalPrdctNote = StringToStringBuilder(generalPrdctNote!, 0);
-    //            break;
-    //        //case 1:
-    //        //    sb1 = sbuilt;
-    //        //    break;
-    //        //case 2:
-    //        //    sb2 = sbuilt;
-    //        //    break;
-    //        //case 3:
-    //        //    sb3 = sbuilt;
-    //        //    break;
-
-    //    }
-    //}
-
-    //public async Task SaveChangesWhenLeave(int i)
-    //{
-    //    await Task.Delay(10);
-    //    activeNote = i;
-    //    switch (activeNote)
-    //    {
-    //        case 0:
-    //            generalPrdctNote = StringToStringBuilder(generalNoteReference!.Text, 0);
-    //            break;
-    //        case 1:
-    //            firstPrdctNote = StringToStringBuilder(firstNoteReference!.Text, 1);
-    //            break;
-    //        case 2:
-    //            secondPrdctNote = StringToStringBuilder(secondNoteReference!.Text, 2);
-    //            break;
-    //        case 3:
-    //            thirdPrdctNote = StringToStringBuilder(thirdNoteReference!.Text, 3);
-    //            break;
-    //    }
-    //}
-
-
-
 
 
     [CascadingParameter]
@@ -443,17 +388,11 @@
     [Inject]
     ILocalStorageService? LocalStorageService { get; set; }
 
-    //[Parameter]
-    //public string? note { get; set; }
-
     [Parameter]
     public List<ProductSaleNoteDTO>? ProductSaleNoteList { get; set; }
 
     [Parameter]
     public string? productName { get; set; }
-
-    //[Parameter]
-    //public ProductNoteModalResultDTO? ResultDTO { get; set; }
 
     [Parameter]
     public string? generalProductNote { get; set; }
@@ -485,31 +424,10 @@
     private MudTextField<string>? firstNoteReference;
     private MudTextField<string>? secondNoteReference;
     private MudTextField<string>? thirdNoteReference;
-    //private MudTextField<string>? fourthNoteReference;
-    //private MudTextField<string>? fifthNoteReference;
-    //private MudTextField<string>? sixthNoteReference;
-
-
-    //public string? fourthProductNote;
-    //public string? fifthProductNote;
-    //public string? sixthProductNote;
-
+    
     public StringBuilder sb0 = new();
     public StringBuilder sb1 = new();
     public StringBuilder sb2 = new();
     public StringBuilder sb3 = new();
-    //public StringBuilder sb4 = new();
-    //public StringBuilder sb5 = new();
-    //public StringBuilder sb6 = new();
-
-    //public bool autoFocusGen;
-    //public bool autoFocus1;
-    //public bool autoFocus2;
-    //public bool autoFocus3;
-    //public bool autoFocus4;
-    //public bool autoFocus5;
-    //public bool autoFocus6;
-
-
-
+    
 }

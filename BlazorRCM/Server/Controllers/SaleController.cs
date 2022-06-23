@@ -32,7 +32,7 @@ namespace BlazorRCM.Server.Controllers
         {
             return new ServiceResponse<List<SaleDTO>>()
             {
-                Value = (await Repo.GetAll(x=>x.IsEOD==false) as List<SaleDTO>)!.OrderBy(x => x.Id).ToList()
+                Value = (await Repo.GetAll(x=>x.IsEOD==false && x.IsActive==true) as List<SaleDTO>)!.OrderBy(x => x.Id).ToList()
             };
         }
 
@@ -41,7 +41,7 @@ namespace BlazorRCM.Server.Controllers
         {
             return new ServiceResponse<List<SaleDTO>>()
             {
-                Value = (await Repo.GetAll(x => x.EOD == (DateTime)date) as List<SaleDTO>)!.OrderBy(x => x.Id).ToList()
+                Value = (await Repo.GetAll(x => x.EOD == (DateTime)date && x.IsActive==true) as List<SaleDTO>)!.OrderBy(x => x.Id).ToList()
             };
         }
 
@@ -50,7 +50,7 @@ namespace BlazorRCM.Server.Controllers
         {
             return new ServiceResponse<List<SaleDTO>>()
             {
-                Value = (await Repo.GetAll(x => x.EOD >= rangeList[0] && x.EOD<= rangeList[1]) as List<SaleDTO>)!.OrderBy(x => x.Id).ToList()
+                Value = (await Repo.GetAll(x => x.EOD >= rangeList[0] && x.EOD<= rangeList[1] && x.IsActive==true) as List<SaleDTO>)!.OrderBy(x => x.Id).ToList()
             };
         }
 

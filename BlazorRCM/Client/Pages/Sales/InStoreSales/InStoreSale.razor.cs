@@ -38,9 +38,6 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         public int IntValue { get; set; }
 
         [Inject]
-        IPrintingService? PrintingService { get; set; }
-
-        [Inject]
         public IJSRuntime? _jsPrintRuntime { get; set; }
 
         [Inject]
@@ -60,23 +57,12 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         protected List<BranchProductPriceDTO> OtherList = new();
 
         protected List<ProductSaleNoteDTO> ProductSaleNoteList = new();
-        //protected List<ProductSaleNoteDTO> LittleList = new();
-        //protected List<ProductSaleNoteDTO> LotsOfList = new();
-        //protected List<ProductSaleNoteDTO> RemoveList = new();
-        //protected List<ProductSaleNoteDTO> IncludeList = new();
-        //protected List<ProductSaleNoteDTO> LavashList = new();
-        //protected List<ProductSaleNoteDTO> OtherNoteList = new();
 
         protected decimal totalPrice = 0;
         protected bool skipLastIndex = true;
         protected List<InStoreSaleBillDTO>? GridBillData = new();
         protected List<InStoreSaleBillDTO>? PrintGridBillData = null;
         protected string searchKey = @"\n";
-        //protected List<ProductNoteModalResultDTO>? ProductNoteModalResultDTOs = new();
-        //protected string? generalProductNote;
-        //protected string? firstProductNote;
-        //protected string? secondProductNote;
-        //protected string? thirdProductNote;
 
         protected short BranchId = 1;//şimdilik
 
@@ -135,17 +121,6 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                 Pkey = args.Data.GuId;           //get primary key value of newly added record 
             }
         }
-        //public async void DataBoundHandler(BeforeDataBoundArgs<InStoreSaleBillDTO> args)
-        //{
-        //    if (skipLastIndex)
-        //    {
-        //        //await Task.Delay(50);
-        //        var Idx = this.Grid!.TotalItemCount - 1;   //get last index value 
-        //        //var Idx = await this.Grid!.GetRowIndexByPrimaryKey(Convert.ToDouble(Pkey));   //get index value
-        //        await this.Grid.SelectRowAsync(Convert.ToDouble(Idx));       //select the added or after deleting - last row by using index value of the record 
-        //    }
-
-        //}
         public async Task AddToBill(BranchProductPriceDTO item)
         {
             InStoreSaleBillDTO dto = new();
@@ -196,7 +171,6 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                 {
                     rowData.Quantity = Convert.ToInt16(q);
                 }
-
                 if (q == -1)
                 {
                     DialogOptions closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true, MaxWidth = MaxWidth.Medium };
@@ -245,7 +219,6 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                 parameters.Add("firstProductNote", resultDTO!.firstProductNote);
                 parameters.Add("secondProductNote", resultDTO!.secondProductNote);
                 parameters.Add("thirdProductNote", resultDTO!.thirdProductNote);
-
 
                 var dialog = DialogService!.Show<ProductNoteList>("Not Girin:", parameters, ProductNoteOptions);
                 var result = await dialog.Result;
@@ -359,7 +332,7 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 
                     try
                     {
-                        short order =0;
+                        short order = 0;
                         foreach (InStoreSaleBillDTO bill in GridBillData)
                         {
                             SaleDetailDTO dto = new();
@@ -438,7 +411,7 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                             var res = await Client!.PostGetBaseResponseAsync("api/SaleDetail/DeleteById", newSaleDTO.Id);
                         }
 
-                        await Sw!.FireAsync("Exception", "Adisyon Sisteme Kaydedilemedi: " +  ex.Message, "error");
+                        await Sw!.FireAsync("Exception", "Adisyon Sisteme Kaydedilemedi: " + ex.Message, "error");
                     }
 
                 }

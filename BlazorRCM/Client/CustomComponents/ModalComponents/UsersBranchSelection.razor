@@ -1,0 +1,46 @@
+﻿@*@layout BlazorRCM.Client.Shared.LoginLayout*@
+<MudDialog>
+    <DialogContent>
+        <MudSelect T="string" Label="Yetkili olduğunuz şubeler" @bind-Value="@value" Placeholder="Lütfen şube seçiniz.." AnchorOrigin="Origin.BottomCenter">
+            @foreach (string item in userBranchNames!)
+            {
+                <MudSelectItem Value="@item">@item</MudSelectItem>
+            }
+        </MudSelect>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Çıkış</MudButton>
+        <MudButton Color="Color.Primary" OnClick="Submit">Giriş</MudButton>
+    </DialogActions>
+</MudDialog>
+
+<style>
+    .mud-dialog-width-sm {
+    /* max-width: 600px; */
+    min-width: 400px;
+}
+</style>
+@code {
+
+    [CascadingParameter] 
+    MudDialogInstance? MudDialog { get; set; }
+
+    [Inject]
+    ILocalStorageService? LocalStorageService { get; set; }
+
+    private string value { get; set; } = "Şube seçiniz";
+
+    public List<string>? userBranchNames = new();
+
+    protected async override Task OnInitializedAsync()
+    {
+        userBranchNames = await LocalStorageExtension.GetUserBranchNames(LocalStorageService!);
+    }
+
+    void Submit() 
+    {
+        MudDialog!.Close(DialogResult.Ok(value));
+    }
+    void Cancel() => MudDialog!.Cancel();
+
+}

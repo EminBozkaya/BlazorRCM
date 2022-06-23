@@ -1,6 +1,6 @@
 ﻿
 <MudNavMenu Class="mud-width-full">
-    <MudText Typo="Typo.h6" Class="px-4">Öncü Döner</MudText>
+    <MudText Typo="Typo.h6" Class="px-4">Öncü Döner @_branchName</MudText>
     <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Hoşgeldiniz @_logingUserName</MudText>
 
     <MudDivider Class="my-2" />
@@ -62,11 +62,16 @@
     ILocalStorageService? LocalStorageService { get; set; }
 
     private String _logingUserName = "Lütfen Giriş Yapınız";
+    private String _branchName = "";
 
     protected async override Task OnInitializedAsync()
     {
-        var result = await LocalStorageService!.GetItemAsStringAsync("Fullname");
+        var result = await LocalStorageExtension.GetUserFullName(LocalStorageService!);
         if(result!=null)
         _logingUserName = result.ToString()!.Replace('"', ' ').Trim();
+
+        var _result = await LocalStorageExtension.GetActiveBranchName(LocalStorageService!);
+        if(_result!=null)
+        _branchName = _result.ToString()!.Replace('"', ' ').Trim();
     }
 }
