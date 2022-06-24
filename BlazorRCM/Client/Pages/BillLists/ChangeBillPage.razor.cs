@@ -68,25 +68,15 @@ namespace BlazorRCM.Client.Pages.BillLists
         protected List<BranchProductPriceDTO> OtherList = new();
 
         protected List<ProductSaleNoteDTO> ProductSaleNoteList = new();
-        //protected List<ProductSaleNoteDTO> LittleList = new();
-        //protected List<ProductSaleNoteDTO> LotsOfList = new();
-        //protected List<ProductSaleNoteDTO> RemoveList = new();
-        //protected List<ProductSaleNoteDTO> IncludeList = new();
-        //protected List<ProductSaleNoteDTO> LavashList = new();
-        //protected List<ProductSaleNoteDTO> OtherNoteList = new();
 
         protected decimal totalPrice = 0;
         protected bool skipLastIndex = true;
         protected List<InStoreSaleBillDTO>? GridBillData = new();
         protected List<InStoreSaleBillDTO>? PrintGridBillData = null;
         protected string searchKey = @"\n";
-        //protected List<ProductNoteModalResultDTO>? ProductNoteModalResultDTOs = new();
-        //protected string? generalProductNote;
-        //protected string? firstProductNote;
-        //protected string? secondProductNote;
-        //protected string? thirdProductNote;
-
-        protected short BranchId = 1;//şimdilik
+        
+        protected short ActiveBranchId;
+        protected int ActiveUserId;
 
         protected bool _elementIsLoading = true;
         protected SfGrid<InStoreSaleBillDTO>? Grid;
@@ -101,22 +91,23 @@ namespace BlazorRCM.Client.Pages.BillLists
 
         protected async override Task OnInitializedAsync()
         {
-            //StringBuilder sb = new();
-            //sb.
-            data = await LocalStorageService!.GetBillDataForChange();
-            if (data.SaleID != Id) NavigationManager!.NavigateTo("/dailyBillList");
-
             await LoadList();
+
             _jsPrintModule = await _jsPrintRuntime!.InvokeAsync<IJSObjectReference>("import", "./MyScripts/printDisplay.js");
             _jsInStoreSalePrintModule = await IJSInStoreSale!.InvokeAsync<IJSObjectReference>("import", "./MyScripts/PrintInStoreSaleBill.js");
-
+        }
+        protected async Task LoadList()
+        {
+            data = await LocalStorageService!.GetBillDataForChange();
+            if (data.SaleID != Id) NavigationManager!.NavigateTo("/dailyBillList");
             GridBillData = data.InStoreSaleBillDTOList;
             totalPrice = data.BillTotalPrice;
             saleTime = data.SaleTime;
             await LocalStorageService!.SetItemAsync<PassBillDataToChangeBillPageDTO>("billDataForChange", new());
-        }
-        protected async Task LoadList()
-        {
+
+            ActiveUserId = await LocalStorageExtension.GetActiveUserID(LocalStorageService!);
+            ActiveBranchId = await LocalStorageExtension.GetActiveBranchID(LocalStorageService!);
+
             BranchProductPriceList = await LocalStorageExtension.BranchProductPriceList(LocalStorageService!);
             foreach (BranchProductPriceDTO item in BranchProductPriceList)
             {
@@ -127,16 +118,7 @@ namespace BlazorRCM.Client.Pages.BillLists
                 if (item.MenuListId == 4) OtherList.Add(item);
             }
             ProductSaleNoteList = await LocalStorageExtension.ProductSaleNoteList(LocalStorageService!);
-            //foreach (ProductSaleNoteDTO item in ProductSaleNoteList!)
-            //{
-            //    if (item.NoteCat == 1) LotsOfList.Add(item);
-            //    if (item.NoteCat == 2) LittleList.Add(item);
-            //    if (item.NoteCat == 3) RemoveList.Add(item);
-            //    if (item.NoteCat == 4) IncludeList.Add(item);
-            //    if (item.NoteCat == 5) LavashList.Add(item);
-            //    if (item.NoteCat == 6) OtherNoteList.Add(item);
-            //}
-
+            
             _elementIsLoading = false;
         }
         public void ActionBegin(ActionEventArgs<InStoreSaleBillDTO> args)
@@ -151,7 +133,6 @@ namespace BlazorRCM.Client.Pages.BillLists
                 Pkey = args.Data.GuId;           //get primary key value of newly added record 
             }
         }
-        
         public async Task AddToBill(BranchProductPriceDTO item)
         {
             InStoreSaleBillDTO dto = new();
@@ -306,16 +287,7 @@ namespace BlazorRCM.Client.Pages.BillLists
             if (GridBillData!.Count != 0)
             {
                 PrintGridBillData = GridBillData;
-                //DialogOptions closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true, MaxWidth = MaxWidth.Medium, NoHeader = true };
-                //string? title = "Adisyon Onayı!";
-                //var parameters = new DialogParameters();
-                //parameters.Add("title", title);
-                //parameters.Add("ContentText", "Adisyon sisteme kaydedilsin mi?");
-                //var dialog = DialogService!.Show<BasicYesNoMudDialog>(title, parameters, closeOnEscapeKey);
-                //var result = await dialog.Result;
-                //if (!result.Cancelled)
-                //{}
-
+                
                 SweetAlertResult result = await Sw!.FireAsync(new SweetAlertOptions
                 {
                     Title = "Emin misiniz",
@@ -344,13 +316,10 @@ namespace BlazorRCM.Client.Pages.BillLists
                     PrintGridBillData = null;
 
                     //--------saving database---------
-                    SaleDTO newSaleDTO = new();
-                    newSaleDTO.Id = Id;
-                    newSaleDTO.BId = 1;
-                    newSaleDTO.UId = 1;
-                    newSaleDTO.IsActive = true;
+                    SaleDTO newSaleDTO = await Client!.PostGetServiceResponseAsync<SaleDTO, int>("api/Sale/GetById", Id, true);
                     newSaleDTO.TotalPrice = totalPrice;
-                    newSaleDTO.DateTime = saleTime;
+                    newSaleDTO.ModifiedBy = ActiveUserId;
+                    newSaleDTO.ModifiedTime = DateTime.Now;
 
                     try
                     {

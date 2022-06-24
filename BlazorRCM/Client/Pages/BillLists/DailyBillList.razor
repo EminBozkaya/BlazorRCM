@@ -3,6 +3,7 @@
 
 <MudContainer Class="ps-2" MaxWidth="MaxWidth.ExtraExtraLarge">
     <MudGrid>
+        @*Bill List*@
         <MudItem xs="12" sm="12" md="8" lg="8">
             <MudCard>
                 <MudCardHeader Class="pa-0">
@@ -51,11 +52,44 @@
                                 </GridEditSettings>
 
                                 <GridColumns>
-                                    <GridColumn Field=@nameof(SaleDTO.Id) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Width="15%"></GridColumn>
-
-                                    <GridColumn Field=@nameof(SaleDTO.DateTime) HeaderText="Zaman" TextAlign="TextAlign.Left" Width="15%" Type="ColumnType.Date" Format="hh:mm:ss"></GridColumn>
-                                    <GridColumn Field=@nameof(SaleDTO.TotalPrice) HeaderText="Tutar" TextAlign="TextAlign.Left" Width="30%"></GridColumn>
-                                    <GridColumn Field=@nameof(SaleDTO.UserFullName) HeaderText="Kullanıcı" TextAlign="TextAlign.Left" Width="40%"></GridColumn>
+                                    <GridColumn Field=@nameof(SaleDTO.Id) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Visible="false"></GridColumn>
+                                    <GridColumn Field=@nameof(SaleDTO.DateTime) HeaderText="Zaman" TextAlign="TextAlign.Left" Width="15%" Type="ColumnType.Date" Format="HH:mm:ss"></GridColumn>
+                                    <GridColumn Field=@nameof(SaleDTO.TotalPrice) HeaderText="Tutar" TextAlign="TextAlign.Left" Width="20%"></GridColumn>
+                                    <GridColumn Field=@nameof(SaleDTO.UserFullName) HeaderText="Oluşturan" TextAlign="TextAlign.Left" Width="25%"></GridColumn>
+                                    <GridColumn Field=@nameof(SaleDTO.ModifierFullName) HeaderText="Değiştiren" TextAlign="TextAlign.Left" Width="25%">
+                                        <Template>
+                                                @{
+                                                    var dto = (context as SaleDTO);
+                                                    if (dto!.ModifiedBy == 1)
+                                                    {
+                                                        //<span>Aktif</span>
+                                                        <span>-</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        //<span>Pasif</span>
+                                                        <span>@dto.ModifierFullName</span>
+                                                    }
+                                                }
+                                            </Template>
+                                    </GridColumn>
+                                    <GridColumn Field=@nameof(SaleDTO.ModifiedTime) HeaderText="Değiştirilme Zamanı" TextAlign="TextAlign.Left" Width="15%" Type="ColumnType.Date" Format="HH:mm:ss">
+                                        <Template>
+                                                @{
+                                                    var dto = (context as SaleDTO);
+                                                    if (dto!.ModifiedTime == new DateTime(1,1,1))
+                                                    {
+                                                        //<span>Aktif</span>
+                                                        <span>-</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        //<span>Pasif</span>
+                                                        <span>@(TimeOnly.FromDateTime(@dto.ModifiedTime))</span>
+                                                    }
+                                                }
+                                            </Template>
+                                    </GridColumn>
                                 </GridColumns>
 
                                 <GridAggregates>
@@ -83,9 +117,8 @@
 
                 </MudCardContent>
             </MudCard>
-
         </MudItem>
-
+        @*Bill Detail*@
         <MudItem Class="justify-center" xs="12" sm="12" md="4" lg="4">
             <MudCard>
                 <MudCardHeader Class="pa-0">

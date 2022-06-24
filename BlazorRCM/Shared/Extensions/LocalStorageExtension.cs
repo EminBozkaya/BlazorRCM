@@ -12,7 +12,7 @@ namespace BlazorRCM.Shared.Extensions
         //    return int.Parse(await LocalStorage.GetItemAsStringAsync("activeUserId"));
 
         //}
-        public async static Task<int> GetUserID(this ILocalStorageService LocalStorage)
+        public async static Task<int> GetActiveUserID(this ILocalStorageService LocalStorage)
         {
             return await LocalStorage.GetItemAsync<int>("activeUserId");
         }

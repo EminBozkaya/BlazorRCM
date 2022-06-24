@@ -64,7 +64,8 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         protected List<InStoreSaleBillDTO>? PrintGridBillData = null;
         protected string searchKey = @"\n";
 
-        protected short BranchId = 1;//şimdilik
+        protected short ActiveBranchId;
+        protected int ActiveUserId;
 
         protected bool _elementIsLoading = true;
         protected SfGrid<InStoreSaleBillDTO>? Grid;
@@ -74,19 +75,21 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         protected bool setAggregate = true;
         protected Syncfusion.Blazor.Navigations.ClickEventArgs? clickevent;
 
+        protected int billOrder;
+
 
         protected async override Task OnInitializedAsync()
         {
-            //StringBuilder sb = new();
-            //sb.
-
             await LoadList();
+
             _jsPrintModule = await _jsPrintRuntime!.InvokeAsync<IJSObjectReference>("import", "./MyScripts/printDisplay.js");
             _jsInStoreSalePrintModule = await IJSInStoreSale!.InvokeAsync<IJSObjectReference>("import", "./MyScripts/PrintInStoreSaleBill.js");
-
         }
         protected async Task LoadList()
         {
+            ActiveUserId = await LocalStorageExtension.GetActiveUserID(LocalStorageService!);
+            ActiveBranchId = await LocalStorageExtension.GetActiveBranchID(LocalStorageService!);
+
             BranchProductPriceList = await LocalStorageExtension.BranchProductPriceList(LocalStorageService!);
             foreach (BranchProductPriceDTO item in BranchProductPriceList)
             {
@@ -97,16 +100,7 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                 if (item.MenuListId == 4) OtherList.Add(item);
             }
             ProductSaleNoteList = await LocalStorageExtension.ProductSaleNoteList(LocalStorageService!);
-            //foreach (ProductSaleNoteDTO item in ProductSaleNoteList!)
-            //{
-            //    if (item.NoteCat == 1) LotsOfList.Add(item);
-            //    if (item.NoteCat == 2) LittleList.Add(item);
-            //    if (item.NoteCat == 3) RemoveList.Add(item);
-            //    if (item.NoteCat == 4) IncludeList.Add(item);
-            //    if (item.NoteCat == 5) LavashList.Add(item);
-            //    if (item.NoteCat == 6) OtherNoteList.Add(item);
-            //}
-
+            
             _elementIsLoading = false;
         }
         public void ActionBegin(ActionEventArgs<InStoreSaleBillDTO> args)
@@ -310,14 +304,20 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                     //--------saving database---------
                     SaleDTO newSaleDTO = new();
 
-                    newSaleDTO.BId = 1;
-                    newSaleDTO.UId = 1;
+                    newSaleDTO.BId = ActiveBranchId;
+                    newSaleDTO.UId = ActiveUserId;
                     newSaleDTO.IsActive = true;
                     newSaleDTO.TotalPrice = totalPrice;
+                    newSaleDTO.STId = 1;
+                    newSaleDTO.ModifiedBy = 1;
+                    newSaleDTO.DeletedBy = 1;
+                    newSaleDTO.ModifiedTime = new DateTime(1,1,1);
+                    newSaleDTO.DeletedTime = new DateTime(1,1,1);
 
                     try
                     {
                         newSaleDTO = await Client!.PostGetServiceResponseAsync<SaleDTO, SaleDTO>("api/Sale/Create", newSaleDTO, true);
+                        billOrder = newSaleDTO.DailyBillOrder;
                     }
                     catch (ApiException ex)
                     {

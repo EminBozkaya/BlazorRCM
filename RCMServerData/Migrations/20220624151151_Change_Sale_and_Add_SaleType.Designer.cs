@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RCMServerData.EFContext;
@@ -11,9 +12,10 @@ using RCMServerData.EFContext;
 namespace RCMServerData.Migrations
 {
     [DbContext(typeof(RCMBlazorContext))]
-    partial class RCMBlazorContextModelSnapshot : ModelSnapshot
+    [Migration("20220624151151_Change_Sale_and_Add_SaleType")]
+    partial class Change_Sale_and_Add_SaleType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,7 +41,7 @@ namespace RCMServerData.Migrations
                     b.HasKey("Id")
                         .HasName("pk_AuthorityType_id");
 
-                    b.ToTable("AuthorityType", (string)null);
+                    b.ToTable("AuthorityType");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.Branch", b =>
@@ -80,7 +82,7 @@ namespace RCMServerData.Migrations
                     b.HasKey("Id")
                         .HasName("pk_Branch_id");
 
-                    b.ToTable("Branch", (string)null);
+                    b.ToTable("Branch");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.BranchProductPrice", b =>
@@ -107,7 +109,7 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("PId");
 
-                    b.ToTable("BranchProductPrice", (string)null);
+                    b.ToTable("BranchProductPrice");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.BranchSupplier", b =>
@@ -160,7 +162,7 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("SpId");
 
-                    b.ToTable("BranchSupplier", (string)null);
+                    b.ToTable("BranchSupplier");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.FirmType", b =>
@@ -180,7 +182,7 @@ namespace RCMServerData.Migrations
                     b.HasKey("Id")
                         .HasName("pk_FirmType_id");
 
-                    b.ToTable("FirmType", (string)null);
+                    b.ToTable("FirmType");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.Product", b =>
@@ -228,7 +230,7 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("MenuListId");
 
-                    b.ToTable("Product", (string)null);
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.ProductCategory", b =>
@@ -258,7 +260,7 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("TopCatId");
 
-                    b.ToTable("ProductCategory", (string)null);
+                    b.ToTable("ProductCategory");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.ProductMenuList", b =>
@@ -279,7 +281,7 @@ namespace RCMServerData.Migrations
                     b.HasKey("Id")
                         .HasName("pk_ProductMenuList_id");
 
-                    b.ToTable("ProductMenuList", (string)null);
+                    b.ToTable("ProductMenuList");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.ProductSaleNote", b =>
@@ -301,7 +303,7 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("NoteCat");
 
-                    b.ToTable("ProductSaleNote", (string)null);
+                    b.ToTable("ProductSaleNote");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.ProductSaleNoteCategory", b =>
@@ -318,7 +320,7 @@ namespace RCMServerData.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductSaleNoteCategory", (string)null);
+                    b.ToTable("ProductSaleNoteCategory");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.Sale", b =>
@@ -393,7 +395,7 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("STId");
 
-                    b.ToTable("Sale", (string)null);
+                    b.ToTable("Sale");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.SaleDetail", b =>
@@ -457,7 +459,7 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("SId");
 
-                    b.ToTable("SaleDetail", (string)null);
+                    b.ToTable("SaleDetail");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.SaleType", b =>
@@ -469,12 +471,6 @@ namespace RCMServerData.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<short>("Id"));
 
-                    b.Property<bool?>("IsActive")
-                        .HasColumnType("boolean");
-
-                    b.Property<short?>("TopSTId")
-                        .HasColumnType("smallint");
-
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -483,9 +479,7 @@ namespace RCMServerData.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TopSTId");
-
-                    b.ToTable("SaleType", (string)null);
+                    b.ToTable("SaleType");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.Supplier", b =>
@@ -537,7 +531,7 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("Supplier", (string)null);
+                    b.ToTable("Supplier");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.SupplierFirmType", b =>
@@ -590,7 +584,7 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("SpId");
 
-                    b.ToTable("SupplierFirmType", (string)null);
+                    b.ToTable("SupplierFirmType");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.User", b =>
@@ -656,7 +650,7 @@ namespace RCMServerData.Migrations
                     b.HasKey("Id")
                         .HasName("pk_User_id");
 
-                    b.ToTable("User", (string)null);
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.UserBranchAuthority", b =>
@@ -693,7 +687,7 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("UId");
 
-                    b.ToTable("UserBranchAuthority", (string)null);
+                    b.ToTable("UserBranchAuthority");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.BranchProductPrice", b =>
@@ -846,17 +840,6 @@ namespace RCMServerData.Migrations
                     b.Navigation("UserMB");
                 });
 
-            modelBuilder.Entity("RCMServerData.Models.SaleType", b =>
-                {
-                    b.HasOne("RCMServerData.Models.SaleType", "TopSaleType")
-                        .WithMany("SubSaleTypes")
-                        .HasForeignKey("TopSTId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .HasConstraintName("FK_SubSubSaleTypes_TopSaleType_TopSTId");
-
-                    b.Navigation("TopSaleType");
-                });
-
             modelBuilder.Entity("RCMServerData.Models.Supplier", b =>
                 {
                     b.HasOne("RCMServerData.Models.User", "UserCB")
@@ -1000,8 +983,6 @@ namespace RCMServerData.Migrations
             modelBuilder.Entity("RCMServerData.Models.SaleType", b =>
                 {
                     b.Navigation("Sales");
-
-                    b.Navigation("SubSaleTypes");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.Supplier", b =>

@@ -9,16 +9,17 @@ namespace RCMServerData.Models
         public SaleType()
         {
             this.Sales = new HashSet<Sale>();
-            this.SaleType1 = new HashSet<SaleType>();
+            this.SubSaleTypes = new HashSet<SaleType>();
         }
 
-        public byte STId { get; set; }
+        public short Id { get; set; }
         public string? Type { get; set; }
-        public Nullable<byte> TopSTId { get; set; }
-        public Nullable<double> CutOffRate { get; set; }
+        public short? TopSTId { get; set; }
+        public bool? IsActive { get; set; }
 
-        public virtual ICollection<Sale> Sales { get; set; }
-        public virtual ICollection<SaleType> SaleType1 { get; set; }
-        public virtual SaleType? SaleType2 { get; set; }
+
+        public ICollection<Sale> Sales { get; set; }
+        public SaleType? TopSaleType { get; set; }
+        public ICollection<SaleType> SubSaleTypes { get; set; }
     }
 }

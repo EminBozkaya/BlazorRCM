@@ -18,6 +18,17 @@ namespace BlazorRCM.Server.Controllers
             Repo = repo;
         }
 
+
+
+        [HttpPost("GetById")]
+        public async Task<ServiceResponse<SaleDTO>> GetById([FromBody] int id)
+        {
+            return new ServiceResponse<SaleDTO>()
+            {
+                Value = await Repo.Get(x => x.Id==id )
+            };
+        }
+
         [HttpGet("GetList")]
         public async Task<ServiceResponse<List<SaleDTO>>> GetAll()
         {

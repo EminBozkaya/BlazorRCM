@@ -85,7 +85,9 @@ namespace BlazorRCM.Shared.Extensions
                 .ReverseMap();
 
             CreateMap<Sale, SaleDTO>()
-                .ForMember(x => x.UserFullName, y => y.MapFrom(z => z.User!.FirstName + " " + z.User.LastName));
+                .ForMember(x => x.UserFullName, y => y.MapFrom(z => z.User!.FirstName + " " + z.User.LastName))
+                .ForMember(x => x.ModifierFullName, y => y.MapFrom(z => z.UserMB!.FirstName + " " + z.UserMB.LastName))
+                .ForMember(x => x.DeleterFullName, y => y.MapFrom(z => z.UserDB!.FirstName + " " + z.UserDB.LastName));
             CreateMap<SaleDTO, Sale>();
 
             CreateMap<SaleDetail, SaleDetailDTO>()

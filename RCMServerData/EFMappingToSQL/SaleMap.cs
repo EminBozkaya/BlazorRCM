@@ -22,11 +22,24 @@ namespace RCMServerData.EFMappingToSQL
                 .ValueGeneratedOnAdd()
                 .UseIdentityAlwaysColumn();
 
+            builder.Property(x => x.DailyBillOrder)
+                .HasColumnName("DailyBillOrder")
+                .HasColumnType("int")
+                .ValueGeneratedOnAdd();
+
             builder.Property(x => x.DateTime)
                .HasColumnName("DateTime")
                .HasColumnType("timestamp")
                .HasDefaultValueSql("NOW()")
                .IsRequired();
+
+            builder.Property(x => x.ModifiedTime)
+               .HasColumnName("ModifiedTime")
+               .HasColumnType("timestamp");
+
+            builder.Property(x => x.DeletedTime)
+               .HasColumnName("DeletedTime")
+               .HasColumnType("timestamp");
 
             builder.Property(x => x.EOD)
                .HasColumnName("EOD")
@@ -46,9 +59,29 @@ namespace RCMServerData.EFMappingToSQL
                 .HasOne(e => e.User)
                 .WithMany(e => e.Sales)
                 .HasForeignKey(f => f.UId)
-                //.HasConstraintName("FK_Product_ProductCategory_CatId")
+                .HasConstraintName("FK_Sale_User_UId")
                 .OnDelete(DeleteBehavior.Cascade);
 
+            builder
+                .HasOne(e => e.UserMB)
+                .WithMany(e => e.SalesMB)
+                .HasForeignKey(f => f.ModifiedBy)
+                .HasConstraintName("FK_Sale_User_ModifiedBy")
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder
+                .HasOne(e => e.UserDB)
+                .WithMany(e => e.SalesDB)
+                .HasForeignKey(f => f.DeletedBy)
+                .HasConstraintName("FK_Sale_User_DeletedBy")
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder
+                .HasOne(e => e.SaleType)
+                .WithMany(e => e.Sales)
+                .HasForeignKey(f => f.STId)
+                //.HasConstraintName("FK_Product_ProductCategory_CatId")
+                .OnDelete(DeleteBehavior.Cascade);
 
 
             //builder.Property(x => x.BId)

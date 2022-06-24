@@ -12,10 +12,17 @@ namespace RCMServerData.Models
         }
 
         public int Id { get; set; }
+        public int? DailyBillOrder { get; set; }
         public short BId { get; set; }
-        //public short STId { get; set; }
+        public short? STId { get; set; }
         public DateTime DateTime { get; set; }
         public int UId { get; set; }
+        public int? ModifiedBy { get; set; }
+        public int? DeletedBy { get; set; }
+        public DateTime? ModifiedTime { get; set; }
+        public DateTime? DeletedTime { get; set; }
+        public bool? IsModified { get; set; }
+
         //public short? CTId { get; set; }
         //public int? CId { get; set; }
         public decimal TotalPrice { get; set; }
@@ -29,7 +36,10 @@ namespace RCMServerData.Models
         //public CaseType? CaseType { get; set; }
         //public Customer? Customer { get; set; }
         public User? User { get; set; }
-        //public SaleType? SaleType { get; set; }
+        public User? UserMB { get; set; }
+        public User? UserDB { get; set; }
+        public SaleType? SaleType { get; set; }
         public ICollection<SaleDetail> SaleDetails { get; set; }
+
     }
 }
