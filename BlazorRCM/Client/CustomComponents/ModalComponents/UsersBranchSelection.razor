@@ -17,8 +17,17 @@
 <style>
     .mud-dialog-width-sm {
     /* max-width: 600px; */
-    min-width: 400px;
+    min-width: 500px;
 }
+    .mud-dialog-width-md {
+        width: 500px;
+        height: 250px;
+    }
+
+    #title {
+        font-size: xx-large;
+    }
+
 </style>
 @code {
 
@@ -41,6 +50,7 @@
     {
         MudDialog!.Close(DialogResult.Ok(value));
     }
+    
     void Cancel() => MudDialog!.Cancel();
 
 }

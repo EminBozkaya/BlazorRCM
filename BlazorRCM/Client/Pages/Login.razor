@@ -11,23 +11,32 @@
     <MudForm Model="@userLoginRequest">
         <MudCardContent>
             <MudTextField @bind-Value="@userLoginRequest.UserName"
-                          Label="Kullanıcı Adı" />
+                          Label="Kullanıcı Adı" OnKeyUp="SubmitEnter" />
 
             <MudTextField @bind-Value="@userLoginRequest.Password"
-                          Label="Şifre" />
+                          Label="Şifre" OnKeyUp="SubmitEnter" />
 
         </MudCardContent>
 
     </MudForm>
 
     <MudCardActions>
-        <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Large" OnClick="@loginProcess" Style="margin-left:90px; width:130px; height:50px; border-radius:15px">Giriş</MudButton>
-        <MudButton Variant="Variant.Text"
-                   EndIcon="@Icons.Filled.QuestionMark"
-                   Color="Color.Error"
-                   Style="text-transform:none; margin-left: 100px;">
-            Şifremi Unuttum
-        </MudButton>
+        <SpinLoader IsLoading="@_elementIsLoading">
+            <LoadingTemplate>
+                <div class="col-12" style="vertical-align:middle">
+                    <Chase Center="true" Size="40px" Color="#F44336"></Chase>
+                </div>
+            </LoadingTemplate>
+            <ContentTemplate>
+                <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Large" OnClick="@loginProcess" Style="margin-left:90px; width:130px; height:50px; border-radius:15px">Giriş</MudButton>
+                <MudButton Variant="Variant.Text"
+                           EndIcon="@Icons.Filled.QuestionMark"
+                           Color="Color.Error"
+                           Style="text-transform:none; margin-left: 100px;">
+                    Şifremi Unuttum
+                </MudButton>
+            </ContentTemplate>
+        </SpinLoader>
     </MudCardActions>
 </MudCard>
 
@@ -55,91 +64,120 @@
     [Inject]
     public ISnackbar? Snackbar { get; set; }
 
+
     private UserLoginRequestDTO userLoginRequest = new UserLoginRequestDTO();
 
     protected List<BranchProductPriceDTO> BranchProductPriceList = new();
     protected List<ProductSaleNoteDTO> ProductSaleNoteList = new();
 
-    protected short BranchId = 1;//şimdilik
+    protected short BranchId;
+    protected bool _elementIsLoading;
 
+
+    private async Task SubmitEnter(KeyboardEventArgs args)
+    {
+        var code = args.Code;
+        if ((code == "NumpadEnter" || code == "Enter"))
+            await loginProcess();
+    }
     private async Task loginProcess()
     {
-        var httpReqRes = await Client!.PostAsJsonAsync("api/User/Login", userLoginRequest);
-
-        if (httpReqRes.IsSuccessStatusCode)
+        if (userLoginRequest.UserName != null && userLoginRequest.Password != null)
         {
-            try
+            _elementIsLoading = true;
+
+            var httpReqRes = await Client!.PostAsJsonAsync("api/User/Login", userLoginRequest);
+
+            if (httpReqRes.IsSuccessStatusCode)
             {
-                var res = (await httpReqRes.Content.ReadFromJsonAsync<ServiceResponse<UserLoginResponseDTO>>())!;
-
-                if (res.Success)
+                try
                 {
-                    await localStorageService!.SetItemAsync("token", res.Value!.ApiToken);
-                    await localStorageService.SetItemAsync("email", res.Value.User!.Email);
-                    await localStorageService.SetItemAsync("activeUserId", res.Value.User!.Id);
-                    //LocalStorageExtension.EMail = res.Value.User!.Email!;
-                    //string email = LocalStorageExtension.EMail;
-                    await localStorageService.SetItemAsync("fullname", res.Value.User!.FullName);
-                    await localStorageService!.SetItemAsync("themeModeSwitch", false);
+                    var res = (await httpReqRes.Content.ReadFromJsonAsync<ServiceResponse<UserLoginResponseDTO>>())!;
 
-                    (AuthenticationStateProvider as AuthStateProvider)!.NotifyUserLogin(res.Value.User.Email!);
-
-                    Client!.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", res.Value.ApiToken);
-
-
-                    //--------To Get and Set Active Users Other Info----------
-                    List<UserBranchAuthorityDTO> UBAs = new();
-                    List<short> userBranchIds = new();
-                    List<string> userBranchNames = new();
-                    List<short> userAuthorityTypeIds = new();
-
-                    UBAs = await Client!.PostGetServiceResponseAsync<List<UserBranchAuthorityDTO>, int>("api/UserBranchAuthority/GetListByUserId", res.Value.User.Id, true);
-
-                    for (int i = 0; i < UBAs.Count; i++)
+                    if (res.Success)
                     {
-                        userAuthorityTypeIds.Add(UBAs[i].ATId);
-                        userBranchIds.Add(UBAs[i].BId);
-                        userBranchNames.Add(UBAs[i].BranchName!);
-                    }
-                    await localStorageService!.SetItemAsync("userAuthorityTypeIds", userAuthorityTypeIds);
-                    await localStorageService.SetItemAsync("userBranchIds", userBranchIds);
-                    await localStorageService.SetItemAsync("userBranchNames", userBranchNames);
+                        await localStorageService!.SetItemAsync("token", res.Value!.ApiToken);
+                        await localStorageService.SetItemAsync("email", res.Value.User!.Email);
+                        await localStorageService.SetItemAsync("activeUserId", res.Value.User!.Id);
+                        //LocalStorageExtension.EMail = res.Value.User!.Email!;
+                        //string email = LocalStorageExtension.EMail;
+                        await localStorageService.SetItemAsync("fullname", res.Value.User!.FullName);
+                        await localStorageService!.SetItemAsync("themeModeSwitch", false);
 
-                    DialogOptions Options = new DialogOptions() { CloseOnEscapeKey = true, CloseButton = true };
-                    var dialog = DialogService!.Show<UsersBranchSelection>("ŞUBE SEÇİMİ", Options);
-                    var result = await dialog.Result;
-                    if (!result.Cancelled)
+                        (AuthenticationStateProvider as AuthStateProvider)!.NotifyUserLogin(res.Value.User.Email!);
+
+                        Client!.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", res.Value.ApiToken);
+
+
+                        //--------To Get and Set Active Users Other Info----------
+                        List<UserBranchAuthorityDTO> UBAs = new();
+                        List<short> userBranchIds = new();
+                        List<string> userBranchNames = new();
+                        List<short> userAuthorityTypeIds = new();
+
+                        UBAs = await Client!.PostGetServiceResponseAsync<List<UserBranchAuthorityDTO>, int>("api/UserBranchAuthority/GetListByUserId", res.Value.User.Id, true);
+
+                        for (int i = 0; i < UBAs.Count; i++)
+                        {
+                            userAuthorityTypeIds.Add(UBAs[i].ATId);
+                            userBranchIds.Add(UBAs[i].BId);
+                            userBranchNames.Add(UBAs[i].BranchName!);
+                        }
+                        await localStorageService!.SetItemAsync("userAuthorityTypeIds", userAuthorityTypeIds);
+                        await localStorageService.SetItemAsync("userBranchIds", userBranchIds);
+                        await localStorageService.SetItemAsync("userBranchNames", userBranchNames);
+
+                        DialogOptions Options = new DialogOptions() { CloseOnEscapeKey = true, CloseButton = true };
+                        _elementIsLoading = false;
+                        var dialog = DialogService!.Show<UsersBranchSelection>("ŞUBE SEÇİMİ", Options);
+                        var result = await dialog.Result;
+
+                        if (!result.Cancelled)
+                        {
+                            if (result.Data.ToString() != "Şube seçiniz")
+                            {
+                                int index = userBranchNames!.IndexOf((result.Data.ToString())!);
+                                BranchId = userBranchIds[index];
+                                await localStorageService!.SetItemAsync("activeBranchId", BranchId);
+                                await localStorageService!.SetItemAsync("activeBranchName", userBranchNames[index]);
+                                await localStorageService.SetItemAsync("activeAuthorityTypeId", userAuthorityTypeIds[index]);
+                                await LoadList();
+                                NavManeger!.NavigateTo("/");
+                            }
+                            else Snackbar!.Add("Devam edebilmek için şube seçmelisiniz", Severity.Warning);
+
+                        }
+                        else Snackbar!.Add("Devam edebilmek için şube seçmelisiniz", Severity.Warning);
+
+                    }
+                    else
                     {
-                        int index = userBranchNames!.IndexOf((result.Data.ToString())!);
-                        Console.WriteLine(index.ToString());
-
-                        BranchId = userBranchIds[index];
-                        await localStorageService!.SetItemAsync("activeBranchId", BranchId);
-                        await localStorageService!.SetItemAsync("activeBranchName", userBranchNames[index]);
-                        await localStorageService.SetItemAsync("activeAuthorityTypeId", userAuthorityTypeIds[index]);
-                        await LoadList();
-                        NavManeger!.NavigateTo("/");
+                        _elementIsLoading = false;
+                        await Sw!.FireAsync("Login Hatası", "Giriş başarısız", "error");
+                        NavManeger!.NavigateTo("/logout");
                     }
-                    else Snackbar!.Add("Devam edebilmek için şube seçmelisiniz", Severity.Warning);
-
                 }
-                else
+                catch (Exception ex)
                 {
-                    await Sw!.FireAsync("Login Hatası", "Giriş başarısız", "error");
-                    NavManeger!.NavigateTo("/logout");
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    _elementIsLoading = false;
                 }
             }
-            catch (Exception ex)
+            else if ((int)httpReqRes.StatusCode == 401)
             {
-                throw new Exception(ex.Message);
+                _elementIsLoading = false;
+                await Sw!.FireAsync("Başarısız", "yetkiniz yok", "error");
+            } 
+    else
+            {
+                _elementIsLoading = false;
+                await Sw!.FireAsync("Başarısız", "Böyle bir kullanıcı yok", "error");
             }
         }
-        else if ((int)httpReqRes.StatusCode == 401) await Sw!.FireAsync("Başarısız", "yetkiniz yok", "error");
-        else
-        {
-            await Sw!.FireAsync("Başarısız", "Böyle bir kullanıcı yok", "error");
-            //NavManeger.NavigateTo("/");
-        }
+
     }
 
     protected async Task LoadList()

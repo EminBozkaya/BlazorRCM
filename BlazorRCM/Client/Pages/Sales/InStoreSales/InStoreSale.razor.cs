@@ -170,7 +170,7 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                     DialogOptions closeOnEscapeKey = new DialogOptions() { CloseOnEscapeKey = true, MaxWidth = MaxWidth.Medium };
                     string? title = "Ürün Adeti Girin:";
                     var parameters = new DialogParameters();
-                    parameters.Add("IntValue", rowData.Quantity);
+                    parameters.Add("IntValue", Convert.ToInt32(rowData.Quantity));
                     parameters.Add("Max", 100);
                     parameters.Add("title", title);
 

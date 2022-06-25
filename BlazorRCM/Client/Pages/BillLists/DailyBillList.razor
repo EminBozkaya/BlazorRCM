@@ -52,9 +52,9 @@
                                 </GridEditSettings>
 
                                 <GridColumns>
-                                    <GridColumn Field=@nameof(SaleDTO.Id) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Visible="false"></GridColumn>
-                                    <GridColumn Field=@nameof(SaleDTO.DateTime) HeaderText="Zaman" TextAlign="TextAlign.Left" Width="15%" Type="ColumnType.Date" Format="HH:mm:ss"></GridColumn>
-                                    <GridColumn Field=@nameof(SaleDTO.TotalPrice) HeaderText="Tutar" TextAlign="TextAlign.Left" Width="20%"></GridColumn>
+                                    <GridColumn Field=@nameof(SaleDTO.Id) IsPrimaryKey="true" IsIdentity="true" HeaderText="ID" TextAlign="TextAlign.Left" Visible="true" Width="10%"></GridColumn>
+                                    <GridColumn Field=@nameof(SaleDTO.DateTime) HeaderText="Zaman" TextAlign="TextAlign.Left" Width="10%" Type="ColumnType.Date" Format="HH:mm:ss"></GridColumn>
+                                    <GridColumn Field=@nameof(SaleDTO.TotalPrice) HeaderText="Tutar" TextAlign="TextAlign.Left" Width="10%"></GridColumn>
                                     <GridColumn Field=@nameof(SaleDTO.UserFullName) HeaderText="Oluşturan" TextAlign="TextAlign.Left" Width="25%"></GridColumn>
                                     <GridColumn Field=@nameof(SaleDTO.ModifierFullName) HeaderText="Değiştiren" TextAlign="TextAlign.Left" Width="25%">
                                         <Template>
@@ -73,7 +73,7 @@
                                                 }
                                             </Template>
                                     </GridColumn>
-                                    <GridColumn Field=@nameof(SaleDTO.ModifiedTime) HeaderText="Değiştirilme Zamanı" TextAlign="TextAlign.Left" Width="15%" Type="ColumnType.Date" Format="HH:mm:ss">
+                                    <GridColumn Field=@nameof(SaleDTO.ModifiedTime) HeaderText="Değiştirilme Zamanı" TextAlign="TextAlign.Left" Width="20%" Type="ColumnType.Date" Format="HH:mm:ss">
                                         <Template>
                                                 @{
                                                     var dto = (context as SaleDTO);
