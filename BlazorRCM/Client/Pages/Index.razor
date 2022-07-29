@@ -1,5 +1,5 @@
 ﻿@page "/"
-
+@implements IAsyncDisposable
 
 <MudContainer Class="mt-4 px-4" MaxWidth="MaxWidth.ExtraExtraLarge">
     <MudGrid>
@@ -60,13 +60,13 @@
                 <MudPaper Elevation="2" Class="pa-4" Style="height: 150px;">
                     <MudStack>
                         <MudStack Row="true">
-                            <MudFab Color="Color.Primary" StartIcon="@Icons.Filled.PointOfSale" />
+                            <MudFab Color="Color.Primary" StartIcon="@Icons.Filled.PointOfSale" OnClick="Show" />
                             <MudText Class="my-auto" Typo="Typo.h5">Günlük Ciro : </MudText>
                             <MudText Class="my-auto" Typo="Typo.body2">(TL/Ad)</MudText>
                         </MudStack>
                         <MudStack Spacing="0" Row="true">
-                            <MudText Class="my-auto ml-auto" Typo="Typo.h4">6948,00 </MudText>&nbsp;&nbsp;
-                            <MudText Class="my-auto mr-auto" Typo="Typo.body1">/ 207</MudText>
+                            <MudText Class="my-auto ml-auto" Typo="Typo.h4">@dailyIncome </MudText>&nbsp;&nbsp;
+                            <MudText Class="my-auto mr-auto" Typo="Typo.body1">/ @dailyIncomeCount</MudText>
                         </MudStack>
                     </MudStack>
                 </MudPaper>
@@ -335,13 +335,5 @@
 
 
 @code {
-    private bool arrows = true;
-    private bool bullets = true;
-    private bool autocycle = false;
-    private Transition transition = Transition.Slide;
-
-    protected override void OnInitialized()
-    {
-        autocycle = true;
-    }
+   
 }

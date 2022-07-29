@@ -1,4 +1,5 @@
 using Blazored.LocalStorage;
+using BlazorRCM.Server.Hubs;
 using BlazorRCM.Server.Services.Business.EF;
 using BlazorRCM.Server.Services.Infrastructures;
 using BlazorRCM.Shared.DTOs.ModelDTOs;
@@ -7,6 +8,7 @@ using BlazorRCM.Shared.ValidationRules.FluentValidation.DTOs.ModelDTOs;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.IdentityModel.Tokens;
 using RCMServerData.EFContext;
 using System.Reflection;
@@ -46,6 +48,18 @@ builder.Services.AddRazorPages();
 builder.Services.ConfigureMapping();
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddSignalR();
+builder.Services.AddResponseCompression(opts =>
+{
+    opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+        new[] { "application/octet-stream" });
+});
+
+//builder.Services.AddCors(opt => opt.AddDefaultPolicy(policy =>
+// policy.AllowAnyMethod()
+// .AllowAnyHeader().AllowCredentials().SetIsOriginAllowed(origin => true)));
+
 
 #region MyRepos
 builder.Services.AddScoped<IAuthorityTypeRepo, EfAuthorityTypeRepo>();
@@ -89,6 +103,25 @@ builder.Services.AddAuthentication(opt =>
                     ValidAudience = builder.Configuration["JwtAudience"],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSecurityKey"]))
                 };
+                //options.Authority = "Authority URL";
+                //options.RequireHttpsMetadata = false;
+                //options.Events = new JwtBearerEvents
+                //{
+                //    OnMessageReceived = context =>
+                //    {
+                //        var accessToken = context.Request.Query["access_token"];
+
+                //        // If the request is for our hub...
+                //        var path = context.HttpContext.Request.Path;
+                //        if (!string.IsNullOrEmpty(accessToken) &&
+                //            (path.StartsWithSegments("/hubs/dashboarddailyincome")))
+                //        {
+                //            // Read the token out of the query string
+                //            context.Token = accessToken;
+                //        }
+                //        return Task.CompletedTask;
+                //    }
+                //};
             });
 
 
@@ -96,6 +129,8 @@ builder.Services.AddAuthentication(opt =>
 
 
 var app = builder.Build();
+//app.UseCors();
+app.UseResponseCompression();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -135,6 +170,7 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 app.MapControllers();
+app.MapHub<DashboardDailyIncomeHub>("/dashboarddailyincomehub");
 app.MapFallbackToFile("index.html");
 
 app.Run();

@@ -17,6 +17,7 @@ using Blazored.LocalStorage;
 using System.Text;
 using Append.Blazor.Printing;
 using System.Drawing.Printing;
+using Microsoft.AspNetCore.SignalR.Client;
 
 namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 {
@@ -45,6 +46,9 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 
         [Inject]
         public IJSRuntime? IJSInStoreSale { get; set; }
+
+        [Inject]
+        NavigationManager? NavigationManager { get; set; }
 
         private IJSObjectReference? _jsPrintModule;
         private IJSObjectReference? _jsInStoreSalePrintModule;
@@ -76,14 +80,19 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         protected Syncfusion.Blazor.Navigations.ClickEventArgs? clickevent;
 
         protected int billOrder;
+        private HubConnection? hubConnection;
+        private decimal dailyIncome;
+        private short dailyIncomeCount;
+        private List<SaleDTO> SaleList = new();
 
 
         protected async override Task OnInitializedAsync()
         {
             await LoadList();
-
+            await Connect();
             _jsPrintModule = await _jsPrintRuntime!.InvokeAsync<IJSObjectReference>("import", "./MyScripts/printDisplay.js");
             _jsInStoreSalePrintModule = await IJSInStoreSale!.InvokeAsync<IJSObjectReference>("import", "./MyScripts/PrintInStoreSaleBill.js");
+            StateHasChanged();
         }
         protected async Task LoadList()
         {
@@ -102,6 +111,23 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
             ProductSaleNoteList = await LocalStorageExtension.ProductSaleNoteList(LocalStorageService!);
             
             _elementIsLoading = false;
+        }
+        private async Task Connect()
+        {
+            hubConnection = new HubConnectionBuilder()
+                .WithUrl(NavigationManager!.ToAbsoluteUri("/dashboarddailyincomehub"))
+                .Build();
+
+            hubConnection.On<decimal, short>("NewDailyIncome", (Income, Count) =>
+            {
+                StateHasChanged();
+            }
+            );
+            await hubConnection.StartAsync();
+        }
+        public async ValueTask DisposeAsync()
+        {
+            if (hubConnection != null) await hubConnection.DisposeAsync();
         }
         public void ActionBegin(ActionEventArgs<InStoreSaleBillDTO> args)
         {
@@ -390,6 +416,8 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
                         setAggregate = false;
                         GridBillData = new List<InStoreSaleBillDTO>();
                         setAggregate = true;
+                        await Send();
+
                     }
                     catch (ApiException ex)
                     {
@@ -419,6 +447,22 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
             }
 
 
+        }
+        private async Task Send()
+        {
+            SaleList = await Client!.GetServiceResponseAsync<List<SaleDTO>>("api/Sale/GetListOfToday", true);
+            dailyIncomeCount = Convert.ToInt16(SaleList.Count);
+            foreach(SaleDTO dto in SaleList)
+            {
+                dailyIncome = dailyIncome + dto.TotalPrice;
+            }
+            if (hubConnection != null)
+            {
+                Console.WriteLine(dailyIncome.ToString());
+                Console.WriteLine(dailyIncomeCount.ToString());
+
+                await hubConnection.SendAsync("RefreshIncome", dailyIncome, dailyIncomeCount);
+            }
         }
 
         #region other datagrid func

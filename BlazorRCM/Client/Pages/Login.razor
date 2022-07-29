@@ -4,9 +4,12 @@
 @using BlazorRCM.Shared.Extensions
 @layout BlazorRCM.Client.Shared.LoginLayout
 
-<MudCard Style="border-radius:20px">
+<MudCard Style="border-radius: 60px;
+    margin: auto;
+    position: relative;
+    height:500px">
     @*<MudCard>*@
-    <MudCardMedia Image="MyImages/Login/LoginPanel.png" Height="250" Style="position:relative" />
+    <MudCardMedia Image="MyImages/Login/LoginPanel.png" Height="224" Style="background-size: contain;position:relative" />
 
     <MudForm Model="@userLoginRequest">
         <MudCardContent>
@@ -20,7 +23,7 @@
 
     </MudForm>
 
-    <MudCardActions>
+    <MudCardActions Style="display:table; margin:auto;padding-top: 30px">
         <SpinLoader IsLoading="@_elementIsLoading">
             <LoadingTemplate>
                 <div class="col-12" style="vertical-align:middle">
@@ -28,17 +31,18 @@
                 </div>
             </LoadingTemplate>
             <ContentTemplate>
-                <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Large" OnClick="@loginProcess" Style="margin-left:90px; width:130px; height:50px; border-radius:15px">Giriş</MudButton>
+                <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Large" OnClick="@loginProcess" Style="width:160px; height:65px; border-radius:45px;font-size: x-large">Giriş</MudButton>
                 <MudButton Variant="Variant.Text"
                            EndIcon="@Icons.Filled.QuestionMark"
                            Color="Color.Error"
-                           Style="text-transform:none; margin-left: 100px;">
+                           Style="text-transform:none; margin-left: 70px;">
                     Şifremi Unuttum
                 </MudButton>
             </ContentTemplate>
         </SpinLoader>
     </MudCardActions>
 </MudCard>
+
 
 @*EndIcon="fa-light fa-comment-question"*@
 @*<i class="fa-light fa-comment-question" style="color:red"></i>*@
@@ -129,25 +133,38 @@
 
                         DialogOptions Options = new DialogOptions() { CloseOnEscapeKey = true, CloseButton = true };
                         _elementIsLoading = false;
-                        var dialog = DialogService!.Show<UsersBranchSelection>("ŞUBE SEÇİMİ", Options);
-                        var result = await dialog.Result;
-
-                        if (!result.Cancelled)
+                        if (UBAs.Count > 1)
                         {
-                            if (result.Data.ToString() != "Şube seçiniz")
+                            var dialog = DialogService!.Show<UsersBranchSelection>("ŞUBE SEÇİMİ", Options);
+                            var result = await dialog.Result;
+
+                            if (!result.Cancelled)
                             {
-                                int index = userBranchNames!.IndexOf((result.Data.ToString())!);
-                                BranchId = userBranchIds[index];
-                                await localStorageService!.SetItemAsync("activeBranchId", BranchId);
-                                await localStorageService!.SetItemAsync("activeBranchName", userBranchNames[index]);
-                                await localStorageService.SetItemAsync("activeAuthorityTypeId", userAuthorityTypeIds[index]);
-                                await LoadList();
-                                NavManeger!.NavigateTo("/");
+                                if (result.Data.ToString() != "Şube seçiniz")
+                                {
+                                    int index = userBranchNames!.IndexOf((result.Data.ToString())!);
+                                    BranchId = userBranchIds[index];
+                                    await localStorageService!.SetItemAsync("activeBranchId", BranchId);
+                                    await localStorageService!.SetItemAsync("activeBranchName", userBranchNames[index]);
+                                    await localStorageService.SetItemAsync("activeAuthorityTypeId", userAuthorityTypeIds[index]);
+                                    await LoadList();
+                                    NavManeger!.NavigateTo("/");
+                                }
+                                else Snackbar!.Add("Devam edebilmek için şube seçmelisiniz", Severity.Warning);
+
                             }
                             else Snackbar!.Add("Devam edebilmek için şube seçmelisiniz", Severity.Warning);
-
                         }
-                        else Snackbar!.Add("Devam edebilmek için şube seçmelisiniz", Severity.Warning);
+                        else if (UBAs.Count == 1)
+                        {
+                            BranchId = userBranchIds[0];
+                            await localStorageService!.SetItemAsync("activeBranchId", BranchId);
+                            await localStorageService!.SetItemAsync("activeBranchName", userBranchNames[0]);
+                            await localStorageService.SetItemAsync("activeAuthorityTypeId", userAuthorityTypeIds[0]);
+                            await LoadList();
+                            NavManeger!.NavigateTo("/");
+                        }
+                        else await Sw!.FireAsync("Login Hatası", "İlgili kullanıcıya herhangi bir şube tanımlanmamış", "error");
 
                     }
                     else
@@ -170,8 +187,8 @@
             {
                 _elementIsLoading = false;
                 await Sw!.FireAsync("Başarısız", "yetkiniz yok", "error");
-            } 
-    else
+            }
+            else
             {
                 _elementIsLoading = false;
                 await Sw!.FireAsync("Başarısız", "Böyle bir kullanıcı yok", "error");
