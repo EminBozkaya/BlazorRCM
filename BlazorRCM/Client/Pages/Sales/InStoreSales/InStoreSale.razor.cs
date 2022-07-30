@@ -81,8 +81,7 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
 
         protected int billOrder;
         private HubConnection? hubConnection;
-        private decimal dailyIncome;
-        private short dailyIncomeCount;
+        
         private List<SaleDTO> SaleList = new();
 
 
@@ -114,6 +113,23 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         }
         private async Task Connect()
         {
+            //string token = await LocalStorageExtension.ApiToken(LocalStorageService!);
+            //if (token != null)
+            //{
+            //hubConnection = new HubConnectionBuilder()
+            //.WithUrl(NavigationManager!.ToAbsoluteUri("/dashboarddailyincomehub"), options =>
+            //{
+            //    //options.AccessTokenProvider = token;
+            //    options.AccessTokenProvider = () => Task.FromResult(token)!;
+            //})
+            //.Build();
+            //hubConnection.On<decimal, short>("NewDailyIncome", (Income, Count) =>
+            //{
+            //    StateHasChanged();
+            //});
+            //await hubConnection.StartAsync();
+            //}
+
             hubConnection = new HubConnectionBuilder()
                 .WithUrl(NavigationManager!.ToAbsoluteUri("/dashboarddailyincomehub"))
                 .Build();
@@ -121,8 +137,7 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
             hubConnection.On<decimal, short>("NewDailyIncome", (Income, Count) =>
             {
                 StateHasChanged();
-            }
-            );
+            });
             await hubConnection.StartAsync();
         }
         public async ValueTask DisposeAsync()
@@ -450,7 +465,9 @@ namespace BlazorRCM.Client.Pages.Sales.InStoreSales
         }
         private async Task Send()
         {
-            SaleList = await Client!.GetServiceResponseAsync<List<SaleDTO>>("api/Sale/GetListOfToday", true);
+            decimal dailyIncome=0;
+        short dailyIncomeCount=0;
+        SaleList = await Client!.GetServiceResponseAsync<List<SaleDTO>>("api/Sale/GetListOfToday", true);
             dailyIncomeCount = Convert.ToInt16(SaleList.Count);
             foreach(SaleDTO dto in SaleList)
             {

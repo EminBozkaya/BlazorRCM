@@ -68,23 +68,36 @@ namespace BlazorRCM.Client.Pages
         }
         private async Task Connect()
         {
-            //string token = "token";
-            string token = await LocalStorageExtension.ApiToken(LocalStorageService!);
-            if (token != null)
+            //string token = await LocalStorageExtension.ApiToken(LocalStorageService!);
+            //if (token != null)
+            //{
+            //hubConnection = new HubConnectionBuilder()
+            //.WithUrl(NavigationManager!.ToAbsoluteUri("/dashboarddailyincomehub"), options =>
+            //{
+            //    //options.AccessTokenProvider = token;
+            //    options.AccessTokenProvider = () => Task.FromResult(token)!;
+            //})
+            //.Build();
+            //hubConnection.On<decimal, short>("NewDailyIncome", (Income, Count) =>
+            //{
+            //    StateHasChanged();
+            //});
+            //await hubConnection.StartAsync();
+            //}
+
+
+            hubConnection = new HubConnectionBuilder()
+            .WithUrl(NavigationManager!.ToAbsoluteUri("/dashboarddailyincomehub"))
+            .Build();
+
+            hubConnection.On<decimal, short>("NewDailyIncome", (Income, Count) =>
             {
-                hubConnection = new HubConnectionBuilder()
-                .WithUrl(NavigationManager!.ToAbsoluteUri("/dashboarddailyincomehub"), options =>
-                {
-                    //options.AccessTokenProvider = token;
-                    options.AccessTokenProvider = () => Task.FromResult(token)!;
-                })
-                .Build();
-                hubConnection.On<decimal, short>("NewDailyIncome", (Income, Count) =>
-                {
-                    StateHasChanged();
-                });
-                await hubConnection.StartAsync();
-            }
+                dailyIncome = Income;
+                dailyIncomeCount = Count;
+                StateHasChanged();
+            });
+
+            await hubConnection.StartAsync();
 
         }
 

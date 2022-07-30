@@ -104,7 +104,7 @@ builder.Services.AddAuthentication(opt =>
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSecurityKey"]))
                 };
                 //options.Authority = "Authority URL";
-                //options.RequireHttpsMetadata = false;
+                ////options.RequireHttpsMetadata = false;
                 //options.Events = new JwtBearerEvents
                 //{
                 //    OnMessageReceived = context =>
@@ -124,6 +124,11 @@ builder.Services.AddAuthentication(opt =>
                 //};
             });
 
+//builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
+//                            policy.AllowAnyMethod()
+//                                  .AllowAnyHeader()
+//                                  .AllowCredentials()
+//                                  .SetIsOriginAllowed(origin => true)));
 
 
 
