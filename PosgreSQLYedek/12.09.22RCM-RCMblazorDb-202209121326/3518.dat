@@ -1,0 +1,206 @@
+INSERT INTO public."SaleDetail" VALUES ('9db816fa-284e-46a1-985c-66b87fb7880d', 53, 13, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('b31c8ed1-8964-484a-ae90-eae55ad02d49', 12, 1, 22.00, 1, 1, 22.00, NULL, NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('8a4c14af-caad-4d76-bfd4-31ad90f27fd2', 12, 2, 22.00, 1, 3, 66.00, NULL, NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('2b24ebaa-3d34-46c6-91b4-ebb3f2b90389', 12, 10, 45.00, 0.5, 1, 22.50, NULL, NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('f1112bb0-09b5-45e4-82bb-ced5db5c1917', 13, 11, 37.00, 1, 1, 37.00, NULL, NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('8c4bbcdc-16eb-49af-a473-bda8fc5490f2', 13, 10, 45.00, 1, 1, 45.00, NULL, NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('9d4f0972-5187-4c86-a476-6541b374ee00', 15, 1, 22.00, 1, 1, 22.00, NULL, NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('4dcc1ffe-bfee-4ed3-b181-43e7ede3ef41', 15, 2, 22.00, 1, 1, 22.00, NULL, NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('a174db04-52bb-4320-b63e-a3bfe8aec6d1', 15, 3, 32.00, 1, 1, 32.00, NULL, NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('72f13578-6de3-410e-b277-8c7097ae951a', 15, 4, 35.00, 1, 1, 35.00, NULL, NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('5be9c538-1583-41c1-80f5-91e56c77fbf5', 55, 21, 20.00, 1, 1, 20.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 0);
+INSERT INTO public."SaleDetail" VALUES ('2984459e-2047-4cab-9d94-0eaaefc9e1b5', 55, 21, 20.00, 1, 1, 20.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('d57e263f-47ec-4b58-b6f3-a42bd3c3fa67', 18, 1, 22.00, 1, 3, 66.00, '-Bol Sos
+  1 x Turşusuz
+  1 x Patatessiz
+  1 x Yeşilliksiz
+', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('50c2c85a-44e2-4571-8a3b-087beefe4641', 18, 2, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('f3115029-0d7f-46a1-8b92-e9b173c78f9b', 18, 3, 32.00, 2, 1, 64.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('d008c7ae-3e32-4ab7-bdd3-82dc49e8a5f3', 55, 21, 20.00, 1, 1, 20.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('f3f4bd15-4e63-4f3a-a0ae-16ec62ca5440', 55, 21, 20.00, 1, 1, 20.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('a72d6e84-b1d2-4e03-9ac1-9fd48e88e415', 55, 28, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" VALUES ('2f75c6a5-55c2-45a5-9197-8861194fc157', 25, 16, 38.00, 1, 1, 38.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('d583e5af-806b-4dcb-bdca-1fcaf0f0615b', 26, 20, 49.00, 1, 1, 49.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('d203f7ed-38a1-4621-9e84-f42b528224b4', 27, 24, 2.00, 1, 1, 2.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('04deb6a4-36a5-4443-ba27-57148384a933', 28, 17, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('5c40684e-97c4-429a-89e8-99f56bbfde23', 29, 2, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('15e02640-9ee6-45dd-b6a6-4f1eb2bc43d6', 31, 2, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('132f6ddb-5bcf-4b3b-956a-bacf182a19af', 33, 41, 2.00, 1, 1, 2.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('ebea1c2f-ea43-43ef-a5b7-75e9dddd219b', 34, 9, 42.00, 1, 1, 42.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('4c358aab-22c5-487f-920b-aa8013a4662e', 35, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('b591fe65-8675-41b5-b3c8-5b9b339d8f8d', 36, 2, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('b6269594-4ef3-4852-ac03-96ab15bd4021', 24, 24, 2.00, 1, 1, 2.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 0);
+INSERT INTO public."SaleDetail" VALUES ('c3aecb52-7529-41ce-8cf2-a18fd06b4f4c', 24, 1, 22.00, 1, 1, 22.00, '-Bol Sos
+', NULL, NULL, true, NULL, 'Bol Sos', NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('14c20623-d967-4fb0-990b-6f7ce4cb66e7', 38, 1, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('119765f7-7500-4e6c-be9d-974ccf7f9864', 38, 12, 32.00, 1, 5, 160.00, '-Sossuz
+  1 x Bol Turşu
+  1 x Patatessiz
+  1 x Az Domates
+', NULL, NULL, true, NULL, 'Az Domates', NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('939f7548-d0c8-4222-a1c9-44fa2f2fa7d2', 39, 1, 22.00, 1, 5, 110.00, '-Mayonezsiz
+  1 x Bol Mayonez
+  1 x Az Mayonez
+  1 x İlave Domates
+', NULL, NULL, true, NULL, 'İlave Domates', NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('22139e8d-6837-4f2c-9603-695d8245c65b', 39, 6, 24.00, 1, 1, 24.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('8f2dcdde-61f5-46f0-a042-fe2f303d916e', 39, 43, 4.50, 1, 1, 4.50, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('2b7bacb3-ce22-401d-9abb-652c4dafaa07', 39, 42, 6.00, 1, 1, 6.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('6ce6bdf1-de40-4278-9ae4-ba1bb8bbaa09', 40, 11, 37.00, 1, 3, 111.00, '-Bol Sos
+  1 x Mayonezsiz
+  1 x Turşusuz
+  1 x Patatessiz
+', NULL, NULL, true, 'Mayonezsiz', 'Bol Sos', 'Turşusuz', 'Patatessiz', NULL);
+INSERT INTO public."SaleDetail" VALUES ('c57dbe60-62e3-4317-a576-bb857f677aa7', 40, 41, 2.00, 1, 1, 2.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" VALUES ('d2a548e7-b13e-4bde-800c-40d18974c43b', 41, 2, 22.00, 1, 4, 88.00, '-Sossuz
+  1 x Bol Mayonez
+  1 x Bol Turşu
+  1 x Bol Patates
+', NULL, NULL, true, 'Bol Mayonez', 'Sossuz', 'Bol Turşu', 'Bol Patates', 0);
+INSERT INTO public."SaleDetail" VALUES ('e7c9d387-2ef0-4034-9241-dfe9c1774a22', 41, 43, 4.50, 1, 1, 4.50, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('3a06e2d4-bc52-49be-a4b2-7fd6ec1a7857', 41, 11, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('e3f8947f-49b7-4c40-b47e-869b4334c4a8', 41, 30, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('08a25614-4177-4098-817c-827d5ef89f7f', 41, 13, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" VALUES ('910de146-b844-4772-a954-ada2295cf848', 41, 23, 10.00, 1, 1, 10.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 5);
+INSERT INTO public."SaleDetail" VALUES ('8c6a4a5c-25b5-4ade-ace7-e5328d424c11', 42, 1, 22.00, 1, 1, 22.00, '-Bol Patates
+', NULL, NULL, true, NULL, 'Bol Patates', NULL, NULL, 0);
+INSERT INTO public."SaleDetail" VALUES ('ead66e82-7e37-41b5-9c90-439ae3a106d6', 42, 2, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('f295f2f9-8681-4b27-a881-850dd47c666c', 42, 3, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('8a21f23c-89ff-4c2c-84c5-4e50c206baa7', 24, 26, 9.00, 1, 2, 18.00, '  1 x max
+', NULL, NULL, true, 'max', NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('3599b897-45f5-4542-8ef1-679deb1bce74', 24, 29, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('a9436743-6e2d-4c8f-b70f-2bba6ac832fa', 24, 30, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" VALUES ('ccd0861c-095b-4e3e-9f92-6310fad3e74f', 24, 41, 2.00, 1, 1, 2.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 5);
+INSERT INTO public."SaleDetail" VALUES ('2d3f2068-eef7-4a25-b642-44068ece90ae', 56, 12, 32.00, 1, 1, 32.00, '-Bol Sos
+', NULL, NULL, true, NULL, 'Bol Sos', NULL, NULL, 0);
+INSERT INTO public."SaleDetail" VALUES ('9a15a181-a3ce-46c7-8745-42a63269df99', 56, 44, 4.00, 1, 1, 4.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('97668b83-2f3c-4cf9-bad8-327d75bd77df', 56, 14, 34.00, 1, 12, 408.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('7cce1142-1b9a-4f00-9224-f1c1643c9ec7', 57, 1, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('65a07e2a-289b-47d7-b3d6-95b67043292d', 57, 2, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('dcb66b66-18b6-4bc9-87c8-a2cf9dfb8cf0', 57, 3, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('3583356d-c814-4a77-a05e-63a9d96acd39', 57, 4, 35.00, 1, 1, 35.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" VALUES ('ab5e63f9-3e5d-492d-8c7e-edd5f5a2bd8b', 58, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('c2992224-7a38-492e-a560-e33e03da325b', 58, 17, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('7d3f6068-bdbe-40a5-8bc8-564ad1513645', 58, 12, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('cb4c4e23-5d70-4141-9fb8-17f15c514ad8', 59, 44, 4.00, 1, 1, 4.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('05e67ae8-79a2-4412-8b2e-29311ec63622', 59, 43, 4.50, 1, 1, 4.50, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('b5fc03b3-978d-4099-ad00-3b9f86d50a13', 30, 1, 22.00, 1, 1, 22.00, '-Sossuz
+', NULL, NULL, true, NULL, 'Sossuz', NULL, NULL, 0);
+INSERT INTO public."SaleDetail" VALUES ('87f2db91-6835-4d31-adfe-816ffb8262e3', 45, 4, 35.00, 1, 1, 35.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('870052c3-50a9-4e15-b62f-0e9087bcdafa', 45, 7, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('8c072836-6b89-4e13-8ea7-28759188cee1', 45, 12, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('18c4d6f4-d71f-4533-8860-2ca758922e6d', 46, 1, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('f4e8ecc0-cf53-4c47-8d1d-d02fb229754d', 46, 2, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('4f0f90b6-31eb-4e73-b5a8-5940261dfb62', 46, 3, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('1206c543-9efd-44fc-9152-2b0ee07a95f2', 46, 4, 35.00, 1, 1, 35.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" VALUES ('60de3297-9eed-4b15-acb6-7266a2f828dd', 46, 5, 27.00, 1, 1, 27.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 5);
+INSERT INTO public."SaleDetail" VALUES ('2459811c-54ad-4f70-b0ac-38eded6d4b4b', 46, 6, 24.00, 1, 1, 24.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 6);
+INSERT INTO public."SaleDetail" VALUES ('7f0e67fa-defc-403b-b043-56aebc1c35ab', 46, 13, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 7);
+INSERT INTO public."SaleDetail" VALUES ('75a8d447-d9f6-4f53-b302-4b662a1fac1e', 46, 44, 4.00, 1, 1, 4.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 8);
+INSERT INTO public."SaleDetail" VALUES ('472b9c7c-4081-41bd-99c1-30b98eaea9b7', 46, 43, 4.50, 1, 1, 4.50, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 9);
+INSERT INTO public."SaleDetail" VALUES ('e981d2c1-7215-4f85-b0c2-aa42fb15999e', 46, 42, 6.00, 1, 1, 6.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 10);
+INSERT INTO public."SaleDetail" VALUES ('c10ee566-56b5-4913-a731-fe20e35504b1', 46, 41, 2.00, 1, 1, 2.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 11);
+INSERT INTO public."SaleDetail" VALUES ('42f4f2c4-247b-4637-b883-4d79ef070838', 46, 30, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 12);
+INSERT INTO public."SaleDetail" VALUES ('a137266a-5e8a-4d50-a338-a4ed287dfa75', 50, 1, 22.00, 1, 4, 88.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 0);
+INSERT INTO public."SaleDetail" VALUES ('9ed4d828-d3ad-4fe5-8ff0-52958fc1200a', 50, 26, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('72924dd3-46a5-43fc-9fc0-9564db44cde4', 51, 26, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 0);
+INSERT INTO public."SaleDetail" VALUES ('7da23812-e01d-40a5-a4fb-a277d0986bbb', 51, 29, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('855a2156-d2ca-4c21-92a4-ba2215f6ac44', 51, 30, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('46449643-af54-4ed5-9bcf-188bb6d32818', 51, 41, 2.00, 1, 1, 2.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('3d5be269-bd0c-4c60-80eb-8059a32ea720', 51, 4, 35.00, 1, 1, 35.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" VALUES ('a3369cd2-6cf1-48ce-98e0-0583038a0109', 52, 7, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 0);
+INSERT INTO public."SaleDetail" VALUES ('6c864d61-2d74-4f83-aed6-eaf52f101801', 52, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('b489da90-2146-4e75-b69f-e067fe71e7e3', 52, 9, 42.00, 1, 1, 42.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('95ec3426-5846-4046-b51a-a46966fbc648', 52, 1, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('6f3c097c-1f0f-4fcd-8e3a-7615fdfdb918', 59, 42, 6.00, 1, 1, 6.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('0bf2807d-a0b2-4ff5-acf2-cabb585cf7f5', 59, 41, 2.00, 1, 1, 2.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" VALUES ('346bf438-c7e2-4f13-a29c-3cf6def6b294', 59, 30, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 5);
+INSERT INTO public."SaleDetail" VALUES ('827fa972-a4bd-4c13-bcc7-adb221c0057c', 59, 13, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 6);
+INSERT INTO public."SaleDetail" VALUES ('98de56ac-e25d-425f-821b-ddd9f7e379c1', 59, 12, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 7);
+INSERT INTO public."SaleDetail" VALUES ('27191501-c7da-4796-99f7-476f8451628a', 59, 11, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 8);
+INSERT INTO public."SaleDetail" VALUES ('cf18ee72-943c-4db1-9ad8-ecd98e9eca3b', 59, 10, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 9);
+INSERT INTO public."SaleDetail" VALUES ('965dd0fc-ca17-4ab0-aef5-331ddf6304ee', 61, 1, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('20465e88-e2f0-41f4-ab0a-f8e6c0dc5fe8', 61, 6, 24.00, 1, 1, 24.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('5407dc67-0c07-4fc2-8f2b-73180c3644bd', 61, 9, 42.00, 1, 1, 42.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('d6390769-b889-4843-9694-21a6e4f2ee56', 61, 18, 42.00, 1, 1, 42.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" VALUES ('8e68bfcb-77e9-4ac8-a51e-9d843ff914ae', 61, 10, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 5);
+INSERT INTO public."SaleDetail" VALUES ('9f64de1b-1ee2-4504-89a9-6592385b910a', 61, 11, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 6);
+INSERT INTO public."SaleDetail" VALUES ('f9d33f14-60e2-4588-bfe4-169efeeebe43', 62, 1, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('71b9d613-7d1b-48c6-8ffd-b308d11f9560', 62, 7, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('48514cd8-9201-4354-82c3-ac04f7e02d7f', 62, 12, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('9f4470c2-fece-4fea-80b4-8c3d97007f62', 62, 17, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" VALUES ('88cbc7bd-2024-47e8-bab4-8e146e8d3d41', 62, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 5);
+INSERT INTO public."SaleDetail" VALUES ('a601f44c-2269-4875-b940-a61c9abc26f2', 62, 11, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 6);
+INSERT INTO public."SaleDetail" VALUES ('4b068f57-7000-4740-b4ff-f59a0cd245ab', 63, 26, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('72decd56-c9e4-4975-8804-c7e152050f87', 63, 29, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('e15b55cd-712c-4a13-a368-b61e49d28048', 63, 30, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('b288a1f6-06e2-4b24-9135-03989ca0e3bb', 63, 41, 2.00, 1, 1, 2.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" VALUES ('fa2a3fa7-5c44-4659-a110-41e482d011c6', 63, 42, 6.00, 1, 1, 6.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 5);
+INSERT INTO public."SaleDetail" VALUES ('6f7b2fcd-11c8-4e58-8c12-7d9b83e2722c', 63, 43, 4.50, 1, 1, 4.50, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 6);
+INSERT INTO public."SaleDetail" VALUES ('dfa92d96-bf30-4897-bfb4-e2f318e8f563', 63, 12, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 7);
+INSERT INTO public."SaleDetail" VALUES ('a5c29702-babe-407f-a4a2-85fc45ff5d13', 63, 11, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 8);
+INSERT INTO public."SaleDetail" VALUES ('b71f214d-8ce9-4f5f-b3ee-532b3598e7f7', 63, 10, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 9);
+INSERT INTO public."SaleDetail" VALUES ('514687b5-b8b4-4fe3-a674-b91f76e7599d', 64, 7, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('a507655b-551d-4443-b0a1-a6ee6f5371d6', 64, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('b4ba6275-a448-4413-831c-844e2c6075a4', 64, 17, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('1d5f82ed-6d07-4dae-90f2-20a7d813da88', 64, 12, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" VALUES ('fc3205ee-f690-4057-94ab-bda27266eb19', 64, 11, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 5);
+INSERT INTO public."SaleDetail" VALUES ('a4ae6335-9a31-497c-8af7-520fe8a6aa83', 65, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('9b95c8e5-68d0-4897-a38b-11acc2793c5b', 65, 7, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('c39949c3-8a60-4578-93c7-be12f006db3d', 65, 12, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('6eef3033-f739-4799-b0f4-64ddc1a103de', 65, 17, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" VALUES ('39da4578-3aea-4c10-a401-622f14a3d011', 66, 7, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('2cb4ce96-62ef-4cf0-aa26-d6b0cbc0d528', 66, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('a0488c8a-32fe-40db-a9a7-89b0896123f5', 66, 17, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('170fa50a-cc39-4054-a444-05efb06e2ba2', 66, 12, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" VALUES ('e2da233c-06fd-45e3-9184-797145fea1b0', 66, 11, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 5);
+INSERT INTO public."SaleDetail" VALUES ('6e46fa0c-8cdd-430a-824b-bcffc5fac56c', 67, 1, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('60edff0f-b3cf-452a-a0e4-a82c187f6fda', 67, 3, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('b8d97ff1-cacc-463b-93d1-5c431d6defc8', 67, 8, 30.00, 1, 1, 30.00, '-Mayonezsiz, Turşusuz
+  1 x Domatessiz, Bol Domates
+', NULL, NULL, true, 'Domatessiz
+Bol Domates', 'Mayonezsiz
+Turşusuz', NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('0e93e7e2-5858-4e33-8757-102faf071573', 68, 1, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('592778e6-7528-4e62-80bd-43f8559f70ab', 68, 14, 34.00, 1, 1, 34.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('7c586b63-fee1-491b-813c-e4bc68a2c5d7', 69, 4, 35.00, 1, 1, 35.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('6cd68083-8bcf-4c6b-995a-accb299faa91', 69, 7, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('65d73035-1c31-4590-bbeb-215274ff1156', 69, 12, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('40cd0fd1-c425-452f-b73b-f7e28d05a6aa', 70, 5, 27.00, 1, 1, 27.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('7646fc75-94f2-499e-96d7-c840df0f75cb', 70, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('73285799-7760-4f73-9234-b91c3046dc2f', 71, 44, 4.00, 1, 1, 4.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('1a913b01-50fa-45b4-b67b-c0a123bc96b3', 72, 13, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('36a5b0eb-ba0d-441c-a8c7-fd10f375511a', 72, 12, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('5a7b1b16-5bd9-414f-9a70-99f9de1191a1', 73, 11, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('bf0f41d6-48e3-43b3-b117-f624c62d2e85', 73, 6, 24.00, 1, 3, 72.00, '-Sossuz
+  1 x Turşusuz
+  1 x Domatessiz
+  1 x Bol Yeşillik
+', NULL, NULL, true, 'Turşusuz', 'Sossuz', 'Domatessiz', 'Bol Yeşillik', 2);
+INSERT INTO public."SaleDetail" VALUES ('c5578447-ea45-481c-bd2b-d33344576a4c', 74, 1, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('ed61a984-ce30-4179-bc10-76ca997e4cac', 74, 2, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('4fefeca4-fa09-442a-8a40-78689441c8f5', 75, 5, 27.00, 1, 1, 27.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('7070faaa-15fe-44be-ae4e-71c414c1955b', 75, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('53340dc6-70f0-4c2d-a8cb-90053c28927b', 75, 17, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('7bdb7765-031e-4b57-8787-0ef785b1b2d8', 76, 5, 27.00, 1, 1, 27.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('e70389d9-996b-4c81-82fc-2ed0871c8d54', 76, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('e870e9bf-3c23-46d0-9872-5b247ac99805', 76, 17, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('3db47ea1-5979-485f-968d-d8b498defbbd', 77, 5, 27.00, 1, 1, 27.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('686db3a2-e2a0-40b4-99df-00078dad96d7', 77, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('e200d636-736d-4467-9b48-9c014fe51823', 77, 17, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('30246ff8-0d11-42f1-92b7-9d058893f4fd', 78, 41, 2.00, 1, 1, 2.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('3cfe9eed-18f9-4d64-be47-050229c57a82', 78, 23, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('8e8700e8-32e7-4013-8954-ad2978ff363b', 78, 21, 20.00, 1, 1, 20.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" VALUES ('3368d6d5-af31-4ab9-a6aa-2e51cee1345e', 79, 44, 4.00, 1, 1, 4.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('3e0e21b5-4f73-4741-951e-104ef7f50403', 79, 21, 20.00, 1, 1, 20.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('af8b860d-f336-4c1b-a3d4-e1303041505b', 80, 25, 4.00, 1, 1, 4.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('33bd97f9-f304-4542-9aee-5c85ef933132', 81, 25, 4.00, 1, 1, 4.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('9c6e836e-38cc-4d92-85cd-6f9423d6c67c', 82, 43, 4.50, 1, 1, 4.50, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('fd776bda-2233-43c8-bed5-3016b8d0ab05', 82, 44, 4.00, 1, 1, 4.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" VALUES ('adcc575d-a9e3-435c-bff3-fe66371b6d59', 83, 7, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('947f34f0-2673-4876-8ede-7ef79a92a27e', 84, 11, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('849d3b2e-3b16-4ce6-a169-2c7b6a72cc37', 85, 17, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" VALUES ('0ccaf7c3-6271-490a-adcc-f9a64722fb37', 86, 5, 27.00, 1, 1, 27.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+
+

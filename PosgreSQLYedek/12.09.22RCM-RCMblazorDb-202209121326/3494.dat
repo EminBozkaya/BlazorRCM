@@ -1,0 +1,17 @@
+INSERT INTO public."__EFMigrationsHistory" VALUES ('20220420200154_RCMblazorFirstMig', '6.0.2');
+INSERT INTO public."__EFMigrationsHistory" VALUES ('20220421201504_BranchProductPrice', '6.0.2');
+INSERT INTO public."__EFMigrationsHistory" VALUES ('20220421222336_SaleAndSaleDetail', '6.0.2');
+INSERT INTO public."__EFMigrationsHistory" VALUES ('20220422123802_AddColorCodeToProduct', '6.0.2');
+INSERT INTO public."__EFMigrationsHistory" VALUES ('20220422203612_ProductMenuList', '6.0.2');
+INSERT INTO public."__EFMigrationsHistory" VALUES ('20220427194608_addProductSaleNote', '6.0.2');
+INSERT INTO public."__EFMigrationsHistory" VALUES ('20220428122123_ProductSaleNoteCategory', '6.0.2');
+INSERT INTO public."__EFMigrationsHistory" VALUES ('20220617130104_addTotalPriceToSale', '6.0.2');
+INSERT INTO public."__EFMigrationsHistory" VALUES ('20220619140843_AddingProductNotesToSaleDetailTable', '6.0.2');
+INSERT INTO public."__EFMigrationsHistory" VALUES ('20220620121852_addBillOrderColumnToSaleDetail', '6.0.2');
+INSERT INTO public."__EFMigrationsHistory" VALUES ('20220622120004_ChangeDateOnlyToDateTimeInSaleTable', '6.0.2');
+INSERT INTO public."__EFMigrationsHistory" VALUES ('20220622120633_ChangeDateTimeToDateInSaleTable', '6.0.2');
+INSERT INTO public."__EFMigrationsHistory" VALUES ('20220624151151_Change_Sale_and_Add_SaleType', '6.0.2');
+INSERT INTO public."__EFMigrationsHistory" VALUES ('20220624152604_Add_TopSTId_To_SaleType', '6.0.2');
+INSERT INTO public."__EFMigrationsHistory" VALUES ('20220624153337_defineMappingOnSaleTypesForeignKey', '6.0.2');
+
+

@@ -1,0 +1,8 @@
+INSERT INTO public."ProductSaleNoteCategory" OVERRIDING SYSTEM VALUE VALUES (1, 'Bol');
+INSERT INTO public."ProductSaleNoteCategory" OVERRIDING SYSTEM VALUE VALUES (2, 'Az');
+INSERT INTO public."ProductSaleNoteCategory" OVERRIDING SYSTEM VALUE VALUES (3, 'Çıkar');
+INSERT INTO public."ProductSaleNoteCategory" OVERRIDING SYSTEM VALUE VALUES (4, 'İlave');
+INSERT INTO public."ProductSaleNoteCategory" OVERRIDING SYSTEM VALUE VALUES (5, 'Lavaş');
+INSERT INTO public."ProductSaleNoteCategory" OVERRIDING SYSTEM VALUE VALUES (6, 'Diğer');
+
+

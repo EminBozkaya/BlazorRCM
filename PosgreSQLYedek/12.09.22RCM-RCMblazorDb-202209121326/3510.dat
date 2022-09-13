@@ -1,0 +1,9 @@
+INSERT INTO public."UserBranchAuthority" OVERRIDING SYSTEM VALUE VALUES (3, 2, 3, 6, true);
+INSERT INTO public."UserBranchAuthority" OVERRIDING SYSTEM VALUE VALUES (4, 5, 4, 2, true);
+INSERT INTO public."UserBranchAuthority" OVERRIDING SYSTEM VALUE VALUES (5, 3, 4, 1, true);
+INSERT INTO public."UserBranchAuthority" OVERRIDING SYSTEM VALUE VALUES (6, 4, 1, 5, true);
+INSERT INTO public."UserBranchAuthority" OVERRIDING SYSTEM VALUE VALUES (1, 9, 2, 3, true);
+INSERT INTO public."UserBranchAuthority" OVERRIDING SYSTEM VALUE VALUES (2, 9, 5, 4, true);
+INSERT INTO public."UserBranchAuthority" OVERRIDING SYSTEM VALUE VALUES (7, 6, 2, 3, true);
+
+

@@ -1,0 +1,8 @@
+INSERT INTO public."SaleType" OVERRIDING SYSTEM VALUE VALUES (1, 'İçeri Satışı', true, NULL);
+INSERT INTO public."SaleType" OVERRIDING SYSTEM VALUE VALUES (2, 'Paket Satışı', true, NULL);
+INSERT INTO public."SaleType" OVERRIDING SYSTEM VALUE VALUES (3, 'Telefon Satışı', true, 2);
+INSERT INTO public."SaleType" OVERRIDING SYSTEM VALUE VALUES (4, 'Yemek Sepeti', true, 2);
+INSERT INTO public."SaleType" OVERRIDING SYSTEM VALUE VALUES (5, 'Getir Yemek', true, 2);
+INSERT INTO public."SaleType" OVERRIDING SYSTEM VALUE VALUES (6, 'Trendyol Yemek', true, 2);
+
+

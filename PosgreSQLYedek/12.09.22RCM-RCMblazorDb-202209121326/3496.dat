@@ -1,0 +1,10 @@
+INSERT INTO public."AuthorityType" OVERRIDING SYSTEM VALUE VALUES (1, 'Marka Sahibi');
+INSERT INTO public."AuthorityType" OVERRIDING SYSTEM VALUE VALUES (2, 'CEO');
+INSERT INTO public."AuthorityType" OVERRIDING SYSTEM VALUE VALUES (3, 'MYK');
+INSERT INTO public."AuthorityType" OVERRIDING SYSTEM VALUE VALUES (4, 'Reklam/Ajans');
+INSERT INTO public."AuthorityType" OVERRIDING SYSTEM VALUE VALUES (5, 'Bölge Müdürü');
+INSERT INTO public."AuthorityType" OVERRIDING SYSTEM VALUE VALUES (6, 'Kasiyer');
+INSERT INTO public."AuthorityType" OVERRIDING SYSTEM VALUE VALUES (7, 'Kurye');
+INSERT INTO public."AuthorityType" OVERRIDING SYSTEM VALUE VALUES (8, 'Şube Müdürü');
+
+

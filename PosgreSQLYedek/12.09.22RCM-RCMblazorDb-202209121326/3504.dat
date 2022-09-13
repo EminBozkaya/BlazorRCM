@@ -1,0 +1,11 @@
+INSERT INTO public."User" OVERRIDING SYSTEM VALUE VALUES (9, 'M.Emin', 'BOZKAYA', 'Bozki', '5550079086', 'wingman152@icloud.com', 'MTExMQ==', true, '2022-06-23', NULL);
+INSERT INTO public."User" OVERRIDING SYSTEM VALUE VALUES (2, 'emirim', 'demir', 'dede', '5485698547', 'e@boz.com', 'MTExMQ==', true, '2022-04-04', '2022-04-11');
+INSERT INTO public."User" OVERRIDING SYSTEM VALUE VALUES (3, 'fluent', 'validation', 'fluval', '4569854521', 'f@val.com', 'MTExMQ==', true, '2022-04-11', '2022-04-11');
+INSERT INTO public."User" OVERRIDING SYSTEM VALUE VALUES (5, 'sfdffsd', 'dfgdfgd', 'jhjljhljlk', '2584715698', 's@v.com', 'MTExMQ==', true, '2022-04-11', '2022-04-11');
+INSERT INTO public."User" OVERRIDING SYSTEM VALUE VALUES (7, 'deneme', 'dedem', 'ddgh', '1236985478', 'e@boz.com', 'MTExMQ==', false, '2022-04-07', '2022-04-16');
+INSERT INTO public."User" OVERRIDING SYSTEM VALUE VALUES (4, 'dfhgghg', 'fgh', 'sdfg', '1234567895', 'e@boz.com', 'MTExMQ==', false, '2022-04-08', '2022-06-04');
+INSERT INTO public."User" OVERRIDING SYSTEM VALUE VALUES (8, 'gamze', 'günay', 'ggünay', '5485698547', 'e@boz.com', 'MTExMQ==', true, '2022-06-17', NULL);
+INSERT INTO public."User" OVERRIDING SYSTEM VALUE VALUES (1, 'DoesntExist', 'NoPerson', 'DummyPerson', '1111111111', '1@111.com', 'MTExMQ==', true, '2022-04-01', '2022-06-17');
+INSERT INTO public."User" OVERRIDING SYSTEM VALUE VALUES (6, 'memin', 'boz', 'bozki', '1234567891', 'e@boz.com', 'MTExMQ==', false, '2022-04-01', '2022-07-29');
+
+

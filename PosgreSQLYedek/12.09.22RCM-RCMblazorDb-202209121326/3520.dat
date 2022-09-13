@@ -1,0 +1,6 @@
+INSERT INTO public."ProductMenuList" OVERRIDING SYSTEM VALUE VALUES (2, 'Menüler', true);
+INSERT INTO public."ProductMenuList" OVERRIDING SYSTEM VALUE VALUES (3, 'İçecekler', true);
+INSERT INTO public."ProductMenuList" OVERRIDING SYSTEM VALUE VALUES (4, 'Yan Ürün ve Diğer', true);
+INSERT INTO public."ProductMenuList" OVERRIDING SYSTEM VALUE VALUES (1, 'Dürüm ve Servis', true);
+
+

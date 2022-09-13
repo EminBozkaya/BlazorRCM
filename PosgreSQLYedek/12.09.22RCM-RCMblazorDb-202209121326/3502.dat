@@ -1,0 +1,31 @@
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (1, 'Yiyecek', NULL, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (2, 'İçecek', NULL, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (3, 'Tatlı', NULL, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (4, 'Tavuk', 1, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (5, 'Et', 1, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (6, 'Diğer Yiyecek', 1, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (7, 'Yan Ürün', 1, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (8, 'Menü', NULL, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (9, 'Tavuk Menü', 8, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (10, 'Et Menü', 8, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (11, 'Ramazan Menü', 8, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (12, 'Ramazan Tavuk Menü', 11, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (13, 'Ramazan Et Menü', 11, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (14, '2,5 LT İçecek', 2, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (15, '2 LT İçecek', 2, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (16, '1,5 LT İçecek', 2, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (17, '1 LT İçecek', 2, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (18, '0,5 LT İçecek', 2, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (19, 'Kutu İçecek', 2, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (20, 'Cam Şişe', 2, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (21, 'Tavuk Servis/Tabak', 4, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (22, 'Et Servis/Tabak', 5, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (23, 'Kutu Pepsi', 19, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (24, 'Kutu Lipton', 19, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (25, 'Kutu Lipton Tropicana', 24, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (26, 'Kutu Lipton Ice Tea', 24, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (27, 'Ayran', 2, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (28, 'Soda', 20, true);
+INSERT INTO public."ProductCategory" OVERRIDING SYSTEM VALUE VALUES (29, 'Meyveli Soda', 28, true);
+
+

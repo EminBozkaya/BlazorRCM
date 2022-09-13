@@ -1,0 +1,8 @@
+INSERT INTO public."Branch" OVERRIDING SYSTEM VALUE VALUES (1, 'avm', 'amasya', true, '2022-04-01', '2022-04-01');
+INSERT INTO public."Branch" OVERRIDING SYSTEM VALUE VALUES (2, 'merkez', 'amasya', true, '2022-04-01', '2022-04-01');
+INSERT INTO public."Branch" OVERRIDING SYSTEM VALUE VALUES (3, 'Erzurum', 'doğu', true, '2022-04-08', '2022-04-08');
+INSERT INTO public."Branch" OVERRIDING SYSTEM VALUE VALUES (4, 'erba', 'tokat', true, '2022-04-09', '2022-04-09');
+INSERT INTO public."Branch" OVERRIDING SYSTEM VALUE VALUES (5, 'merzifon', 'AMAS', true, '2022-04-01', '2022-04-09');
+INSERT INTO public."Branch" OVERRIDING SYSTEM VALUE VALUES (6, 'fatsa', 'Ordu', true, '2022-04-09', '2022-04-09');
+
+

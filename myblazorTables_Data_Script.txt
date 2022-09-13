@@ -1,12 +1,14 @@
 
 
-INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('emin', 'bozkaya', 'memin', '5489587456', 'e@boz.com', '1111', true, '2022-04-01', '2022-04-11');
-INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('emirim', 'demir', 'dede', '5485698547', 'e@boz.com', '1111', true, '2022-04-04', '2022-04-11');
-INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('fluent', 'validation', 'fluval', '4569854521', 'f@val.com', '1111', true, '2022-04-11', '2022-04-11');
-INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('dfhgghg', 'fgh', 'sdfg', '1234567895', 'e@boz.com', 'sdfk', true, '2022-04-08', '2022-04-11');
-INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('sfdffsd', 'dfgdfgd', 'jhjljhljlk', '2584715698', 's@v.com', 'ghfdhgf', true, '2022-04-11', '2022-04-11');
-INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('memin', 'boz', 'bozki', '1234567891', 'e@boz.com', '22227', true, '2022-04-01', '2022-04-11');
-INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('deneme', 'dedem', 'ddgh', '1236985478', 'e@boz.com', '1213', false, '2022-04-07', '2022-04-16');
+INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('M.Emin', 'BOZKAYA', 'Bozki', '5550079086', 'wingman152@icloud.com', 'MTExMQ==', true, '2022-06-23', NULL);
+INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('emirim', 'demir', 'dede', '5485698547', 'e@boz.com', 'MTExMQ==', true, '2022-04-04', '2022-04-11');
+INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('fluent', 'validation', 'fluval', '4569854521', 'f@val.com', 'MTExMQ==', true, '2022-04-11', '2022-04-11');
+INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('sfdffsd', 'dfgdfgd', 'jhjljhljlk', '2584715698', 's@v.com', 'MTExMQ==', true, '2022-04-11', '2022-04-11');
+INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('deneme', 'dedem', 'ddgh', '1236985478', 'e@boz.com', 'MTExMQ==', false, '2022-04-07', '2022-04-16');
+INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('dfhgghg', 'fgh', 'sdfg', '1234567895', 'e@boz.com', 'MTExMQ==', false, '2022-04-08', '2022-06-04');
+INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('gamze', 'günay', 'ggünay', '5485698547', 'e@boz.com', 'MTExMQ==', true, '2022-06-17', NULL);
+INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('DoesntExist', 'NoPerson', 'DummyPerson', '1111111111', '1@111.com', 'MTExMQ==', true, '2022-04-01', '2022-06-17');
+INSERT INTO public."User" ("FirstName", "LastName", "UserName", "Phone", "Email", "Password", "IsActive", "CreatedTime", "ModifiedTime") VALUES('memin', 'boz', 'bozki', '1234567891', 'e@boz.com', 'MTExMQ==', false, '2022-04-01', '2022-07-29');
 
 
 
@@ -24,7 +26,6 @@ INSERT INTO public."AuthorityType" ("Type") VALUES('Şube Müdürü');
 
 
 
-
 INSERT INTO public."Branch" ("Name", "Adress", "IsActive", "CreatedTime", "ModifiedTime") VALUES('avm', 'amasya', true, '2022-04-01', '2022-04-01');
 INSERT INTO public."Branch" ("Name", "Adress", "IsActive", "CreatedTime", "ModifiedTime") VALUES('merkez', 'amasya', true, '2022-04-01', '2022-04-01');
 INSERT INTO public."Branch" ("Name", "Adress", "IsActive", "CreatedTime", "ModifiedTime") VALUES('Erzurum', 'doğu', true, '2022-04-08', '2022-04-08');
@@ -33,18 +34,13 @@ INSERT INTO public."Branch" ("Name", "Adress", "IsActive", "CreatedTime", "Modif
 INSERT INTO public."Branch" ("Name", "Adress", "IsActive", "CreatedTime", "ModifiedTime") VALUES('fatsa', 'Ordu', true, '2022-04-09', '2022-04-09');
 
 
-
-
-
-
-INSERT INTO public."UserBranchAuthority" ("UId", "BId", "ATId", "IsActive") VALUES(1, 2, 3, true);
-INSERT INTO public."UserBranchAuthority" ("UId", "BId", "ATId", "IsActive") VALUES(1, 5, 4, true);
 INSERT INTO public."UserBranchAuthority" ("UId", "BId", "ATId", "IsActive") VALUES(2, 3, 6, true);
 INSERT INTO public."UserBranchAuthority" ("UId", "BId", "ATId", "IsActive") VALUES(5, 4, 2, true);
 INSERT INTO public."UserBranchAuthority" ("UId", "BId", "ATId", "IsActive") VALUES(3, 4, 1, true);
 INSERT INTO public."UserBranchAuthority" ("UId", "BId", "ATId", "IsActive") VALUES(4, 1, 5, true);
-
-
+INSERT INTO public."UserBranchAuthority" ("UId", "BId", "ATId", "IsActive") VALUES(9, 2, 3, true);
+INSERT INTO public."UserBranchAuthority" ("UId", "BId", "ATId", "IsActive") VALUES(9, 5, 4, true);
+INSERT INTO public."UserBranchAuthority" ("UId", "BId", "ATId", "IsActive") VALUES(6, 2, 3, true);
 
 
 
@@ -83,36 +79,19 @@ INSERT INTO public."ProductCategory" ("Name", "TopCatId", "IsActive") VALUES('Me
 
 
 
-
-
-
-
-
-
-INSERT INTO public."ProductMenuList" ("ListName", "IsActive") VALUES('Dürüm ve Servis', true);
 INSERT INTO public."ProductMenuList" ("ListName", "IsActive") VALUES('Menüler', true);
 INSERT INTO public."ProductMenuList" ("ListName", "IsActive") VALUES('İçecekler', true);
 INSERT INTO public."ProductMenuList" ("ListName", "IsActive") VALUES('Yan Ürün ve Diğer', true);
+INSERT INTO public."ProductMenuList" ("ListName", "IsActive") VALUES('Dürüm ve Servis', true);
 
 
 
 
-
-
-
-
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Dürüm', 4, NULL, NULL, true, 5, 1);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Ekmek', 4, NULL, NULL, true, 5, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et Dürüm', 5, NULL, NULL, true, 7, 1);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Servis', 21, NULL, NULL, true, 5, 1);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk İskender', 21, NULL, NULL, true, 5, 1);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Zurna', 4, NULL, NULL, true, 5, 1);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Dürüm Çift Lvş', 4, NULL, NULL, true, 5, 1);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et Dürüm', 5, NULL, NULL, true, 7, 1);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et Ekmek', 5, NULL, NULL, true, 7, 1);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et Servis', 22, NULL, NULL, true, 7, 1);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et İskender', 22, NULL, NULL, true, 7, 1);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et Zurna', 5, NULL, NULL, true, 7, 1);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et Dürüm Çift Lvş', 5, NULL, NULL, true, 7, 1);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Combo', 9, NULL, NULL, true, 5, 2);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Avantaj', 9, NULL, NULL, true, 5, 2);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Zurna Combo', 9, NULL, NULL, true, 5, 2);
@@ -123,14 +102,6 @@ INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive"
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et Zurna Avantaj', 10, NULL, NULL, true, 7, 2);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Vejetaryen Dürüm', 6, NULL, NULL, true, 2, 1);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Vejetaryen Ekmek', 6, NULL, NULL, true, 2, 1);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Patates', 7, NULL, NULL, true, 6, 4);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Yarım Lavaş', 7, NULL, NULL, true, 9, 4);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('1 Lavaş', 7, NULL, NULL, true, 9, 4);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Pepsi', 23, NULL, NULL, true, 1, 3);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Pepsi Max', 23, NULL, NULL, true, 1, 3);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Pepsi Twist', 23, NULL, NULL, true, 1, 3);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Yedigün', 19, NULL, NULL, true, 1, 3);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('IceTea Şeftali', 26, NULL, NULL, true, 1, 3);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('IceTea Limon', 26, NULL, NULL, true, 1, 3);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('IceTea Mango', 26, NULL, NULL, true, 1, 3);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('IceTea Karpuz', 26, NULL, NULL, true, 1, 3);
@@ -139,9 +110,14 @@ INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive"
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('M.Suyu Portakal', 25, NULL, NULL, true, 1, 3);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('M.Suyu Vişne', 25, NULL, NULL, true, 1, 3);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('M.Suyu Kayısı', 25, NULL, NULL, true, 1, 3);
-INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Fruko Gazoz', 19, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Pepsi', 23, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Pepsi Max', 23, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Pepsi Twist', 23, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Yedigün', 19, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('IceTea Şeftali', 26, NULL, NULL, true, 1, 3);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Fruko 7UP', 19, NULL, NULL, true, 1, 3);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Küçük Su', 18, NULL, NULL, true, 1, 3);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Fruko Gazoz', 19, NULL, NULL, true, 1, 3);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Büyük Ayran', 27, NULL, NULL, true, 1, 3);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Küçük Ayran', 27, NULL, NULL, true, 1, 3);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Sade Soda', 28, NULL, NULL, true, 1, 3);
@@ -152,18 +128,35 @@ INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive"
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Çilekli Soda', 29, NULL, NULL, true, 1, 3);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Personel Tavuk', 4, NULL, NULL, true, 8, 1);
 INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Personel Et', 5, NULL, NULL, true, 8, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Dürüm', 4, NULL, NULL, true, 5, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Ekmek', 4, NULL, NULL, true, 5, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Zurna', 4, NULL, NULL, true, 5, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Tavuk Dürüm Çift Lvş', 4, NULL, NULL, true, 5, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et Ekmek', 5, NULL, NULL, true, 7, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et Zurna', 5, NULL, NULL, true, 7, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Et Dürüm Çift Lvş', 5, NULL, NULL, true, 7, 1);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Patates', 7, NULL, NULL, true, 6, 4);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('Yarım Lavaş', 7, NULL, NULL, true, 9, 4);
+INSERT INTO public."Product" ("Name", "CatId", "Price", "VATpercent", "IsActive", "ColorCode", "MenuListId") VALUES('1 Lavaş', 7, NULL, NULL, true, 9, 4);
 
 
 
 
 
 
-
-
-
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 3, 32.00, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 4, 35.00, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 5, 27.00, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 6, 24.00, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 7, 30.00, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 8, 30.00, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 9, 42.00, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 10, 45.00, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 11, 37.00, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 12, 32.00, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 43, 4.50, NULL, true, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 1, 22.00, NULL, true, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 2, 22.00, NULL, true, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 3, 32.00, NULL, true, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 4, 35.00, NULL, true, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 5, 27.00, NULL, true, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 6, 24.00, NULL, true, true);
@@ -175,22 +168,21 @@ INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercen
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 12, 32.00, NULL, true, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 13, 37.00, NULL, true, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 14, 34.00, NULL, true, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 15, 41.00, NULL, false, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 16, 38.00, NULL, false, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 17, 45.00, NULL, true, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 18, 42.00, NULL, true, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 19, 52.00, NULL, false, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 20, 49.00, NULL, false, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 21, 20.00, NULL, true, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 22, 20.00, NULL, false, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 23, 10.00, NULL, true, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 24, 2.00, NULL, true, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 25, 4.00, NULL, true, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 26, 9.00, NULL, true, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 27, 9.00, NULL, false, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 28, 9.00, NULL, false, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 29, 9.00, NULL, true, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 30, 9.00, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 3, 32.00, NULL, true, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 15, 41.00, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 16, 38.00, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 19, 52.00, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 20, 49.00, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 22, 20.00, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 27, 9.00, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 28, 9.00, NULL, false, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 31, 9.00, NULL, false, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 32, 9.00, NULL, false, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 33, 9.00, NULL, false, true);
@@ -203,7 +195,6 @@ INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercen
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 40, 9.00, NULL, false, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 41, 2.00, NULL, true, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 42, 6.00, NULL, true, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 43, 4.50, NULL, true, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 44, 4.00, NULL, true, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 45, 5.00, NULL, false, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 46, 5.00, NULL, false, true);
@@ -212,18 +203,9 @@ INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercen
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 49, 5.00, NULL, false, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 50, 0.00, NULL, false, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 51, 0.00, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 25, 4.00, NULL, true, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 1, 22.00, NULL, true, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 2, 22.00, NULL, true, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 3, 32.00, NULL, true, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 4, 35.00, NULL, true, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 5, 27.00, NULL, true, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 6, 24.00, NULL, true, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 7, 30.00, NULL, true, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 8, 30.00, NULL, true, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 9, 42.00, NULL, true, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 10, 45.00, NULL, true, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 11, 37.00, NULL, true, true);
-INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 12, 32.00, NULL, true, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 13, 37.00, NULL, true, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 14, 34.00, NULL, true, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 15, 41.00, NULL, false, true);
@@ -263,6 +245,10 @@ INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercen
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 49, 5.00, NULL, false, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 50, 0.00, NULL, false, true);
 INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(2, 51, 0.00, NULL, false, true);
+INSERT INTO public."BranchProductPrice" ("BId", "PId", "BranchPrice", "VATpercent", "IsFavorite", "IsActive") VALUES(1, 23, 10.00, NULL, true, true);
+
+
+
 
 
 
@@ -272,49 +258,6 @@ INSERT INTO public."ProductSaleNoteCategory" ("NotCat") VALUES('Çıkar');
 INSERT INTO public."ProductSaleNoteCategory" ("NotCat") VALUES('İlave');
 INSERT INTO public."ProductSaleNoteCategory" ("NotCat") VALUES('Lavaş');
 INSERT INTO public."ProductSaleNoteCategory" ("NotCat") VALUES('Diğer');
-
-
-
-
-
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Bol Sos');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Bol Mayonez');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Bol Turşu');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Bol Patates');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Bol Domates');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Bol Yeşillik');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Bol Soğan');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Sossuz');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Mayonezsiz');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Turşusuz');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Patatessiz');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Domatessiz');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Yeşilliksiz');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Soğansız');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Acısız');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Az Sos');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Az Mayonez');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Az Turşu');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Az Patates');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Az Domates');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Az Yeşillik');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Az Soğan');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Az Lavaş');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Yarım Lavaş');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Kızarmış Lavaş');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Yumuşak Lavaş');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Kızarmış Tavuk');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Az Tavuk');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('İlave Marul');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('İlave Domates');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('İlave Soğan');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('İlave Patates');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('İlave Mayonez');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('İlave Acı');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Paket Olacak');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('Ayrı Poşet');
-INSERT INTO public."ProductSaleNote" ("Definition") VALUES('İkiye Bölünsün');
-
 
 
 
@@ -355,4 +298,306 @@ INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('İlave Ac
 INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Paket Olacak', 6);
 INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Ayrı Poşet', 6);
 INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('İkiye Bölünsün', 6);
+INSERT INTO public."ProductSaleNote" ("Definition", "NoteCat") VALUES('Bol Malzeme', 1);
+
+
+
+
+
+
+
+
+
+INSERT INTO public."SaleType" ("Type", "IsActive", "TopSTId") VALUES('İçeri Satışı', true, NULL);
+INSERT INTO public."SaleType" ("Type", "IsActive", "TopSTId") VALUES('Paket Satışı', true, NULL);
+INSERT INTO public."SaleType" ("Type", "IsActive", "TopSTId") VALUES('Telefon Satışı', true, 2);
+INSERT INTO public."SaleType" ("Type", "IsActive", "TopSTId") VALUES('Yemek Sepeti', true, 2);
+INSERT INTO public."SaleType" ("Type", "IsActive", "TopSTId") VALUES('Getir Yemek', true, 2);
+INSERT INTO public."SaleType" ("Type", "IsActive", "TopSTId") VALUES('Trendyol Yemek', true, 2);
+
+
+
+
+
+
+
+
+
+
+/* -------------------------------------örnek Satışlar-------------------------------------------
+/*-----------Sale------------
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-24 22:42:08.524', 9, NULL, false, NULL, true, 88.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-24 22:58:43.254', 9, NULL, false, NULL, true, 29.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-25 00:18:03.078', 9, NULL, false, NULL, true, 37.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-24 23:17:40.017', 9, NULL, true, '2022-06-04', true, 124.00, 1, '-infinity', false, 9, '2022-06-24 23:19:44.524', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-25 00:58:27.299', 9, NULL, false, NULL, true, 89.00, 1, '-infinity', false, 9, '2022-06-25 00:59:04.737', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(4, '2022-06-19 14:47:32.159', 3, NULL, false, NULL, true, 62.00, 1, '-infinity', false, 9, '2022-06-25 16:50:05.387', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-25 18:15:42.037', 9, NULL, false, NULL, true, 444.00, 1, '-infinity', false, 9, '2022-06-25 18:16:14.246', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-27 23:02:26.652', 6, NULL, false, NULL, true, 111.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-27 23:13:08.779', 9, NULL, false, NULL, true, 107.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-27 23:15:48.163', 9, NULL, false, NULL, true, 176.50, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-28 16:19:15.395', 9, NULL, false, NULL, true, 212.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-28 16:51:50.999', 6, NULL, false, NULL, true, 196.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-28 22:35:40.641', 6, NULL, false, NULL, true, 153.50, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-28 22:37:24.885', 6, NULL, false, NULL, true, 174.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-28 22:55:58.833', 6, NULL, false, NULL, true, 137.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-28 23:00:46.773', 9, NULL, false, NULL, true, 174.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-07-28 18:59:50.348', 9, NULL, false, NULL, true, 84.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-07-28 19:01:35.334', 9, NULL, false, NULL, true, 56.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-07-28 19:59:57.869', 9, NULL, false, NULL, true, 97.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-07-28 21:16:31.167', 9, NULL, false, NULL, true, 57.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-07-28 21:20:31.855', 9, NULL, false, NULL, true, 4.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-07-28 22:18:00.649', 9, NULL, false, NULL, true, 69.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-07-29 16:26:12.991', 9, NULL, false, NULL, true, 109.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-07-29 16:37:26.130', 9, NULL, false, NULL, true, 44.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-07-30 17:58:19.307', 9, NULL, false, NULL, true, 102.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-07-30 18:01:55.154', 9, NULL, false, NULL, true, 102.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-07-30 18:16:12.713', 9, NULL, false, NULL, true, 102.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-07-30 18:17:25.259', 9, NULL, false, NULL, true, 31.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-07-30 18:18:26.688', 9, NULL, false, NULL, true, 24.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-07-30 18:20:12.966', 9, NULL, false, NULL, true, 4.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-07-30 18:22:00.231', 9, NULL, false, NULL, true, 4.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-07-30 18:22:54.360', 9, NULL, false, NULL, true, 8.50, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-07-30 18:34:03.429', 9, NULL, false, NULL, true, 30.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-07-30 18:34:32.556', 9, NULL, false, NULL, true, 37.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-07-30 18:43:32.711', 2, NULL, false, NULL, true, 45.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-07-30 18:52:59.838', 2, NULL, false, NULL, true, 27.00, 1, '-infinity', false, 1, '-infinity', 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-19 14:47:58.320', 9, NULL, false, NULL, true, 22.00, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-21 15:07:17.580', 9, NULL, false, NULL, true, 97.00, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(5, '2022-06-19 14:47:36.562', 9, NULL, true, '2022-06-01', true, 38.00, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(5, '2022-06-19 14:47:40.424', 9, NULL, true, '2022-06-01', true, 49.00, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(5, '2022-06-19 14:47:44.898', 9, NULL, true, '2022-06-01', true, 2.00, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-19 14:47:51.260', 9, NULL, true, '2022-06-01', true, 45.00, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-19 14:47:54.984', 9, NULL, true, '2022-06-01', true, 22.00, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-19 14:48:01.280', 9, NULL, true, '2022-06-02', true, 22.00, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-19 14:48:06.909', 9, NULL, true, '2022-06-02', true, 2.00, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-19 14:48:10.296', 9, NULL, true, '2022-06-02', true, 42.00, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(5, '2022-06-19 14:48:14.017', 9, NULL, true, '2022-06-02', true, 30.00, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(5, '2022-06-19 14:48:17.236', 9, NULL, true, '2022-06-02', true, 22.00, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(5, '2022-06-17 22:10:31.100', 9, NULL, true, '2022-06-02', true, 152.00, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(5, '2022-06-17 00:00:00.000', 9, NULL, true, '2022-06-03', true, 110.50, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(5, '2022-06-17 00:00:00.000', 9, NULL, true, '2022-06-03', true, 111.00, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(5, '2022-06-17 00:00:00.000', 9, NULL, true, '2022-06-03', true, 82.00, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(3, '2022-06-19 21:20:37.985', 2, NULL, true, '2022-06-03', true, 182.00, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(3, '2022-06-20 15:09:40.413', 2, NULL, true, '2022-06-04', true, 144.50, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(3, '2022-06-20 15:13:02.654', 2, NULL, true, '2022-06-04', true, 113.00, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(4, '2022-06-20 15:29:48.996', 3, NULL, true, '2022-06-04', true, 185.50, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(4, '2022-06-22 16:23:35.279', 3, NULL, false, NULL, true, 224.50, 1, NULL, NULL, 1, NULL, 1);
+INSERT INTO public."Sale" ("BId", "DateTime", "UId", "SaleNote", "IsEOD", "EOD", "IsActive", "TotalPrice", "DeletedBy", "DeletedTime", "IsModified", "ModifiedBy", "ModifiedTime", "STId") VALUES(2, '2022-06-20 20:11:11.862', 9, NULL, false, NULL, true, 76.00, 1, NULL, NULL, 1, NULL, 1);
+
+
+
+
+/*---------SaleDetail----------
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('9db816fa-284e-46a1-985c-66b87fb7880d'::uuid, 53, 13, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('b31c8ed1-8964-484a-ae90-eae55ad02d49'::uuid, 12, 1, 22.00, 1, 1, 22.00, NULL, NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('8a4c14af-caad-4d76-bfd4-31ad90f27fd2'::uuid, 12, 2, 22.00, 1, 3, 66.00, NULL, NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('2b24ebaa-3d34-46c6-91b4-ebb3f2b90389'::uuid, 12, 10, 45.00, 0.5, 1, 22.50, NULL, NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('f1112bb0-09b5-45e4-82bb-ced5db5c1917'::uuid, 13, 11, 37.00, 1, 1, 37.00, NULL, NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('8c4bbcdc-16eb-49af-a473-bda8fc5490f2'::uuid, 13, 10, 45.00, 1, 1, 45.00, NULL, NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('9d4f0972-5187-4c86-a476-6541b374ee00'::uuid, 15, 1, 22.00, 1, 1, 22.00, NULL, NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('4dcc1ffe-bfee-4ed3-b181-43e7ede3ef41'::uuid, 15, 2, 22.00, 1, 1, 22.00, NULL, NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('a174db04-52bb-4320-b63e-a3bfe8aec6d1'::uuid, 15, 3, 32.00, 1, 1, 32.00, NULL, NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('72f13578-6de3-410e-b277-8c7097ae951a'::uuid, 15, 4, 35.00, 1, 1, 35.00, NULL, NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('5be9c538-1583-41c1-80f5-91e56c77fbf5'::uuid, 55, 21, 20.00, 1, 1, 20.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 0);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('2984459e-2047-4cab-9d94-0eaaefc9e1b5'::uuid, 55, 21, 20.00, 1, 1, 20.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('d57e263f-47ec-4b58-b6f3-a42bd3c3fa67'::uuid, 18, 1, 22.00, 1, 3, 66.00, '-Bol Sos
+  1 x Turşusuz
+  1 x Patatessiz
+  1 x Yeşilliksiz
+', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('50c2c85a-44e2-4571-8a3b-087beefe4641'::uuid, 18, 2, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('f3115029-0d7f-46a1-8b92-e9b173c78f9b'::uuid, 18, 3, 32.00, 2, 1, 64.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('d008c7ae-3e32-4ab7-bdd3-82dc49e8a5f3'::uuid, 55, 21, 20.00, 1, 1, 20.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('f3f4bd15-4e63-4f3a-a0ae-16ec62ca5440'::uuid, 55, 21, 20.00, 1, 1, 20.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('a72d6e84-b1d2-4e03-9ac1-9fd48e88e415'::uuid, 55, 28, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('2f75c6a5-55c2-45a5-9197-8861194fc157'::uuid, 25, 16, 38.00, 1, 1, 38.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('d583e5af-806b-4dcb-bdca-1fcaf0f0615b'::uuid, 26, 20, 49.00, 1, 1, 49.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('d203f7ed-38a1-4621-9e84-f42b528224b4'::uuid, 27, 24, 2.00, 1, 1, 2.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('04deb6a4-36a5-4443-ba27-57148384a933'::uuid, 28, 17, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('5c40684e-97c4-429a-89e8-99f56bbfde23'::uuid, 29, 2, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('15e02640-9ee6-45dd-b6a6-4f1eb2bc43d6'::uuid, 31, 2, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('132f6ddb-5bcf-4b3b-956a-bacf182a19af'::uuid, 33, 41, 2.00, 1, 1, 2.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('ebea1c2f-ea43-43ef-a5b7-75e9dddd219b'::uuid, 34, 9, 42.00, 1, 1, 42.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('4c358aab-22c5-487f-920b-aa8013a4662e'::uuid, 35, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('b591fe65-8675-41b5-b3c8-5b9b339d8f8d'::uuid, 36, 2, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('b6269594-4ef3-4852-ac03-96ab15bd4021'::uuid, 24, 24, 2.00, 1, 1, 2.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 0);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('c3aecb52-7529-41ce-8cf2-a18fd06b4f4c'::uuid, 24, 1, 22.00, 1, 1, 22.00, '-Bol Sos
+', NULL, NULL, true, NULL, 'Bol Sos', NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('14c20623-d967-4fb0-990b-6f7ce4cb66e7'::uuid, 38, 1, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('119765f7-7500-4e6c-be9d-974ccf7f9864'::uuid, 38, 12, 32.00, 1, 5, 160.00, '-Sossuz
+  1 x Bol Turşu
+  1 x Patatessiz
+  1 x Az Domates
+', NULL, NULL, true, NULL, 'Az Domates', NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('939f7548-d0c8-4222-a1c9-44fa2f2fa7d2'::uuid, 39, 1, 22.00, 1, 5, 110.00, '-Mayonezsiz
+  1 x Bol Mayonez
+  1 x Az Mayonez
+  1 x İlave Domates
+', NULL, NULL, true, NULL, 'İlave Domates', NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('22139e8d-6837-4f2c-9603-695d8245c65b'::uuid, 39, 6, 24.00, 1, 1, 24.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('8f2dcdde-61f5-46f0-a042-fe2f303d916e'::uuid, 39, 43, 4.50, 1, 1, 4.50, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('2b7bacb3-ce22-401d-9abb-652c4dafaa07'::uuid, 39, 42, 6.00, 1, 1, 6.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('6ce6bdf1-de40-4278-9ae4-ba1bb8bbaa09'::uuid, 40, 11, 37.00, 1, 3, 111.00, '-Bol Sos
+  1 x Mayonezsiz
+  1 x Turşusuz
+  1 x Patatessiz
+', NULL, NULL, true, 'Mayonezsiz', 'Bol Sos', 'Turşusuz', 'Patatessiz', NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('c57dbe60-62e3-4317-a576-bb857f677aa7'::uuid, 40, 41, 2.00, 1, 1, 2.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('d2a548e7-b13e-4bde-800c-40d18974c43b'::uuid, 41, 2, 22.00, 1, 4, 88.00, '-Sossuz
+  1 x Bol Mayonez
+  1 x Bol Turşu
+  1 x Bol Patates
+', NULL, NULL, true, 'Bol Mayonez', 'Sossuz', 'Bol Turşu', 'Bol Patates', 0);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('e7c9d387-2ef0-4034-9241-dfe9c1774a22'::uuid, 41, 43, 4.50, 1, 1, 4.50, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('3a06e2d4-bc52-49be-a4b2-7fd6ec1a7857'::uuid, 41, 11, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('e3f8947f-49b7-4c40-b47e-869b4334c4a8'::uuid, 41, 30, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('08a25614-4177-4098-817c-827d5ef89f7f'::uuid, 41, 13, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('910de146-b844-4772-a954-ada2295cf848'::uuid, 41, 23, 10.00, 1, 1, 10.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 5);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('8c6a4a5c-25b5-4ade-ace7-e5328d424c11'::uuid, 42, 1, 22.00, 1, 1, 22.00, '-Bol Patates
+', NULL, NULL, true, NULL, 'Bol Patates', NULL, NULL, 0);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('ead66e82-7e37-41b5-9c90-439ae3a106d6'::uuid, 42, 2, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('f295f2f9-8681-4b27-a881-850dd47c666c'::uuid, 42, 3, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('8a21f23c-89ff-4c2c-84c5-4e50c206baa7'::uuid, 24, 26, 9.00, 1, 2, 18.00, '  1 x max
+', NULL, NULL, true, 'max', NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('3599b897-45f5-4542-8ef1-679deb1bce74'::uuid, 24, 29, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('a9436743-6e2d-4c8f-b70f-2bba6ac832fa'::uuid, 24, 30, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('ccd0861c-095b-4e3e-9f92-6310fad3e74f'::uuid, 24, 41, 2.00, 1, 1, 2.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 5);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('2d3f2068-eef7-4a25-b642-44068ece90ae'::uuid, 56, 12, 32.00, 1, 1, 32.00, '-Bol Sos
+', NULL, NULL, true, NULL, 'Bol Sos', NULL, NULL, 0);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('9a15a181-a3ce-46c7-8745-42a63269df99'::uuid, 56, 44, 4.00, 1, 1, 4.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('97668b83-2f3c-4cf9-bad8-327d75bd77df'::uuid, 56, 14, 34.00, 1, 12, 408.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('7cce1142-1b9a-4f00-9224-f1c1643c9ec7'::uuid, 57, 1, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('65a07e2a-289b-47d7-b3d6-95b67043292d'::uuid, 57, 2, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('dcb66b66-18b6-4bc9-87c8-a2cf9dfb8cf0'::uuid, 57, 3, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('3583356d-c814-4a77-a05e-63a9d96acd39'::uuid, 57, 4, 35.00, 1, 1, 35.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('ab5e63f9-3e5d-492d-8c7e-edd5f5a2bd8b'::uuid, 58, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('c2992224-7a38-492e-a560-e33e03da325b'::uuid, 58, 17, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('7d3f6068-bdbe-40a5-8bc8-564ad1513645'::uuid, 58, 12, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('cb4c4e23-5d70-4141-9fb8-17f15c514ad8'::uuid, 59, 44, 4.00, 1, 1, 4.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('05e67ae8-79a2-4412-8b2e-29311ec63622'::uuid, 59, 43, 4.50, 1, 1, 4.50, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('b5fc03b3-978d-4099-ad00-3b9f86d50a13'::uuid, 30, 1, 22.00, 1, 1, 22.00, '-Sossuz
+', NULL, NULL, true, NULL, 'Sossuz', NULL, NULL, 0);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('87f2db91-6835-4d31-adfe-816ffb8262e3'::uuid, 45, 4, 35.00, 1, 1, 35.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('870052c3-50a9-4e15-b62f-0e9087bcdafa'::uuid, 45, 7, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('8c072836-6b89-4e13-8ea7-28759188cee1'::uuid, 45, 12, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('18c4d6f4-d71f-4533-8860-2ca758922e6d'::uuid, 46, 1, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('f4e8ecc0-cf53-4c47-8d1d-d02fb229754d'::uuid, 46, 2, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('4f0f90b6-31eb-4e73-b5a8-5940261dfb62'::uuid, 46, 3, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('1206c543-9efd-44fc-9152-2b0ee07a95f2'::uuid, 46, 4, 35.00, 1, 1, 35.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('60de3297-9eed-4b15-acb6-7266a2f828dd'::uuid, 46, 5, 27.00, 1, 1, 27.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 5);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('2459811c-54ad-4f70-b0ac-38eded6d4b4b'::uuid, 46, 6, 24.00, 1, 1, 24.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 6);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('7f0e67fa-defc-403b-b043-56aebc1c35ab'::uuid, 46, 13, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 7);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('75a8d447-d9f6-4f53-b302-4b662a1fac1e'::uuid, 46, 44, 4.00, 1, 1, 4.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 8);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('472b9c7c-4081-41bd-99c1-30b98eaea9b7'::uuid, 46, 43, 4.50, 1, 1, 4.50, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 9);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('e981d2c1-7215-4f85-b0c2-aa42fb15999e'::uuid, 46, 42, 6.00, 1, 1, 6.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 10);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('c10ee566-56b5-4913-a731-fe20e35504b1'::uuid, 46, 41, 2.00, 1, 1, 2.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 11);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('42f4f2c4-247b-4637-b883-4d79ef070838'::uuid, 46, 30, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 12);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('a137266a-5e8a-4d50-a338-a4ed287dfa75'::uuid, 50, 1, 22.00, 1, 4, 88.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 0);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('9ed4d828-d3ad-4fe5-8ff0-52958fc1200a'::uuid, 50, 26, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('72924dd3-46a5-43fc-9fc0-9564db44cde4'::uuid, 51, 26, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 0);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('7da23812-e01d-40a5-a4fb-a277d0986bbb'::uuid, 51, 29, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('855a2156-d2ca-4c21-92a4-ba2215f6ac44'::uuid, 51, 30, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('46449643-af54-4ed5-9bcf-188bb6d32818'::uuid, 51, 41, 2.00, 1, 1, 2.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('3d5be269-bd0c-4c60-80eb-8059a32ea720'::uuid, 51, 4, 35.00, 1, 1, 35.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('a3369cd2-6cf1-48ce-98e0-0583038a0109'::uuid, 52, 7, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 0);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('6c864d61-2d74-4f83-aed6-eaf52f101801'::uuid, 52, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('b489da90-2146-4e75-b69f-e067fe71e7e3'::uuid, 52, 9, 42.00, 1, 1, 42.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('95ec3426-5846-4046-b51a-a46966fbc648'::uuid, 52, 1, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('6f3c097c-1f0f-4fcd-8e3a-7615fdfdb918'::uuid, 59, 42, 6.00, 1, 1, 6.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('0bf2807d-a0b2-4ff5-acf2-cabb585cf7f5'::uuid, 59, 41, 2.00, 1, 1, 2.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('346bf438-c7e2-4f13-a29c-3cf6def6b294'::uuid, 59, 30, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 5);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('827fa972-a4bd-4c13-bcc7-adb221c0057c'::uuid, 59, 13, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 6);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('98de56ac-e25d-425f-821b-ddd9f7e379c1'::uuid, 59, 12, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 7);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('27191501-c7da-4796-99f7-476f8451628a'::uuid, 59, 11, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 8);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('cf18ee72-943c-4db1-9ad8-ecd98e9eca3b'::uuid, 59, 10, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 9);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('965dd0fc-ca17-4ab0-aef5-331ddf6304ee'::uuid, 61, 1, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('20465e88-e2f0-41f4-ab0a-f8e6c0dc5fe8'::uuid, 61, 6, 24.00, 1, 1, 24.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('5407dc67-0c07-4fc2-8f2b-73180c3644bd'::uuid, 61, 9, 42.00, 1, 1, 42.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('d6390769-b889-4843-9694-21a6e4f2ee56'::uuid, 61, 18, 42.00, 1, 1, 42.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('8e68bfcb-77e9-4ac8-a51e-9d843ff914ae'::uuid, 61, 10, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 5);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('9f64de1b-1ee2-4504-89a9-6592385b910a'::uuid, 61, 11, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 6);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('f9d33f14-60e2-4588-bfe4-169efeeebe43'::uuid, 62, 1, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('71b9d613-7d1b-48c6-8ffd-b308d11f9560'::uuid, 62, 7, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('48514cd8-9201-4354-82c3-ac04f7e02d7f'::uuid, 62, 12, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('9f4470c2-fece-4fea-80b4-8c3d97007f62'::uuid, 62, 17, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('88cbc7bd-2024-47e8-bab4-8e146e8d3d41'::uuid, 62, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 5);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('a601f44c-2269-4875-b940-a61c9abc26f2'::uuid, 62, 11, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 6);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('4b068f57-7000-4740-b4ff-f59a0cd245ab'::uuid, 63, 26, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('72decd56-c9e4-4975-8804-c7e152050f87'::uuid, 63, 29, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('e15b55cd-712c-4a13-a368-b61e49d28048'::uuid, 63, 30, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('b288a1f6-06e2-4b24-9135-03989ca0e3bb'::uuid, 63, 41, 2.00, 1, 1, 2.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('fa2a3fa7-5c44-4659-a110-41e482d011c6'::uuid, 63, 42, 6.00, 1, 1, 6.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 5);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('6f7b2fcd-11c8-4e58-8c12-7d9b83e2722c'::uuid, 63, 43, 4.50, 1, 1, 4.50, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 6);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('dfa92d96-bf30-4897-bfb4-e2f318e8f563'::uuid, 63, 12, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 7);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('a5c29702-babe-407f-a4a2-85fc45ff5d13'::uuid, 63, 11, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 8);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('b71f214d-8ce9-4f5f-b3ee-532b3598e7f7'::uuid, 63, 10, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 9);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('514687b5-b8b4-4fe3-a674-b91f76e7599d'::uuid, 64, 7, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('a507655b-551d-4443-b0a1-a6ee6f5371d6'::uuid, 64, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('b4ba6275-a448-4413-831c-844e2c6075a4'::uuid, 64, 17, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('1d5f82ed-6d07-4dae-90f2-20a7d813da88'::uuid, 64, 12, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('fc3205ee-f690-4057-94ab-bda27266eb19'::uuid, 64, 11, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 5);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('a4ae6335-9a31-497c-8af7-520fe8a6aa83'::uuid, 65, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('9b95c8e5-68d0-4897-a38b-11acc2793c5b'::uuid, 65, 7, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('c39949c3-8a60-4578-93c7-be12f006db3d'::uuid, 65, 12, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('6eef3033-f739-4799-b0f4-64ddc1a103de'::uuid, 65, 17, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('39da4578-3aea-4c10-a401-622f14a3d011'::uuid, 66, 7, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('2cb4ce96-62ef-4cf0-aa26-d6b0cbc0d528'::uuid, 66, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('a0488c8a-32fe-40db-a9a7-89b0896123f5'::uuid, 66, 17, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('170fa50a-cc39-4054-a444-05efb06e2ba2'::uuid, 66, 12, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 4);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('e2da233c-06fd-45e3-9184-797145fea1b0'::uuid, 66, 11, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 5);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('6e46fa0c-8cdd-430a-824b-bcffc5fac56c'::uuid, 67, 1, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('60edff0f-b3cf-452a-a0e4-a82c187f6fda'::uuid, 67, 3, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('b8d97ff1-cacc-463b-93d1-5c431d6defc8'::uuid, 67, 8, 30.00, 1, 1, 30.00, '-Mayonezsiz, Turşusuz
+  1 x Domatessiz, Bol Domates
+', NULL, NULL, true, 'Domatessiz
+Bol Domates', 'Mayonezsiz
+Turşusuz', NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('0e93e7e2-5858-4e33-8757-102faf071573'::uuid, 68, 1, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('592778e6-7528-4e62-80bd-43f8559f70ab'::uuid, 68, 14, 34.00, 1, 1, 34.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('7c586b63-fee1-491b-813c-e4bc68a2c5d7'::uuid, 69, 4, 35.00, 1, 1, 35.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('6cd68083-8bcf-4c6b-995a-accb299faa91'::uuid, 69, 7, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('65d73035-1c31-4590-bbeb-215274ff1156'::uuid, 69, 12, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('40cd0fd1-c425-452f-b73b-f7e28d05a6aa'::uuid, 70, 5, 27.00, 1, 1, 27.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('7646fc75-94f2-499e-96d7-c840df0f75cb'::uuid, 70, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('73285799-7760-4f73-9234-b91c3046dc2f'::uuid, 71, 44, 4.00, 1, 1, 4.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('1a913b01-50fa-45b4-b67b-c0a123bc96b3'::uuid, 72, 13, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('36a5b0eb-ba0d-441c-a8c7-fd10f375511a'::uuid, 72, 12, 32.00, 1, 1, 32.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('5a7b1b16-5bd9-414f-9a70-99f9de1191a1'::uuid, 73, 11, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('bf0f41d6-48e3-43b3-b117-f624c62d2e85'::uuid, 73, 6, 24.00, 1, 3, 72.00, '-Sossuz
+  1 x Turşusuz
+  1 x Domatessiz
+  1 x Bol Yeşillik
+', NULL, NULL, true, 'Turşusuz', 'Sossuz', 'Domatessiz', 'Bol Yeşillik', 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('c5578447-ea45-481c-bd2b-d33344576a4c'::uuid, 74, 1, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('ed61a984-ce30-4179-bc10-76ca997e4cac'::uuid, 74, 2, 22.00, 1, 1, 22.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('4fefeca4-fa09-442a-8a40-78689441c8f5'::uuid, 75, 5, 27.00, 1, 1, 27.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('7070faaa-15fe-44be-ae4e-71c414c1955b'::uuid, 75, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('53340dc6-70f0-4c2d-a8cb-90053c28927b'::uuid, 75, 17, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('7bdb7765-031e-4b57-8787-0ef785b1b2d8'::uuid, 76, 5, 27.00, 1, 1, 27.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('e70389d9-996b-4c81-82fc-2ed0871c8d54'::uuid, 76, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('e870e9bf-3c23-46d0-9872-5b247ac99805'::uuid, 76, 17, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('3db47ea1-5979-485f-968d-d8b498defbbd'::uuid, 77, 5, 27.00, 1, 1, 27.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('686db3a2-e2a0-40b4-99df-00078dad96d7'::uuid, 77, 8, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('e200d636-736d-4467-9b48-9c014fe51823'::uuid, 77, 17, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('30246ff8-0d11-42f1-92b7-9d058893f4fd'::uuid, 78, 41, 2.00, 1, 1, 2.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('3cfe9eed-18f9-4d64-be47-050229c57a82'::uuid, 78, 23, 9.00, 1, 1, 9.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('8e8700e8-32e7-4013-8954-ad2978ff363b'::uuid, 78, 21, 20.00, 1, 1, 20.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 3);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('3368d6d5-af31-4ab9-a6aa-2e51cee1345e'::uuid, 79, 44, 4.00, 1, 1, 4.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('3e0e21b5-4f73-4741-951e-104ef7f50403'::uuid, 79, 21, 20.00, 1, 1, 20.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('af8b860d-f336-4c1b-a3d4-e1303041505b'::uuid, 80, 25, 4.00, 1, 1, 4.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('33bd97f9-f304-4542-9aee-5c85ef933132'::uuid, 81, 25, 4.00, 1, 1, 4.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('9c6e836e-38cc-4d92-85cd-6f9423d6c67c'::uuid, 82, 43, 4.50, 1, 1, 4.50, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('fd776bda-2233-43c8-bed5-3016b8d0ab05'::uuid, 82, 44, 4.00, 1, 1, 4.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 2);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('adcc575d-a9e3-435c-bff3-fe66371b6d59'::uuid, 83, 7, 30.00, 1, 1, 30.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('947f34f0-2673-4876-8ede-7ef79a92a27e'::uuid, 84, 11, 37.00, 1, 1, 37.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('849d3b2e-3b16-4ce6-a169-2c7b6a72cc37'::uuid, 85, 17, 45.00, 1, 1, 45.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."SaleDetail" ("Id", "SId", "PId", "Price", "Portion", "Qty", "Total", "Note", "ModifiedBy", "ModifiedTime", "IsActive", "firstProductNote", "generalProductNote", "secondProductNote", "thirdProductNote", "BillOrder") VALUES('0ccaf7c3-6271-490a-adcc-f9a64722fb37'::uuid, 86, 5, 27.00, 1, 1, 27.00, '', NULL, NULL, true, NULL, NULL, NULL, NULL, 1);
+
+
+
+
+
+
+
 
