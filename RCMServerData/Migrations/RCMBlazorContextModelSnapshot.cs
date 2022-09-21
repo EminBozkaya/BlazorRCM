@@ -39,7 +39,7 @@ namespace RCMServerData.Migrations
                     b.HasKey("Id")
                         .HasName("pk_AuthorityType_id");
 
-                    b.ToTable("AuthorityType", (string)null);
+                    b.ToTable("AuthorityType");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.Branch", b =>
@@ -80,7 +80,7 @@ namespace RCMServerData.Migrations
                     b.HasKey("Id")
                         .HasName("pk_Branch_id");
 
-                    b.ToTable("Branch", (string)null);
+                    b.ToTable("Branch");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.BranchProductPrice", b =>
@@ -107,7 +107,7 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("PId");
 
-                    b.ToTable("BranchProductPrice", (string)null);
+                    b.ToTable("BranchProductPrice");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.BranchSupplier", b =>
@@ -160,7 +160,7 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("SpId");
 
-                    b.ToTable("BranchSupplier", (string)null);
+                    b.ToTable("BranchSupplier");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.FirmType", b =>
@@ -180,7 +180,7 @@ namespace RCMServerData.Migrations
                     b.HasKey("Id")
                         .HasName("pk_FirmType_id");
 
-                    b.ToTable("FirmType", (string)null);
+                    b.ToTable("FirmType");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.Product", b =>
@@ -228,7 +228,7 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("MenuListId");
 
-                    b.ToTable("Product", (string)null);
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.ProductCategory", b =>
@@ -258,7 +258,7 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("TopCatId");
 
-                    b.ToTable("ProductCategory", (string)null);
+                    b.ToTable("ProductCategory");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.ProductMenuList", b =>
@@ -279,7 +279,7 @@ namespace RCMServerData.Migrations
                     b.HasKey("Id")
                         .HasName("pk_ProductMenuList_id");
 
-                    b.ToTable("ProductMenuList", (string)null);
+                    b.ToTable("ProductMenuList");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.ProductSaleNote", b =>
@@ -301,7 +301,7 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("NoteCat");
 
-                    b.ToTable("ProductSaleNote", (string)null);
+                    b.ToTable("ProductSaleNote");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.ProductSaleNoteCategory", b =>
@@ -318,7 +318,7 @@ namespace RCMServerData.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductSaleNoteCategory", (string)null);
+                    b.ToTable("ProductSaleNoteCategory");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.Sale", b =>
@@ -367,7 +367,7 @@ namespace RCMServerData.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<int?>("ModifiedBy")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedTime")
                         .HasColumnType("timestamp")
@@ -383,7 +383,7 @@ namespace RCMServerData.Migrations
                         .HasColumnType("numeric");
 
                     b.Property<int>("UId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -391,9 +391,13 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("DeletedBy");
 
+                    b.HasIndex("ModifiedBy");
+
                     b.HasIndex("STId");
 
-                    b.ToTable("Sale", (string)null);
+                    b.HasIndex("UId");
+
+                    b.ToTable("Sale");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.SaleDetail", b =>
@@ -457,7 +461,7 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("SId");
 
-                    b.ToTable("SaleDetail", (string)null);
+                    b.ToTable("SaleDetail");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.SaleType", b =>
@@ -485,7 +489,7 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("TopSTId");
 
-                    b.ToTable("SaleType", (string)null);
+                    b.ToTable("SaleType");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.Supplier", b =>
@@ -537,7 +541,7 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("Supplier", (string)null);
+                    b.ToTable("Supplier");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.SupplierFirmType", b =>
@@ -590,7 +594,7 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("SpId");
 
-                    b.ToTable("SupplierFirmType", (string)null);
+                    b.ToTable("SupplierFirmType");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.User", b =>
@@ -656,7 +660,7 @@ namespace RCMServerData.Migrations
                     b.HasKey("Id")
                         .HasName("pk_User_id");
 
-                    b.ToTable("User", (string)null);
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.UserBranchAuthority", b =>
@@ -693,7 +697,7 @@ namespace RCMServerData.Migrations
 
                     b.HasIndex("UId");
 
-                    b.ToTable("UserBranchAuthority", (string)null);
+                    b.ToTable("UserBranchAuthority");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.BranchProductPrice", b =>
@@ -802,22 +806,39 @@ namespace RCMServerData.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RCMServerData.Models.User", "User")
-                        .WithMany("Sales")
+                    b.HasOne("RCMServerData.Models.User", "UserDB")
+                        .WithMany("SalesDB")
                         .HasForeignKey("DeletedBy")
                         .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("FK_Sale_User_DeletedBy");
+
+                    b.HasOne("RCMServerData.Models.User", "UserMB")
+                        .WithMany("SalesMB")
+                        .HasForeignKey("ModifiedBy")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasConstraintName("FK_Sale_User_ModifiedBy");
 
                     b.HasOne("RCMServerData.Models.SaleType", "SaleType")
                         .WithMany("Sales")
                         .HasForeignKey("STId")
                         .OnDelete(DeleteBehavior.Cascade);
 
+                    b.HasOne("RCMServerData.Models.User", "User")
+                        .WithMany("Sales")
+                        .HasForeignKey("UId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_Sale_User_UId");
+
                     b.Navigation("Branch");
 
                     b.Navigation("SaleType");
 
                     b.Navigation("User");
+
+                    b.Navigation("UserDB");
+
+                    b.Navigation("UserMB");
                 });
 
             modelBuilder.Entity("RCMServerData.Models.SaleDetail", b =>
@@ -1020,6 +1041,10 @@ namespace RCMServerData.Migrations
                     b.Navigation("SaleDetailsMB");
 
                     b.Navigation("Sales");
+
+                    b.Navigation("SalesDB");
+
+                    b.Navigation("SalesMB");
 
                     b.Navigation("SupplierFirmTypesCB");
 
