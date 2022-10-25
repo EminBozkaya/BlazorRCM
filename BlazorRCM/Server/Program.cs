@@ -9,6 +9,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using RCMServerData.EFContext;
 using System.Reflection;
@@ -79,11 +80,7 @@ builder.Services.AddScoped<ISaleDetailRepo, EfSaleDetailRepo>();
 //builder.Services.AddScoped(typeof(ISyncfusionExportation<>), typeof(SyncfusionExportation<>));
 
 builder.Services.AddDbContext<RCMBlazorContext>();
-//builder.Services.AddDbContext<RCMBlazorContext>(config =>
-//{
-//    config.UseNpgsql(builder.Configuration.GetConnectionString("RCMpostgreConnection"));
-//    config.EnableSensitiveDataLogging();
-//});
+
 
 
 builder.Services.AddAuthentication(opt =>
@@ -179,3 +176,4 @@ app.MapHub<DashboardDailyIncomeHub>("/dashboarddailyincomehub");
 app.MapFallbackToFile("index.html");
 
 app.Run();
+

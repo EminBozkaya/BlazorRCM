@@ -665,37 +665,27 @@ namespace RCMServerData.Migrations
 
             modelBuilder.Entity("RCMServerData.Models.UserBranchAuthority", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("UId")
                         .HasColumnType("int")
-                        .HasColumnName("Id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<int>("Id"));
-
-                    b.Property<short>("ATId")
-                        .HasColumnType("smallint")
-                        .HasColumnName("ATId");
+                        .HasColumnName("UId");
 
                     b.Property<short>("BId")
                         .HasColumnType("smallint")
                         .HasColumnName("BId");
 
+                    b.Property<short>("ATId")
+                        .HasColumnType("smallint")
+                        .HasColumnName("ATId");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean")
                         .HasColumnName("IsActive");
 
-                    b.Property<int>("UId")
-                        .HasColumnType("int")
-                        .HasColumnName("UId");
-
-                    b.HasKey("Id")
-                        .HasName("pk_UserBranchAuthority_id");
+                    b.HasKey("UId", "BId", "ATId");
 
                     b.HasIndex("ATId");
 
                     b.HasIndex("BId");
-
-                    b.HasIndex("UId");
 
                     b.ToTable("UserBranchAuthority");
                 });

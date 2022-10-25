@@ -19,16 +19,11 @@ namespace RCMServerData.EFContext
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //string constr = GetConnStrExtension.Current.AppConnection;
 
-            //string constr = AppSettings.Current.AppConnection;
-
-            string constr = GetConnStrExtension.Current.AppConnection;
-
-            optionsBuilder.UseNpgsql(constr);
-            //optionsBuilder.UseNpgsql(constr,option=>option.MigrationsAssembly("RCMServerData"));
-
-
-            //optionsBuilder.UseNpgsql("User ID=postgres;password=posgres;Host=localhost;Port=5432;Database=MyBlazor8;SearchPath=public");
+            //optionsBuilder.UseNpgsql(constr);
+            
+            optionsBuilder.UseNpgsql("User ID=postgres;password=posgres;Host=localhost;Port=5432;Database=RCMblazorDb;SearchPath=public");
 
 
 
@@ -110,9 +105,18 @@ namespace RCMServerData.EFContext
 
 
 
+
+
+
 //Package Manager Console Komutları
 
 // Add-Migration AddedFirstMigration 
 // Update-Database
 // Remove-Migration
-//
+// Get-Migration
+
+//CLI
+// dotnet ef migrations add MyMig
+// dotnet ef database update
+// dotnet ef migrations remove
+// dotnet ef migrations add list

@@ -13,10 +13,10 @@
 
     <MudForm Model="@userLoginRequest">
         <MudCardContent>
-            <MudTextField @bind-Value="@userLoginRequest.UserName"
-                          Label="Kullanıcı Adı" OnKeyUp="SubmitEnter" />
-
-            <MudTextField @bind-Value="@userLoginRequest.Password"
+            <MudTextField  @bind-Value="@userLoginRequest.UserName" Label="Kullanıcı Adı" OnKeyUp="SubmitEnter" />
+            
+            
+            <MudTextField InputType="MudBlazor.InputType.Password" @bind-Value="@userLoginRequest.Password"
                           Label="Şifre" OnKeyUp="SubmitEnter" />
 
         </MudCardContent>

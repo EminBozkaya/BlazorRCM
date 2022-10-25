@@ -34,7 +34,6 @@ namespace RCMServerData.Models
             this.SupplierFirmTypesMB = new HashSet<SupplierFirmType>();
         }
 
-
         public int Id { get; set; }
         public string? FirstName { get; set; }    
         public string? LastName { get; set; }
@@ -81,3 +80,4 @@ namespace RCMServerData.Models
         public ICollection<SupplierFirmType> SupplierFirmTypesMB { get; set; }
     }
 }
+    

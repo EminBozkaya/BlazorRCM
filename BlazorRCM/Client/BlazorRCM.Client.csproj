@@ -7,7 +7,9 @@
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'BlazorRCM' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'BlazorRCM' ">
+    <ExternalConsole>true</ExternalConsole>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Append.Blazor.Printing" Version="1.1.0" />
     <PackageReference Include="Blazored.FluentValidation" Version="2.0.3" />

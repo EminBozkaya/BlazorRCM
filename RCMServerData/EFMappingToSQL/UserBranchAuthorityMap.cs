@@ -8,14 +8,16 @@ namespace RCMServerData.EFMappingToSQL
     {
         public void Configure(EntityTypeBuilder<UserBranchAuthority> builder)
         {
-            builder.HasKey(x => x.Id)
-                .HasName("pk_UserBranchAuthority_id");
+            //builder.HasKey(x => x.Id)
+            //    .HasName("pk_UserBranchAuthority_id");
 
-            builder.Property(x => x.Id)
-                .HasColumnName("Id")
-                .HasColumnType("int")
-                .ValueGeneratedOnAdd()
-                .UseIdentityAlwaysColumn();
+            builder.HasKey(k => new { k.UId, k.BId, k.ATId });
+
+            //builder.Property(x => x.Id)
+            //    .HasColumnName("Id")
+            //    .HasColumnType("int")
+            //    .ValueGeneratedOnAdd()
+            //    .UseIdentityAlwaysColumn();
 
             builder.Property(x => x.UId)
                 .HasColumnName("UId")
@@ -32,10 +34,10 @@ namespace RCMServerData.EFMappingToSQL
                 .HasColumnType("smallint")
                 .IsRequired();
 
-            builder.Property(x => x.IsActive)
-                .HasColumnName("IsActive")
-                .HasColumnType("boolean")
-                .IsRequired();
+            //builder.Property(x => x.IsActive)
+            //    .HasColumnName("IsActive")
+            //    .HasColumnType("boolean")
+            //    .IsRequired();
 
 
 
@@ -46,6 +48,7 @@ namespace RCMServerData.EFMappingToSQL
                 .HasForeignKey(f => f.UId)
                 .HasConstraintName("FK_UserBranchAuthoritiy_User_UId");
             //.OnDelete(DeleteBehavior.Cascade);
+
 
             builder
                 .HasOne(e => e.Branch)

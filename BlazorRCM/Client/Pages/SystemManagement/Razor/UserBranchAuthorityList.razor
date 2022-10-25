@@ -35,7 +35,7 @@
                 <GridColumn Field=@nameof(UserBranchAuthorityDTO.UserFullName) HeaderText="Kullanıcı" TextAlign="TextAlign.Left" Width="100"></GridColumn>
                 <GridColumn Field=@nameof(UserBranchAuthorityDTO.BranchName) HeaderText="Yetkili Olduğu Şube" TextAlign="TextAlign.Left" Width="100"></GridColumn>
                 <GridColumn Field=@nameof(UserBranchAuthorityDTO.AuthorityTypeName) HeaderText="Yetki Tipi" TextAlign="TextAlign.Left" Width="100"></GridColumn>
-                <GridColumn Field=@nameof(UserBranchAuthorityDTO.IsActive) HeaderText="Statü" TextAlign="TextAlign.Left" Width="60" DefaultValue="@true">
+                @*<GridColumn Field=@nameof(UserBranchAuthorityDTO.IsActive) HeaderText="Statü" TextAlign="TextAlign.Left" Width="60" DefaultValue="@true">
                     <Template>
                         @{
                             var dto = (context as UserBranchAuthorityDTO);
@@ -51,7 +51,7 @@
                             }
                         }
                     </Template>
-                </GridColumn>
+                </GridColumn>*@
 
             </GridColumns>
 
@@ -85,12 +85,12 @@
                                 </div>
 
                             </div>
-                            <div class="form-row">
+                            @*<div class="form-row">
                                 <div class="form-group col-md-6">
                                     <SfCheckBox Name="IsActive" @bind-Checked="@(DTO!.IsActive)" Label="IsActive"></SfCheckBox>
                                 </div>
 
-                            </div>
+                            </div>*@
 
                         </div>
 

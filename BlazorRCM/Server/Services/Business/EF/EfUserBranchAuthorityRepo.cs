@@ -24,7 +24,7 @@ namespace BlazorRCM.Server.Services.Business.EF
         {
             using RCMBlazorContext ctx = new();
             var query = ctx.Set<UserBranchAuthority>().AsQueryable();
-
+            
                 var list = await query
                       .ProjectTo<UserBranchAuthorityDTO>(mapper.ConfigurationProvider).ToListAsync();
             return list;
