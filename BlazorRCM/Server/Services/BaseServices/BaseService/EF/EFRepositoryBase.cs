@@ -203,7 +203,7 @@ namespace BlazorRCM.Server.Services.BaseServices.BaseService.EF
             }
         }
 
-       
+        
         public async Task<TEntityDTO> Update(TEntityDTO entity)
         {
             try
@@ -231,9 +231,10 @@ namespace BlazorRCM.Server.Services.BaseServices.BaseService.EF
                 var prop = typeDB.GetProperty("ModifiedTime");
                 //var prop = typeDB.GetProperties().FirstOrDefault(p => p.PropertyType.Name == "ModifiedTime")!.Name;
 
-                string? id = type.GetProperty("Id")!.GetValue(entity)!.ToString();
+                var EntityType = type.GetProperty("Id")!;
+                
 
-                if (id == null)//for without Id records
+                if (EntityType == null)//for without Id records(unnesessary, not working , because savechanges doesnt work pk less)
                 {
                     TEntity? Entity = mapper.Map<TEntity>(entity);
                     if (Entity == null) throw new Exception("Kayıt bulunamadı");
@@ -251,6 +252,7 @@ namespace BlazorRCM.Server.Services.BaseServices.BaseService.EF
                 }
                 else
                 {
+                    var id = EntityType.GetValue(entity)!.ToString();
                     TEntity? Entity = query.AsEnumerable().FirstOrDefault(x => x.GetType().GetProperty("Id")!.GetValue(x)!.ToString() == id);
 
                     if (Entity == null) throw new Exception("Kayıt bulunamadı");
@@ -296,9 +298,10 @@ namespace BlazorRCM.Server.Services.BaseServices.BaseService.EF
                 //TEntity Entity = new();
 
                 Type type = entity.GetType();
-                string? id = type.GetProperty("Id")!.GetValue(entity)!.ToString();
+                var entityType = type.GetProperty("Id");
+                
 
-                if (id == null)//for without Id records
+                if (entityType == null)//for without Id records
                 {
                     TEntity? Entity = mapper.Map<TEntity>(entity);
                     if (Entity == null) throw new Exception("Kayıt bulunamadı");
@@ -311,6 +314,7 @@ namespace BlazorRCM.Server.Services.BaseServices.BaseService.EF
                 }
                 else 
                 {
+                    string? id = entityType!.GetValue(entity)!.ToString();
                     TEntity? Entity = query.AsEnumerable().FirstOrDefault(x => x.GetType().GetProperty("Id")!.GetValue(x)!.ToString() == id)!;
                     if (Entity == null) throw new Exception("Kayıt bulunamadı");
                     ctx.Entry(Entity!).State = EntityState.Detached;

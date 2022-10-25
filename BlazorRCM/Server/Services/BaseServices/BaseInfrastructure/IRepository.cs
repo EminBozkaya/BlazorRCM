@@ -14,6 +14,7 @@ namespace BlazorRCM.Server.Services.BaseServices.BaseInfrastructure
 
         //T Update(T entity);
         Task<T> Update(T entity);
+        //Task<T> UpdatePKeyless(T entity);
 
         Task<bool> Delete(T entity);
         Task DeleteByFilter(Expression<Func<T, bool>> filter);

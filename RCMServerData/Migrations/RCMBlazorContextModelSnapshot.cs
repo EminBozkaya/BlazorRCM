@@ -677,9 +677,11 @@ namespace RCMServerData.Migrations
                         .HasColumnType("smallint")
                         .HasColumnName("ATId");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean")
-                        .HasColumnName("IsActive");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("Id")
+                        .HasDefaultValueSql("UUID_GENERATE_V4()");
 
                     b.HasKey("UId", "BId", "ATId");
 

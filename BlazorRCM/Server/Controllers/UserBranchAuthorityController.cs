@@ -4,6 +4,7 @@ using BlazorRCM.Shared.ResponseModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RCMServerData.EFContext;
+using RCMServerData.Models;
 using System.Linq.Expressions;
 
 namespace BlazorRCM.Server.Controllers
@@ -74,6 +75,15 @@ namespace BlazorRCM.Server.Controllers
             };
         }
 
+        [HttpPost("UpdateUBA")]
+        public async Task<ServiceResponse<UserBranchAuthorityDTO>> UpdateUBA([FromBody] UserBranchAuthorityDTO dto)
+        {
+            await Repo.Delete(dto);
+            return new ServiceResponse<UserBranchAuthorityDTO>()
+            {
+                Value = await Repo.Create(dto)
+            };
+        }
         //[HttpPost("Delete")]
         //public async Task<BaseResponse> Delete([FromBody] UserBranchAuthorityDTO dto)
         //{

@@ -139,7 +139,8 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
                 {
                     try
                     {
-                        newdto = await Client!.PostGetServiceResponseAsync<UserBranchAuthorityDTO, UserBranchAuthorityDTO>("api/UserBranchAuthority/Update", newdto, true);
+                        
+                        newdto = await Client!.PostGetServiceResponseAsync<UserBranchAuthorityDTO, UserBranchAuthorityDTO>("api/UserBranchAuthority/UpdateUBA", newdto, true);
                         args.Cancel = true;
                         await Grid!.CloseEditAsync();
                         await Swal!.FireAsync("Başarılı", "Kayıt başarıyla güncellendi", "success");

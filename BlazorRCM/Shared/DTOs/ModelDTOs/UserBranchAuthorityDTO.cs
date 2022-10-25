@@ -9,7 +9,7 @@ namespace BlazorRCM.Shared.DTOs.ModelDTOs
 {
     public class UserBranchAuthorityDTO : BaseDTO
     {
-        //public int Id { get; set; }
+        public Guid Id { get; set; }
         public int UId { get; set; }
         public short BId { get; set; }
         public short ATId { get; set; }

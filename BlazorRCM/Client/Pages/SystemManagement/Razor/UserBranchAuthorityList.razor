@@ -64,7 +64,7 @@
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <SfDropDownList ID="UId" TItem="UserDTO" @bind-Value="@(DTO!.UId)" TValue="int" DataSource="@UserList" FloatLabelType="FloatLabelType.Always" Placeholder="Kullanıcı Seçiniz">
+                                    <SfDropDownList ID="DTO___UId" TItem="UserDTO" @bind-Value="DTO!.UId" TValue="int" DataSource="@UserList" FloatLabelType="FloatLabelType.Always" Placeholder="Kullanıcı Seçiniz">
                                         <DropDownListFieldSettings Value="Id" Text="FullName"></DropDownListFieldSettings>
                                     </SfDropDownList>
                                     <ValidationMessage For="@(()=>DTO.UId)"/>
@@ -72,14 +72,14 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <SfDropDownList ID="BId" TItem="BranchDTO" @bind-Value="@(DTO!.BId)" TValue="short" DataSource="@BranchList" FloatLabelType="FloatLabelType.Always" Placeholder="Şube Seçiniz">
+                                    <SfDropDownList ID="DTO___BId" TItem="BranchDTO" @bind-Value="DTO!.BId" TValue="short" DataSource="@BranchList" FloatLabelType="FloatLabelType.Always" Placeholder="Şube Seçiniz">
                                         <DropDownListFieldSettings Value="Id" Text="Name"></DropDownListFieldSettings>
                                     </SfDropDownList>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <SfDropDownList ID="ATIdl" TItem="AuthorityTypeDTO" @bind-Value="@(DTO!.ATId)" TValue="short" DataSource="@AuthorityTypeList" FloatLabelType="FloatLabelType.Always" Placeholder="Yetki Seçiniz">
+                                    <SfDropDownList ID="DTO___ATId" TItem="AuthorityTypeDTO" @bind-Value="DTO!.ATId" TValue="short" DataSource="@AuthorityTypeList" FloatLabelType="FloatLabelType.Always" Placeholder="Yetki Seçiniz">
                                         <DropDownListFieldSettings Value="Id" Text="Type"></DropDownListFieldSettings>
                                     </SfDropDownList>
                                 </div>

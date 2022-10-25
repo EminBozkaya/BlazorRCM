@@ -13,11 +13,11 @@ namespace RCMServerData.EFMappingToSQL
 
             builder.HasKey(k => new { k.UId, k.BId, k.ATId });
 
-            //builder.Property(x => x.Id)
-            //    .HasColumnName("Id")
-            //    .HasColumnType("int")
-            //    .ValueGeneratedOnAdd()
-            //    .UseIdentityAlwaysColumn();
+            builder.Property(x => x.Id)
+                .HasColumnName("Id")
+                .HasColumnType("uuid")
+                .HasDefaultValueSql("UUID_GENERATE_V4()")
+                .IsRequired();
 
             builder.Property(x => x.UId)
                 .HasColumnName("UId")
