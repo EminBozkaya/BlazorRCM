@@ -258,24 +258,24 @@ namespace BlazorRCM.Client.Pages.SystemManagement.Process
             SyncfusionExportation<UserBranchAuthorityDTO> syfExp = new();
             await syfExp.ToolBarClick(args, this.Grid!);
         }
-        public void ExcelQueryCellInfoHandler(ExcelQueryCellInfoEventArgs<UserBranchAuthorityDTO> args)
-        {
-            if (args.Column.Field == "IsActive")
-            {
-                if (args.Data.IsActive == true)
-                    args.Cell.Value = "Aktif";
-                else args.Cell.Value = "Pasif";
-            }
-        }
-        public void PdfQueryCellInfoHandler(PdfQueryCellInfoEventArgs<UserBranchAuthorityDTO> args)
-        {
-            if (args.Column.Field == "IsActive")
-            {
-                if (args.Data.IsActive == true)
-                    args.Cell.Value = "Aktif";
-                else args.Cell.Value = "Pasif";
-            }
-        }
+        //public void ExcelQueryCellInfoHandler(ExcelQueryCellInfoEventArgs<UserBranchAuthorityDTO> args)
+        //{
+        //    if (args.Column.Field == "IsActive")
+        //    {
+        //        if (args.Data.IsActive == true)
+        //            args.Cell.Value = "Aktif";
+        //        else args.Cell.Value = "Pasif";
+        //    }
+        //}
+        //public void PdfQueryCellInfoHandler(PdfQueryCellInfoEventArgs<UserBranchAuthorityDTO> args)
+        //{
+        //    if (args.Column.Field == "IsActive")
+        //    {
+        //        if (args.Data.IsActive == true)
+        //            args.Cell.Value = "Aktif";
+        //        else args.Cell.Value = "Pasif";
+        //    }
+        //}
 
     }
 }

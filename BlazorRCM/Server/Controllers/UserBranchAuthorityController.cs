@@ -38,7 +38,7 @@ namespace BlazorRCM.Server.Controllers
         {
             return new ServiceResponse<List<UserBranchAuthorityDTO>>()
             {
-                Value = (await Repo.GetAll(x => x.UId == id && x.IsActive==true) as List<UserBranchAuthorityDTO>)!
+                Value = (await Repo.GetAll(x => x.UId == id) as List<UserBranchAuthorityDTO>)!
             };
         }
 
