@@ -1,6 +1,0 @@
-<connectionStrings>
-		<add name="RCMConnStr" connectionString="server=DESKTOP-0F8S94D\SQLEXPRESS;database=RestaurantChainDb;trusted_connection=true;" providerName="System.Data.SqlClient" />
-	</connectionStrings>
-
-DESKTOP-0F8S94D\SQLEXPRESS
-RestaurantChainDb
